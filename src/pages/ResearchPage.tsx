@@ -5,6 +5,7 @@ import { ResearchIntroQuote } from '../components/research/ResearchIntroQuote';
 import { ResearchCarousel } from '../components/research/ResearchCarousel';
 import { ResearchTopicsSection } from '../components/research/ResearchTopicsSection';
 import { ResearchProjectItem } from '../components/research/ResearchProjectItem';
+import { SupportedByMarquee } from '../components/research/SupportedByMarquee';
 
 interface ResearchPageProps {
   onNavigate: (page: string, anchorId?: string) => void;
@@ -60,6 +61,9 @@ export const ResearchPage: React.FC<ResearchPageProps> = ({ onNavigate }) => {
               <ResearchProjectItem key={project.id} project={project} />
             ))}
           </div>
+
+          {/* Supported By: Funding Agencies Marquee Banner */}
+          <SupportedByMarquee />
         </div>
       </section>
     </div>

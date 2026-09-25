@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 70" width="280" height="70" fill="none">
+  <!-- NRF Interlocking Mobius Loop Symbol -->
+  <g transform="translate(10, 8)">
+    <!-- Cyan/Blue Loop -->
+    <path d="M26 8 C14 8, 4 18, 4 30 C4 42, 14 52, 26 52 C35 52, 42 46, 46 38 C43 38, 39 37, 36 34 C33 39, 29 43, 24 43 C17 43, 12 37, 12 30 C12 23, 17 17, 24 17 C31 17, 36 21, 38 27 C42 25, 46 25, 50 25 C46 15, 37 8, 26 8 Z" fill="#005bac"/>
+    <!-- Green/Teal Loop -->
+    <path d="M38 12 C30 12, 24 18, 20 25 C23 25, 27 26, 30 28 C33 23, 37 20, 42 20 C49 20, 54 26, 54 33 C54 40, 49 46, 42 46 C35 46, 30 42, 28 36 C24 38, 20 38, 16 38 C20 48, 29 55, 40 55 C52 55, 62 45, 62 33 C62 21, 52 12, 38 12 Z" fill="#5cb85c"/>
+  </g>
+  <!-- NRF Typography -->
+  <text x="80" y="38" font-family="'Space Grotesk', 'IBM Plex Sans', -apple-system, sans-serif" font-size="28" font-weight="700" fill="#003566" letter-spacing="-0.5">NRF</text>
+  <text x="81" y="52" font-family="'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" font-size="11" font-weight="600" fill="#475569" letter-spacing="-0.3">한국연구재단</text>
+</svg>
