@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { ThemeToggle } from '../common/ThemeToggle';
 import { RadarLogoIcon } from '../common/RadarLogoIcon';
 import { GithubIcon } from '../common/GithubIcon';
@@ -7,10 +7,9 @@ import { GithubIcon } from '../common/GithubIcon';
 interface HeaderProps {
   currentPage: string;
   onNavigate: (page: string) => void;
-  onOpenSearch: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenSearch }) => {
+export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [brandHovered, setBrandHovered] = useState(false);
@@ -99,35 +98,8 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenS
           })}
         </nav>
 
-        {/* Right Utilities: Search & Theme Toggle */}
+        {/* Right Utilities: GitHub & Theme Toggle */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
-          {/* Quick Search Button */}
-          <button
-            type="button"
-            onClick={onOpenSearch}
-            className="search-shortcut-btn"
-            aria-label="Search site (⌘K)"
-            title="Search site (⌘K)"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-              height: '34px',
-              background: 'none',
-              border: 'none',
-              color: 'var(--color-text-secondary)',
-              cursor: 'pointer',
-              fontSize: '14px',
-              fontFamily: 'var(--font-sans)',
-              transition: 'color var(--transition-fast)',
-              padding: 0,
-            }}
-          >
-            <Search size={16} />
-            <span style={{ fontSize: '13px', color: 'var(--color-text-muted)' }}>
-              ⌘K
-            </span>
-          </button>
 
           {/* GitHub Organization Link */}
           <a
@@ -346,20 +318,6 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenS
           box-shadow: 0 1px 4px rgba(2, 132, 199, 0.4);
         }
 
-        /* Search shortcut interactive button */
-        .search-shortcut-btn {
-          border-radius: var(--radius-sm);
-          padding: 6px 10px !important;
-          background-color: var(--color-bg-secondary) !important;
-          border: 1px solid var(--color-border) !important;
-          transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-        }
-        .search-shortcut-btn:hover {
-          background-color: var(--color-surface-hover) !important;
-          border-color: var(--color-accent-border) !important;
-          color: var(--color-text-primary) !important;
-          transform: translateY(-1px);
-        }
 
         .header-github-btn:hover {
           color: var(--color-text-primary) !important;

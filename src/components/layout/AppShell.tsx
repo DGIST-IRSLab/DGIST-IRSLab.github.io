@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Header } from './Header';
 import { Footer } from './Footer';
-import { SearchModal } from '../common/SearchModal';
 import { BibtexModal } from '../common/BibtexModal';
 import type { Publication } from '../../types';
 
@@ -19,7 +18,6 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
     return hash || 'home';
   });
 
-  const [searchOpen, setSearchOpen] = useState(false);
   const [activeBibtexPub, setActiveBibtexPub] = useState<Publication | null>(null);
 
   // Sync with browser back/forward buttons & URL hash
@@ -33,18 +31,6 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, [currentPage]);
-
-  // Global Keyboard Shortcut: ⌘K or Ctrl+K for search
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault();
-        setSearchOpen((prev) => !prev);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
 
   const handleNavigate = (page: string, anchorId?: string) => {
     setCurrentPage(page);
@@ -73,7 +59,6 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
       <Header
         currentPage={currentPage}
         onNavigate={handleNavigate}
-        onOpenSearch={() => setSearchOpen(true)}
       />
 
       <main style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
@@ -89,12 +74,6 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
       <Footer onNavigate={handleNavigate} />
 
       {/* Global Modals */}
-      <SearchModal
-        isOpen={searchOpen}
-        onClose={() => setSearchOpen(false)}
-        onNavigate={handleNavigate}
-      />
-
       <BibtexModal
         publication={activeBibtexPub}
         onClose={() => setActiveBibtexPub(null)}
