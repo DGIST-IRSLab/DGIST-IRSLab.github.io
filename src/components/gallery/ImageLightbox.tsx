@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useRef } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { assetUrl } from '../../utils/asset';
 
@@ -25,6 +25,8 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({
   onNext,
   onSelectIndex,
 }) => {
+  const filmstripRef = useRef<HTMLDivElement>(null);
+
   // Keyboard navigation & scroll locking
   useEffect(() => {
     if (!isOpen) return;
@@ -50,6 +52,30 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({
     };
   }, [isOpen, onClose, onPrev, onNext]);
 
+  // Keep active thumbnail visible in filmstrip
+  useEffect(() => {
+    if (!isOpen || !filmstripRef.current) return;
+    const activeThumb = filmstripRef.current.children[currentIndex] as HTMLElement | undefined;
+    if (activeThumb && typeof activeThumb.scrollIntoView === 'function') {
+      activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  }, [isOpen, currentIndex]);
+
+  // Preload adjacent images for smooth navigation
+  useEffect(() => {
+    if (!isOpen || images.length <= 1) return;
+    const nextIdx = (currentIndex + 1) % images.length;
+    const prevIdx = (currentIndex - 1 + images.length) % images.length;
+    if (images[nextIdx]?.src) {
+      const img1 = new Image();
+      img1.src = assetUrl(images[nextIdx].src);
+    }
+    if (images[prevIdx]?.src) {
+      const img2 = new Image();
+      img2.src = assetUrl(images[prevIdx].src);
+    }
+  }, [isOpen, currentIndex, images]);
+
   // Handle backdrop click
   const handleBackdropClick = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
@@ -70,7 +96,7 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({
       onClick={handleBackdropClick}
       role="dialog"
       aria-modal="true"
-      aria-label={albumTitle || 'Image slideshow'}
+      aria-label={albumTitle ? `${albumTitle} viewer` : 'Image lightbox viewer'}
     >
       {/* Top Header: Album Title, Date, Counter & Close */}
       <div className="gallery-modal-header" onClick={(e) => e.stopPropagation()}>
@@ -86,7 +112,7 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({
           <button
             type="button"
             onClick={onClose}
-            aria-label="Close slideshow"
+            aria-label="Close viewer"
             className="gallery-modal-close-btn"
           >
             <X size={18} />
@@ -136,7 +162,11 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({
 
       {/* Bottom Filmstrip Thumbnails */}
       {images.length > 1 && (
-        <div className="gallery-modal-filmstrip" onClick={(e) => e.stopPropagation()}>
+        <div
+          ref={filmstripRef}
+          className="gallery-modal-filmstrip"
+          onClick={(e) => e.stopPropagation()}
+        >
           {images.map((img, idx) => (
             <button
               key={idx}
