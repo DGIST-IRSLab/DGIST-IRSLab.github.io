@@ -22,7 +22,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenS
   }, []);
 
   const navItems = [
-    { id: 'home', label: 'Overview' },
+    { id: 'home', label: 'Home' },
     { id: 'research', label: 'Research' },
     { id: 'publications', label: 'Publications' },
     { id: 'people', label: 'People' },

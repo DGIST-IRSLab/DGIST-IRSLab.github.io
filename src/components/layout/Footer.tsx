@@ -83,7 +83,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               }}
             >
               {[
-                { label: 'Overview', id: 'home' },
+                { label: 'Home', id: 'home' },
                 { label: 'Research Themes', id: 'research' },
                 { label: 'Publications Index', id: 'publications' },
                 { label: 'Members & Alumni', id: 'people' },

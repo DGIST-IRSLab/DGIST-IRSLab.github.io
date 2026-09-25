@@ -1,10 +1,8 @@
 import React from 'react';
-import { ArrowRight, ChevronRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { labInfo } from '../data/labInfo';
 import { researchTopics } from '../data/research';
-import { publications } from '../data/publications';
 import { newsItems } from '../data/news';
-import { PublicationItem } from '../components/publications/PublicationItem';
 import { NewsListItem } from '../components/news/NewsListItem';
 import { SectionHeader } from '../components/common/SectionHeader';
 import { RadarArcVisual } from '../components/common/RadarArcVisual';
@@ -12,15 +10,12 @@ import type { Publication } from '../types';
 
 interface HomePageProps {
   onNavigate: (page: string, anchorId?: string) => void;
-  onOpenBibtex: (pub: Publication) => void;
+  onOpenBibtex?: (pub: Publication) => void;
 }
 
-export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBibtex }) => {
-  // Selected publications for home display
-  const selectedPubs = publications.filter((p) => p.selected).slice(0, 5);
-
+export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   // Latest news items
-  const recentNews = newsItems.slice(0, 7);
+  const recentNews = newsItems.slice(0, 9);
 
   return (
     <div className="homepage-root">
@@ -379,7 +374,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBibtex }) 
       </section>
 
       {/* ====================================================================
-          4. SELECTED PUBLICATIONS & ACTIVITY LOG (Asymmetric Two-Column)
+          4. NEWS & ACTIVITY LOG
           ==================================================================== */}
       <section
         className="section"
@@ -389,134 +384,87 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBibtex }) 
         }}
       >
         <div className="container">
+          <SectionHeader
+            eyebrow="ACTIVITY LOG"
+            title="News"
+            description="Recent research milestones, grant awards, publication acceptances, and lab announcements."
+            actionText="View All News"
+            onActionClick={() => onNavigate('news')}
+          />
+
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: '1.4fr 1fr',
+              gridTemplateColumns: '1.6fr 1fr',
               gap: 'var(--space-2xl)',
+              alignItems: 'start',
             }}
-            className="home-pub-news-grid"
+            className="home-news-layout"
           >
-            {/* Left: Selected Publications */}
-            <div>
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'baseline',
-                  justifyContent: 'space-between',
-                  marginBottom: 'var(--space-md)',
-                  borderBottom: '1px solid var(--color-border)',
-                  paddingBottom: 'var(--space-xs)',
-                }}
-              >
-                <div>
-                  <span className="eyebrow">SCHOLARSHIP</span>
-                  <h2 className="h3-title" style={{ fontSize: '20px' }}>
-                    Selected Publications
-                  </h2>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('publications')}
-                  className="link-subtle"
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    cursor: 'pointer',
-                    fontSize: '13px',
-                  }}
-                >
-                  <span>All Publications ({publications.length})</span>
-                  <ChevronRight size={13} />
-                </button>
-              </div>
-
-              <div>
-                {selectedPubs.map((pub) => (
-                  <PublicationItem
-                    key={pub.id}
-                    publication={pub}
-                    onOpenBibtex={onOpenBibtex}
-                  />
-                ))}
-              </div>
+            {/* Left: News List */}
+            <div
+              style={{
+                backgroundColor: 'var(--color-surface)',
+                border: '1px solid var(--color-border)',
+                borderRadius: 'var(--radius-sm)',
+                padding: '0 var(--space-lg)',
+              }}
+            >
+              {recentNews.map((item) => (
+                <NewsListItem key={item.id} item={item} />
+              ))}
             </div>
 
-            {/* Right: Latest Activity News Log */}
-            <div>
+            {/* Right: Lab Notice & Recruitment */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
               <div
                 style={{
-                  display: 'flex',
-                  alignItems: 'baseline',
-                  justifyContent: 'space-between',
-                  marginBottom: 'var(--space-md)',
-                  borderBottom: '1px solid var(--color-border)',
-                  paddingBottom: 'var(--space-xs)',
-                }}
-              >
-                <div>
-                  <span className="eyebrow">ACTIVITY LOG</span>
-                  <h2 className="h3-title" style={{ fontSize: '20px' }}>
-                    Recent Lab Updates
-                  </h2>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('news')}
-                  className="link-subtle"
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    cursor: 'pointer',
-                    fontSize: '13px',
-                  }}
-                >
-                  <span>All News</span>
-                  <ChevronRight size={13} />
-                </button>
-              </div>
-
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
-                {recentNews.map((item) => (
-                  <NewsListItem key={item.id} item={item} />
-                ))}
-              </div>
-
-              {/* Callout box for Admission */}
-              <div
-                style={{
-                  marginTop: 'var(--space-lg)',
-                  padding: 'var(--space-md)',
+                  padding: 'var(--space-lg)',
                   borderRadius: 'var(--radius-sm)',
                   backgroundColor: 'var(--color-surface)',
                   border: '1px solid var(--color-border)',
                   borderLeft: '3px solid var(--color-accent)',
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: '6px',
+                  gap: 'var(--space-xs)',
                 }}
               >
-                <div style={{ fontWeight: 600, fontSize: '13.5px', color: 'var(--color-text-primary)' }}>
-                  Looking for Ph.D. / M.S. Students & Postdocs
-                </div>
-                <p style={{ fontSize: '12.5px', color: 'var(--color-text-secondary)', lineHeight: 1.5 }}>
-                  We are actively recruiting passionate researchers in radar systems, signal processing, and physical AI.
+                <span className="eyebrow" style={{ color: 'var(--color-accent)', marginBottom: 0 }}>
+                  LAB ADMISSION
+                </span>
+                <h3
+                  style={{
+                    fontSize: '16px',
+                    fontWeight: 600,
+                    color: 'var(--color-text-primary)',
+                    lineHeight: 1.4,
+                  }}
+                >
+                  Recruiting Graduate Students & Postdocs
+                </h3>
+                <p style={{ fontSize: '13px', color: 'var(--color-text-secondary)', lineHeight: 1.6 }}>
+                  We are actively looking for passionate students (<b>Ph.D. / M.S. students</b> and <b>Undergraduate interns</b>) and <b>Postdoctoral Fellows</b> in the fields of radio systems, signal processing, and AI.
                 </p>
-                <div style={{ marginTop: '2px' }}>
+                <div style={{ fontSize: '12.5px', color: 'var(--color-text-muted)', lineHeight: 1.5, marginTop: '2px' }}>
+                  우리 연구실에서는 열정 있는 대학원생(석/박사 과정) 및 학부 연구생, 박사후 연구원을 상시 모집하고 있습니다.
+                </div>
+                <div style={{ marginTop: 'var(--space-xs)', display: 'flex', flexDirection: 'column', gap: '6px' }}>
                   <button
                     type="button"
                     onClick={() => onNavigate('join')}
-                    className="link-subtle"
-                    style={{
-                      background: 'none',
-                      border: 'none',
-                      cursor: 'pointer',
-                      fontSize: '12px',
-                    }}
+                    className="btn-academic btn-academic-primary"
+                    style={{ fontSize: '12.5px', justifyContent: 'center' }}
                   >
-                    <span>Admission & Application Details</span>
-                    <ArrowRight size={12} className="icon-arrow" />
+                    <span>Admission Information & Openings</span>
+                    <ArrowRight size={13} />
                   </button>
+                  <a
+                    href="mailto:jhochoi@dgist.ac.kr"
+                    className="link-subtle"
+                    style={{ fontSize: '12.5px', justifyContent: 'center', marginTop: '4px' }}
+                  >
+                    <span>Contact: jhochoi@dgist.ac.kr</span>
+                  </a>
                 </div>
               </div>
             </div>
@@ -524,10 +472,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBibtex }) 
         </div>
 
         <style>{`
-          @media (max-width: 960px) {
-            .home-pub-news-grid {
+          @media (max-width: 900px) {
+            .home-news-layout {
               grid-template-columns: 1fr !important;
-              gap: var(--space-xl) !important;
+              gap: var(--space-lg) !important;
             }
           }
         `}</style>
