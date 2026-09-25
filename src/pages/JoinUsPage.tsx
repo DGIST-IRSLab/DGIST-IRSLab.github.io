@@ -184,7 +184,7 @@ export const JoinUsPage: React.FC = () => {
                 <h3 className="h3-title" style={{ fontSize: '18px' }}>
                   Undergraduate Research Interns
                 </h3>
-                <span className="badge badge-outline">SUMMER & WINTER COHORTS</span>
+                <span style={{ fontSize: '13px', fontWeight: 500, color: 'var(--color-text-muted)' }}>Summer &amp; Winter Cohorts</span>
               </div>
 
               <p className="body-text" style={{ fontSize: '13.5px', lineHeight: 1.6 }}>

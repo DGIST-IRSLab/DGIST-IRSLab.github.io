@@ -69,14 +69,7 @@ export const ResearchPage: React.FC<ResearchPageProps> = ({ onNavigate }) => {
             onActionClick={() => onNavigate('publications')}
           />
 
-          <div
-            style={{
-              backgroundColor: 'var(--color-surface)',
-              border: '1px solid var(--color-border)',
-              borderRadius: 'var(--radius-sm)',
-              padding: '0 var(--space-lg)',
-            }}
-          >
+          <div className="projects-list-container">
             {researchProjects.map((project) => (
               <ResearchProjectItem key={project.id} project={project} />
             ))}

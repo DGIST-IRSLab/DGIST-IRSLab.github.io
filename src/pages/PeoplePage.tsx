@@ -38,7 +38,7 @@ export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
       </section>
 
       {/* Postdoctoral Fellows */}
-      <section style={{ paddingTop: 'var(--space-lg)' }}>
+      <section style={{ paddingTop: 'var(--space-2xl)' }}>
         <div className="container">
           <SectionHeader
             title="Postdoctoral Fellows"
