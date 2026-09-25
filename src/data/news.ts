@@ -64,7 +64,7 @@ export const newsItems: NewsItem[] = [
     id: "news-2026-07-interns",
     date: "2026.07",
     category: "PEOPLE",
-    title: "New Members Joined IRS Lab (Jaeone Yun, Junwon Choi).",
+    title: "Summer Internships for 2 Students (Jaeone Yun, Junwon Choi).",
     description: "Jaeone Yun and Junwon Choi began their summer research internships in the IRS Laboratory."
   },
   {
