@@ -40,12 +40,18 @@ import type { NewsItem } from '../types';
 
 export const newsItems: NewsItem[] = [
   {
+    id:"news-2026-09-paper",
+    date: "2026.09",
+    category: "PAPER",
+    title:"2 Paper Accepted to NeurIPS 26.",
+    description:"Two papers by Eunchan Kim, Jeongwan Shin, and Jaehyeon Kim have been accepted to NeurIPS 2026 🥳 Congratulations!"
+  },
+  {
     id: "news-2026-08-award",
     date: "2026.08",
     category: "AWARD",
     title: "Ji-Hyuck Hong received the IEEE GRSS Seoul Chapter Chair Award.",
     description: "Lab member Ji-Hyuck Hong was recognized with the prestigious IEEE Geoscience and Remote Sensing Society (GRSS) Seoul Chapter Chair Award.",
-    highlight: true
   },
   {
     id: "news-2026-08-members",
