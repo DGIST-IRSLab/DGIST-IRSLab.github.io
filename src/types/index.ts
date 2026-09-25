@@ -48,6 +48,8 @@ export interface Person {
   role: 'Professor' | 'Postdoc Fellow' | 'Ph.D. Student' | 'Integrated M.S./Ph.D.' | 'Integrated Ph.D.' | 'Joint MS & PhD' | 'MS Student' | 'Undergraduate Researcher' | 'Alumni';
   title: string;
   photo: string;
+  specialPhoto?: string;
+  specialPhotoObjectPosition?: string;
   email?: string;
   phone?: string;
   room?: string;

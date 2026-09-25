@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Mail, Phone, MapPin, GraduationCap, ExternalLink, Award, FileText } from 'lucide-react';
-import { professor } from '../../data/people';
+import { professor, getSpecialPhoto } from '../../data/people';
 
 export const ProfessorProfile: React.FC = () => {
+  const [standardError, setStandardError] = useState(false);
+  const [specialError, setSpecialError] = useState(false);
+  const specialPhoto = getSpecialPhoto(professor);
+  const hasSpecial = Boolean(specialPhoto && !specialError);
+
   return (
     <div
       style={{
@@ -20,7 +25,9 @@ export const ProfessorProfile: React.FC = () => {
       {/* Portrait & Contacts */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
         <div
+          className="professor-photo-container"
           style={{
+            position: 'relative',
             width: '100%',
             aspectRatio: '4 / 5',
             borderRadius: 'var(--radius-sm)',
@@ -29,17 +36,55 @@ export const ProfessorProfile: React.FC = () => {
             backgroundColor: 'var(--color-bg-secondary)',
           }}
         >
-          <img
-            src={professor.photo}
-            alt={professor.name}
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              objectPosition: 'center 20%',
-              display: 'block',
-            }}
-          />
+          {!standardError ? (
+            <img
+              src={professor.photo}
+              alt={professor.name}
+              onError={() => setStandardError(true)}
+              className={`prof-photo prof-photo-standard ${hasSpecial ? 'has-special' : ''}`}
+              style={{
+                position: 'absolute',
+                inset: 0,
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center 20%',
+                display: 'block',
+              }}
+            />
+          ) : (
+            <div
+              style={{
+                position: 'absolute',
+                inset: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'var(--color-text-dim)',
+                fontFamily: 'var(--font-mono)',
+              }}
+            >
+              Prof. Jae-Ho Choi
+            </div>
+          )}
+
+          {hasSpecial && (
+            <img
+              src={specialPhoto}
+              alt={`${professor.name} special`}
+              onError={() => setSpecialError(true)}
+              className="prof-photo prof-photo-special"
+              style={{
+                position: 'absolute',
+                inset: 0,
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: professor.specialPhotoObjectPosition || '67% 40%',
+                display: 'block',
+              }}
+            />
+          )}
         </div>
 
         {/* Contact list */}
@@ -220,6 +265,26 @@ export const ProfessorProfile: React.FC = () => {
       </div>
 
       <style>{`
+        .prof-photo {
+          transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .prof-photo-standard {
+          opacity: 1;
+          z-index: 1;
+        }
+        .prof-photo-special {
+          opacity: 0;
+          z-index: 2;
+          transform: scale(1.02);
+          pointer-events: none;
+        }
+        .professor-photo-container:hover .prof-photo-special {
+          opacity: 1;
+          transform: scale(1);
+        }
+        .professor-photo-container:hover .prof-photo-standard.has-special {
+          opacity: 0;
+        }
         @media (max-width: 768px) {
           .professor-profile-grid {
             grid-template-columns: 1fr !important;

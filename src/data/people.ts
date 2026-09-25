@@ -1,12 +1,56 @@
 import type { Person, InternGroup } from '../types';
 
+// Auto-discover any special photos placed in public/images/teampic/special
+const specialImageGlobs = import.meta.glob(
+  '/public/images/teampic/special/**/*.{jpg,jpeg,png,webp,gif,JPG,JPEG,PNG,WEBP,GIF}'
+);
+
+const specialPhotoMap = new Map<string, string>();
+for (const rawPath of Object.keys(specialImageGlobs)) {
+  const filename = rawPath.split('/').pop();
+  if (filename) {
+    const webPath = rawPath.replace(/^\/public/, '');
+    specialPhotoMap.set(filename.toLowerCase(), webPath);
+    const baseWithoutExt = filename.replace(/\.[^/.]+$/, '').toLowerCase();
+    specialPhotoMap.set(baseWithoutExt, webPath);
+  }
+}
+
+/**
+ * Returns the special photo URL for a person if available.
+ * 1. Checks person.specialPhoto explicitly.
+ * 2. Checks if a file matching person.id exists in /images/teampic/special/
+ * 3. Checks if a file with matching filename or basename exists in /images/teampic/special/
+ */
+export function getSpecialPhoto(person: Person): string | undefined {
+  if (person.specialPhoto) return person.specialPhoto;
+  if (person.id && specialPhotoMap.has(person.id.toLowerCase())) {
+    return specialPhotoMap.get(person.id.toLowerCase());
+  }
+  if (person.photo) {
+    const filename = person.photo.split('/').pop();
+    if (filename) {
+      if (specialPhotoMap.has(filename.toLowerCase())) {
+        return specialPhotoMap.get(filename.toLowerCase());
+      }
+      const baseWithoutExt = filename.replace(/\.[^/.]+$/, '').toLowerCase();
+      if (specialPhotoMap.has(baseWithoutExt)) {
+        return specialPhotoMap.get(baseWithoutExt);
+      }
+    }
+  }
+  return undefined;
+}
+
 export const professor: Person = {
   id: "jaeho-choi",
   name: "Jae-Ho Choi",
   nameKr: "최재호",
   role: "Professor",
   title: "Assistant Professor",
-  photo: "/images/teampic/Jaeho2.jpg",
+  photo: "/images/teampic/standard/Jaeho2.jpg",
+  specialPhoto: "/images/teampic/special/Jaeho3.jpg",
+  specialPhotoObjectPosition: "67% 40%",
   email: "jhochoi@dgist.ac.kr",
   phone: "+82-53-785-6328",
   room: "Engineering Building E3, Room 406",
@@ -39,7 +83,7 @@ export const postdocs: Person[] = [
     nameKr: "신정완",
     role: "Postdoc Fellow",
     title: "Postdoctoral Fellow",
-    photo: "/images/teampic/student_jeongwan.png",
+    photo: "/images/teampic/standard/student_jeongwan.png",
     email: "jwshin@dgist.ac.kr",
     website: "https://jeongwan-shin.github.io/",
     researchInterests: ["Computer Vision", "Video Question Answering", "Radar-Camera Multimodal Learning"]
@@ -49,7 +93,7 @@ export const postdocs: Person[] = [
     name: "Yazdan Qadri",
     role: "Postdoc Fellow",
     title: "Postdoctoral Fellow",
-    photo: "/images/teampic/postdoc_YQ.jpg",
+    photo: "/images/teampic/standard/postdoc_YQ.jpg",
     email: "yazdan@dgist.ac.kr",
     website: "https://yazdanaq.github.io/",
     researchInterests: ["Wireless Communications", "Signal Processing", "Physical Layer Security & AI"]
@@ -63,7 +107,7 @@ export const graduateStudents: Person[] = [
     nameKr: "이성령",
     role: "Ph.D. Student",
     title: "Ph.D. Student",
-    photo: "/images/teampic/student_LSR.jpg",
+    photo: "/images/teampic/standard/student_LSR.jpg",
     email: "seongryeong.lee@dgist.ac.kr",
     researchInterests: ["Radar Signal Processing", "Physical AI", "Micro-Doppler Kinematics"]
   },
@@ -73,7 +117,7 @@ export const graduateStudents: Person[] = [
     nameKr: "김재현",
     role: "Integrated M.S./Ph.D.",
     title: "Integrated M.S./Ph.D. Student",
-    photo: "/images/teampic/student_jaehyun.jpg",
+    photo: "/images/teampic/standard/student_jaehyun.jpg",
     email: "sks05248@dgist.ac.kr",
     researchInterests: ["mmWave Radar 3D Pose Estimation", "Foundation Models for Radar", "LLM Radar Understanding"]
   },
@@ -83,7 +127,7 @@ export const graduateStudents: Person[] = [
     nameKr: "홍지혁",
     role: "Integrated M.S./Ph.D.",
     title: "Integrated M.S./Ph.D. Student",
-    photo: "/images/teampic/student_jihyeok.jpg",
+    photo: "/images/teampic/standard/student_jihyeok.jpg",
     email: "jh.hong@dgist.ac.kr",
     researchInterests: ["Maritime Radar Signal Processing", "UAV Micro-Doppler Augmentation", "IEEE GRSS Seoul Chapter Awardee"]
   },
@@ -93,7 +137,7 @@ export const graduateStudents: Person[] = [
     nameKr: "이재룡",
     role: "Integrated M.S./Ph.D.",
     title: "Integrated M.S./Ph.D. Student",
-    photo: "/images/teampic/student_LJR2.jpg",
+    photo: "/images/teampic/standard/student_LJR2.jpg",
     email: "wofyd0826@dgist.ac.kr",
     researchInterests: ["Diffusion Models for Radar-Camera Fusion", "Metric Depth Estimation", "Sensor Fusion"]
   },
@@ -103,7 +147,7 @@ export const graduateStudents: Person[] = [
     nameKr: "강성은",
     role: "Integrated M.S./Ph.D.",
     title: "Integrated M.S./Ph.D. Student",
-    photo: "/images/teampic/student_KSE2.jpg",
+    photo: "/images/teampic/standard/student_KSE2.jpg",
     email: "seungeun.kang@dgist.ac.kr",
     researchInterests: ["Wireless AI", "Contactless Sensing", "Signal Representation Learning"]
   },
@@ -113,7 +157,7 @@ export const graduateStudents: Person[] = [
     nameKr: "김은찬",
     role: "MS Student",
     title: "M.S. Student",
-    photo: "/images/teampic/student_eunchan.jpg",
+    photo: "/images/teampic/standard/student_eunchan.jpg",
     email: "eunchan.kim@dgist.ac.kr",
     researchInterests: ["Masked Autoencoders for Radar", "Self-Supervised Learning", "Range-Doppler Detection"]
   },
@@ -123,7 +167,7 @@ export const graduateStudents: Person[] = [
     nameKr: "고동욱",
     role: "MS Student",
     title: "M.S. Student",
-    photo: "/images/teampic/student_DW.jpg",
+    photo: "/images/teampic/standard/student_DW.jpg",
     email: "duko@dgist.ac.kr",
     researchInterests: ["LLMs for mmWave Data", "Multimodal Benchmarking", "Signal Processing"]
   },
@@ -133,7 +177,7 @@ export const graduateStudents: Person[] = [
     nameKr: "김범준",
     role: "MS Student",
     title: "M.S. Student",
-    photo: "/images/teampic/student_BJK.jpg",
+    photo: "/images/teampic/standard/student_BJK.jpg",
     email: "bj1430@dgist.ac.kr",
     researchInterests: ["RF Sensing Systems", "Hardware Testbeds", "Real-Time Embedded AI"]
   },
@@ -143,7 +187,7 @@ export const graduateStudents: Person[] = [
     nameKr: "심민경",
     role: "MS Student",
     title: "M.S. Student",
-    photo: "/images/teampic/student_MKS.jpg",
+    photo: "/images/teampic/standard/student_MKS.jpg",
     email: "musum129@dgist.ac.kr",
     researchInterests: ["Physiological Sensing", "Contactless Vital Monitoring", "Deep Signal Analysis"]
   },
@@ -153,7 +197,7 @@ export const graduateStudents: Person[] = [
     nameKr: "한정우",
     role: "MS Student",
     title: "M.S. Student",
-    photo: "/images/teampic/student_JWH.jpg",
+    photo: "/images/teampic/standard/student_JWH.jpg",
     email: "hanjw927@dgist.ac.kr",
     researchInterests: ["Radar Signal Processing", "Autonomous Vehicle Perception", "Spatial Clustering"]
   },
@@ -163,7 +207,7 @@ export const graduateStudents: Person[] = [
     nameKr: "김민재",
     role: "MS Student",
     title: "M.S. Student",
-    photo: "/images/teampic/student_KMJ.jpg",
+    photo: "/images/teampic/standard/student_KMJ.jpg",
     email: "minjaek@dgist.ac.kr",
     researchInterests: ["Multimodal Fusion", "Complex Neural Networks", "Sensing Under Darkness"]
   }
@@ -176,7 +220,7 @@ export const undergraduateResearchers: Person[] = [
     nameKr: "윤재원",
     role: "Undergraduate Researcher",
     title: "Undergraduate Researcher",
-    photo: "/images/teampic/student_JW.jpg",
+    photo: "/images/teampic/standard/student_JW.jpg",
     email: "jaeoneyun@dgist.ac.kr",
     researchInterests: ["Radar Signal Processing", "Machine Learning"]
   },
@@ -186,7 +230,7 @@ export const undergraduateResearchers: Person[] = [
     nameKr: "정윤중",
     role: "Undergraduate Researcher",
     title: "Undergraduate Researcher",
-    photo: "/images/teampic/student_YJJ.jpg",
+    photo: "/images/teampic/standard/student_YJJ.jpg",
     email: "ak0147@dgist.ac.kr",
     website: "https://yunjung-jeong.github.io/cv/",
     researchInterests: ["Wireless AI", "Deep Learning Architectures"]
@@ -197,7 +241,7 @@ export const undergraduateResearchers: Person[] = [
     nameKr: "공준형",
     role: "Undergraduate Researcher",
     title: "Undergraduate Researcher",
-    photo: "/images/teampic/student_jhgong.jpg",
+    photo: "/images/teampic/standard/student_jhgong.jpg",
     email: "jhgong@dgist.ac.kr",
     researchInterests: ["RF Sensing", "Embedded Systems"]
   }
@@ -210,7 +254,7 @@ export const alumni: Person[] = [
     nameKr: "박재현 박사",
     role: "Alumni",
     title: "Postdoctoral Fellow (2025–2026)",
-    photo: "/images/teampic/student_jaehyunpark.jpg",
+    photo: "/images/teampic/standard/student_jaehyunpark.jpg",
     alumniPeriod: "2025 – 2026",
     alumniDestination: "NASA Jet Propulsion Laboratory (JPL)",
     website: "https://jhynpark.github.io/",
@@ -222,7 +266,7 @@ export const alumni: Person[] = [
     nameKr: "박도현 박사",
     role: "Alumni",
     title: "Postdoctoral Fellow (2025–2026)",
-    photo: "/images/teampic/postdoc_DH.jpg",
+    photo: "/images/teampic/standard/postdoc_DH.jpg",
     alumniPeriod: "2025 – 2026",
     alumniDestination: "NASA Jet Propulsion Laboratory (JPL)",
     website: "https://sites.google.com/view/dohyunpark",

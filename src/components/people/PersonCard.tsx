@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Globe, ExternalLink, GraduationCap } from 'lucide-react';
 import type { Person } from '../../types';
+import { getSpecialPhoto } from '../../data/people';
 
 interface PersonCardProps {
   person: Person;
@@ -9,7 +10,10 @@ interface PersonCardProps {
 
 export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false }) => {
   const [imageError, setImageError] = useState(false);
+  const [specialError, setSpecialError] = useState(false);
   const homeUrl = person.website || person.googleScholar || person.cvUrl || person.github;
+  const specialPhoto = getSpecialPhoto(person);
+  const hasSpecial = Boolean(specialPhoto && !specialError);
 
   return (
     <div
@@ -27,6 +31,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false 
     >
       {/* Photo Container with fixed academic aspect ratio (4:5) */}
       <div
+        className="person-photo-container"
         style={{
           position: 'relative',
           width: '100%',
@@ -41,7 +46,13 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false 
             target="_blank"
             rel="noreferrer"
             aria-label={`${person.name}'s homepage`}
-            style={{ display: 'block', width: '100%', height: '100%', cursor: 'pointer' }}
+            style={{
+              position: 'relative',
+              display: 'block',
+              width: '100%',
+              height: '100%',
+              cursor: 'pointer',
+            }}
           >
             {!imageError ? (
               <img
@@ -49,21 +60,22 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false 
                 alt={person.name}
                 onError={() => setImageError(true)}
                 loading="lazy"
+                className={`person-photo-img person-photo-standard ${hasSpecial ? 'has-special' : ''}`}
                 style={{
+                  position: 'absolute',
+                  inset: 0,
                   width: '100%',
                   height: '100%',
                   objectFit: 'cover',
                   objectPosition: 'center 20%',
                   display: 'block',
-                  transition: 'transform var(--transition-fast)',
                 }}
-                className="person-photo-img"
               />
             ) : (
               <div
                 style={{
-                  width: '100%',
-                  height: '100%',
+                  position: 'absolute',
+                  inset: 0,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -75,38 +87,81 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false 
                 {person.name.split(' ').map((n) => n[0]).join('')}
               </div>
             )}
+
+            {hasSpecial && (
+              <img
+                src={specialPhoto}
+                alt={`${person.name} special`}
+                onError={() => setSpecialError(true)}
+                loading="lazy"
+                className="person-photo-img person-photo-special"
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: person.specialPhotoObjectPosition || 'center 20%',
+                  display: 'block',
+                }}
+              />
+            )}
           </a>
         ) : (
-          !imageError ? (
-            <img
-              src={person.photo}
-              alt={person.name}
-              onError={() => setImageError(true)}
-              loading="lazy"
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                objectPosition: 'center 20%',
-                display: 'block',
-              }}
-            />
-          ) : (
-            <div
-              style={{
-                width: '100%',
-                height: '100%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'var(--color-text-dim)',
-                fontFamily: 'var(--font-mono)',
-                fontSize: '13px',
-              }}
-            >
-              {person.name.split(' ').map((n) => n[0]).join('')}
-            </div>
-          )
+          <>
+            {!imageError ? (
+              <img
+                src={person.photo}
+                alt={person.name}
+                onError={() => setImageError(true)}
+                loading="lazy"
+                className={`person-photo-img person-photo-standard ${hasSpecial ? 'has-special' : ''}`}
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center 20%',
+                  display: 'block',
+                }}
+              />
+            ) : (
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'var(--color-text-dim)',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '13px',
+                }}
+              >
+                {person.name.split(' ').map((n) => n[0]).join('')}
+              </div>
+            )}
+
+            {hasSpecial && (
+              <img
+                src={specialPhoto}
+                alt={`${person.name} special`}
+                onError={() => setSpecialError(true)}
+                loading="lazy"
+                className="person-photo-img person-photo-special"
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: person.specialPhotoObjectPosition || 'center 20%',
+                  display: 'block',
+                }}
+              />
+            )}
+          </>
         )}
 
         {/* Small subtle role tag overlay */}
@@ -122,6 +177,8 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false 
             borderRadius: 'var(--radius-xs)',
             fontSize: '10.5px',
             fontFamily: 'var(--font-mono)',
+            zIndex: 4,
+            pointerEvents: 'none',
           }}
         >
           {person.title}
@@ -317,8 +374,28 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false 
       </div>
 
       <style>{`
-        .person-photo-img:hover {
+        .person-photo-img {
+          transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+        .person-photo-standard {
+          opacity: 1;
+          z-index: 1;
+        }
+        .person-photo-container:hover .person-photo-standard:not(.has-special) {
           transform: scale(1.03);
+        }
+        .person-photo-special {
+          opacity: 0;
+          z-index: 2;
+          transform: scale(1.02);
+          pointer-events: none;
+        }
+        .person-photo-container:hover .person-photo-special {
+          opacity: 1;
+          transform: scale(1);
+        }
+        .person-photo-container:hover .person-photo-standard.has-special {
+          opacity: 0;
         }
         .member-name-link:hover {
           color: var(--color-accent) !important;
