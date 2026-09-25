@@ -33,17 +33,12 @@ export interface Publication {
   venueShort: string;
   year: number;
   type: 'conference' | 'journal' | 'workshop';
-  badges?: string[]; // e.g. "Top Conf.", "Oral", "Top 5%"
   pdfUrl?: string;
   projectUrl?: string;
   codeUrl?: string;
   videoUrl?: string;
-  doi?: string;
   bibtex?: string;
-  abstract?: string;
-  thumbnail?: string;
   isDomestic?: boolean;
-  selected?: boolean;
 }
 
 export interface Person {

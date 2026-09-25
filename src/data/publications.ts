@@ -10,9 +10,6 @@ export const publications: Publication[] = [
     venueShort: "CVPR Findings",
     year: 2026,
     type: "conference",
-    badges: ["Top Conf.", "CVPR'26"],
-    abstract: "Explores whether large language models and vision-language architectures can generalize to complex, non-visual high-frequency electromagnetic radar point clouds and micro-Doppler spectrograms for zero-shot human action and condition understanding.",
-    selected: true,
     bibtex: `@inproceedings{shin2026mmwave,
   title={Can Language Models Understand mmWave Data? Benchmarking Large Language Models for mmWave Radar-Based Human Understanding},
   author={Shin, Jeongwan and Kim, Jaehyeon and Ko, Donguk and Choi, Jae-Ho},
@@ -29,10 +26,7 @@ export const publications: Publication[] = [
     venueShort: "WACV",
     year: 2026,
     type: "conference",
-    badges: ["Top Conf.", "WACV'26"],
     pdfUrl: "https://openaccess.thecvf.com/content/WACV2026/papers/Shin_ReFineVQA_Iterative_Refinement_of_Video_Description_via_Feedback_Generation_for_WACV_2026_paper.pdf",
-    abstract: "Proposes an iterative refinement feedback framework that recursively refines intermediate video descriptions to deliver state-of-the-art accuracy in temporal video question answering.",
-    selected: true,
     bibtex: `@inproceedings{shin2026refinevqa,
   title={ReFineVQA: Iterative Refinement of Video Description via Feedback Generation for Video Question Answering},
   author={Shin, Jeongwan and Hur, Chan and Cho, Seongmin and Choi, Jae-Ho and Park, Hyeyoung},
@@ -49,11 +43,8 @@ export const publications: Publication[] = [
     venueShort: "CVPR",
     year: 2025,
     type: "conference",
-    badges: ["Top Conf.", "CVPR'25"],
     pdfUrl: "https://openaccess.thecvf.com/content/CVPR2025/papers/Choi_MVDoppler-Pose_Multi-Modal_Multi-View_mmWave_Sensing_for_Long-Distance_Self-Occluded_Human_Walking_CVPR_2025_paper.pdf",
     projectUrl: "https://mvdoppler-pose.github.io/",
-    abstract: "Presents a multi-modal, multi-view mmWave sensing architecture capable of accurate full-body 3D human pose reconstruction at long distances and under severe self-occlusions, outperforming conventional optical baselines in low visibility.",
-    selected: true,
     bibtex: `@inproceedings{choi2025mvdopplerpose,
   title={MVDoppler-Pose: Multi-Modal Multi-View mmWave Sensing for Long-Distance Self-Occluded Human Walking Pose Estimation},
   author={Choi, Jae-Ho and Hor, Soheil and Yang, Shubo and Arbabian, Amin},
@@ -70,10 +61,7 @@ export const publications: Publication[] = [
     venueShort: "ICASSP",
     year: 2025,
     type: "conference",
-    badges: ["Top Conf.", "Oral Presentation"],
     pdfUrl: "https://ieeexplore.ieee.org/abstract/document/10888938",
-    abstract: "Synthesizes high-resolution micro-Doppler radar signatures directly from arbitrary video camera angles and diverse walking paths using physics-guided deep generative models.",
-    selected: true,
     bibtex: `@inproceedings{yang2025highres,
   title={High-Resolution Gait Micro-Doppler Synthesis from Videos Over Diverse Trajectories},
   author={Yang, Shubo and Hor, Soheil and Choi, Jae-Ho and Arbabian, Amin},
@@ -90,10 +78,7 @@ export const publications: Publication[] = [
     venueShort: "IEEE SPL",
     year: 2024,
     type: "journal",
-    badges: ["IEEE Journal"],
     pdfUrl: "https://ieeexplore.ieee.org/abstract/document/10710320",
-    abstract: "Introduces an attention-based spatiotemporal transformer framework for robust crowd density estimation in complex real-world propagation and multipath clutter environments.",
-    selected: false,
     bibtex: `@article{choi2024radar,
   title={Radar-Based Crowd Counting in Real-World Environments with Spatiotemporal Transformer},
   author={Choi, Jae-Ho and Kim, Kyung-Tae},
@@ -113,10 +98,7 @@ export const publications: Publication[] = [
     venueShort: "AAAI",
     year: 2024,
     type: "conference",
-    badges: ["Top Conf.", "AAAI'24"],
     pdfUrl: "https://ojs.aaai.org/index.php/AAAI/article/view/27898",
-    abstract: "Combines complementary radiometric and visual phase dynamics through cross-attention to accurately extract respiration rate and cardiac pulses from subjects moving freely in room environments.",
-    selected: true,
     bibtex: `@inproceedings{choi2024fusionvital,
   title={Fusion-Vital: Video-RF Fusion Transformer for Advanced Remote Physiological Measurement},
   author={Choi, Jae-Ho and Kang, Ki-Bong and Kim, Kyung-Tae},
@@ -136,7 +118,6 @@ export const publications: Publication[] = [
     venueShort: "IEEE SensJ",
     year: 2024,
     type: "journal",
-    badges: ["IEEE Journal"],
     pdfUrl: "https://ieeexplore.ieee.org/document/10322673",
     bibtex: `@article{choi2024people,
   title={Radar-Based People Counting under Heterogeneous Clutter Environments},
@@ -157,11 +138,8 @@ export const publications: Publication[] = [
     venueShort: "NeurIPS",
     year: 2023,
     type: "conference",
-    badges: ["Top Conf.", "NeurIPS'23"],
     pdfUrl: "https://openreview.net/pdf?id=1plAfmP5ms",
     projectUrl: "https://mvdoppler.github.io/",
-    abstract: "Demonstrates that synchronous multi-perspective micro-Doppler radar acquisition unmasks spatial velocity components previously invisible to single-radar deployments, boosting gait classification.",
-    selected: true,
     bibtex: `@inproceedings{hor2023mvdoppler,
   title={MVDoppler: Unleashing the Power of Multi-View Doppler for MicroMotion-based Gait Classification},
   author={Hor, Soheil and Yang, Shubo and Choi, Jae-Ho and Arbabian, Amin},
@@ -178,10 +156,7 @@ export const publications: Publication[] = [
     venueShort: "IEEE IoTJ",
     year: 2023,
     type: "journal",
-    badges: ["IEEE Journal", "Top 5%"],
     pdfUrl: "https://ieeexplore.ieee.org/abstract/document/10304252",
-    abstract: "Achieves real-time continuous contactless chest displacement tracking and respiratory rate extraction while an individual walks and wanders inside an indoor room.",
-    selected: true,
     bibtex: `@article{choi2023rfvital,
   title={RF-Vital: Radio-Based Contactless Respiration Monitoring for a Moving Individual},
   author={Choi, Jae-Ho and Kang, Ki-Bong and Kim, Kyung-Tae},
@@ -201,7 +176,6 @@ export const publications: Publication[] = [
     venueShort: "IEEE Access",
     year: 2023,
     type: "journal",
-    badges: ["IEEE Journal"],
     pdfUrl: "https://ieeexplore.ieee.org/abstract/document/10097706"
   },
   {
@@ -213,10 +187,7 @@ export const publications: Publication[] = [
     venueShort: "ECCV",
     year: 2022,
     type: "conference",
-    badges: ["Top Conf.", "ECCV'22"],
     pdfUrl: "https://www.ecva.net/papers/eccv_2022/papers_ECCV/papers/136970248.pdf",
-    abstract: "The foundational formulation separating non-stationary body translational Doppler shifts from micrometric periodic chest movements using deep neural decomposition.",
-    selected: true,
     bibtex: `@inproceedings{choi2022remote,
   title={Remote Respiration Monitoring of Moving Person Using Radio Signals},
   author={Choi, Jae-Ho and Kang, Ki-Bong and Kim, Kyung-Tae},
@@ -234,7 +205,6 @@ export const publications: Publication[] = [
     venueShort: "Remote Sensing",
     year: 2022,
     type: "journal",
-    badges: ["Journal"],
     pdfUrl: "https://www.mdpi.com/2072-4292/14/16/4044"
   },
   {
@@ -246,7 +216,6 @@ export const publications: Publication[] = [
     venueShort: "IEEE IoTJ",
     year: 2022,
     type: "journal",
-    badges: ["IEEE Journal", "Top 5%"],
     pdfUrl: "https://ieeexplore.ieee.org/abstract/document/9540889"
   },
   {
@@ -258,9 +227,7 @@ export const publications: Publication[] = [
     venueShort: "IEEE TGRS",
     year: 2022,
     type: "journal",
-    badges: ["IEEE Journal", "Top 10%"],
     pdfUrl: "https://ieeexplore.ieee.org/document/9751685",
-    abstract: "Integrates radar backscattering shadow signatures with direct highlight regions to enhance target recognition in complex Synthetic Aperture Radar scenes."
   },
   {
     id: "kang2021uav-microdoppler",
@@ -271,7 +238,6 @@ export const publications: Publication[] = [
     venueShort: "IEEE TAES",
     year: 2021,
     type: "journal",
-    badges: ["IEEE Journal", "Top 10%"],
     pdfUrl: "https://ieeexplore.ieee.org/document/9409707"
   },
   {
@@ -283,7 +249,6 @@ export const publications: Publication[] = [
     venueShort: "IEEE SensJ",
     year: 2021,
     type: "journal",
-    badges: ["IEEE Journal"],
     pdfUrl: "https://ieeexplore.ieee.org/document/9409125"
   },
   {
@@ -295,7 +260,6 @@ export const publications: Publication[] = [
     venueShort: "IEEE IoTJ",
     year: 2021,
     type: "journal",
-    badges: ["IEEE Journal", "Top 5%"],
     pdfUrl: "https://ieeexplore.ieee.org/document/9234452",
     videoUrl: "https://www.youtube.com/watch?v=SRfiu0eAav8"
   },
@@ -308,7 +272,6 @@ export const publications: Publication[] = [
     venueShort: "IEEE RadarConf",
     year: 2020,
     type: "conference",
-    badges: ["IEEE Conf."],
     pdfUrl: "https://ieeexplore.ieee.org/document/9266496"
   },
   {
@@ -320,7 +283,6 @@ export const publications: Publication[] = [
     venueShort: "IEEE Access",
     year: 2020,
     type: "journal",
-    badges: ["IEEE Journal"],
     pdfUrl: "https://ieeexplore.ieee.org/abstract/document/9110845"
   },
   // Domestic Papers (KIEES)
@@ -334,7 +296,6 @@ export const publications: Publication[] = [
     year: 2026,
     type: "conference",
     isDomestic: true,
-    badges: ["KIEES"]
   },
   {
     id: "kim2026kiees-summer2",
@@ -346,7 +307,6 @@ export const publications: Publication[] = [
     year: 2026,
     type: "conference",
     isDomestic: true,
-    badges: ["KIEES"]
   },
   {
     id: "hong2026kiees-journal",
@@ -358,7 +318,6 @@ export const publications: Publication[] = [
     year: 2026,
     type: "journal",
     isDomestic: true,
-    badges: ["JKIEES"]
   },
   {
     id: "lee2026kiees-journal",
@@ -370,7 +329,6 @@ export const publications: Publication[] = [
     year: 2026,
     type: "journal",
     isDomestic: true,
-    badges: ["JKIEES"]
   },
   {
     id: "choi2026kiees-winter",
@@ -382,7 +340,6 @@ export const publications: Publication[] = [
     year: 2026,
     type: "conference",
     isDomestic: true,
-    badges: ["KIEES"]
   },
   {
     id: "kim2026kiees-mae",
@@ -394,7 +351,6 @@ export const publications: Publication[] = [
     year: 2026,
     type: "conference",
     isDomestic: true,
-    badges: ["KIEES"]
   },
   {
     id: "lee2026kiees-diff",
@@ -406,7 +362,6 @@ export const publications: Publication[] = [
     year: 2026,
     type: "conference",
     isDomestic: true,
-    badges: ["KIEES"]
   },
   {
     id: "kim2025kiees-pose",
@@ -418,6 +373,5 @@ export const publications: Publication[] = [
     year: 2025,
     type: "conference",
     isDomestic: true,
-    badges: ["KIEES"]
   }
 ];

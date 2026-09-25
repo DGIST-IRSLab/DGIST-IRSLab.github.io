@@ -1,18 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import type { Publication } from '../../types';
 
 interface PublicationItemProps {
   publication: Publication;
   onOpenBibtex: (pub: Publication) => void;
-  showAbstract?: boolean;
 }
 
 export const PublicationItem: React.FC<PublicationItemProps> = ({
   publication,
   onOpenBibtex,
 }) => {
-  const [abstractOpen, setAbstractOpen] = useState(false);
-
   const renderAuthors = () => {
     return publication.authors.map((author, idx) => {
       const isLabMember = publication.labAuthors.some((la) =>
@@ -160,39 +157,7 @@ export const PublicationItem: React.FC<PublicationItemProps> = ({
             BibTeX
           </button>
         )}
-
-        {publication.abstract && (
-          <>
-            {publication.bibtex && <span style={{ color: 'var(--color-text-muted)' }}>·</span>}
-            <button
-              type="button"
-              onClick={() => setAbstractOpen(!abstractOpen)}
-              className="link-subtle"
-              style={{ fontSize: '13px', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
-            >
-              Abstract
-            </button>
-          </>
-        )}
       </div>
-
-      {/* Expandable Abstract */}
-      {abstractOpen && publication.abstract && (
-        <div
-          style={{
-            marginTop: 'var(--space-xs)',
-            padding: 'var(--space-sm) var(--space-md)',
-            borderRadius: 'var(--radius-sm)',
-            backgroundColor: 'var(--color-bg-secondary)',
-            borderLeft: '2px solid var(--color-accent)',
-            fontSize: '13px',
-            lineHeight: 1.6,
-            color: 'var(--color-text-secondary)',
-          }}
-        >
-          {publication.abstract}
-        </div>
-      )}
     </article>
   );
 };
