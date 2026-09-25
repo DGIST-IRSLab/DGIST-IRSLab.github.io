@@ -83,14 +83,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                     onNavigate('research');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="link-subtle hero-explore-btn"
-                  style={{ fontSize: '15px' }}
+                  className="hero-research-btn"
                 >
                   <span>Our Research</span>
                   <ArrowRight size={15} />
                 </button>
-
-                <span className="hero-action-sep" aria-hidden="true">·</span>
 
                 <a
                   href="https://github.com/DGIST-IRSLab"
@@ -422,22 +419,65 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           margin-top: var(--space-xl);
           display: flex;
           align-items: center;
-          gap: 14px;
+          gap: 12px;
           flex-wrap: wrap;
           animation: heroFloatIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.42s both;
         }
 
-        .hero-action-sep {
-          color: var(--color-border-strong);
-          font-size: 16px;
-          user-select: none;
+        .hero-research-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 7px 16px;
+          font-family: var(--font-sans);
+          font-size: 14px;
+          font-weight: 600;
+          color: #ffffff;
+          background-color: var(--color-accent);
+          border: 1px solid var(--color-accent);
+          border-radius: var(--radius-sm);
+          cursor: pointer;
+          text-decoration: none;
+          line-height: 1.4;
+          transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        [data-theme='dark'] .hero-research-btn {
+          color: #0b0f14;
+          background-color: var(--color-accent);
+          border-color: var(--color-accent);
+          font-weight: 600;
+        }
+
+        .hero-research-btn:hover {
+          background-color: var(--color-accent-hover);
+          border-color: var(--color-accent-hover);
+          color: #ffffff;
+          transform: translateY(-1.5px);
+          box-shadow: 0 4px 14px rgba(2, 140, 255, 0.25);
+        }
+
+        [data-theme='dark'] .hero-research-btn:hover {
+          color: #0b0f14;
+        }
+
+        .hero-research-btn:hover svg {
+          transform: translateX(3px);
+        }
+
+        .hero-research-btn svg {
+          transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hero-research-btn:active {
+          transform: translateY(0) scale(0.97);
         }
 
         .hero-github-btn {
           display: inline-flex;
           align-items: center;
-          gap: 7px;
-          padding: 6px 13px;
+          gap: 8px;
+          padding: 7px 16px;
           font-family: var(--font-sans);
           font-size: 14px;
           font-weight: 500;
@@ -446,6 +486,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           border: 1px solid var(--color-border);
           border-radius: var(--radius-sm);
           text-decoration: none;
+          line-height: 1.4;
+          cursor: pointer;
           transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -459,6 +501,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
         .hero-github-btn:active {
           transform: translateY(0) scale(0.97);
+        }
+
+        .hero-research-btn:focus-visible,
+        .hero-github-btn:focus-visible {
+          outline: 2px solid var(--color-accent);
+          outline-offset: 2px;
         }
 
         /* Admissions Section (Clean horizontal bar) */
