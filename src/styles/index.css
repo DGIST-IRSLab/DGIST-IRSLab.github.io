@@ -82,51 +82,71 @@
    TYPOGRAPHY STYLES
    ========================================================================== */
 
+/* Headings: Space Grotesk */
+h1, h2, h3, h4, h5, h6,
+.display-title,
+.h1-title,
+.h2-title,
+.h3-title {
+  font-family: var(--font-heading);
+}
+
 .display-title {
+  font-family: var(--font-display);
   font-size: var(--text-display);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.03em;
   color: var(--color-text-primary);
 }
 
 .h1-title {
+  font-family: var(--font-heading);
   font-size: var(--text-h1);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.025em;
   color: var(--color-text-primary);
 }
 
 .h2-title {
+  font-family: var(--font-heading);
   font-size: var(--text-h2);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.25;
   letter-spacing: -0.02em;
   color: var(--color-text-primary);
 }
 
 .h3-title {
+  font-family: var(--font-heading);
   font-size: var(--text-h3);
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.35;
   letter-spacing: -0.01em;
   color: var(--color-text-primary);
 }
 
+/* Body: IBM Plex Sans */
 .body-large {
+  font-family: var(--font-body);
   font-size: var(--text-body-lg);
   line-height: 1.6;
   color: var(--color-text-secondary);
 }
 
 .body-text {
+  font-family: var(--font-body);
   font-size: var(--text-body);
   line-height: 1.6;
   color: var(--color-text-secondary);
 }
 
-.metadata-text {
+/* Metadata, Venue, Year, Radar Label: IBM Plex Mono */
+.metadata-text,
+.venue-tag,
+.year-tag,
+.radar-label {
   font-family: var(--font-mono);
   font-size: var(--text-metadata);
   line-height: 1.4;

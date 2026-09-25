@@ -120,12 +120,14 @@ export const PublicationItem: React.FC<PublicationItemProps> = ({
         {renderAuthors()}
       </div>
 
-      {/* Venue */}
+      {/* Venue (IBM Plex Mono) */}
       <div
+        className="venue-tag"
         style={{
-          fontSize: '13px',
-          fontStyle: 'italic',
-          color: 'var(--color-text-muted)',
+          fontFamily: 'var(--font-mono)',
+          fontSize: '12.5px',
+          color: 'var(--color-text-secondary)',
+          fontStyle: 'normal',
         }}
       >
         {publication.venue}

@@ -274,9 +274,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         }
 
         .hero-title {
-          font-family: var(--font-sans);
+          font-family: var(--font-display);
           font-size: clamp(2.4rem, 4.6vw, 3.8rem);
-          font-weight: 750;
+          font-weight: 700;
           letter-spacing: -0.03em;
           line-height: 1.12;
           color: var(--color-text-primary);
@@ -289,7 +289,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         }
 
         .hero-statement {
-          font-family: var(--font-sans);
+          font-family: var(--font-body);
           font-size: clamp(1.15rem, 2vw, 1.35rem);
           font-weight: 600;
           line-height: 1.45;
@@ -298,7 +298,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         }
 
         .hero-description {
-          font-family: var(--font-sans);
+          font-family: var(--font-body);
           font-size: clamp(1rem, 1.5vw, 1.1rem);
           line-height: 1.6;
           color: var(--color-text-secondary);
@@ -358,7 +358,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         }
 
         .admissions-title {
-          font-family: var(--font-sans);
+          font-family: var(--font-heading);
           font-size: clamp(1.25rem, 2vw, 1.55rem);
           font-weight: 700;
           color: var(--color-text-primary);
@@ -416,9 +416,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         }
 
         .news-heading {
-          font-family: var(--font-sans);
+          font-family: var(--font-heading);
           font-size: clamp(1.75rem, 2.8vw, 2.3rem);
-          font-weight: 750;
+          font-weight: 700;
           letter-spacing: -0.025em;
           color: var(--color-text-primary);
           margin: 0;
