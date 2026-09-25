@@ -84,7 +84,7 @@ export const PublicationItem: React.FC<PublicationItemProps> = ({
         style={{
           display: 'flex',
           alignItems: 'center',
-          gap: 'var(--space-sm)',
+          gap: '6px',
           flexWrap: 'wrap',
           marginTop: '4px',
         }}

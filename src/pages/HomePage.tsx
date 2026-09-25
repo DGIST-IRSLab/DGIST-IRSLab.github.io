@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, Calendar } from 'lucide-react';
-import { labInfo } from '../data/labInfo';
+import { ArrowRight } from 'lucide-react';
 import { newsItems } from '../data/news';
 import type { Publication } from '../types';
 
@@ -42,10 +41,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           ==================================================================== */}
       <section className="hero-section">
         <div className="container hero-container">
-          <div style={{ marginBottom: 'var(--space-md)', fontSize: '13px', fontWeight: 600, color: 'var(--color-text-muted)' }}>
-            IRS LAB
-          </div>
-
           <h1 className="hero-title">
             Intelligent Radio Sensing Lab
             <br />
@@ -56,7 +51,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             AI-driven radio sensing for understanding the physical world.
           </p>
 
-          <div style={{ marginTop: 'var(--space-lg)', color: 'var(--color-text-secondary)', fontSize: '15px' }}>
+          <div className="hero-descriptors">
             Radar Sensing · Artificial Intelligence · Physical Intelligence
           </div>
 
@@ -78,43 +73,31 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       </section>
 
       {/* ====================================================================
-          2. RECRUITMENT CALLOUT (Clean, Direct, No Marketing Eyebrows)
+          2. RECRUITMENT CALLOUT (Clean horizontal editorial bar)
           ==================================================================== */}
       <section className="admissions-section">
-        <div className="container">
-          <div style={{ maxWidth: '800px', padding: 'var(--space-2xl) 0' }}>
-            <div style={{ marginBottom: 'var(--space-md)', fontSize: '13px', fontWeight: 600, color: 'var(--color-text-muted)' }}>
-              JOIN IRS
-            </div>
-            <h2 style={{ fontSize: 'var(--text-h2)', marginBottom: 'var(--space-md)', fontFamily: 'var(--font-display)' }}>
-              Join Our Research Group
-            </h2>
-            <p style={{ fontSize: '16px', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-lg)', maxWidth: '600px' }}>
-              We welcome graduate students, undergraduate researchers, and postdoctoral fellows interested in radio sensing, signal processing, and physical intelligence.
+        <div className="container admissions-bar">
+          <div className="admissions-text-wrap">
+            <h3 className="admissions-title">
+              We are actively looking for passionate graduate students (Ph.D. &amp; M.S.), undergraduate interns, and postdocs.
+            </h3>
+            <p className="admissions-subtext">
+              Pioneering radio sensing, RF signal processing, and physical artificial intelligence at DGIST.
             </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xs)', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-xl)', fontSize: '15px' }}>
-              <div>Graduate Students</div>
-              <div>Undergraduate Research</div>
-              <div>Postdoctoral Fellows</div>
-            </div>
-            
-            <div style={{ display: 'flex', gap: 'var(--space-xl)', alignItems: 'center' }}>
-              <button
-                type="button"
-                onClick={() => {
-                  onNavigate('join');
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-                className="link-subtle"
-                style={{ fontSize: '15px' }}
-              >
-                <span>View Openings</span>
-                <ArrowRight size={15} />
-              </button>
-              <a href={`mailto:${labInfo.email}`} className="link-subtle" style={{ fontSize: '15px', color: 'var(--color-text-primary)' }}>
-                {labInfo.email}
-              </a>
-            </div>
+          </div>
+          <div className="admissions-action-wrap">
+            <button
+              type="button"
+              onClick={() => {
+                onNavigate('join');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="link-subtle"
+              style={{ fontSize: '15px', whiteSpace: 'nowrap' }}
+            >
+              <span>View Openings</span>
+              <ArrowRight size={15} />
+            </button>
           </div>
         </div>
       </section>
@@ -126,9 +109,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         <div className="container">
           {/* Section Header */}
           <div className="news-section-header">
-            <div>
-              <h2 className="news-heading">News</h2>
-            </div>
+            <h2 className="news-heading">News</h2>
 
             {/* Category Filter Pills */}
             <div className="news-filter-pills">
@@ -149,17 +130,16 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           <div className="news-stream-container">
             {filteredNews.map((item) => (
               <div key={item.id} className="news-item-row">
-                {/* Date */}
-                <div className="news-item-date">
-                  <Calendar size={13} className="news-date-icon" />
-                  <span>{item.date}</span>
-                </div>
-
-                {/* Category Badge */}
+                {/* Category */}
                 <div className="news-item-cat">
                   <span className={`news-cat-pill ${getCategoryClass(item.category)}`}>
                     {item.category}
                   </span>
+                </div>
+
+                {/* Date */}
+                <div className="news-item-date">
+                  <span>{item.date}</span>
                 </div>
 
                 {/* Content */}
@@ -289,70 +269,38 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           gap: 12px;
         }
 
-        /* Admissions Section */
+        /* Admissions Section (Clean horizontal bar) */
         .admissions-section {
-          padding-top: clamp(2rem, 3.5vw, 3rem);
-          padding-bottom: clamp(2rem, 3.5vw, 3rem);
-          background-color: var(--color-bg-secondary);
+          padding-top: clamp(2rem, 3.5vw, 2.75rem);
+          padding-bottom: clamp(2rem, 3.5vw, 2.75rem);
+          background-color: var(--color-bg);
           border-bottom: 1px solid var(--color-border);
         }
 
-        .admissions-card {
+        .admissions-bar {
           display: flex;
           align-items: center;
           justify-content: space-between;
           gap: var(--space-xl);
-          background-color: var(--color-surface);
-          border: 1px solid var(--color-border);
-          border-left: 4px solid var(--color-accent);
-          border-radius: var(--radius-sm);
-          padding: clamp(1.5rem, 3vw, 2.2rem);
-        }
-
-        .admissions-content {
-          max-width: 820px;
         }
 
         .admissions-title {
           font-family: var(--font-heading);
-          font-size: clamp(1.25rem, 2vw, 1.55rem);
-          font-weight: 700;
+          font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+          font-weight: 600;
           color: var(--color-text-primary);
-          margin: 0 0 8px 0;
-          line-height: 1.3;
+          line-height: 1.4;
+          margin-bottom: 6px;
         }
 
-        .admissions-desc {
+        .admissions-subtext {
           font-size: 14.5px;
-          line-height: 1.6;
           color: var(--color-text-secondary);
-          margin: 0 0 6px 0;
-        }
-
-        .admissions-kr {
-          font-size: 13px;
           line-height: 1.5;
-          color: var(--color-text-muted);
         }
 
-        .admissions-actions {
-          display: flex;
-          flex-direction: column;
-          align-items: stretch;
-          gap: 10px;
+        .admissions-action-wrap {
           flex-shrink: 0;
-        }
-
-        .admissions-primary-btn {
-          white-space: nowrap;
-          padding: 10px 18px;
-          font-size: 13.5px;
-          justify-content: center;
-        }
-
-        .admissions-email-link {
-          font-size: 13px;
-          justify-content: center;
         }
 
         /* News Section */
@@ -413,39 +361,28 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           display: flex;
           flex-direction: column;
           border-top: 1px solid var(--color-border);
-          border-bottom: 1px solid var(--color-border);
-          background-color: var(--color-surface);
         }
 
         .news-item-row {
           display: grid;
-          grid-template-columns: 100px 95px 1fr;
+          grid-template-columns: 80px 80px 1fr;
           align-items: baseline;
-          padding: 14px 12px;
+          padding: 14px 0;
           border-bottom: 1px solid var(--color-border-subtle);
           gap: var(--space-md);
           transition: background-color var(--transition-fast);
         }
 
         .news-item-row:last-child {
-          border-bottom: none;
-        }
-
-        .news-item-row:hover {
-          background-color: var(--color-bg-secondary);
+          border-bottom: 1px solid var(--color-border);
         }
 
         .news-item-date {
           display: inline-flex;
-          align-items: center;
-          gap: 6px;
+          align-items: baseline;
           font-family: var(--font-mono);
           font-size: 13px;
           color: var(--color-text-muted);
-        }
-
-        .news-date-icon {
-          color: var(--color-text-dim);
         }
 
         .news-item-cat {
@@ -457,7 +394,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           align-items: center;
           font-family: var(--font-sans);
           font-size: 13px;
-          font-weight: 500;
+          font-weight: 600;
+          letter-spacing: 0.02em;
         }
 
         .cat-badge-paper {
@@ -486,13 +424,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
         [data-theme='dark'] .cat-badge-people {
           color: #818cf8;
-          background-color: rgba(129, 140, 248, 0.12);
         }
 
         .cat-badge-talk {
-          background-color: rgba(139, 92, 246, 0.1);
           color: #8b5cf6;
-          border: 1px solid rgba(139, 92, 246, 0.25);
         }
 
         [data-theme='dark'] .cat-badge-talk {
@@ -500,9 +435,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         }
 
         .cat-badge-default {
-          background-color: var(--color-bg-tertiary);
-          color: var(--color-text-secondary);
-          border: 1px solid var(--color-border);
+          color: var(--color-text-muted);
         }
 
         .news-item-content {
@@ -532,15 +465,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
         /* Responsive Breakpoints */
         @media (max-width: 860px) {
-          .admissions-card {
+          .admissions-bar {
             flex-direction: column;
             align-items: flex-start;
-          }
-          .admissions-actions {
-            width: 100%;
+            gap: var(--space-md);
           }
           .news-item-row {
-            grid-template-columns: 85px 85px 1fr;
+            grid-template-columns: 75px 75px 1fr;
             gap: var(--space-sm);
           }
         }
@@ -550,8 +481,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            gap: 6px;
-            padding: 12px 8px;
+            gap: 4px;
+            padding: 12px 0;
           }
         }
       `}</style>

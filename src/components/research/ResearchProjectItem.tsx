@@ -23,7 +23,7 @@ export const ResearchProjectItem: React.FC<ResearchProjectItemProps> = ({ projec
         style={{
           display: 'flex',
           alignItems: 'center',
-          gap: 'var(--space-sm)',
+          gap: '6px',
           flexWrap: 'wrap',
         }}
       >

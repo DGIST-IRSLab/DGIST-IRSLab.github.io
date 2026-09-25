@@ -83,6 +83,7 @@
    ========================================================================== */
 
 .display-title {
+  font-family: var(--font-heading);
   font-size: var(--text-display);
   font-weight: 600;
   line-height: 1.1;
@@ -91,6 +92,7 @@
 }
 
 .h1-title {
+  font-family: var(--font-heading);
   font-size: var(--text-h1);
   font-weight: 600;
   line-height: 1.2;
@@ -99,6 +101,7 @@
 }
 
 .h2-title {
+  font-family: var(--font-heading);
   font-size: var(--text-h2);
   font-weight: 600;
   line-height: 1.25;
@@ -107,6 +110,7 @@
 }
 
 .h3-title {
+  font-family: var(--font-heading);
   font-size: var(--text-h3);
   font-weight: 500;
   line-height: 1.35;
@@ -236,6 +240,12 @@
   font-weight: 500;
   color: var(--color-accent);
   text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  line-height: inherit;
   transition: color var(--transition-fast), transform var(--transition-fast);
 }
 

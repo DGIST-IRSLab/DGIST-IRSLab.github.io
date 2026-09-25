@@ -31,17 +31,15 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
       <div
         style={{
           display: 'flex',
-          alignItems: 'flex-end',
+          alignItems: 'baseline',
           justifyContent: 'space-between',
           flexWrap: 'wrap',
           gap: 'var(--space-sm)',
         }}
       >
-        <div>
-          <h2 className="h2-title">
-            {title}
-          </h2>
-        </div>
+        <h2 className="h2-title">
+          {title}
+        </h2>
 
         {actionText && onActionClick && (
           <button
