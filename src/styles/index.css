@@ -1,0 +1,375 @@
+@import './theme.css';
+
+/* ==========================================================================
+   LAYOUT CONTAINERS & GRIDS
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: var(--space-xl);
+    padding-right: var(--space-xl);
+  }
+}
+
+.container-editorial {
+  width: 100%;
+  max-width: var(--container-editorial);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
+}
+
+.container-narrow {
+  width: 100%;
+  max-width: var(--container-narrow);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
+}
+
+/* 12-Column Responsive Grid */
+.grid-12 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+}
+
+@media (min-width: 768px) {
+  .grid-12 {
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--space-lg);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-12 {
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--space-xl);
+  }
+}
+
+/* Section Wrapper */
+.section {
+  padding-top: var(--space-2xl);
+  padding-bottom: var(--space-2xl);
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding-top: var(--space-section);
+    padding-bottom: var(--space-section);
+  }
+}
+
+.section-compact {
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+}
+
+/* ==========================================================================
+   TYPOGRAPHY STYLES
+   ========================================================================== */
+
+.display-title {
+  font-size: var(--text-display);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+}
+
+.h1-title {
+  font-size: var(--text-h1);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: var(--color-text-primary);
+}
+
+.h2-title {
+  font-size: var(--text-h2);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+}
+
+.h3-title {
+  font-size: var(--text-h3);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary);
+}
+
+.body-large {
+  font-size: var(--text-body-lg);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.body-text {
+  font-size: var(--text-body);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.metadata-text {
+  font-family: var(--font-mono);
+  font-size: var(--text-metadata);
+  line-height: 1.4;
+  color: var(--color-text-muted);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--text-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-xs);
+}
+
+/* ==========================================================================
+   RADAR & RADIO SENSING MOTIFS (GRAPHIC DESIGN IDENTITY)
+   ========================================================================== */
+
+/* Hairline horizontal separator */
+.hairline-divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-border);
+  border: none;
+  margin: 0;
+}
+
+/* Radar Range Arc Ambient Background */
+.radar-bg-pattern {
+  position: relative;
+  overflow: hidden;
+}
+
+.radar-bg-pattern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -5%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  border: 1px dashed var(--color-grid-line);
+  box-shadow: 
+    0 0 0 120px transparent,
+    inset 0 0 0 1px var(--color-grid-line),
+    inset 0 0 0 140px transparent,
+    inset 0 0 0 141px var(--color-grid-line),
+    inset 0 0 0 280px transparent,
+    inset 0 0 0 281px var(--color-grid-line);
+  pointer-events: none;
+  opacity: 0.8;
+  z-index: 0;
+}
+
+/* Spatial Grid Trace */
+.grid-mesh-bg {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, var(--color-grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-grid-line) 1px, transparent 1px);
+}
+
+/* Coordinate Crosshair Pips */
+.coord-crosshair {
+  position: relative;
+}
+
+.coord-crosshair::after {
+  content: '+';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-accent);
+  opacity: 0.6;
+}
+
+/* ==========================================================================
+   BUTTONS, BADGES, AND LINKS
+   ========================================================================== */
+
+/* Academic Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: 2px 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: var(--radius-xs);
+  background-color: var(--color-badge-bg);
+  color: var(--color-badge-text);
+  border: 1px solid var(--color-badge-border);
+  white-space: nowrap;
+}
+
+.badge-outline {
+  background-color: transparent;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+}
+
+/* Academic Action Links */
+.link-subtle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  font-size: var(--text-body-sm);
+  font-weight: 500;
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.link-subtle:hover {
+  color: var(--color-accent-hover);
+  text-decoration: underline;
+}
+
+.link-subtle .icon-arrow {
+  transition: transform var(--transition-fast);
+}
+
+.link-subtle:hover .icon-arrow {
+  transform: translateX(3px);
+}
+
+/* Pill/Action Buttons (Restrained, Academic) */
+.btn-academic {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: 8px 16px;
+  font-size: 13.5px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.btn-academic:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background-color: var(--color-surface-hover);
+}
+
+.btn-academic-primary {
+  background-color: var(--color-accent);
+  color: #ffffff;
+  border-color: var(--color-accent);
+}
+
+[data-theme='dark'] .btn-academic-primary {
+  background-color: var(--color-accent);
+  color: #0b0f14;
+  border-color: var(--color-accent);
+  font-weight: 600;
+}
+
+.btn-academic-primary:hover {
+  background-color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+  color: #ffffff;
+}
+
+[data-theme='dark'] .btn-academic-primary:hover {
+  color: #0b0f14;
+}
+
+/* ==========================================================================
+   RESEARCH FIGURE SYSTEM
+   ========================================================================== */
+
+.research-figure-frame {
+  position: relative;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: block;
+}
+
+.research-figure-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform var(--transition-normal);
+}
+
+.research-figure-frame:hover img {
+  transform: scale(1.015);
+}
+
+.figure-caption {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  padding: var(--space-xs) var(--space-sm);
+  background-color: var(--color-bg-secondary);
+  border-top: 1px solid var(--color-border-subtle);
+  font-family: var(--font-sans);
+}
+
+/* ==========================================================================
+   MODAL / SEARCH DIALOG / BIBTEX DRAWER
+   ========================================================================== */
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-overlay);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+}
+
+.modal-panel {
+  width: 100%;
+  max-width: 680px;
+  background-color: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+}
