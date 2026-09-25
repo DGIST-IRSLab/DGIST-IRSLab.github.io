@@ -58,27 +58,30 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           1. HERO SECTION: IRS LAB IDENTITY & SCIENTIFIC AGENDA
           ==================================================================== */}
       <section className="hero-section">
-        {/* Wide Panorama Photo spanning across with Left-to-Right & Top/Bottom Fade */}
-        <div className="hero-panorama-wrap" aria-hidden="true">
-          <img
-            src={assetUrl('/images/main_group_wide.jpg')}
-            alt="IRS Lab Members at DGIST"
-            className="hero-panorama-photo"
-            loading="eager"
-          />
-        </div>
-
         <div className="container hero-container">
-          <div className="hero-text-wrap">
-            <h1 className="hero-title">
-              Intelligent Radio Sensing Lab
-              <br />
-              <span className="hero-title-sub">@ DGIST</span>
-            </h1>
+          <div className="hero-grid">
+            <div className="hero-text-col">
+              <h1 className="hero-title">
+                Intelligent Radio Sensing Lab
+                <br />
+                <span className="hero-title-sub">@ DGIST</span>
+              </h1>
 
-            <p className="hero-statement">
-              AI-driven radio sensing for understanding the physical world.
-            </p>
+              <p className="hero-statement">
+                AI-driven radio sensing for understanding the physical world.
+              </p>
+            </div>
+
+            <div className="hero-photo-col">
+              <div className="hero-photo-frame">
+                <img
+                  src={assetUrl('/images/main_group_wide.jpg')}
+                  alt="IRS Lab Members at DGIST"
+                  className="hero-group-photo"
+                  loading="eager"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -177,11 +180,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         /* Hero Section */
         .hero-section {
           position: relative;
-          min-height: clamp(420px, 48vh, 520px);
-          display: flex;
-          align-items: center;
-          padding-top: clamp(3.5rem, 6vw, 4.8rem);
-          padding-bottom: clamp(3.5rem, 6vw, 4.8rem);
+          padding-top: clamp(3rem, 5vw, 4.5rem);
+          padding-bottom: clamp(3rem, 5vw, 4.5rem);
           background-color: var(--color-bg);
           border-bottom: 1px solid var(--color-border);
           overflow: hidden;
@@ -204,130 +204,109 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
         .hero-container {
           position: relative;
-          z-index: 2;
-          width: 100%;
+          z-index: 1;
         }
 
-        .hero-text-wrap {
-          max-width: 600px;
+        .hero-grid {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: clamp(1.5rem, 3.5vw, 3rem);
+        }
+
+        .hero-text-col {
+          flex: 1 1 48%;
           min-width: 0;
         }
 
-        /* Wide Panorama Photo spanning across with Left-to-Right & Top/Bottom Fade */
-        .hero-panorama-wrap {
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          width: 74%;
-          min-width: 580px;
-          max-width: 1350px;
-          height: 100%;
-          pointer-events: none;
-          z-index: 1;
-          display: block;
+        .hero-photo-col {
+          flex: 1 1 52%;
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          min-width: 0;
+        }
+
+        .hero-photo-frame {
+          position: relative;
+          width: 100%;
+          max-width: 550px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          animation: heroPhotoIn 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
           mask-image: linear-gradient(to bottom,
             transparent 0%,
-            rgba(0, 0, 0, 0.15) 5%,
-            rgba(0, 0, 0, 0.75) 18%,
-            black 30%,
-            black 70%,
-            rgba(0, 0, 0, 0.75) 82%,
-            rgba(0, 0, 0, 0.15) 95%,
+            rgba(0, 0, 0, 0.2) 5%,
+            black 20%,
+            black 80%,
+            rgba(0, 0, 0, 0.2) 95%,
             transparent 100%
           );
           -webkit-mask-image: linear-gradient(to bottom,
             transparent 0%,
-            rgba(0, 0, 0, 0.15) 5%,
-            rgba(0, 0, 0, 0.75) 18%,
-            black 30%,
-            black 70%,
-            rgba(0, 0, 0, 0.75) 82%,
-            rgba(0, 0, 0, 0.15) 95%,
+            rgba(0, 0, 0, 0.2) 5%,
+            black 20%,
+            black 80%,
+            rgba(0, 0, 0, 0.2) 95%,
             transparent 100%
           );
-          animation: heroPhotoIn 1s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
         }
 
-        .hero-panorama-photo {
+        .hero-photo-frame:hover {
+          transform: translateY(-3px) scale(1.01);
+        }
+
+        .hero-group-photo {
           width: 100%;
-          height: 100%;
+          height: auto;
+          aspect-ratio: 16 / 9.6;
           object-fit: cover;
           object-position: center 48%;
           display: block;
           mask-image: linear-gradient(to right,
             transparent 0%,
-            transparent 10%,
-            rgba(0, 0, 0, 0.12) 24%,
-            rgba(0, 0, 0, 0.5) 44%,
-            rgba(0, 0, 0, 0.9) 64%,
-            black 76%,
-            black 90%,
-            rgba(0, 0, 0, 0.4) 98%,
+            rgba(0, 0, 0, 0.25) 4%,
+            rgba(0, 0, 0, 0.8) 10%,
+            black 14%,
+            black 85%,
+            rgba(0, 0, 0, 0.8) 90%,
+            rgba(0, 0, 0, 0.25) 96%,
             transparent 100%
           );
           -webkit-mask-image: linear-gradient(to right,
             transparent 0%,
-            transparent 10%,
-            rgba(0, 0, 0, 0.12) 24%,
-            rgba(0, 0, 0, 0.5) 44%,
-            rgba(0, 0, 0, 0.9) 64%,
-            black 76%,
-            black 90%,
-            rgba(0, 0, 0, 0.4) 98%,
+            rgba(0, 0, 0, 0.25) 4%,
+            rgba(0, 0, 0, 0.8) 10%,
+            black 14%,
+            black 85%,
+            rgba(0, 0, 0, 0.8) 90%,
+            rgba(0, 0, 0, 0.25) 96%,
             transparent 100%
           );
-          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+          transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .hero-section:hover .hero-panorama-photo {
-          transform: scale(1.015);
+        .hero-photo-frame:hover .hero-group-photo {
+          transform: scale(1.02);
         }
 
-        @media (max-width: 768px) {
-          .hero-section {
+        @media (max-width: 860px) {
+          .hero-grid {
             flex-direction: column;
             align-items: flex-start;
-            min-height: auto;
-            padding-top: clamp(2.5rem, 5vw, 3.5rem);
-            padding-bottom: clamp(2.5rem, 5vw, 3.5rem);
+            gap: 2rem;
           }
 
-          .hero-text-wrap {
-            max-width: 100%;
-          }
-
-          .hero-panorama-wrap {
-            position: relative;
+          .hero-photo-col {
             width: 100%;
-            min-width: unset;
-            max-width: 100%;
-            margin-top: 24px;
-            aspect-ratio: 16 / 9.5;
-            height: auto;
-            mask-image: linear-gradient(to bottom,
-              transparent 0%,
-              rgba(0, 0, 0, 0.2) 6%,
-              black 20%,
-              black 80%,
-              rgba(0, 0, 0, 0.2) 94%,
-              transparent 100%
-            );
-            -webkit-mask-image: linear-gradient(to bottom,
-              transparent 0%,
-              rgba(0, 0, 0, 0.2) 6%,
-              black 20%,
-              black 80%,
-              rgba(0, 0, 0, 0.2) 94%,
-              transparent 100%
-            );
+            justify-content: center;
           }
 
-          .hero-panorama-photo {
-            object-fit: cover;
-            object-position: center 50%;
-            mask-image: radial-gradient(ellipse 94% 70% at 50% 50%, black 40%, rgba(0, 0, 0, 0.8) 65%, rgba(0, 0, 0, 0.2) 88%, transparent 100%);
-            -webkit-mask-image: radial-gradient(ellipse 94% 70% at 50% 50%, black 40%, rgba(0, 0, 0, 0.8) 65%, rgba(0, 0, 0, 0.2) 88%, transparent 100%);
+          .hero-photo-frame {
+            max-width: 480px;
+            margin: 0 auto;
           }
         }
 
