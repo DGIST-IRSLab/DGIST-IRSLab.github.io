@@ -86,22 +86,12 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenS
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <span
-              style={{
-                fontFamily: 'var(--font-sans)',
-                fontWeight: 800,
-                fontSize: '17px',
-                letterSpacing: '-0.02em',
-                color: 'var(--color-accent)',
-              }}
-            >
-              IRS
-            </span>
-            <span
               className="header-lab-fullname"
               style={{
                 fontFamily: 'var(--font-sans)',
-                fontWeight: 600,
+                fontWeight: 700,
                 fontSize: '15px',
+                letterSpacing: '-0.01em',
                 color: 'var(--color-text-primary)',
               }}
             >
@@ -111,13 +101,14 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenS
               className="header-lab-shortname"
               style={{
                 fontFamily: 'var(--font-sans)',
-                fontWeight: 600,
+                fontWeight: 700,
                 fontSize: '15px',
+                letterSpacing: '-0.01em',
                 color: 'var(--color-text-primary)',
                 display: 'none',
               }}
             >
-              IRS Lab, DGIST
+              Intelligent Radio Sensing Lab
             </span>
           </div>
         </div>
