@@ -85,7 +85,7 @@ export const JoinUsPage: React.FC = () => {
                   style={{ fontSize: '14px' }}
                 >
                   <FileText size={14} />
-                  <span>Graduate Admission Guidelines</span>
+                  <span>Graduate Admission Guidelines (Korean)</span>
                   <ExternalLink size={12} />
                 </a>
               </div>
