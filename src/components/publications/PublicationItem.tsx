@@ -10,9 +10,14 @@ export const PublicationItem: React.FC<PublicationItemProps> = ({
   publication,
   onOpenBibtex,
 }) => {
+  const isTopConf = Boolean(
+    publication.isTopConf || /CVPR|NeurIPS|ECCV|AAAI|ICASSP/i.test(publication.venue)
+  );
+
   const renderAuthors = () => {
+    const labAuthors = publication.labAuthors || [];
     return publication.authors.map((author, idx) => {
-      const isLabMember = publication.labAuthors.some((la) =>
+      const isLabMember = labAuthors.some((la) =>
         author.toLowerCase().includes(la.toLowerCase())
       );
 
@@ -72,9 +77,34 @@ export const PublicationItem: React.FC<PublicationItemProps> = ({
           fontSize: '13px',
           color: 'var(--color-text-secondary)',
           marginTop: '2px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          flexWrap: 'wrap',
         }}
       >
-        {publication.venue}{publication.venue.includes(publication.year.toString()) ? '' : `, ${publication.year}`}
+        <span>
+          {publication.venue}{publication.venue.includes(publication.year.toString()) ? '' : `, ${publication.year}`}
+        </span>
+        {isTopConf && (
+          <span
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              fontSize: '11px',
+              fontFamily: 'var(--font-mono)',
+              fontWeight: 600,
+              padding: '1.5px 6px',
+              borderRadius: 'var(--radius-xs, 3px)',
+              backgroundColor: 'var(--color-badge-bg)',
+              color: 'var(--color-badge-text)',
+              border: '1px solid var(--color-badge-border)',
+              lineHeight: 1.3,
+            }}
+          >
+            Top Conf.
+          </span>
+        )}
       </div>
 
       <div

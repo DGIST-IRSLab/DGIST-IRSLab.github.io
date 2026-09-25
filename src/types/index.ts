@@ -28,11 +28,12 @@ export interface Publication {
   id: string;
   title: string;
   authors: string[];
-  labAuthors: string[]; // names that belong to IRS lab to highlight
+  labAuthors?: string[]; // names that belong to IRS lab to highlight
   venue: string;
-  venueShort: string;
+  venueShort?: string;
   year: number;
   type: 'conference' | 'journal' | 'workshop';
+  isTopConf?: boolean;
   pdfUrl?: string;
   projectUrl?: string;
   codeUrl?: string;

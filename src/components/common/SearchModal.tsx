@@ -320,9 +320,26 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onNav
                         color: 'var(--color-text-muted)',
                       }}
                     >
-                      <span>{pub.venueShort}</span>
+                      <span>{pub.venueShort || pub.venue}</span>
                       <span>•</span>
                       <span>{pub.year}</span>
+                      {(pub.isTopConf || /CVPR|NeurIPS|ECCV|AAAI|ICASSP/i.test(pub.venue)) && (
+                        <span
+                          style={{
+                            fontSize: '10px',
+                            fontFamily: 'var(--font-mono)',
+                            fontWeight: 600,
+                            padding: '1px 5px',
+                            borderRadius: '2px',
+                            backgroundColor: 'var(--color-badge-bg)',
+                            color: 'var(--color-badge-text)',
+                            border: '1px solid var(--color-badge-border)',
+                            marginLeft: '4px',
+                          }}
+                        >
+                          Top Conf.
+                        </span>
+                      )}
                     </div>
                   </div>
                 ))}
