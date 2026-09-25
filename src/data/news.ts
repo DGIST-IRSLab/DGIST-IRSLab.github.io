@@ -58,7 +58,7 @@ export const newsItems: NewsItem[] = [
     id: "news-2026-02-cvpr",
     date: "2026.02",
     category: "PAPER",
-    title: "Paper accepted to CVPR 2026 Findings.",
+    title: "1 Paper Accepted to CVPR 2026 Findings.",
     description: "'Can Language Models Understand mmWave Data? Benchmarking Large Language Models for mmWave Radar-Based Human Understanding' accepted to CVPR 2026.",
     highlight: true
   },
@@ -81,7 +81,7 @@ export const newsItems: NewsItem[] = [
     id: "news-2025-11-wacv",
     date: "2025.11",
     category: "PAPER",
-    title: "Paper accepted to WACV 2026.",
+    title: "1 Paper Accepted to WACV 2026.",
     description: "'ReFineVQA: Iterative Refinement of Video Description via Feedback Generation for Video Question Answering' accepted to IEEE/CVF WACV 2026."
   },
   {
@@ -153,7 +153,7 @@ export const newsItems: NewsItem[] = [
     id: "news-2025-02-cvpr",
     date: "2025.02",
     category: "PAPER",
-    title: "Paper accepted to CVPR 2025.",
+    title: "1 Paper Accepted to CVPR 2025.",
     description: "'MVDoppler-Pose: Multi-Modal Multi-View mmWave Sensing for Long-Distance Self-Occluded Human Walking Pose Estimation' accepted to IEEE/CVF CVPR 2025.",
     highlight: true
   },
@@ -168,7 +168,7 @@ export const newsItems: NewsItem[] = [
     id: "news-2024-12-icassp",
     date: "2024.12",
     category: "PAPER",
-    title: "Paper accepted to ICASSP 2025 (Oral Presentation).",
+    title: "1 Paper Accepted to ICASSP 2025 (Oral Presentation).",
     description: "'High-Resolution Gait Micro-Doppler Synthesis from Videos Over Diverse Trajectories' accepted to IEEE ICASSP 2025 as an Oral Presentation.",
     highlight: true
   },
