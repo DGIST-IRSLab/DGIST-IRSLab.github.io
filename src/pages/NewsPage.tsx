@@ -43,21 +43,9 @@ export const NewsPage: React.FC = () => {
         }}
       >
         <div className="container">
-          <span className="eyebrow">LABORATORY LOGBOOK</span>
-          <h1 className="h1-title" style={{ marginTop: '4px' }}>
-            News & Research Activity
+          <h1 className="h1-title">
+            News
           </h1>
-          <p
-            className="body-large"
-            style={{
-              maxWidth: '800px',
-              marginTop: 'var(--space-xs)',
-              color: 'var(--color-text-secondary)',
-              lineHeight: 1.6,
-            }}
-          >
-            A chronological research activity log documenting grant milestones, paper acceptances, student distinctions, and group developments.
-          </p>
         </div>
       </section>
 

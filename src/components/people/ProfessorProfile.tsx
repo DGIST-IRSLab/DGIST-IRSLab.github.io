@@ -114,7 +114,6 @@ export const ProfessorProfile: React.FC = () => {
       {/* Bio, Experience, Education, Service */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
         <div>
-          <span className="eyebrow">PRINCIPAL INVESTIGATOR</span>
           <h2 className="h2-title" style={{ fontSize: '24px' }}>
             {professor.name} <span style={{ fontSize: '18px', fontWeight: 400, color: 'var(--color-text-muted)' }}>{professor.nameKr}</span>
           </h2>
@@ -142,14 +141,13 @@ export const ProfessorProfile: React.FC = () => {
           <div>
             <h4
               style={{
-                fontSize: '13px',
-                fontFamily: 'var(--font-mono)',
+                fontSize: '13.5px',
+                fontWeight: 600,
                 color: 'var(--color-text-primary)',
-                letterSpacing: '0.05em',
                 marginBottom: 'var(--space-xs)',
               }}
             >
-              EDUCATION
+              Education
             </h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '6px' }}>
               {professor.education?.map((edu, i) => (
@@ -171,14 +169,13 @@ export const ProfessorProfile: React.FC = () => {
           <div>
             <h4
               style={{
-                fontSize: '13px',
-                fontFamily: 'var(--font-mono)',
+                fontSize: '13.5px',
+                fontWeight: 600,
                 color: 'var(--color-text-primary)',
-                letterSpacing: '0.05em',
                 marginBottom: 'var(--space-xs)',
               }}
             >
-              EXPERIENCE
+              Experience
             </h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '6px' }}>
               {professor.experience?.map((exp, i) => (

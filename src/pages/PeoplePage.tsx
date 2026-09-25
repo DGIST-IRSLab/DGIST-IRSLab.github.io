@@ -21,21 +21,9 @@ export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
         }}
       >
         <div className="container">
-          <span className="eyebrow">RESEARCH PERSONNEL</span>
-          <h1 className="h1-title" style={{ marginTop: '4px' }}>
-            Lab Members & Alumni
+          <h1 className="h1-title">
+            People
           </h1>
-          <p
-            className="body-large"
-            style={{
-              maxWidth: '800px',
-              marginTop: 'var(--space-xs)',
-              color: 'var(--color-text-secondary)',
-              lineHeight: 1.6,
-            }}
-          >
-            A collaborative team of researchers, postdoctoral fellows, graduate students, and undergraduate researchers dedicated to wireless sensing and physical AI.
-          </p>
         </div>
       </section>
 
@@ -43,7 +31,6 @@ export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
       <section style={{ paddingTop: 'var(--space-2xl)' }}>
         <div className="container">
           <SectionHeader
-            eyebrow="FACULTY"
             title="Principal Investigator"
           />
           <ProfessorProfile />
@@ -54,9 +41,7 @@ export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
       <section style={{ paddingTop: 'var(--space-lg)' }}>
         <div className="container">
           <SectionHeader
-            eyebrow="POSTDOCTORAL RESEARCHERS"
             title="Postdoctoral Fellows"
-            description="Leading specialized inquiries in multimodal LLMs and physical-layer wireless AI."
           />
 
           <div
@@ -77,9 +62,7 @@ export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
       <section style={{ paddingTop: 'var(--space-2xl)' }}>
         <div className="container">
           <SectionHeader
-            eyebrow="GRADUATE RESEARCH"
             title="Graduate Students"
-            description="Ph.D., Joint MS/Ph.D., and Master's students conducting foundational and experimental research."
           />
 
           <div
@@ -100,9 +83,7 @@ export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
       <section style={{ paddingTop: 'var(--space-2xl)' }}>
         <div className="container">
           <SectionHeader
-            eyebrow="UNDERGRADUATE RESEARCH"
             title="Undergraduate Researchers"
-            description="DGIST undergraduate students actively participating in lab experiments, data collection, and algorithm development."
           />
 
           <div
@@ -123,9 +104,7 @@ export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
       <section style={{ paddingTop: 'var(--space-2xl)' }}>
         <div className="container">
           <SectionHeader
-            eyebrow="CAREER DESTINATIONS"
             title="Alumni"
-            description="Former lab members and postdoctoral scholars now continuing their careers at premier global research institutions."
           />
 
           <div
@@ -146,9 +125,7 @@ export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
       <section style={{ paddingTop: 'var(--space-2xl)' }}>
         <div className="container">
           <SectionHeader
-            eyebrow="INTERNSHIP PROGRAM"
-            title="Research Intern Cohorts"
-            description="Past undergraduate students who successfully concluded research internship projects in IRS Lab."
+            title="Research Interns"
             actionText="Join the Lab"
             onActionClick={() => onNavigate('join')}
           />

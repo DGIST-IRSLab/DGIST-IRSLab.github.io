@@ -16,21 +16,9 @@ export const JoinUsPage: React.FC = () => {
         }}
       >
         <div className="container">
-          <span className="eyebrow">RECRUITMENT & ADMISSION</span>
-          <h1 className="h1-title" style={{ marginTop: '4px' }}>
-            Join IRS Lab
+          <h1 className="h1-title">
+            Join Us
           </h1>
-          <p
-            className="body-large"
-            style={{
-              maxWidth: '800px',
-              marginTop: 'var(--space-xs)',
-              color: 'var(--color-text-secondary)',
-              lineHeight: 1.6,
-            }}
-          >
-            We are actively looking for highly motivated graduate students (Ph.D. and M.S.), postdoctoral fellows, and undergraduate research interns to join our laboratory at DGIST.
-          </p>
         </div>
       </section>
 
@@ -95,9 +83,7 @@ export const JoinUsPage: React.FC = () => {
       <section style={{ paddingTop: 'var(--space-2xl)' }}>
         <div className="container container-editorial">
           <SectionHeader
-            eyebrow="AVAILABLE OPENINGS"
-            title="Open Positions by Category"
-            description="Detailed qualification criteria and inquiry procedures for prospective applicants."
+            title="Open Positions"
           />
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
@@ -236,8 +222,7 @@ export const JoinUsPage: React.FC = () => {
       <section style={{ paddingTop: 'var(--space-2xl)' }}>
         <div className="container container-editorial">
           <SectionHeader
-            eyebrow="APPLICATION PROCEDURE"
-            title="How to Inquire & Visit"
+            title="Contact & Visit"
           />
 
           <div

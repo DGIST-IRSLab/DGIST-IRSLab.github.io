@@ -77,21 +77,9 @@ export const PublicationsPage: React.FC<PublicationsPageProps> = ({ onOpenBibtex
         }}
       >
         <div className="container">
-          <span className="eyebrow">ACADEMIC SCHOLARSHIP</span>
-          <h1 className="h1-title" style={{ marginTop: '4px' }}>
-            Publications Index
+          <h1 className="h1-title">
+            Publications
           </h1>
-          <p
-            className="body-large"
-            style={{
-              maxWidth: '800px',
-              marginTop: 'var(--space-xs)',
-              color: 'var(--color-text-secondary)',
-              lineHeight: 1.6,
-            }}
-          >
-            Research papers published by IRS Lab members in premier computer vision, signal processing, and robotics conferences and IEEE journals.
-          </p>
         </div>
       </section>
 

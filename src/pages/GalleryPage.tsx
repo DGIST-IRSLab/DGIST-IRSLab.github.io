@@ -26,21 +26,9 @@ export const GalleryPage: React.FC = () => {
         }}
       >
         <div className="container">
-          <span className="eyebrow">LAB COMMUNITY & LIFE</span>
-          <h1 className="h1-title" style={{ marginTop: '4px' }}>
-            Laboratory Gallery
+          <h1 className="h1-title">
+            Gallery
           </h1>
-          <p
-            className="body-large"
-            style={{
-              maxWidth: '800px',
-              marginTop: 'var(--space-xs)',
-              color: 'var(--color-text-secondary)',
-              lineHeight: 1.6,
-            }}
-          >
-            Moments from academic conferences, experimental testbed calibrations, reading seminars, and group fellowship.
-          </p>
         </div>
       </section>
 

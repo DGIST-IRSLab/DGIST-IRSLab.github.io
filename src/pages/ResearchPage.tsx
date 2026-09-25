@@ -21,21 +21,9 @@ export const ResearchPage: React.FC<ResearchPageProps> = ({ onNavigate }) => {
         }}
       >
         <div className="container">
-          <span className="eyebrow">RESEARCH PROGRAM</span>
-          <h1 className="h1-title" style={{ marginTop: '4px' }}>
-            Research Agenda & Themes
+          <h1 className="h1-title">
+            Research
           </h1>
-          <p
-            className="body-large"
-            style={{
-              maxWidth: '820px',
-              marginTop: 'var(--space-xs)',
-              color: 'var(--color-text-secondary)',
-              lineHeight: 1.6,
-            }}
-          >
-            Developing physical-world intelligence by unifying radio-frequency wave mechanics, statistical signal processing, and multimodal foundation models.
-          </p>
         </div>
       </section>
 
@@ -76,9 +64,7 @@ export const ResearchPage: React.FC<ResearchPageProps> = ({ onNavigate }) => {
       <section id="projects-directory" style={{ marginTop: 'var(--space-section)' }}>
         <div className="container">
           <SectionHeader
-            eyebrow="SPONSORED INITIATIVES"
-            title="Active Research Grants & Projects"
-            description="Our research is supported by leading national science foundations, government ministries, and defense research organizations."
+            title="Projects"
             actionText="View Publications"
             onActionClick={() => onNavigate('publications')}
           />

@@ -32,12 +32,10 @@ export const ResearchTopicCard: React.FC<ResearchTopicCardProps> = ({
       {/* Content Col */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
         <div>
-          <span className="eyebrow">RESEARCH PILLAR</span>
           <h3
             className="h2-title"
             style={{
               fontSize: '22px',
-              marginTop: '2px',
               color: 'var(--color-text-primary)',
             }}
           >

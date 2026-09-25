@@ -65,19 +65,30 @@ export const BibtexModal: React.FC<BibtexModalProps> = ({ publication, onClose }
           }}
         >
           <div>
-            <span className="eyebrow" style={{ marginBottom: 0 }}>BIBTEX CITATION</span>
             <h3
               id="bibtex-title"
               className="h3-title"
               style={{
                 fontSize: '15px',
                 fontWeight: 600,
-                marginTop: '2px',
                 color: 'var(--color-text-primary)',
               }}
             >
-              {publication.title}
+              BibTeX Citation
             </h3>
+            <div
+              style={{
+                fontSize: '13px',
+                color: 'var(--color-text-secondary)',
+                marginTop: '2px',
+                maxWidth: '520px',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {publication.title}
+            </div>
           </div>
           <button
             type="button"

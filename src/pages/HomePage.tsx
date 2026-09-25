@@ -71,9 +71,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           <p className="hero-statement">
             AI-driven radio sensing for understanding the physical world.
           </p>
-          <p className="hero-description">
-            We pioneer radio-frequency perception, radar foundation models, and embodied physical intelligence to sense the physical world beyond the limits of optical vision.
-          </p>
 
           {/* Research Focus Pillars (IRS Core Domains) */}
           <div className="hero-focus-tags">
