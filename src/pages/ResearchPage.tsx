@@ -25,6 +25,17 @@ export const ResearchPage: React.FC<ResearchPageProps> = ({ onNavigate }) => {
           <h1 className="h1-title">
             Research
           </h1>
+          <p
+            style={{
+              marginTop: 'var(--space-md)',
+              fontSize: '15.5px',
+              lineHeight: 1.7,
+              color: 'var(--color-text-secondary)',
+              maxWidth: '860px',
+            }}
+          >
+            Our goal is to develop new sensing technologies to see the world from an entirely new perspective, through AI-Driven Wireless+X Sensing. By Integrating the Power of AI with Radio-Frequency Signal Processing—and further expanding these capabilities through Sensor Fusion—we aim to push the boundaries of human perceptual capabilities in diverse areas such as IoT, Health Monitoring, Autonomous Driving, Defense/Remote Sensing, and HCI.
+          </p>
         </div>
       </section>
 
