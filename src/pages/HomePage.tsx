@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, MapPin, Mail, Users, Calendar, ChevronRight } from 'lucide-react';
+import { ArrowRight, Mail, Users, Calendar, ChevronRight } from 'lucide-react';
 import { labInfo } from '../data/labInfo';
 import { newsItems } from '../data/news';
 import type { Publication } from '../types';
@@ -38,7 +38,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   return (
     <div className="homepage-root">
       {/* ====================================================================
-          1. HERO SECTION: IRS LAB IDENTITY & ACADEMIC MISSION
+          1. HERO SECTION: IRS LAB IDENTITY & SCIENTIFIC AGENDA
           ==================================================================== */}
       <section className="hero-section">
         {/* Subtle RF Waveform Motif in Background */}
@@ -61,14 +61,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         </div>
 
         <div className="container hero-container">
-          {/* Eyebrow & Institutional Lockup */}
-          <div className="hero-eyebrow-wrap">
-            <span className="hero-eyebrow">INTELLIGENT RADIO SENSING LABORATORY</span>
-            <span className="hero-eyebrow-sep">·</span>
-            <span className="hero-affiliation-badge">DGIST EECS &amp; AI</span>
-          </div>
-
-          {/* Main Title */}
+          {/* Main Title (No small eyebrow) */}
           <h1 className="hero-title">
             Intelligent Radio Sensing Lab
             <span className="hero-title-sub"> @ DGIST</span>
@@ -126,54 +119,16 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               <ChevronRight size={15} />
             </button>
           </div>
-
-          {/* ================================================================
-              AUTHENTIC LAB PHOTO SHOWCASE (DGIST Campus, Spring 2026)
-              Framed with academic precision, coordinates, and photo caption
-              ================================================================ */}
-          <div className="hero-photo-showcase">
-            <div className="photo-frame">
-              {/* Photo Top Metadata Bar */}
-              <div className="photo-top-bar">
-                <span className="photo-location">
-                  <MapPin size={13} style={{ color: 'var(--color-accent)' }} />
-                  <span>DGIST Campus · 35.7061° N, 128.4533° E</span>
-                </span>
-                <span className="photo-cohort">IRS Research Group · Spring 2026</span>
-              </div>
-
-              {/* Real Lab Group Photograph */}
-              <div className="photo-wrapper">
-                <img
-                  src="/images/gallery/202604/2.jpg"
-                  alt="IRS Lab Members under Cherry Blossoms at DGIST"
-                  className="photo-img"
-                  loading="eager"
-                />
-              </div>
-
-              {/* Photo Bottom Caption */}
-              <div className="photo-caption-bar">
-                <span className="caption-text">
-                  Intelligent Radio Sensing Laboratory members under blooming cherry blossoms, DGIST.
-                </span>
-                <span className="caption-pi">
-                  PI: Prof. Jae-Ho Choi
-                </span>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
       {/* ====================================================================
-          2. RECRUITMENT CALLOUT (Authentic IRS Lab Admissions)
+          2. RECRUITMENT CALLOUT (Clean, Direct, No Marketing Eyebrows)
           ==================================================================== */}
       <section className="admissions-section">
         <div className="container">
           <div className="admissions-card">
             <div className="admissions-content">
-              <span className="eyebrow" style={{ marginBottom: '6px' }}>LAB ADMISSIONS &amp; RECRUITMENT</span>
               <h2 className="admissions-title">
                 Join Our Research Group at DGIST
               </h2>
@@ -210,18 +165,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       </section>
 
       {/* ====================================================================
-          3. NEWS & RESEARCH MILESTONES (Concise Scannable Stream)
+          3. NEWS (Clean "News" heading only, no subheadings or descriptions)
           ==================================================================== */}
       <section className="news-section">
         <div className="container">
           {/* Section Header */}
           <div className="news-section-header">
             <div>
-              <span className="eyebrow">ACTIVITY STREAM</span>
-              <h2 className="news-heading">News &amp; Milestones</h2>
-              <p className="news-subheading">
-                Recent research breakthroughs, major grant awards, and team announcements.
-              </p>
+              <h2 className="news-heading">News</h2>
             </div>
 
             {/* Category Filter Pills */}
@@ -289,14 +240,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       </section>
 
       {/* ====================================================================
-          SCOPED STYLES: IRS ACADEMIC DESIGN SYSTEM
+          SCOPED STYLES
           ==================================================================== */}
       <style>{`
         /* Hero Section */
         .hero-section {
           position: relative;
-          padding-top: clamp(2.5rem, 5vw, 4.2rem);
-          padding-bottom: clamp(2.5rem, 5vw, 4.5rem);
+          padding-top: clamp(3rem, 6vw, 4.8rem);
+          padding-bottom: clamp(3rem, 6vw, 4.8rem);
           background-color: var(--color-bg);
           border-bottom: 1px solid var(--color-border);
           overflow: hidden;
@@ -322,41 +273,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           z-index: 1;
         }
 
-        .hero-eyebrow-wrap {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          margin-bottom: 12px;
-          flex-wrap: wrap;
-        }
-
-        .hero-eyebrow {
-          font-family: var(--font-mono);
-          font-size: 12px;
-          font-weight: 600;
-          letter-spacing: 0.08em;
-          color: var(--color-accent);
-        }
-
-        .hero-eyebrow-sep {
-          color: var(--color-text-dim);
-        }
-
-        .hero-affiliation-badge {
-          font-family: var(--font-mono);
-          font-size: 11.5px;
-          color: var(--color-text-muted);
-          font-weight: 500;
-        }
-
         .hero-title {
           font-family: var(--font-sans);
-          font-size: clamp(2.4rem, 4.6vw, 3.6rem);
+          font-size: clamp(2.4rem, 4.6vw, 3.8rem);
           font-weight: 750;
           letter-spacing: -0.03em;
           line-height: 1.12;
           color: var(--color-text-primary);
-          margin: 0 0 14px 0;
+          margin: 0 0 16px 0;
         }
 
         .hero-title-sub {
@@ -370,7 +294,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           font-weight: 600;
           line-height: 1.45;
           color: var(--color-text-primary);
-          margin: 0 0 8px 0;
+          margin: 0 0 10px 0;
         }
 
         .hero-description {
@@ -407,95 +331,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           display: flex;
           flex-wrap: wrap;
           gap: 12px;
-          margin-bottom: clamp(2rem, 4vw, 3rem);
         }
 
-        /* Hero Photo Showcase Frame */
-        .hero-photo-showcase {
-          width: 100%;
-          margin-top: 8px;
-        }
-
-        .photo-frame {
-          border: 1px solid var(--color-border);
-          border-radius: var(--radius-sm);
-          overflow: hidden;
-          background-color: var(--color-surface);
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-        }
-
-        .photo-top-bar {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 8px 14px;
-          background-color: var(--color-bg-secondary);
-          border-bottom: 1px solid var(--color-border-subtle);
-          font-family: var(--font-mono);
-          font-size: 11.5px;
-          color: var(--color-text-muted);
-        }
-
-        .photo-location {
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-        }
-
-        .photo-cohort {
-          font-weight: 500;
-        }
-
-        .photo-wrapper {
-          width: 100%;
-          aspect-ratio: 21 / 9;
-          min-height: 280px;
-          max-height: 480px;
-          overflow: hidden;
-          background-color: var(--color-bg-tertiary);
-        }
-
-        @media (max-width: 768px) {
-          .photo-wrapper {
-            aspect-ratio: 16 / 9;
-            min-height: 220px;
-          }
-        }
-
-        .photo-img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: center 60%;
-          display: block;
-          transition: transform var(--transition-normal);
-        }
-
-        .photo-img:hover {
-          transform: scale(1.01);
-        }
-
-        .photo-caption-bar {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 10px 14px;
-          background-color: var(--color-bg-secondary);
-          border-top: 1px solid var(--color-border-subtle);
-          font-size: 12.5px;
-          color: var(--color-text-secondary);
-        }
-
-        .caption-pi {
-          font-family: var(--font-mono);
-          font-size: 12px;
-          font-weight: 600;
-          color: var(--color-accent);
-          white-space: nowrap;
-          margin-left: 12px;
-        }
-
-        /* Recruitment Section */
+        /* Admissions Section */
         .admissions-section {
           padding-top: clamp(2rem, 3.5vw, 3rem);
           padding-bottom: clamp(2rem, 3.5vw, 3rem);
@@ -570,7 +408,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
         .news-section-header {
           display: flex;
-          align-items: flex-end;
+          align-items: center;
           justify-content: space-between;
           margin-bottom: var(--space-xl);
           gap: var(--space-lg);
@@ -579,18 +417,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
         .news-heading {
           font-family: var(--font-sans);
-          font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+          font-size: clamp(1.75rem, 2.8vw, 2.3rem);
           font-weight: 750;
-          letter-spacing: -0.02em;
+          letter-spacing: -0.025em;
           color: var(--color-text-primary);
-          margin: 0 0 6px 0;
-          line-height: 1.2;
-        }
-
-        .news-subheading {
-          font-size: 14.5px;
-          color: var(--color-text-secondary);
           margin: 0;
+          line-height: 1.15;
         }
 
         .news-filter-pills {
@@ -778,14 +610,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         }
 
         @media (max-width: 640px) {
-          .photo-top-bar, .photo-caption-bar {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 4px;
-          }
-          .caption-pi {
-            margin-left: 0;
-          }
           .news-item-row {
             display: flex;
             flex-direction: column;
