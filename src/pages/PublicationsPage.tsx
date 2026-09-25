@@ -8,12 +8,15 @@ interface PublicationsPageProps {
   onOpenBibtex: (pub: Publication) => void;
 }
 
-type FilterTab = 'all' | 'international' | 'domestic' | 'selected';
+type FilterTab = 'international' | 'domestic' | 'all';
 
 export const PublicationsPage: React.FC<PublicationsPageProps> = ({ onOpenBibtex }) => {
-  const [activeTab, setActiveTab] = useState<FilterTab>('all');
+  const [activeTab, setActiveTab] = useState<FilterTab>('international');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedYear, setSelectedYear] = useState<string>('all');
+
+  const intlCount = useMemo(() => publications.filter((p) => !p.isDomestic).length, []);
+  const domCount = useMemo(() => publications.filter((p) => p.isDomestic).length, []);
 
   // Filtered publications
   const filteredPubs = useMemo(() => {
@@ -21,7 +24,6 @@ export const PublicationsPage: React.FC<PublicationsPageProps> = ({ onOpenBibtex
       // Tab filter
       if (activeTab === 'international' && pub.isDomestic) return false;
       if (activeTab === 'domestic' && !pub.isDomestic) return false;
-      if (activeTab === 'selected' && !pub.selected) return false;
 
       // Year filter
       if (selectedYear !== 'all' && pub.year.toString() !== selectedYear) return false;
@@ -108,10 +110,9 @@ export const PublicationsPage: React.FC<PublicationsPageProps> = ({ onOpenBibtex
           {/* Tabs */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)', flexWrap: 'wrap' }}>
             {[
+              { id: 'international', label: `International (${intlCount})` },
+              { id: 'domestic', label: `Domestic (${domCount})` },
               { id: 'all', label: `All (${publications.length})` },
-              { id: 'international', label: 'International' },
-              { id: 'domestic', label: 'Domestic' },
-              { id: 'selected', label: 'Selected Highlights' },
             ].map((tab) => (
               <button
                 key={tab.id}
@@ -121,10 +122,10 @@ export const PublicationsPage: React.FC<PublicationsPageProps> = ({ onOpenBibtex
                   padding: '4px 0',
                   background: 'none',
                   border: 'none',
-                  borderBottom: activeTab === tab.id ? '1px solid var(--color-accent)' : '1px solid transparent',
+                  borderBottom: activeTab === tab.id ? '2px solid var(--color-accent)' : '2px solid transparent',
                   fontSize: '14px',
                   fontFamily: 'var(--font-sans)',
-                  fontWeight: 500,
+                  fontWeight: activeTab === tab.id ? 600 : 500,
                   color: activeTab === tab.id ? 'var(--color-accent)' : 'var(--color-text-muted)',
                   cursor: 'pointer',
                   transition: 'all var(--transition-fast)',
@@ -213,7 +214,7 @@ export const PublicationsPage: React.FC<PublicationsPageProps> = ({ onOpenBibtex
               <button
                 type="button"
                 onClick={() => {
-                  setActiveTab('all');
+                  setActiveTab('international');
                   setSelectedYear('all');
                   setSearchQuery('');
                 }}
