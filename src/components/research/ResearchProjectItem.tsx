@@ -28,10 +28,11 @@ export const ResearchProjectItem: React.FC<ResearchProjectItemProps> = ({ projec
         }}
       >
         {project.agencyBadge && (
-          <span className="badge" style={{ fontSize: '11px' }}>
+          <span style={{ fontSize: '13px', fontWeight: 500, color: 'var(--color-text-secondary)' }}>
             {project.agencyBadge}
           </span>
         )}
+        {project.agencyBadge && <span style={{ color: 'var(--color-text-muted)' }}>·</span>}
         <span
           style={{
             fontFamily: 'var(--font-mono)',
@@ -41,12 +42,11 @@ export const ResearchProjectItem: React.FC<ResearchProjectItemProps> = ({ projec
         >
           {project.period}
         </span>
+        <span style={{ color: 'var(--color-text-muted)' }}>·</span>
         <span
-          className="badge badge-outline"
           style={{
-            fontSize: '10.5px',
+            fontSize: '13px',
             color: project.status === 'ongoing' ? 'var(--color-accent)' : 'var(--color-text-dim)',
-            borderColor: project.status === 'ongoing' ? 'var(--color-accent-border)' : 'var(--color-border)',
           }}
         >
           {project.status === 'ongoing' ? 'Ongoing' : 'Completed'}

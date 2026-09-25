@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, Mail, Users, Calendar, ChevronRight } from 'lucide-react';
+import { ArrowRight, Calendar } from 'lucide-react';
 import { labInfo } from '../data/labInfo';
 import { newsItems } from '../data/news';
 import type { Publication } from '../types';
@@ -41,79 +41,37 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           1. HERO SECTION: IRS LAB IDENTITY & SCIENTIFIC AGENDA
           ==================================================================== */}
       <section className="hero-section">
-        {/* Subtle RF Waveform Motif in Background */}
-        <div className="hero-rf-trace" aria-hidden="true">
-          <svg viewBox="0 0 1200 160" fill="none" xmlns="http://www.w3.org/2000/svg" className="rf-svg">
-            <path
-              d="M0 80 C 100 80, 150 20, 250 80 C 350 140, 400 10, 500 80 C 600 150, 650 30, 750 80 C 850 130, 900 40, 1000 80 C 1100 110, 1150 60, 1200 80"
-              stroke="var(--color-accent)"
-              strokeWidth="1.2"
-              strokeOpacity="0.22"
-            />
-            <path
-              d="M0 80 C 80 80, 130 40, 230 80 C 330 120, 380 30, 480 80 C 580 130, 630 45, 730 80 C 830 115, 880 50, 980 80 C 1080 100, 1130 65, 1200 80"
-              stroke="var(--color-accent)"
-              strokeWidth="0.8"
-              strokeDasharray="4 3"
-              strokeOpacity="0.18"
-            />
-          </svg>
-        </div>
-
         <div className="container hero-container">
-          {/* Main Title (No small eyebrow) */}
+          <div style={{ marginBottom: 'var(--space-md)', fontSize: '13px', fontWeight: 600, color: 'var(--color-text-muted)' }}>
+            IRS LAB
+          </div>
+
           <h1 className="hero-title">
             Intelligent Radio Sensing Lab
-            <span className="hero-title-sub"> @ DGIST</span>
+            <br />
+            <span className="hero-title-sub">@ DGIST</span>
           </h1>
 
-          {/* Core Scientific Statement */}
           <p className="hero-statement">
             AI-driven radio sensing for understanding the physical world.
           </p>
 
-          {/* Research Focus Pillars (IRS Core Domains) */}
-          <div className="hero-focus-tags">
-            <span className="focus-pill">Radar Signal Processing</span>
-            <span className="focus-pill">AI for Wireless</span>
-            <span className="focus-pill">Micro-Doppler &amp; Vital Sensing</span>
-            <span className="focus-pill">Multimodal Physical AI</span>
+          <div style={{ marginTop: 'var(--space-lg)', color: 'var(--color-text-secondary)', fontSize: '15px' }}>
+            Radar Sensing · Artificial Intelligence · Physical Intelligence
           </div>
 
-          {/* Action Navigation Buttons */}
-          <div className="hero-actions">
+          <div style={{ marginTop: 'var(--space-xl)' }}>
             <button
               type="button"
               onClick={() => {
                 onNavigate('research');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="btn-academic btn-academic-primary"
+              className="link-subtle"
+              style={{ fontSize: '15px' }}
             >
               <span>Explore Research</span>
               <ArrowRight size={15} />
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                onNavigate('people');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              className="btn-academic"
-            >
-              <Users size={15} />
-              <span>Meet Our Team</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                onNavigate('join');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              className="btn-academic"
-            >
-              <span>Admission &amp; Openings</span>
-              <ChevronRight size={15} />
             </button>
           </div>
         </div>
@@ -124,37 +82,37 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           ==================================================================== */}
       <section className="admissions-section">
         <div className="container">
-          <div className="admissions-card">
-            <div className="admissions-content">
-              <h2 className="admissions-title">
-                Join Our Research Group at DGIST
-              </h2>
-              <p className="admissions-desc">
-                We are actively looking for passionate <b>Ph.D. &amp; M.S. graduate students</b>, <b>undergraduate research interns</b>, and <b>postdoctoral fellows</b> who are eager to pioneer radio sensing, RF signal processing, and physical artificial intelligence.
-              </p>
-              <div className="admissions-kr">
-                우리 연구실에서는 열정 있는 대학원생(석·박사 과정) 및 학부 연구생, 박사후 연구원을 상시 모집하고 있습니다.
-              </div>
+          <div style={{ maxWidth: '800px', padding: 'var(--space-2xl) 0' }}>
+            <div style={{ marginBottom: 'var(--space-md)', fontSize: '13px', fontWeight: 600, color: 'var(--color-text-muted)' }}>
+              JOIN IRS
             </div>
-
-            <div className="admissions-actions">
+            <h2 style={{ fontSize: 'var(--text-h2)', marginBottom: 'var(--space-md)', fontFamily: 'var(--font-display)' }}>
+              Join Our Research Group
+            </h2>
+            <p style={{ fontSize: '16px', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-lg)', maxWidth: '600px' }}>
+              We welcome graduate students, undergraduate researchers, and postdoctoral fellows interested in radio sensing, signal processing, and physical intelligence.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xs)', color: 'var(--color-text-secondary)', marginBottom: 'var(--space-xl)', fontSize: '15px' }}>
+              <div>Graduate Students</div>
+              <div>Undergraduate Research</div>
+              <div>Postdoctoral Fellows</div>
+            </div>
+            
+            <div style={{ display: 'flex', gap: 'var(--space-xl)', alignItems: 'center' }}>
               <button
                 type="button"
                 onClick={() => {
                   onNavigate('join');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="btn-academic btn-academic-primary admissions-primary-btn"
+                className="link-subtle"
+                style={{ fontSize: '15px' }}
               >
-                <span>View Openings &amp; Qualifications</span>
+                <span>View Openings</span>
                 <ArrowRight size={15} />
               </button>
-              <a
-                href={`mailto:${labInfo.email}`}
-                className="link-subtle admissions-email-link"
-              >
-                <Mail size={14} />
-                <span>Contact: {labInfo.email}</span>
+              <a href={`mailto:${labInfo.email}`} className="link-subtle" style={{ fontSize: '15px', color: 'var(--color-text-primary)' }}>
+                {labInfo.email}
               </a>
             </div>
           </div>
@@ -227,9 +185,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 onNavigate('news');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="btn-academic"
+              className="link-subtle"
+              style={{ fontSize: '15px' }}
             >
-              <span>Explore Full News Archive ({newsItems.length} Milestones)</span>
+              <span>View All News</span>
               <ArrowRight size={14} />
             </button>
           </div>
@@ -425,24 +384,20 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         .news-filter-pills {
           display: inline-flex;
           align-items: center;
-          gap: 6px;
-          background-color: var(--color-bg-secondary);
-          padding: 3px;
-          border-radius: var(--radius-sm);
-          border: 1px solid var(--color-border);
+          gap: var(--space-md);
         }
 
         .news-filter-btn {
           background: none;
           border: none;
-          padding: 5px 12px;
-          font-family: var(--font-mono);
-          font-size: 11.5px;
-          font-weight: 600;
+          padding: 4px 0;
+          font-family: var(--font-sans);
+          font-size: 14px;
+          font-weight: 500;
           color: var(--color-text-muted);
-          border-radius: var(--radius-xs);
           cursor: pointer;
           transition: all var(--transition-fast);
+          border-bottom: 1px solid transparent;
         }
 
         .news-filter-btn:hover {
@@ -450,9 +405,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         }
 
         .news-filter-btn.active {
-          background-color: var(--color-surface);
           color: var(--color-accent);
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+          border-bottom: 1px solid var(--color-accent);
         }
 
         .news-stream-container {
@@ -486,8 +440,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           align-items: center;
           gap: 6px;
           font-family: var(--font-mono);
-          font-size: 12.5px;
-          font-weight: 600;
+          font-size: 13px;
           color: var(--color-text-muted);
         }
 
@@ -502,47 +455,33 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         .news-cat-pill {
           display: inline-flex;
           align-items: center;
-          padding: 2px 8px;
-          font-family: var(--font-mono);
-          font-size: 11px;
-          font-weight: 600;
-          letter-spacing: 0.05em;
-          border-radius: var(--radius-xs);
-          text-transform: uppercase;
+          font-family: var(--font-sans);
+          font-size: 13px;
+          font-weight: 500;
         }
 
         .cat-badge-paper {
-          background-color: rgba(2, 140, 255, 0.1);
           color: var(--color-accent);
-          border: 1px solid rgba(2, 140, 255, 0.25);
         }
 
         .cat-badge-grant {
-          background-color: rgba(16, 185, 129, 0.1);
           color: #059669;
-          border: 1px solid rgba(16, 185, 129, 0.25);
         }
 
         [data-theme='dark'] .cat-badge-grant {
           color: #34d399;
-          background-color: rgba(52, 211, 153, 0.12);
         }
 
         .cat-badge-award {
-          background-color: rgba(245, 158, 11, 0.1);
           color: #d97706;
-          border: 1px solid rgba(245, 158, 11, 0.25);
         }
 
         [data-theme='dark'] .cat-badge-award {
           color: #fbbf24;
-          background-color: rgba(251, 191, 36, 0.12);
         }
 
         .cat-badge-people {
-          background-color: rgba(99, 102, 241, 0.1);
           color: #6366f1;
-          border: 1px solid rgba(99, 102, 241, 0.25);
         }
 
         [data-theme='dark'] .cat-badge-people {

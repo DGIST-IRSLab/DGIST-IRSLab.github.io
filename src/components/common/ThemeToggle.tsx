@@ -23,12 +23,11 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({ className = '' }) => {
         width: '34px',
         height: '34px',
         padding: '0',
-        borderRadius: 'var(--radius-sm)',
-        background: 'transparent',
-        border: '1px solid var(--color-border)',
+        background: 'none',
+        border: 'none',
         color: 'var(--color-text-secondary)',
         cursor: 'pointer',
-        transition: 'all var(--transition-fast)',
+        transition: 'color var(--transition-fast)',
       }}
     >
       {resolvedTheme === 'light' ? (

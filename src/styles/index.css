@@ -82,71 +82,51 @@
    TYPOGRAPHY STYLES
    ========================================================================== */
 
-/* Headings: Space Grotesk */
-h1, h2, h3, h4, h5, h6,
-.display-title,
-.h1-title,
-.h2-title,
-.h3-title {
-  font-family: var(--font-heading);
-}
-
 .display-title {
-  font-family: var(--font-display);
   font-size: var(--text-display);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.1;
   letter-spacing: -0.03em;
   color: var(--color-text-primary);
 }
 
 .h1-title {
-  font-family: var(--font-heading);
   font-size: var(--text-h1);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.025em;
   color: var(--color-text-primary);
 }
 
 .h2-title {
-  font-family: var(--font-heading);
   font-size: var(--text-h2);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.25;
   letter-spacing: -0.02em;
   color: var(--color-text-primary);
 }
 
 .h3-title {
-  font-family: var(--font-heading);
   font-size: var(--text-h3);
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.35;
   letter-spacing: -0.01em;
   color: var(--color-text-primary);
 }
 
-/* Body: IBM Plex Sans */
 .body-large {
-  font-family: var(--font-body);
   font-size: var(--text-body-lg);
   line-height: 1.6;
   color: var(--color-text-secondary);
 }
 
 .body-text {
-  font-family: var(--font-body);
   font-size: var(--text-body);
   line-height: 1.6;
   color: var(--color-text-secondary);
 }
 
-/* Metadata, Venue, Year, Radar Label: IBM Plex Mono */
-.metadata-text,
-.venue-tag,
-.year-tag,
-.radar-label {
+.metadata-text {
   font-family: var(--font-mono);
   font-size: var(--text-metadata);
   line-height: 1.4;
@@ -154,7 +134,14 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .eyebrow {
-  display: none !important;
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--text-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-xs);
 }
 
 /* ==========================================================================
@@ -225,26 +212,19 @@ h1, h2, h3, h4, h5, h6,
    BUTTONS, BADGES, AND LINKS
    ========================================================================== */
 
-/* Academic Badges */
+/* Academic Badges (Redesigned as simple text labels) */
 .badge {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2xs);
-  padding: 2px 8px;
-  font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 500;
-  border-radius: var(--radius-xs);
-  background-color: var(--color-badge-bg);
-  color: var(--color-badge-text);
-  border: 1px solid var(--color-badge-border);
+  color: var(--color-text-secondary);
   white-space: nowrap;
 }
 
 .badge-outline {
-  background-color: transparent;
-  color: var(--color-text-secondary);
-  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
 }
 
 /* Academic Action Links */

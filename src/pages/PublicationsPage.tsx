@@ -106,11 +106,11 @@ export const PublicationsPage: React.FC<PublicationsPageProps> = ({ onOpenBibtex
           }}
         >
           {/* Tabs */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)', flexWrap: 'wrap' }}>
             {[
               { id: 'all', label: `All (${publications.length})` },
-              { id: 'international', label: 'International (CVPR, NeurIPS, IEEE)' },
-              { id: 'domestic', label: 'Domestic (KIEES)' },
+              { id: 'international', label: 'International' },
+              { id: 'domestic', label: 'Domestic' },
               { id: 'selected', label: 'Selected Highlights' },
             ].map((tab) => (
               <button
@@ -118,15 +118,14 @@ export const PublicationsPage: React.FC<PublicationsPageProps> = ({ onOpenBibtex
                 type="button"
                 onClick={() => setActiveTab(tab.id as FilterTab)}
                 style={{
-                  padding: '6px 12px',
-                  borderRadius: 'var(--radius-sm)',
-                  fontSize: '13px',
+                  padding: '4px 0',
+                  background: 'none',
+                  border: 'none',
+                  borderBottom: activeTab === tab.id ? '1px solid var(--color-accent)' : '1px solid transparent',
+                  fontSize: '14px',
                   fontFamily: 'var(--font-sans)',
-                  fontWeight: activeTab === tab.id ? 600 : 400,
-                  border: '1px solid',
-                  borderColor: activeTab === tab.id ? 'var(--color-accent)' : 'var(--color-border)',
-                  backgroundColor: activeTab === tab.id ? 'var(--color-accent-subtle)' : 'transparent',
-                  color: activeTab === tab.id ? 'var(--color-accent)' : 'var(--color-text-secondary)',
+                  fontWeight: 500,
+                  color: activeTab === tab.id ? 'var(--color-accent)' : 'var(--color-text-muted)',
                   cursor: 'pointer',
                   transition: 'all var(--transition-fast)',
                 }}

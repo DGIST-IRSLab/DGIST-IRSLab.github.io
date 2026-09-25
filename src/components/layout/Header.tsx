@@ -172,7 +172,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenS
         </nav>
 
         {/* Right Utilities: Search & Theme Toggle */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-xs)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
           {/* Quick Search Button */}
           <button
             type="button"
@@ -185,19 +185,18 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenS
               alignItems: 'center',
               gap: '6px',
               height: '34px',
-              padding: '0 10px',
-              borderRadius: 'var(--radius-sm)',
-              background: 'transparent',
-              border: '1px solid var(--color-border)',
+              background: 'none',
+              border: 'none',
               color: 'var(--color-text-secondary)',
               cursor: 'pointer',
-              fontSize: '12.5px',
+              fontSize: '14px',
               fontFamily: 'var(--font-sans)',
-              transition: 'all var(--transition-fast)',
+              transition: 'color var(--transition-fast)',
+              padding: 0,
             }}
           >
-            <Search size={14} />
-            <span className="search-key-badge" style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--color-text-muted)' }}>
+            <Search size={16} />
+            <span style={{ fontSize: '13px', color: 'var(--color-text-muted)' }}>
               ⌘K
             </span>
           </button>
@@ -218,14 +217,13 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenS
               width: '34px',
               height: '34px',
               padding: 0,
-              background: 'transparent',
-              border: '1px solid var(--color-border)',
-              borderRadius: 'var(--radius-sm)',
+              background: 'none',
+              border: 'none',
               color: 'var(--color-text-secondary)',
               cursor: 'pointer',
             }}
           >
-            {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>

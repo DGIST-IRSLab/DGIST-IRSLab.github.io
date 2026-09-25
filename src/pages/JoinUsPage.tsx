@@ -103,7 +103,7 @@ export const JoinUsPage: React.FC = () => {
                 <h3 className="h3-title" style={{ fontSize: '18px' }}>
                   Graduate Students (Ph.D. / M.S. / Integrated Ph.D.)
                 </h3>
-                <span className="badge">Open for Admission</span>
+                <span style={{ fontSize: '13px', fontWeight: 500, color: 'var(--color-text-secondary)' }}>Open for Admission</span>
               </div>
 
               <p className="body-text" style={{ fontSize: '13.5px', lineHeight: 1.6 }}>
@@ -120,12 +120,12 @@ export const JoinUsPage: React.FC = () => {
                   href={labInfo.notionContactLink}
                   target="_blank"
                   rel="noreferrer"
-                  className="btn-academic btn-academic-primary"
-                  style={{ fontSize: '13px' }}
+                  className="link-subtle"
+                  style={{ fontSize: '14px' }}
                 >
-                  <FileText size={13} />
-                  <span>Graduate Admission Guidelines (Notion)</span>
-                  <ExternalLink size={11} />
+                  <FileText size={14} />
+                  <span>Graduate Admission Guidelines</span>
+                  <ExternalLink size={12} />
                 </a>
               </div>
             </div>
@@ -146,7 +146,7 @@ export const JoinUsPage: React.FC = () => {
                 <h3 className="h3-title" style={{ fontSize: '18px' }}>
                   Postdoctoral Research Fellows
                 </h3>
-                <span className="badge">Actively Hiring</span>
+                <span style={{ fontSize: '13px', fontWeight: 500, color: 'var(--color-text-secondary)' }}>Actively Hiring</span>
               </div>
 
               <p className="body-text" style={{ fontSize: '13.5px', lineHeight: 1.6 }}>
@@ -158,12 +158,12 @@ export const JoinUsPage: React.FC = () => {
                   href={labInfo.notionPostdocLink}
                   target="_blank"
                   rel="noreferrer"
-                  className="btn-academic btn-academic-primary"
-                  style={{ fontSize: '13px' }}
+                  className="link-subtle"
+                  style={{ fontSize: '14px' }}
                 >
-                  <FileText size={13} />
-                  <span>Postdoc Hiring Document (Notion)</span>
-                  <ExternalLink size={11} />
+                  <FileText size={14} />
+                  <span>Postdoc Hiring Document</span>
+                  <ExternalLink size={12} />
                 </a>
               </div>
             </div>
@@ -184,7 +184,7 @@ export const JoinUsPage: React.FC = () => {
                 <h3 className="h3-title" style={{ fontSize: '18px' }}>
                   Undergraduate Research Interns
                 </h3>
-                <span className="badge badge-outline">Summer & Winter Cohorts</span>
+                <span className="badge badge-outline">SUMMER & WINTER COHORTS</span>
               </div>
 
               <p className="body-text" style={{ fontSize: '13.5px', lineHeight: 1.6 }}>

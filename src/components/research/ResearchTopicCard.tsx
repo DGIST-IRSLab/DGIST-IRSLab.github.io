@@ -83,13 +83,9 @@ export const ResearchTopicCard: React.FC<ResearchTopicCardProps> = ({
           ))}
         </div>
 
-        {/* Keyword Pills */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginTop: '4px' }}>
-          {topic.keywords.map((kw, i) => (
-            <span key={i} className="badge badge-outline" style={{ fontSize: '11px' }}>
-              {kw}
-            </span>
-          ))}
+        {/* Keywords */}
+        <div style={{ fontSize: '13px', color: 'var(--color-text-muted)', marginTop: '4px' }}>
+          {topic.keywords.join(' · ')}
         </div>
 
         {onExplore && (
