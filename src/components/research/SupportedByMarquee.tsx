@@ -36,7 +36,7 @@ const sponsors: Sponsor[] = [
     name: 'ADD',
     fullName: 'Agency for Defense Development (국방과학연구소)',
     logo: '/images/sponsors/add.svg',
-    height: 38,
+    height: 30,
   },
   {
     id: 'msit',
