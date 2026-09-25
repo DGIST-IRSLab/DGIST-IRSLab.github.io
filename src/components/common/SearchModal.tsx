@@ -210,9 +210,10 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onNav
                 }}
               >
                 {[
+                  { label: 'Principal Investigator', page: 'pi' },
+                  { label: 'Lab Members', page: 'members' },
                   { label: 'Research Topics', page: 'research' },
                   { label: 'Publications', page: 'publications' },
-                  { label: 'Lab Members', page: 'people' },
                   { label: 'Activity News', page: 'news' },
                   { label: 'Join IRS Lab', page: 'join' },
                 ].map((item) => (
@@ -352,14 +353,18 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onNav
                 }}
               >
                 <User size={14} style={{ color: 'var(--color-accent)' }} />
-                <span className="eyebrow" style={{ marginBottom: 0 }}>PEOPLE</span>
+                <span className="eyebrow" style={{ marginBottom: 0 }}>MEMBERS &amp; P.I</span>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xs)' }}>
                 {matchingPeople.map((person) => (
                   <div
                     key={person.id}
                     onClick={() => {
-                      onNavigate('people', person.id);
+                      if (person.id === 'jaeho-choi') {
+                        onNavigate('pi');
+                      } else {
+                        onNavigate('members', person.id);
+                      }
                       onClose();
                     }}
                     style={{

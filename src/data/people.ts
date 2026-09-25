@@ -48,7 +48,7 @@ export const professor: Person = {
   nameKr: "최재호",
   role: "Professor",
   title: "Assistant Professor",
-  photo: "/images/teampic/standard/Jaeho2.jpg",
+  photo: "/images/teampic/standard/member_jaeho.jpg",
   specialPhoto: "/images/teampic/special/Jaeho3.jpg",
   specialPhotoObjectPosition: "67% 40%",
   email: "jhochoi@dgist.ac.kr",
@@ -148,6 +148,7 @@ export const graduateStudents: Person[] = [
     role: "Integrated M.S./Ph.D.",
     title: "Integrated M.S./Ph.D. Student",
     photo: "/images/teampic/standard/student_KSE2.jpg",
+    specialPhoto: "/images/teampic/special/student_KSE.jpg",
     email: "seungeun.kang@dgist.ac.kr",
     researchInterests: ["Wireless AI", "Contactless Sensing", "Signal Representation Learning"]
   },

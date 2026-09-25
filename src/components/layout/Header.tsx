@@ -23,8 +23,9 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenS
   const navItems = [
     { id: 'home', label: 'Home' },
     { id: 'research', label: 'Research' },
+    { id: 'pi', label: 'P.I' },
+    { id: 'members', label: 'Members' },
     { id: 'publications', label: 'Publications' },
-    { id: 'people', label: 'People' },
     { id: 'gallery', label: 'Gallery' },
     { id: 'join', label: 'Join Us' },
   ];
@@ -123,7 +124,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenS
           className="desktop-nav"
         >
           {navItems.map((item) => {
-            const isActive = currentPage === item.id;
+            const isActive = currentPage === item.id || (item.id === 'members' && currentPage === 'people');
             return (
               <button
                 key={item.id}
@@ -237,7 +238,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenS
           }}
         >
           {navItems.map((item) => {
-            const isActive = currentPage === item.id;
+            const isActive = currentPage === item.id || (item.id === 'members' && currentPage === 'people');
             return (
               <button
                 key={item.id}

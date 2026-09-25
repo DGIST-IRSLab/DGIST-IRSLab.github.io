@@ -1,11 +1,10 @@
 import React from 'react';
-import { postdocs, graduateStudents, undergraduateResearchers, alumni, internHistory } from '../data/people';
-import { ProfessorProfile } from '../components/people/ProfessorProfile';
+import { professor, postdocs, graduateStudents, undergraduateResearchers, alumni, internHistory } from '../data/people';
 import { PersonCard } from '../components/people/PersonCard';
 import { SectionHeader } from '../components/common/SectionHeader';
 
 interface PeoplePageProps {
-  onNavigate: (page: string) => void;
+  onNavigate: (page: string, anchorId?: string) => void;
 }
 
 export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
@@ -21,19 +20,52 @@ export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
         }}
       >
         <div className="container">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+            <span
+              style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '13px',
+                color: 'var(--color-accent)',
+                letterSpacing: '0.04em',
+                fontWeight: 600,
+                textTransform: 'uppercase',
+              }}
+            >
+              Lab Directory
+            </span>
+          </div>
           <h1 className="h1-title">
-            People
+            Members
           </h1>
+          <p
+            style={{
+              marginTop: '6px',
+              color: 'var(--color-text-secondary)',
+              fontSize: '16px',
+            }}
+          >
+            Faculty, postdoctoral fellows, graduate students, and undergraduate researchers
+          </p>
         </div>
       </section>
 
-      {/* Professor Profile Feature */}
+      {/* Principal Investigator */}
       <section style={{ paddingTop: 'var(--space-2xl)' }}>
         <div className="container">
           <SectionHeader
             title="Principal Investigator"
+            actionText="View Full P.I Profile"
+            onActionClick={() => onNavigate('pi')}
           />
-          <ProfessorProfile />
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 300px))',
+              gap: 'var(--space-lg)',
+            }}
+          >
+            <PersonCard person={professor} onNavigate={onNavigate} />
+          </div>
         </div>
       </section>
 
@@ -174,3 +206,5 @@ export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
     </div>
   );
 };
+
+export const MembersPage = PeoplePage;

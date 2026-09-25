@@ -1,17 +1,14 @@
 import React from 'react';
-import { researchProjects } from '../data/research';
-import { SectionHeader } from '../components/common/SectionHeader';
 import { ResearchIntroQuote } from '../components/research/ResearchIntroQuote';
 import { ResearchCarousel } from '../components/research/ResearchCarousel';
 import { ResearchTopicsSection } from '../components/research/ResearchTopicsSection';
-import { ResearchProjectItem } from '../components/research/ResearchProjectItem';
 import { SupportedByMarquee } from '../components/research/SupportedByMarquee';
 
 interface ResearchPageProps {
   onNavigate: (page: string, anchorId?: string) => void;
 }
 
-export const ResearchPage: React.FC<ResearchPageProps> = ({ onNavigate }) => {
+export const ResearchPage: React.FC<ResearchPageProps> = ({ onNavigate: _onNavigate }) => {
   return (
     <div className="research-page-root" style={{ paddingBottom: 'var(--space-section)' }}>
       {/* Header Banner */}
@@ -47,22 +44,9 @@ export const ResearchPage: React.FC<ResearchPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* Funded Grants & Projects Directory */}
-      <section id="projects-directory" style={{ marginTop: 'var(--space-section)' }}>
+      {/* Supported By: Funding Agencies Marquee Banner */}
+      <section id="supported-by-section" style={{ marginTop: 'var(--space-xl)' }}>
         <div className="container">
-          <SectionHeader
-            title="Projects"
-            actionText="View Publications"
-            onActionClick={() => onNavigate('publications')}
-          />
-
-          <div className="projects-list-container">
-            {researchProjects.map((project) => (
-              <ResearchProjectItem key={project.id} project={project} />
-            ))}
-          </div>
-
-          {/* Supported By: Funding Agencies Marquee Banner */}
           <SupportedByMarquee />
         </div>
       </section>
