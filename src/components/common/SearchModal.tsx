@@ -215,7 +215,6 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onNav
                   { label: 'Research Topics', page: 'research' },
                   { label: 'Publications', page: 'publications' },
                   { label: 'Lab Members', page: 'people' },
-                  { label: 'Activity News', page: 'news' },
                   { label: 'Join IRS Lab', page: 'join' },
                 ].map((item) => (
                   <button
@@ -403,7 +402,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onNav
                   <div
                     key={item.id}
                     onClick={() => {
-                      onNavigate('news', item.id);
+                      onNavigate('home', item.id);
                       onClose();
                     }}
                     style={{

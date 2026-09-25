@@ -5,7 +5,6 @@ import { HomePage } from './pages/HomePage';
 import { ResearchPage } from './pages/ResearchPage';
 import { PublicationsPage } from './pages/PublicationsPage';
 import { PeoplePage } from './pages/PeoplePage';
-import { NewsPage } from './pages/NewsPage';
 import { GalleryPage } from './pages/GalleryPage';
 import { JoinUsPage } from './pages/JoinUsPage';
 
@@ -21,8 +20,6 @@ export const App: React.FC = () => {
               return <PublicationsPage onOpenBibtex={onOpenBibtex} />;
             case 'people':
               return <PeoplePage onNavigate={onNavigate} />;
-            case 'news':
-              return <NewsPage />;
             case 'gallery':
               return <GalleryPage />;
             case 'join':

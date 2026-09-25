@@ -25,7 +25,6 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenS
     { id: 'research', label: 'Research' },
     { id: 'publications', label: 'Publications' },
     { id: 'people', label: 'People' },
-    { id: 'news', label: 'News' },
     { id: 'gallery', label: 'Gallery' },
     { id: 'join', label: 'Join Us' },
   ];

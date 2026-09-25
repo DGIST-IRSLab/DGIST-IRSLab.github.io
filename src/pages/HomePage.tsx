@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
 import { newsItems } from '../data/news';
 import type { Publication } from '../types';
 
@@ -11,11 +11,18 @@ interface HomePageProps {
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   // Category filter for News on the homepage
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
+
+  const INITIAL_COUNT = 5;
 
   // Filtered news items
-  const filteredNews = selectedCategory === 'ALL'
-    ? newsItems.slice(0, 8)
-    : newsItems.filter((item) => item.category === selectedCategory).slice(0, 8);
+  const allFilteredNews = selectedCategory === 'ALL'
+    ? newsItems
+    : newsItems.filter((item) => item.category === selectedCategory);
+
+  const displayedNews = isExpanded
+    ? allFilteredNews
+    : allFilteredNews.slice(0, INITIAL_COUNT);
 
   const getCategoryClass = (category: string) => {
     switch (category) {
@@ -128,7 +135,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
           {/* News List Items */}
           <div className="news-stream-container">
-            {filteredNews.map((item) => (
+            {displayedNews.map((item) => (
               <div key={item.id} className="news-item-row">
                 {/* Category */}
                 <div className="news-item-cat">
@@ -157,21 +164,22 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             ))}
           </div>
 
-          {/* Footer of News Section: View All Link */}
-          <div className="news-section-footer">
-            <button
-              type="button"
-              onClick={() => {
-                onNavigate('news');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              className="link-subtle"
-              style={{ fontSize: '15px' }}
-            >
-              <span>View All News</span>
-              <ArrowRight size={14} />
-            </button>
-          </div>
+          {/* Footer of News Section: Expand / Collapse Toggle */}
+          {allFilteredNews.length > INITIAL_COUNT && (
+            <div className="news-section-footer">
+              <button
+                type="button"
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="link-subtle"
+                style={{ fontSize: '14px', gap: '6px' }}
+              >
+                <span>
+                  {isExpanded ? 'Collapse' : `Expand (${allFilteredNews.length - INITIAL_COUNT} more)`}
+                </span>
+                {isExpanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
@@ -458,9 +466,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         }
 
         .news-section-footer {
-          margin-top: var(--space-xl);
+          margin-top: var(--space-lg);
           display: flex;
-          justify-content: flex-end;
+          justify-content: center;
         }
 
         /* Responsive Breakpoints */
