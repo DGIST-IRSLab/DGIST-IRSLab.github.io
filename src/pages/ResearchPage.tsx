@@ -3,6 +3,7 @@ import { researchTopics, researchProjects } from '../data/research';
 import { SectionHeader } from '../components/common/SectionHeader';
 import { ResearchTopicCard } from '../components/research/ResearchTopicCard';
 import { ResearchProjectItem } from '../components/research/ResearchProjectItem';
+import { ResearchCarousel } from '../components/research/ResearchCarousel';
 
 interface ResearchPageProps {
   onNavigate: (page: string, anchorId?: string) => void;
@@ -27,19 +28,10 @@ export const ResearchPage: React.FC<ResearchPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* Main Research Figure Frame */}
-      <section style={{ paddingTop: 'var(--space-xl)' }}>
+      {/* Main Research Figure Carousel */}
+      <section style={{ paddingTop: 'var(--space-xl)', marginBottom: 'var(--space-2xl)' }}>
         <div className="container">
-          <div className="research-figure-frame" style={{ marginBottom: 'var(--space-2xl)' }}>
-            <img
-              src="/images/research_home2.jpg"
-              alt="IRS Lab Overall Research Vision"
-              style={{ width: '100%', height: 'auto', display: 'block' }}
-            />
-            <div className="figure-caption">
-              Figure: Comprehensive system overview of IRS Lab — AI-driven wireless sensing pipelines connecting raw RF physical signals, neural representation learning, and multi-modal embodied perception.
-            </div>
-          </div>
+          <ResearchCarousel />
         </div>
       </section>
 
