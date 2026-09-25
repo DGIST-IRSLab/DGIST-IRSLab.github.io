@@ -1,4 +1,5 @@
 import React, { useEffect, useCallback, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { assetUrl } from '../../utils/asset';
 
@@ -27,12 +28,18 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({
 }) => {
   const filmstripRef = useRef<HTMLDivElement>(null);
 
-  // Keyboard navigation & scroll locking
+  // Keyboard navigation & scroll locking (preserving layout & scroll position)
   useEffect(() => {
     if (!isOpen) return;
 
     const originalOverflow = document.body.style.overflow;
+    const originalPaddingRight = document.body.style.paddingRight;
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
     document.body.style.overflow = 'hidden';
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    }
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -48,6 +55,7 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({
 
     return () => {
       document.body.style.overflow = originalOverflow;
+      document.body.style.paddingRight = originalPaddingRight;
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isOpen, onClose, onPrev, onNext]);
@@ -76,8 +84,8 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({
     }
   }, [isOpen, currentIndex, images]);
 
-  // Handle backdrop click
-  const handleBackdropClick = useCallback(
+  // Handle backdrop click on the main stage
+  const handleStageClick = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       if (e.target === e.currentTarget) {
         onClose();
@@ -87,99 +95,100 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({
   );
 
   if (!isOpen || images.length === 0) return null;
+  if (typeof document === 'undefined') return null;
 
   const currentImg = images[currentIndex] || images[0];
 
-  return (
+  const modalContent = (
     <div
-      className="gallery-modal-overlay"
-      onClick={handleBackdropClick}
+      className="lightbox-portal-root"
       role="dialog"
       aria-modal="true"
       aria-label={albumTitle ? `${albumTitle} viewer` : 'Image lightbox viewer'}
     >
-      {/* Top Header: Album Title, Date, Counter & Close */}
-      <div className="gallery-modal-header" onClick={(e) => e.stopPropagation()}>
-        <div className="gallery-modal-title-group">
-          {albumTitle && <h3 className="gallery-modal-title">{albumTitle}</h3>}
-          {albumDate && <span className="gallery-modal-date">{albumDate}</span>}
+      {/* Fixed Top Header Bar */}
+      <header className="lightbox-header" onClick={(e) => e.stopPropagation()}>
+        <div className="lightbox-title-group">
+          {albumTitle && <h3 className="lightbox-title">{albumTitle}</h3>}
+          {albumDate && <span className="lightbox-date">{albumDate}</span>}
         </div>
 
-        <div className="gallery-modal-actions">
-          <span className="gallery-modal-counter">
+        <div className="lightbox-actions">
+          <span className="lightbox-counter">
             {currentIndex + 1} / {images.length}
           </span>
           <button
             type="button"
             onClick={onClose}
             aria-label="Close viewer"
-            className="gallery-modal-close-btn"
+            className="lightbox-close-btn"
           >
-            <X size={18} />
+            <X size={20} />
           </button>
         </div>
-      </div>
+      </header>
 
-      {/* Main Slide Stage */}
-      <div className="gallery-modal-stage" onClick={handleBackdropClick}>
-        {images.length > 1 && (
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              onPrev();
-            }}
-            aria-label="Previous photograph"
-            className="gallery-nav-btn gallery-nav-prev"
-          >
-            <ChevronLeft size={24} />
-          </button>
-        )}
+      {/* Viewport-Fixed Left/Right Navigation Buttons */}
+      {images.length > 1 && (
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            onPrev();
+          }}
+          aria-label="Previous photograph"
+          className="lightbox-nav-btn lightbox-nav-prev"
+        >
+          <ChevronLeft size={28} />
+        </button>
+      )}
 
-        <div className="gallery-modal-image-wrap" onClick={(e) => e.stopPropagation()}>
+      {images.length > 1 && (
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            onNext();
+          }}
+          aria-label="Next photograph"
+          className="lightbox-nav-btn lightbox-nav-next"
+        >
+          <ChevronRight size={28} />
+        </button>
+      )}
+
+      {/* Main Centered Image Stage */}
+      <div className="lightbox-stage" onClick={handleStageClick}>
+        <div className="lightbox-image-wrap" onClick={(e) => e.stopPropagation()}>
           <img
             key={currentImg.src}
             src={assetUrl(currentImg.src)}
             alt={albumTitle ? `${albumTitle} - ${currentIndex + 1}` : 'Lab photograph'}
-            className="gallery-modal-image"
+            className="lightbox-image"
           />
         </div>
-
-        {images.length > 1 && (
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              onNext();
-            }}
-            aria-label="Next photograph"
-            className="gallery-nav-btn gallery-nav-next"
-          >
-            <ChevronRight size={24} />
-          </button>
-        )}
       </div>
 
-      {/* Bottom Filmstrip Thumbnails */}
+      {/* Fixed Bottom Filmstrip */}
       {images.length > 1 && (
-        <div
-          ref={filmstripRef}
-          className="gallery-modal-filmstrip"
-          onClick={(e) => e.stopPropagation()}
-        >
-          {images.map((img, idx) => (
-            <button
-              key={idx}
-              type="button"
-              onClick={() => onSelectIndex(idx)}
-              aria-label={`Go to slide ${idx + 1}`}
-              className={`gallery-thumb-btn ${idx === currentIndex ? 'active' : ''}`}
-            >
-              <img src={assetUrl(img.src)} alt="" loading="lazy" />
-            </button>
-          ))}
-        </div>
+        <footer className="lightbox-filmstrip-bar" onClick={(e) => e.stopPropagation()}>
+          <div ref={filmstripRef} className="lightbox-filmstrip">
+            {images.map((img, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => onSelectIndex(idx)}
+                aria-label={`Go to slide ${idx + 1}`}
+                className={`lightbox-thumb-btn ${idx === currentIndex ? 'active' : ''}`}
+              >
+                <img src={assetUrl(img.src)} alt="" loading="lazy" />
+              </button>
+            ))}
+          </div>
+        </footer>
       )}
     </div>
   );
+
+  return createPortal(modalContent, document.body);
 };
