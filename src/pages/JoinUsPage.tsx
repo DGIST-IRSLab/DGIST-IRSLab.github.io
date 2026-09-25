@@ -153,29 +153,6 @@ export const JoinUsPage: React.FC = () => {
               </p>
             </div>
           </div>
-
-          {/* Korean Notice Box */}
-          <div
-            style={{
-              marginTop: 'var(--space-xl)',
-              padding: 'var(--space-md) var(--space-lg)',
-              backgroundColor: 'var(--color-bg-secondary)',
-              borderLeft: '3px solid var(--color-accent)',
-              borderRadius: 'var(--radius-xs)',
-              fontSize: '13.5px',
-              lineHeight: 1.65,
-              color: 'var(--color-text-secondary)',
-            }}
-          >
-            <div style={{ fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: '4px' }}>
-              [국문 지원 안내]
-            </div>
-            우리 연구실에서는 열정 있는 대학원생(석사/박사/석박통합 과정), 박사후 연구원 및 학부 연구생을 상시 모집하고 있습니다. 무선 통신/신호처리, 컴퓨터 비전, 인공지능에 관심이 있으신 분은 간략한 자기소개 및 이력서(CV, 성적증명서 포함)와 함께 최재호 교수(
-            <a href="mailto:jhochoi@dgist.ac.kr" style={{ color: 'var(--color-accent)' }}>
-              jhochoi@dgist.ac.kr
-            </a>
-            )에게 이메일로 연락 주시길 바랍니다.
-          </div>
         </div>
       </section>
 
