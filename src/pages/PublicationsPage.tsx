@@ -8,18 +8,14 @@ interface PublicationsPageProps {
   onOpenBibtex: (pub: Publication) => void;
 }
 
-type FilterTab = 'international' | 'top' | 'domestic' | 'all';
+type FilterTab = 'international' | 'domestic' | 'all';
 
 export const PublicationsPage: React.FC<PublicationsPageProps> = ({ onOpenBibtex }) => {
   const [activeTab, setActiveTab] = useState<FilterTab>('international');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedYear, setSelectedYear] = useState<string>('all');
 
-  const isTopConfPublication = (pub: Publication) =>
-    Boolean(pub.isTopConf || /CVPR|NeurIPS|ECCV|AAAI|ICASSP/i.test(pub.venue));
-
   const intlCount = useMemo(() => publications.filter((p) => !p.isDomestic).length, []);
-  const topCount = useMemo(() => publications.filter(isTopConfPublication).length, []);
   const domCount = useMemo(() => publications.filter((p) => p.isDomestic).length, []);
 
   // Filtered publications
@@ -27,7 +23,6 @@ export const PublicationsPage: React.FC<PublicationsPageProps> = ({ onOpenBibtex
     return publications.filter((pub) => {
       // Tab filter
       if (activeTab === 'international' && pub.isDomestic) return false;
-      if (activeTab === 'top' && !isTopConfPublication(pub)) return false;
       if (activeTab === 'domestic' && !pub.isDomestic) return false;
 
       // Year filter
@@ -116,7 +111,6 @@ export const PublicationsPage: React.FC<PublicationsPageProps> = ({ onOpenBibtex
           <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)', flexWrap: 'wrap' }}>
             {[
               { id: 'international', label: `International (${intlCount})` },
-              { id: 'top', label: `Top Conf. (${topCount})` },
               { id: 'domestic', label: `Domestic (${domCount})` },
               { id: 'all', label: `All (${publications.length})` },
             ].map((tab) => (

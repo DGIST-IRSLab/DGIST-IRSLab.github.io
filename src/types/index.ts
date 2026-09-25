@@ -34,6 +34,7 @@ export interface Publication {
   year: number;
   type: 'conference' | 'journal' | 'workshop';
   isTopConf?: boolean;
+  isSCI?: boolean;
   pdfUrl?: string;
   projectUrl?: string;
   codeUrl?: string;

@@ -11,7 +11,15 @@ export const PublicationItem: React.FC<PublicationItemProps> = ({
   onOpenBibtex,
 }) => {
   const isTopConf = Boolean(
-    publication.isTopConf || /CVPR|NeurIPS|ECCV|AAAI|ICASSP/i.test(publication.venue)
+    publication.isTopConf !== undefined
+      ? publication.isTopConf
+      : (/CVPR|NeurIPS|ECCV|AAAI|ICASSP/i.test(publication.venue) && publication.type === 'conference')
+  );
+
+  const isSCI = Boolean(
+    publication.isSCI !== undefined
+      ? publication.isSCI
+      : (publication.type === 'journal' && !publication.isDomestic)
   );
 
   const renderAuthors = () => {
@@ -87,22 +95,13 @@ export const PublicationItem: React.FC<PublicationItemProps> = ({
           {publication.venue}{publication.venue.includes(publication.year.toString()) ? '' : `, ${publication.year}`}
         </span>
         {isTopConf && (
-          <span
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              fontSize: '11px',
-              fontFamily: 'var(--font-mono)',
-              fontWeight: 600,
-              padding: '1.5px 6px',
-              borderRadius: 'var(--radius-xs, 3px)',
-              backgroundColor: 'var(--color-badge-bg)',
-              color: 'var(--color-badge-text)',
-              border: '1px solid var(--color-badge-border)',
-              lineHeight: 1.3,
-            }}
-          >
-            Top Conf.
+          <span className="pub-badge pub-badge-topconf">
+            TOP CONF.
+          </span>
+        )}
+        {isSCI && (
+          <span className="pub-badge pub-badge-sci">
+            SCI
           </span>
         )}
       </div>
