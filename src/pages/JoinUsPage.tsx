@@ -28,14 +28,14 @@ export const JoinUsPage: React.FC = () => {
           <p
             className="body-text"
             style={{
-              fontSize: '15.5px',
-              lineHeight: 1.7,
+              fontSize: '16px',
+              lineHeight: 1.75,
               color: 'var(--color-text-secondary)',
               maxWidth: '820px',
               margin: '0',
             }}
           >
-            We welcome motivated graduate students (Ph.D., M.S., and Integrated M.S./Ph.D.), undergraduate research interns, and postdoctoral researchers who are passionate about radio sensing, RF signal processing, and physical artificial intelligence.
+            We welcome motivated <strong style={{ color: 'var(--color-text-primary)' }}>graduate students (Ph.D., M.S., and Integrated M.S./Ph.D.)</strong>, <strong style={{ color: 'var(--color-text-primary)' }}>undergraduate research interns</strong>, and <strong style={{ color: 'var(--color-text-primary)' }}>postdoctoral researchers</strong> who are passionate about <span style={{ color: 'var(--color-accent)', fontWeight: 600 }}>radio sensing, RF signal processing, and physical artificial intelligence</span>.
           </p>
         </div>
       </section>
@@ -60,20 +60,36 @@ export const JoinUsPage: React.FC = () => {
                 gap: 'var(--space-sm)',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}>
                 <h3 className="h3-title" style={{ fontSize: '18px' }}>
                   Graduate Students (Ph.D. / M.S. / Integrated M.S./Ph.D.)
                 </h3>
-                <span style={{ fontSize: '13px', fontWeight: 500, color: 'var(--color-text-secondary)' }}>Open for Admission</span>
+                <span
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '5px',
+                    fontSize: '12px',
+                    fontFamily: 'var(--font-mono)',
+                    fontWeight: 600,
+                    padding: '2.5px 8px',
+                    borderRadius: 'var(--radius-xs, 3px)',
+                    backgroundColor: 'var(--color-badge-bg)',
+                    color: 'var(--color-badge-text)',
+                    border: '1px solid var(--color-badge-border)',
+                  }}
+                >
+                  ● Open for Admission
+                </span>
               </div>
 
-              <p className="body-text" style={{ fontSize: '13.5px', lineHeight: 1.6 }}>
-                Open to students with backgrounds in Electrical Engineering, Computer Science, Artificial Intelligence, Mathematics, or Physics. Prior experience in signal processing, linear algebra, Python/PyTorch, or wireless systems is valued but enthusiasm for learning is most paramount.
+              <p className="body-text" style={{ fontSize: '14px', lineHeight: 1.65, color: 'var(--color-text-secondary)' }}>
+                Open to students with backgrounds in <strong style={{ color: 'var(--color-text-primary)' }}>Electrical Engineering, Computer Science, Artificial Intelligence, Mathematics, or Physics</strong>. Prior experience in <strong style={{ color: 'var(--color-text-primary)' }}>signal processing, linear algebra, Python/PyTorch, or wireless systems</strong> is valued, but <strong style={{ color: 'var(--color-accent)' }}>enthusiasm for learning is most paramount</strong>.
               </p>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '13px', color: 'var(--color-text-secondary)' }}>
-                <div>• DGIST EECS & AI graduate admissions cycles occur in Spring and Fall.</div>
-                <div>• Prospective students are encouraged to reach out at least 2–3 months before the official application deadline.</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '13.5px', color: 'var(--color-text-secondary)' }}>
+                <div>• DGIST EECS &amp; AI graduate admissions cycles occur in <strong style={{ color: 'var(--color-text-primary)' }}>Spring and Fall</strong>.</div>
+                <div>• Prospective students are strongly encouraged to reach out at least <strong style={{ color: 'var(--color-accent)' }}>2–3 months before</strong> the official application deadline.</div>
               </div>
 
               <div style={{ display: 'flex', gap: 'var(--space-sm)', marginTop: 'var(--space-xs)', flexWrap: 'wrap' }}>
@@ -103,15 +119,31 @@ export const JoinUsPage: React.FC = () => {
                 gap: 'var(--space-sm)',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}>
                 <h3 className="h3-title" style={{ fontSize: '18px' }}>
                   Postdoctoral Research Fellows
                 </h3>
-                <span style={{ fontSize: '13px', fontWeight: 500, color: 'var(--color-text-secondary)' }}>Actively Hiring</span>
+                <span
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '5px',
+                    fontSize: '12px',
+                    fontFamily: 'var(--font-mono)',
+                    fontWeight: 600,
+                    padding: '2.5px 8px',
+                    borderRadius: 'var(--radius-xs, 3px)',
+                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                    color: '#059669',
+                    border: '1px solid rgba(16, 185, 129, 0.25)',
+                  }}
+                >
+                  ● Actively Hiring
+                </span>
               </div>
 
-              <p className="body-text" style={{ fontSize: '13.5px', lineHeight: 1.6 }}>
-                We are actively recruiting postdocs in wireless systems, radio signal processing, and physical AI, supported by national research initiatives (MSIT, NRF, ADD, IITP). Fellows will lead high-impact publications and collaborate on cutting-edge research projects.
+              <p className="body-text" style={{ fontSize: '14px', lineHeight: 1.65, color: 'var(--color-text-secondary)' }}>
+                We are actively recruiting postdocs in <strong style={{ color: 'var(--color-text-primary)' }}>wireless systems, radio signal processing, and physical AI</strong>, supported by national research initiatives (<strong style={{ color: 'var(--color-text-primary)' }}>MSIT, NRF, ADD, IITP</strong>). Fellows will lead <strong style={{ color: 'var(--color-accent)' }}>high-impact publications</strong> and collaborate on cutting-edge research projects.
               </p>
 
               <div style={{ display: 'flex', gap: 'var(--space-sm)', marginTop: 'var(--space-xs)', flexWrap: 'wrap' }}>
@@ -141,15 +173,31 @@ export const JoinUsPage: React.FC = () => {
                 gap: 'var(--space-sm)',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}>
                 <h3 className="h3-title" style={{ fontSize: '18px' }}>
                   Undergraduate Research Interns
                 </h3>
-                <span style={{ fontSize: '13px', fontWeight: 500, color: 'var(--color-text-muted)' }}>Summer &amp; Winter Cohorts</span>
+                <span
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '5px',
+                    fontSize: '12px',
+                    fontFamily: 'var(--font-mono)',
+                    fontWeight: 600,
+                    padding: '2.5px 8px',
+                    borderRadius: 'var(--radius-xs, 3px)',
+                    backgroundColor: 'var(--color-bg-secondary)',
+                    color: 'var(--color-text-secondary)',
+                    border: '1px solid var(--color-border)',
+                  }}
+                >
+                  ● Summer &amp; Winter Cohorts
+                </span>
               </div>
 
-              <p className="body-text" style={{ fontSize: '13.5px', lineHeight: 1.6 }}>
-                DGIST and visiting undergraduate students are invited to join research projects during summer/winter vacations or semester sessions. Interns participate in testbed experiments, algorithm implementations, and weekly paper readings.
+              <p className="body-text" style={{ fontSize: '14px', lineHeight: 1.65, color: 'var(--color-text-secondary)' }}>
+                <strong style={{ color: 'var(--color-text-primary)' }}>DGIST and visiting undergraduate students</strong> are invited to join research projects during <strong style={{ color: 'var(--color-accent)' }}>summer/winter vacations</strong> or <strong style={{ color: 'var(--color-text-primary)' }}>semester sessions</strong>. Interns participate in <strong style={{ color: 'var(--color-text-primary)' }}>testbed experiments, algorithm implementations, and weekly paper readings</strong>.
               </p>
             </div>
           </div>
@@ -212,16 +260,21 @@ export const JoinUsPage: React.FC = () => {
                 </div>
               </div>
 
-              <div style={{ marginTop: 'auto', paddingTop: 'var(--space-sm)' }}>
-                <p style={{ fontSize: '12.5px', color: 'var(--color-text-dim)', lineHeight: 1.5 }}>
+              <div
+                style={{
+                  marginTop: 'auto',
+                  paddingTop: 'var(--space-md)',
+                  borderTop: '1px solid var(--color-border-subtle)',
+                }}
+              >
+                <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: '6px' }}>
                   When emailing, please include:
-                  <br />
-                  1. Current CV & Transcript
-                  <br />
-                  2. Brief statement of research interests
-                  <br />
-                  3. Tentative target enrollment semester
-                </p>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '13px', color: 'var(--color-text-secondary)', lineHeight: 1.5 }}>
+                  <div>1. <strong style={{ color: 'var(--color-text-primary)' }}>Current CV &amp; Transcript</strong></div>
+                  <div>2. <strong style={{ color: 'var(--color-text-primary)' }}>Brief statement</strong> of research interests &amp; motivation</div>
+                  <div>3. <strong style={{ color: 'var(--color-accent)' }}>Target enrollment semester</strong> (e.g., Spring 2027)</div>
+                </div>
               </div>
             </div>
 
