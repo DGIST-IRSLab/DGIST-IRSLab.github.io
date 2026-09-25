@@ -35,7 +35,7 @@ export const newsItems: NewsItem[] = [
     id: "news-2026-04-iitp",
     date: "2026.04",
     category: "GRANT",
-    title: "IRS Lab awarded major IITP research grant (2026–2033)",
+    title: "IRS Lab is funded by the IITP Industry-Domain-Specific On-Device AI Technologies (산업 도메인 특화 온디바이스 AI 기술 개발)!",
     description: "Our lab will receive long-term research support from the Institute of Information & Communications Technology Planning & Evaluation (IITP) for manufacturing multi-sensor fusion.",
     highlight: true
   },
@@ -43,14 +43,14 @@ export const newsItems: NewsItem[] = [
     id: "news-2026-04-kiost",
     date: "2026.04",
     category: "GRANT",
-    title: "Research project funded by KIOST (2026–2030)",
+    title: "IRS Lab is funded by the KIOST Maritime Micro-Doppler Underwater Surveillance Program (해양 마이크로 도플러 기술 기반 AI 수중 감시 시스템 개발)!",
     description: "Funded by Korea Institute of Ocean Science and Technology (KIOST) to build AI-driven maritime micro-Doppler underwater/surface surveillance systems."
   },
   {
     id: "news-2026-03-nrf",
     date: "2026.03",
     category: "GRANT",
-    title: "Selected for NRF Young Researcher Program Type B (신진연구-유형B, 2026–2031)",
+    title: "IRS Lab is funded by the NRF Young Researcher Program Type B (다중 주파수·변조 통합 학습 기반 레이더 파운데이션 모델 연구, 신진연구-유형B)!",
     description: "5-year research project on unified multi-frequency, multi-modulation radar foundation models supported by the National Research Foundation of Korea.",
     highlight: true
   },
@@ -73,7 +73,7 @@ export const newsItems: NewsItem[] = [
     id: "news-2025-11-add",
     date: "2025.11",
     category: "GRANT",
-    title: "Funded by Agency for Defense Development (ADD) Moonshot Project (2025–2026)",
+    title: "IRS Lab is funded by the ADD Moonshot Project (Physical AI 기반 고속 군집 자폭 무인수상정 대응 체계 연구)!",
     description: "Physical AI counter-measure algorithms against high-speed unmanned swarm surface vessels funded by ADD.",
     highlight: true
   },
@@ -109,7 +109,7 @@ export const newsItems: NewsItem[] = [
     id: "news-2025-09-nrf-seed",
     date: "2025.09",
     category: "GRANT",
-    title: "NRF Excellent Young Researcher Seed Grant awarded (2025–2026)",
+    title: "IRS Lab is funded by the NRF Excellent Young Researcher Seed Grant (우수신진연구-씨앗)!",
     description: "Our lab received seed grant support under the NRF Excellent Young Researcher Program."
   },
   {
@@ -137,7 +137,7 @@ export const newsItems: NewsItem[] = [
     id: "news-2025-06-innocore",
     date: "2025.06",
     category: "GRANT",
-    title: "Funded by two MSIT InnoCORE Projects (2025–2029)",
+    title: "IRS Lab is funded by the MSIT InnoCORE Projects (LLM 2.0 멀티모달 확장 및 상호공생 바이오임베디드 AI)!",
     description: "Selected for two InnoCORE national initiatives focusing on LLM 2.0 multimodal expansion and bio-embedded AI.",
     highlight: true
   },
@@ -145,7 +145,7 @@ export const newsItems: NewsItem[] = [
     id: "news-2025-06-starfellowship",
     date: "2025.06",
     category: "GRANT",
-    title: "Funded by MSIT AI Star Fellowship (AI 스타펠로우십, 2025–2030)",
+    title: "IRS Lab is funded by the MSIT AI Star Fellowship (AI 스타펠로우십)!",
     description: "Prof. Jae-Ho Choi selected for the highly competitive MSIT AI Star Fellowship supporting pioneering physical AI research.",
     highlight: true
   },
