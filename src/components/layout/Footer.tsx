@@ -11,21 +11,23 @@ export const Footer: React.FC<FooterProps> = () => {
       <div className="container footer-layout">
         {/* Left Column: Institutional Logos (DGIST + EECS) & Affiliation Info */}
         <div className="footer-left-col">
-          {/* Institutional Logos: DGIST + EECS side-by-side */}
+          {/* Institutional Logos: DGIST + EECS optically aligned side-by-side */}
           <div className="footer-inst-logos">
-            <div className="footer-logo-item" title="Daegu Gyeongbuk Institute of Science and Technology (DGIST)">
+            <div className="footer-logo-wrap" title="Daegu Gyeongbuk Institute of Science and Technology (DGIST)">
               <img
                 src="/images/logopic/dgist_logo.png"
                 alt="DGIST Logo"
-                className="footer-logo-img dgist-logo"
+                className="footer-inst-logo dgist-logo"
               />
             </div>
 
-            <div className="footer-logo-item" title="DGIST Department of Electrical Engineering &amp; Computer Science (EECS)">
+            <div className="footer-logo-divider" aria-hidden="true" />
+
+            <div className="footer-logo-wrap" title="DGIST Department of Electrical Engineering &amp; Computer Science (EECS)">
               <img
                 src="/images/logopic/eecs_logo.png"
                 alt="DGIST EECS Logo"
-                className="footer-logo-img eecs-logo"
+                className="footer-inst-logo eecs-logo"
               />
             </div>
           </div>
@@ -63,48 +65,67 @@ export const Footer: React.FC<FooterProps> = () => {
           margin-top: auto;
           border-top: 1px solid var(--color-border);
           background-color: var(--color-bg-secondary);
-          padding-top: clamp(2.2rem, 3.8vw, 3.2rem);
-          padding-bottom: clamp(2.2rem, 3.8vw, 3.2rem);
+          padding-top: clamp(2.4rem, 4vw, 3.4rem);
+          padding-bottom: clamp(2.4rem, 4vw, 3.4rem);
         }
 
         .footer-layout {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          gap: clamp(2rem, 4vw, 4rem);
+          gap: clamp(2rem, 5vw, 4.5rem);
         }
 
         /* Left Column */
         .footer-left-col {
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: 18px;
           max-width: 820px;
         }
 
         .footer-inst-logos {
           display: flex;
           align-items: center;
-          gap: 22px;
+          gap: 18px;
           flex-wrap: wrap;
         }
 
-        .footer-logo-item {
+        .footer-logo-wrap {
           display: inline-flex;
           align-items: center;
+          justify-content: center;
+          height: 36px;
         }
 
-        .footer-logo-img {
-          height: 38px;
+        .footer-logo-divider {
+          width: 1px;
+          height: 22px;
+          background-color: var(--color-border);
+          flex-shrink: 0;
+        }
+
+        .footer-inst-logo {
           width: auto;
-          max-width: 190px;
           object-fit: contain;
           display: block;
-          opacity: 0.95;
           transition: opacity var(--transition-fast);
         }
 
-        .footer-logo-img:hover {
+        /* Optical Size Balancing: DGIST 30px, EECS 33px */
+        .dgist-logo {
+          height: 30px;
+          max-width: 130px;
+          opacity: 0.95;
+        }
+
+        .eecs-logo {
+          height: 33px;
+          max-width: 160px;
+          opacity: 0.92;
+        }
+
+        .footer-inst-logo:hover {
           opacity: 1;
         }
 
@@ -113,9 +134,8 @@ export const Footer: React.FC<FooterProps> = () => {
         }
 
         [data-theme='dark'] .eecs-logo {
-          background-color: #ffffff;
-          padding: 3px 8px;
-          border-radius: var(--radius-xs);
+          filter: brightness(0) invert(0.92);
+          opacity: 0.88;
         }
 
         .footer-info-block {
@@ -127,7 +147,7 @@ export const Footer: React.FC<FooterProps> = () => {
         .footer-address-line {
           font-family: var(--font-sans);
           font-size: 13px;
-          line-height: 1.6;
+          line-height: 1.65;
           color: var(--color-text-secondary);
           margin: 0;
         }
@@ -140,7 +160,7 @@ export const Footer: React.FC<FooterProps> = () => {
           margin: 0;
         }
 
-        /* Right Column: Prominent Lab Logo */
+        /* Right Column: Prominent Large Lab Logo */
         .footer-right-col {
           display: flex;
           align-items: center;
@@ -155,9 +175,9 @@ export const Footer: React.FC<FooterProps> = () => {
         }
 
         .footer-lab-logo-img {
-          height: clamp(68px, 8vw, 88px);
+          height: clamp(80px, 9vw, 98px);
           width: auto;
-          max-width: 280px;
+          max-width: 300px;
           object-fit: contain;
           display: block;
           transition: transform var(--transition-fast), opacity var(--transition-fast);
@@ -183,8 +203,8 @@ export const Footer: React.FC<FooterProps> = () => {
           display: block;
         }
 
-        /* Responsive */
-        @media (max-width: 860px) {
+        /* Responsive Breakpoints */
+        @media (max-width: 880px) {
           .footer-layout {
             flex-direction: column-reverse;
             align-items: flex-start;
@@ -196,7 +216,7 @@ export const Footer: React.FC<FooterProps> = () => {
           }
 
           .footer-lab-logo-img {
-            height: 60px;
+            height: 72px;
           }
         }
       `}</style>
