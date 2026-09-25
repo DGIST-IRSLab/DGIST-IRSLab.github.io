@@ -180,13 +180,34 @@ export const PublicationItem: React.FC<PublicationItemProps> = ({
           <button
             type="button"
             onClick={() => onOpenBibtex(publication)}
-            className="link-subtle"
+            className="link-subtle pub-action-link"
             style={{ fontSize: '13px', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
           >
             BibTeX
           </button>
         )}
       </div>
+
+      <style>{`
+        .publication-entry {
+          position: relative;
+          padding: 14px 16px !important;
+          border-radius: var(--radius-sm);
+          border-left: 2.5px solid transparent;
+          transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+        .publication-entry:hover {
+          background-color: var(--color-surface-hover);
+          transform: translateX(5px);
+          border-left-color: var(--color-accent);
+        }
+        .pub-action-link {
+          transition: color 0.15s ease, transform 0.15s ease !important;
+        }
+        .pub-action-link:hover {
+          transform: translateY(-1px);
+        }
+      `}</style>
     </article>
   );
 };

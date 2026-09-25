@@ -441,6 +441,12 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
           border: 1px solid var(--color-border);
           background-color: var(--color-bg-secondary);
           box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+        }
+
+        .pi-photo-wrapper:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
         }
 
         .pi-portrait-img {
@@ -451,6 +457,11 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
           object-fit: cover;
           object-position: center center;
           display: block;
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .pi-photo-wrapper:hover .pi-portrait-img {
+          transform: scale(1.03);
         }
 
         .pi-photo-fallback {
@@ -481,13 +492,15 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
           border: 1px solid var(--color-border);
           border-radius: var(--radius-xs);
           text-decoration: none;
-          transition: all var(--transition-fast);
+          transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .pi-action-btn:hover {
           background-color: var(--color-surface-hover);
-          border-color: var(--color-accent);
+          border-color: var(--color-accent-border);
           color: var(--color-accent);
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
         }
 
         .pi-external-icon {
@@ -714,10 +727,12 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
           display: flex;
           flex-direction: column;
           gap: 10px;
-          transition: border-color var(--transition-fast);
+          transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
         }
 
         .pi-interest-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
           border-color: var(--color-accent-border);
         }
 
@@ -760,7 +775,7 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
           padding: 18px 24px;
           border-bottom: 1px solid var(--color-border-subtle);
           align-items: baseline;
-          transition: background-color var(--transition-fast);
+          transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .pi-project-row:last-child {
@@ -769,6 +784,7 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
 
         .pi-project-row:hover {
           background-color: var(--color-surface-hover);
+          transform: translateX(5px);
         }
 
         .pi-proj-meta {
@@ -939,7 +955,7 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
           padding: 16px 20px;
           border-bottom: 1px solid var(--color-border-subtle);
           align-items: baseline;
-          transition: background-color var(--transition-fast);
+          transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .pi-talk-row:last-child {
@@ -948,6 +964,7 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
 
         .pi-talk-row:hover {
           background-color: var(--color-surface-hover);
+          transform: translateX(5px);
         }
 
         .pi-talk-date {

@@ -247,17 +247,28 @@ export const ResearchTopicsSection: React.FC = () => {
           border: 1px solid var(--color-border);
           border-radius: var(--radius-sm);
           cursor: pointer;
-          transition: all var(--transition-fast);
+          transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.22s ease, background-color 0.22s ease;
           user-select: none;
         }
 
         .topic-card:hover {
-          border-color: var(--color-border-strong);
+          border-color: var(--color-accent-border);
+          transform: translateY(-5px);
+          box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        [data-theme='dark'] .topic-card:hover {
+          box-shadow: 0 14px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .topic-card:hover .view-details-action svg {
+          transform: translateX(4px);
         }
 
         .topic-card.selected {
           background-color: var(--color-accent-subtle);
           border: 1.5px solid var(--color-accent);
+          box-shadow: 0 8px 24px rgba(2, 140, 255, 0.12);
         }
 
         .topic-card-top {

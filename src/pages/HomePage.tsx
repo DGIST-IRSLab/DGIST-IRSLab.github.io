@@ -311,6 +311,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           margin: 0 0 16px 0;
           word-break: keep-all;
           overflow-wrap: break-word;
+          animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
 
         .hero-title-sub {
@@ -325,6 +326,29 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           line-height: 1.45;
           color: var(--color-text-primary);
           margin: 0 0 10px 0;
+          animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+        }
+
+        .hero-descriptors {
+          animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.16s both;
+        }
+
+        .hero-photo-frame {
+          animation: scaleIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+        }
+
+        .hero-photo-frame:hover {
+          transform: translateY(-3px) scale(1.01);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .hero-group-photo {
+          transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hero-photo-frame:hover .hero-group-photo {
+          transform: scale(1.02);
         }
 
         .hero-description {
@@ -376,6 +400,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           align-items: center;
           justify-content: space-between;
           gap: var(--space-xl);
+          padding: 16px 20px;
+          border-radius: var(--radius-sm);
+          background-color: var(--color-bg-secondary);
+          border: 1px solid var(--color-border);
+          transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .admissions-bar:hover {
+          border-color: var(--color-accent-border);
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba(2, 140, 255, 0.07);
         }
 
         .admissions-title {
@@ -433,10 +468,16 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           display: grid;
           grid-template-columns: 110px 75px 1fr;
           align-items: baseline;
-          padding: 14px 0;
+          padding: 14px 12px;
           border-bottom: 1px solid var(--color-border-subtle);
+          border-radius: var(--radius-xs);
           gap: var(--space-md);
-          transition: background-color var(--transition-fast);
+          transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .news-item-row:hover {
+          background-color: var(--color-surface-hover);
+          transform: translateX(6px);
         }
 
         .news-item-row:last-child {
@@ -458,6 +499,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         .news-cat-pill {
           display: inline-flex;
           align-items: center;
+          transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .news-item-row:hover .news-cat-pill {
+          transform: scale(1.05);
+        }
           gap: 6px;
           font-family: var(--font-sans);
           font-size: 13px;

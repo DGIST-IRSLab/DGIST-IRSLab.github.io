@@ -379,6 +379,17 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
       </div>
 
       <style>{`
+        .person-academic-card {
+          transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.22s ease !important;
+        }
+        .person-academic-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+          border-color: var(--color-accent-border) !important;
+        }
+        [data-theme='dark'] .person-academic-card:hover {
+          box-shadow: 0 14px 30px rgba(0, 0, 0, 0.38);
+        }
         .person-photo-img {
           transition: opacity 0.35s ease, transform 0.35s ease;
         }
@@ -413,6 +424,12 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
         .member-name-kr-link:hover {
           color: var(--color-accent) !important;
           text-decoration: underline;
+        }
+        .person-social-link {
+          transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), color 0.15s ease !important;
+        }
+        .person-social-link:hover {
+          transform: scale(1.2) translateY(-1px);
         }
       `}</style>
     </div>

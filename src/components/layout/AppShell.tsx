@@ -77,11 +77,13 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
       />
 
       <main style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-        {children({
-          currentPage,
-          onNavigate: handleNavigate,
-          onOpenBibtex: (pub) => setActiveBibtexPub(pub),
-        })}
+        <div key={currentPage} className="page-transition-wrap">
+          {children({
+            currentPage,
+            onNavigate: handleNavigate,
+            onOpenBibtex: (pub) => setActiveBibtexPub(pub),
+          })}
+        </div>
       </main>
 
       <Footer onNavigate={handleNavigate} />
