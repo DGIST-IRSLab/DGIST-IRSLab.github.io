@@ -58,33 +58,48 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           ==================================================================== */}
       <section className="hero-section">
         <div className="container hero-container">
-          <h1 className="hero-title">
-            Intelligent Radio Sensing Lab
-            <br />
-            <span className="hero-title-sub">@ DGIST</span>
-          </h1>
+          <div className="hero-grid">
+            <div className="hero-text-col">
+              <h1 className="hero-title">
+                Intelligent Radio Sensing Lab
+                <br />
+                <span className="hero-title-sub">@ DGIST</span>
+              </h1>
 
-          <p className="hero-statement">
-            AI-driven radio sensing for understanding the physical world.
-          </p>
+              <p className="hero-statement">
+                AI-driven radio sensing for understanding the physical world.
+              </p>
 
-          <div className="hero-descriptors">
-            Radar Sensing · Artificial Intelligence · Physical Intelligence
-          </div>
+              <div className="hero-descriptors">
+                Radar Sensing · Artificial Intelligence · Physical Intelligence
+              </div>
 
-          <div style={{ marginTop: 'var(--space-xl)' }}>
-            <button
-              type="button"
-              onClick={() => {
-                onNavigate('research');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              className="link-subtle"
-              style={{ fontSize: '15px' }}
-            >
-              <span>Explore Research</span>
-              <ArrowRight size={15} />
-            </button>
+              <div style={{ marginTop: 'var(--space-xl)' }}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    onNavigate('research');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="link-subtle"
+                  style={{ fontSize: '15px' }}
+                >
+                  <span>Explore Research</span>
+                  <ArrowRight size={15} />
+                </button>
+              </div>
+            </div>
+
+            <div className="hero-photo-col">
+              <div className="hero-photo-frame">
+                <img
+                  src="/images/main_group.jpg"
+                  alt="IRS Lab Members at DGIST"
+                  className="hero-group-photo"
+                  loading="eager"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -214,14 +229,86 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           z-index: 1;
         }
 
+        .hero-grid {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: clamp(2rem, 5vw, 4rem);
+        }
+
+        .hero-text-col {
+          flex: 1 1 54%;
+          min-width: 0;
+        }
+
+        .hero-photo-col {
+          flex: 1 1 46%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-width: 0;
+        }
+
+        .hero-photo-frame {
+          position: relative;
+          width: 100%;
+          max-width: 490px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .hero-group-photo {
+          width: 100%;
+          height: auto;
+          aspect-ratio: 15 / 10;
+          object-fit: cover;
+          display: block;
+          mask-image: radial-gradient(circle at 50% 50%, black 54%, rgba(0, 0, 0, 0.72) 74%, transparent 98%);
+          -webkit-mask-image: radial-gradient(circle at 50% 50%, black 54%, rgba(0, 0, 0, 0.72) 74%, transparent 98%);
+          transition: transform var(--transition-normal);
+        }
+
+        .hero-group-photo:hover {
+          transform: scale(1.02);
+        }
+
+        .hero-descriptors {
+          font-family: var(--font-mono);
+          font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+          color: var(--color-accent);
+          letter-spacing: 0.02em;
+          margin-top: 14px;
+        }
+
+        @media (max-width: 860px) {
+          .hero-grid {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2.25rem;
+          }
+
+          .hero-photo-col {
+            width: 100%;
+            justify-content: center;
+          }
+
+          .hero-photo-frame {
+            max-width: 420px;
+            margin: 0 auto;
+          }
+        }
+
         .hero-title {
           font-family: var(--font-display);
-          font-size: clamp(2.4rem, 4.6vw, 3.8rem);
+          font-size: clamp(2rem, 5vw, 3.8rem);
           font-weight: 700;
           letter-spacing: -0.03em;
           line-height: 1.12;
           color: var(--color-text-primary);
           margin: 0 0 16px 0;
+          word-break: keep-all;
+          overflow-wrap: break-word;
         }
 
         .hero-title-sub {
