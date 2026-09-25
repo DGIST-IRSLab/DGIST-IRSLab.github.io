@@ -43,11 +43,6 @@ export const JoinUsPage: React.FC = () => {
           <div className="positions-container">
             {/* Position 1: Graduate Students */}
             <article className="position-editorial-row">
-              <div className="position-meta-col">
-                <span className="position-role-category">Graduate Admissions</span>
-                <span className="position-term">Spring &amp; Fall Cycles</span>
-              </div>
-
               <div className="position-content-col">
                 <h3 className="position-title">
                   Graduate Students (Ph.D. / M.S. / Integrated M.S./Ph.D.)
@@ -79,11 +74,6 @@ export const JoinUsPage: React.FC = () => {
 
             {/* Position 2: Postdoctoral Scholars */}
             <article className="position-editorial-row">
-              <div className="position-meta-col">
-                <span className="position-role-category">Postdoctoral Fellows</span>
-                <span className="position-term">Rolling Basis</span>
-              </div>
-
               <div className="position-content-col">
                 <h3 className="position-title">
                   Postdoctoral Research Scholars
@@ -110,11 +100,6 @@ export const JoinUsPage: React.FC = () => {
 
             {/* Position 3: Undergraduate Interns */}
             <article className="position-editorial-row">
-              <div className="position-meta-col">
-                <span className="position-role-category">Research Interns</span>
-                <span className="position-term">Summer &amp; Winter</span>
-              </div>
-
               <div className="position-content-col">
                 <h3 className="position-title">
                   Undergraduate Research Interns
@@ -216,31 +201,8 @@ export const JoinUsPage: React.FC = () => {
         }
 
         .position-editorial-row {
-          display: grid;
-          grid-template-columns: 220px 1fr;
-          gap: 32px;
           padding: 24px 0;
           border-bottom: 1px solid var(--color-border-subtle);
-          align-items: start;
-        }
-
-        .position-meta-col {
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
-        }
-
-        .position-role-category {
-          font-family: var(--font-sans);
-          font-size: 13px;
-          font-weight: 600;
-          color: var(--color-text-primary);
-        }
-
-        .position-term {
-          font-family: var(--font-sans);
-          font-size: 12.5px;
-          color: var(--color-text-muted);
         }
 
         .position-content-col {
@@ -293,11 +255,6 @@ export const JoinUsPage: React.FC = () => {
         }
 
         @media (max-width: 800px) {
-          .position-editorial-row {
-            grid-template-columns: 1fr;
-            gap: 10px;
-          }
-
           .contact-map-grid {
             grid-template-columns: 1fr;
           }
