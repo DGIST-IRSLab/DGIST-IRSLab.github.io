@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Mail, Globe, ExternalLink, GraduationCap, ArrowRight } from 'lucide-react';
 import type { Person } from '../../types';
 import { getSpecialPhoto } from '../../data/people';
+import { assetUrl } from '../../utils/asset';
 
 interface PersonCardProps {
   person: Person;
@@ -28,7 +29,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
     <>
       {!imageError ? (
         <img
-          src={person.photo}
+          src={assetUrl(person.photo)}
           alt={person.name}
           onError={() => setImageError(true)}
           loading="lazy"
@@ -62,7 +63,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
 
       {hasSpecial && (
         <img
-          src={specialPhoto}
+          src={assetUrl(specialPhoto)}
           alt={`${person.name} special`}
           onError={() => setSpecialError(true)}
           loading="lazy"

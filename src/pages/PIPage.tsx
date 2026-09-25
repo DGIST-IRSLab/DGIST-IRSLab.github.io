@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { professorData } from '../data/professorData';
 import { SectionHeader } from '../components/common/SectionHeader';
+import { assetUrl } from '../utils/asset';
 
 interface PIPageProps {
   onNavigate?: (page: string, anchorId?: string) => void;
@@ -71,7 +72,7 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
               <div className="pi-photo-wrapper">
                 {!photoError ? (
                   <img
-                    src={professorData.photo}
+                    src={assetUrl(professorData.photo)}
                     alt={professorData.name}
                     onError={() => setPhotoError(true)}
                     className="pi-portrait-img"

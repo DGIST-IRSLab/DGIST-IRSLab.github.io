@@ -3,6 +3,7 @@ import { Images } from 'lucide-react';
 import { galleryFolders } from '../data/gallery';
 import { ImageLightbox } from '../components/gallery/ImageLightbox';
 import type { GalleryFolder } from '../types';
+import { assetUrl } from '../utils/asset';
 
 export const GalleryPage: React.FC = () => {
   const [selectedAlbum, setSelectedAlbum] = useState<GalleryFolder | null>(null);
@@ -81,7 +82,7 @@ export const GalleryPage: React.FC = () => {
                   <div className="gallery-card-thumb-wrap">
                     {coverImage && (
                       <img
-                        src={coverImage}
+                        src={assetUrl(coverImage)}
                         alt={album.title}
                         loading="lazy"
                         className="gallery-card-thumb"

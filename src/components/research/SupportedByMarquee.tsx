@@ -1,4 +1,5 @@
 import React from 'react';
+import { assetUrl } from '../../utils/asset';
 
 interface Sponsor {
   id: string;
@@ -76,7 +77,7 @@ export const SupportedByMarquee: React.FC = () => {
               title={`${sponsor.name}: ${sponsor.fullName}`}
             >
               <img
-                src={sponsor.logo}
+                src={assetUrl(sponsor.logo)}
                 alt={`${sponsor.name} Logo`}
                 className="sponsor-logo"
                 style={{ maxHeight: sponsor.height ? `${sponsor.height}px` : '32px' }}

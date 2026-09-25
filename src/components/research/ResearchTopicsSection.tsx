@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { researchTopics } from '../../data/research';
 import type { ResearchTopic } from '../../types';
+import { assetUrl } from '../../utils/asset';
 
 export const ResearchTopicsSection: React.FC = () => {
   const [selectedTopicId, setSelectedTopicId] = useState<string | null>(null);
@@ -108,14 +109,14 @@ export const ResearchTopicsSection: React.FC = () => {
 
               <div className="research-figure-frame">
                 <a
-                  href={topic.image}
+                  href={assetUrl(topic.image)}
                   target="_blank"
                   rel="noreferrer"
                   title="Click to view full-resolution image"
                   style={{ display: 'block', cursor: 'zoom-in' }}
                 >
                   <img
-                    src={topic.image}
+                    src={assetUrl(topic.image)}
                     alt={topic.title}
                     loading="lazy"
                     style={{ width: '100%', height: 'auto', display: 'block' }}

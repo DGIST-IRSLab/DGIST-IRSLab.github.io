@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting — IRS Lab @ DGIST</title>
+    <script>
+      (function() {
+        var path = window.location.pathname;
+        var search = window.location.search || '';
+        var hash = window.location.hash || '';
+
+        // Match routes
+        var route = 'home';
+        if (path.indexOf('/team/jaeho') !== -1 || path.indexOf('/professor') !== -1 || path.indexOf('/pi') !== -1) {
+          route = 'pi';
+        } else if (path.indexOf('/team') !== -1 || path.indexOf('/people') !== -1 || path.indexOf('/members') !== -1) {
+          route = 'members';
+        } else if (path.indexOf('/research') !== -1) {
+          route = 'research';
+        } else if (path.indexOf('/publications') !== -1) {
+          route = 'publications';
+        } else if (path.indexOf('/gallery') !== -1) {
+          route = 'gallery';
+        } else if (path.indexOf('/vacancies') !== -1 || path.indexOf('/join') !== -1) {
+          route = 'join';
+        }
+
+        // Determine base path
+        var pathSegments = path.split('/').filter(Boolean);
+        var base = '/';
+        var knownPages = ['team', 'professor', 'pi', 'people', 'members', 'research', 'publications', 'gallery', 'vacancies', 'join'];
+        if (pathSegments.length > 0 && knownPages.indexOf(pathSegments[0]) === -1) {
+          // Deployed under a subpath like /lab-homepage/
+          base = '/' + pathSegments[0] + '/';
+        }
+
+        var target = base + '#' + route + (search ? (search.indexOf('?') === 0 ? search : '?' + search) : '');
+        window.location.replace(target);
+      })();
+    </script>
+  </head>
+  <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 80vh; margin: 0; background: #fafafa; color: #333;">
+    <div style="text-align: center; padding: 20px;">
+      <h2 style="font-weight: 600; margin-bottom: 8px;">IRS Lab @ DGIST</h2>
+      <p style="color: #666; margin-bottom: 16px;">Redirecting you to the requested page...</p>
+      <p><a href="/" style="color: #0284c7; text-decoration: none; font-weight: 500;">Click here if you are not redirected automatically &rarr;</a></p>
+    </div>
+  </body>
+</html>

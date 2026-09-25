@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import type { ResearchTopic } from '../../types';
+import { assetUrl } from '../../utils/asset';
 
 interface ResearchTopicCardProps {
   topic: ResearchTopic;
@@ -113,7 +114,7 @@ export const ResearchTopicCard: React.FC<ResearchTopicCardProps> = ({
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <div className="research-figure-frame">
           <img
-            src={topic.image}
+            src={assetUrl(topic.image)}
             alt={topic.title}
             loading="lazy"
             style={{ width: '100%', height: 'auto', display: 'block' }}

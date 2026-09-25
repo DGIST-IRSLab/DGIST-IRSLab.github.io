@@ -1,5 +1,6 @@
 import React from 'react';
 import { labInfo } from '../../data/labInfo';
+import { assetUrl } from '../../utils/asset';
 
 interface FooterProps {
   onNavigate?: (page: string) => void;
@@ -15,7 +16,7 @@ export const Footer: React.FC<FooterProps> = () => {
           <div className="footer-inst-logos">
             <div className="footer-logo-wrap" title="Daegu Gyeongbuk Institute of Science and Technology (DGIST)">
               <img
-                src="/images/logopic/dgist_logo.png"
+                src={assetUrl('/images/logopic/dgist_logo.png')}
                 alt="DGIST Logo"
                 className="footer-inst-logo dgist-logo"
               />
@@ -25,7 +26,7 @@ export const Footer: React.FC<FooterProps> = () => {
 
             <div className="footer-logo-wrap" title="DGIST Department of Electrical Engineering &amp; Computer Science (EECS)">
               <img
-                src="/images/logopic/eecs_logo.png"
+                src={assetUrl('/images/logopic/eecs_logo.png')}
                 alt="DGIST EECS Logo"
                 className="footer-inst-logo eecs-logo"
               />
@@ -47,12 +48,12 @@ export const Footer: React.FC<FooterProps> = () => {
         <div className="footer-right-col">
           <div className="footer-lab-logo-wrap" title="Intelligent Radio Sensing Laboratory">
             <img
-              src="/images/logopic/lab_logo_light.png"
+              src={assetUrl('/images/logopic/lab_logo_light.png')}
               alt="IRS Lab Logo"
               className="footer-lab-logo-img logo-light-only"
             />
             <img
-              src="/images/logopic/lab_logo_dark.png"
+              src={assetUrl('/images/logopic/lab_logo_dark.png')}
               alt="IRS Lab Logo"
               className="footer-lab-logo-img logo-dark-only"
             />

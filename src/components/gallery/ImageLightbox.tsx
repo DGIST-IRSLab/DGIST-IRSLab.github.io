@@ -1,5 +1,6 @@
 import React, { useEffect, useCallback } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { assetUrl } from '../../utils/asset';
 
 export interface ImageLightboxProps {
   isOpen: boolean;
@@ -112,7 +113,7 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({
         <div className="gallery-modal-image-wrap" onClick={(e) => e.stopPropagation()}>
           <img
             key={currentImg.src}
-            src={currentImg.src}
+            src={assetUrl(currentImg.src)}
             alt={albumTitle ? `${albumTitle} - ${currentIndex + 1}` : 'Lab photograph'}
             className="gallery-modal-image"
           />
@@ -144,7 +145,7 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({
               aria-label={`Go to slide ${idx + 1}`}
               className={`gallery-thumb-btn ${idx === currentIndex ? 'active' : ''}`}
             >
-              <img src={img.src} alt="" loading="lazy" />
+              <img src={assetUrl(img.src)} alt="" loading="lazy" />
             </button>
           ))}
         </div>

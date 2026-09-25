@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
 import { newsItems } from '../data/news';
 import type { Publication } from '../types';
+import { assetUrl } from '../utils/asset';
 
 interface HomePageProps {
   onNavigate: (page: string, anchorId?: string) => void;
@@ -93,7 +94,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             <div className="hero-photo-col">
               <div className="hero-photo-frame">
                 <img
-                  src="/images/main_group.jpg"
+                  src={assetUrl('/images/main_group.jpg')}
                   alt="IRS Lab Members at DGIST"
                   className="hero-group-photo"
                   loading="eager"

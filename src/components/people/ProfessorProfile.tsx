@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, GraduationCap, ExternalLink, Award, FileText } from 'lucide-react';
 import { professor, getSpecialPhoto } from '../../data/people';
+import { assetUrl } from '../../utils/asset';
 
 export const ProfessorProfile: React.FC = () => {
   const [standardError, setStandardError] = useState(false);
@@ -38,7 +39,7 @@ export const ProfessorProfile: React.FC = () => {
         >
           {!standardError ? (
             <img
-              src={professor.photo}
+              src={assetUrl(professor.photo)}
               alt={professor.name}
               onError={() => setStandardError(true)}
               className={`prof-photo prof-photo-standard ${hasSpecial ? 'has-special' : ''}`}
@@ -70,7 +71,7 @@ export const ProfessorProfile: React.FC = () => {
 
           {hasSpecial && (
             <img
-              src={specialPhoto}
+              src={assetUrl(specialPhoto)}
               alt={`${professor.name} special`}
               onError={() => setSpecialError(true)}
               className="prof-photo prof-photo-special"

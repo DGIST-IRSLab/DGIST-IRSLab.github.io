@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { assetUrl } from '../../utils/asset';
 
 const slides = [
   { id: 'homepic-1', image: '/images/homepic/dgist_1.jpg', alt: 'IRS Lab & DGIST 1' },
@@ -86,7 +87,7 @@ export const ResearchCarousel: React.FC = () => {
               aria-hidden={idx !== currentIndex}
             >
               <img
-                src={slide.image}
+                src={assetUrl(slide.image)}
                 alt={slide.alt}
                 loading={idx === 0 ? "eager" : "lazy"}
                 className="carousel-image"
