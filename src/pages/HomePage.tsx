@@ -86,7 +86,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   className="link-subtle hero-explore-btn"
                   style={{ fontSize: '15px' }}
                 >
-                  <span>Explore Research</span>
+                  <span>Our Research</span>
                   <ArrowRight size={15} />
                 </button>
 
@@ -316,6 +316,28 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           }
         }
 
+        @keyframes heroFloatIn {
+          from {
+            opacity: 0;
+            transform: translateY(18px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes heroPhotoIn {
+          from {
+            opacity: 0;
+            transform: translateY(14px) scale(0.97);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+
         .hero-title {
           font-family: var(--font-display);
           font-size: clamp(2rem, 5vw, 3.8rem);
@@ -326,7 +348,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           margin: 0 0 16px 0;
           word-break: keep-all;
           overflow-wrap: break-word;
-          animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+          animation: heroFloatIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
         .hero-title-sub {
@@ -341,15 +363,15 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           line-height: 1.45;
           color: var(--color-text-primary);
           margin: 0 0 10px 0;
-          animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+          animation: heroFloatIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
         }
 
         .hero-descriptors {
-          animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.16s both;
+          animation: heroFloatIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
         }
 
         .hero-photo-frame {
-          animation: scaleIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+          animation: heroPhotoIn 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
           transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
         }
 
@@ -402,7 +424,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           align-items: center;
           gap: 14px;
           flex-wrap: wrap;
-          animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
+          animation: heroFloatIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.42s both;
         }
 
         .hero-action-sep {
