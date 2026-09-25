@@ -1,3 +1,69 @@
+/**
+ * ============================================================================
+ * [데이터 파일 가이드: 연구책임자 / 교수님 프로필 (P.I Profile)]
+ * ============================================================================
+ * 이 파일은 상단 메뉴의 'P.I' 전용 상세 페이지(/pi)에 렌더링되는
+ * 최재호 교수님의 모든 상세 정보(약력, 학력, 연구과제, 학술봉사, 초청강연)를 관리합니다.
+ *
+ * ----------------------------------------------------------------------------
+ * ■ 주요 항목 및 필드 설명
+ * ----------------------------------------------------------------------------
+ * 1. 기본 프로필 정보:
+ *    - name / nameKr: 영문명 ("Jae-Ho Choi, Ph.D.") / 한글명 ("최재호")
+ *    - title: 직위 ("Assistant Professor")
+ *    - department / institution: 소속 학과 및 기관명
+ *    - address / email / phone: 연구실 위치, 이메일, 전화번호
+ *    - photo: 교수님 증명사진 경로 (예: '/images/teampic/standard/Jaeho2.jpg')
+ *    - cvUrl, googleScholar, linkedin: 외부 프로필 링크 URL
+ *    - bio: 교수님 공식 소개글 (영문 문단)
+ *
+ * 2. experience (경력 사항 배열):
+ *    - role: 직책 (예: 'Assistant Professor', 'Postdoctoral Scholar')
+ *    - organization: 소속 기관 (예: 'DGIST (EECS & AI)', 'Stanford University (EE)')
+ *    - period: 재직 기간 (예: '2024.12 – Present')
+ *    - detail: 세부 설명 (연구 내용, 지도 교수 등)
+ *
+ * 3. education (학력 사항 배열):
+ *    - degree: 학위 구분 ('Ph.D.', 'M.S.', 'B.S.')
+ *    - field: 전공 분야 ('Electrical Engineering', 'Computer Science')
+ *    - institution: 졸업 학교 ('POSTECH', 'Korea University')
+ *    - period: 재학 기간 ('2019.02 – 2023.02')
+ *    - advisor: 지도교수님 정보 (선택)
+ *
+ * 4. projects (수행 중인 연구과제 목록 - ProfessorProject):
+ *    - id: 과제 고유 식별자 (예: 'iitp-2026')
+ *    - title: 과제 정식 명칭 (한글 또는 영문)
+ *    - agency: 지원 기관 풀네임 (예: 'IITP (Institute of ...)')
+ *    - agencyBadge: 배지에 노출될 기관 약칭 (예: 'IITP', 'NRF', 'ADD', 'KIOST', 'MSIT')
+ *    - period: 당해 단계 또는 총 연구 기간 (예: '2026.04 ~ 2028.12')
+ *    - totalPeriod (선택): 총 사업 기간이 따로 있을 경우 명시
+ *    - role (선택): 수행 역할 (예: 'Principal Investigator', 'Participating PI')
+ *
+ * 5. academicService (학술 봉사 활동):
+ *    - areaChair: Area Chair 활동 학회 목록 (예: ["NeurIPS’26"])
+ *    - tpc: TPC 위원 활동 학회 목록 (예: ["AAAI’26"])
+ *    - reviewerConferences: 논문 심사위원(Reviewer)으로 참여한 국제학회 목록
+ *    - reviewerJournals: 논문 심사위원으로 참여한 국제저널(IEEE TPAMI, TIP 등) 목록
+ *
+ * 6. invitedTalks (초청 강연 목록):
+ *    - title: 발표/강연 제목
+ *    - venue: 강연 장소 및 학술 행사명
+ *    - date: 강연 년월 ('YYYY.MM')
+ *
+ * ----------------------------------------------------------------------------
+ * ■ 새로운 연구과제 추가 템플릿 (projects 배열에 추가)
+ * ----------------------------------------------------------------------------
+ * {
+ *   id: "nrf-2027",
+ *   title: "연구과제 제목을 입력하세요",
+ *   agency: "NRF (National Research Foundation of Korea)",
+ *   agencyBadge: "NRF",
+ *   period: "2027.01 ~ 2029.12",
+ *   role: "Principal Investigator"
+ * },
+ * ============================================================================
+ */
+
 export interface ProfessorProject {
   id: string;
   title: string;

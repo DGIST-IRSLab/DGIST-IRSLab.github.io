@@ -1,3 +1,58 @@
+/**
+ * ============================================================================
+ * [데이터 파일 가이드: 핵심 연구 분야 및 과제 (Research Topics & Projects)]
+ * ============================================================================
+ * 이 파일은 IRS Lab의 3대 핵심 연구 테마(Research Topics)와
+ * 연구실에서 수행 중인 주요 연구 과제(Research Projects)를 관리합니다.
+ *
+ * ----------------------------------------------------------------------------
+ * ■ 1. researchTopics (핵심 연구 테마 카드) 필드 설명
+ * ----------------------------------------------------------------------------
+ * - id (필수, string): 테마 고유 식별자 (예: 'wireless-centric-ai')
+ * - title (필수, string): 연구 분야 대주제명 (예: 'Wireless-Centric AI')
+ * - shortTitle (필수, string): 탭/상단에 노출될 간결한 축약명 (예: 'Wireless AI')
+ * - question (필수, string): 핵심 연구 질문 (Research Question, 카드 상단에 굵게 강조됨)
+ *     예: "How to fully unleash the power of AI for wireless signals?"
+ * - summary (필수, string): 연구 테마에 대한 핵심 한 줄 소개
+ * - description (필수, string[]): 세부 연구 방향 및 기술 소개 문단 배열
+ * - keywords (필수, string[]): 핵심 기술 키워드 배열 (카드 하단에 '#태그' 형태로 노출)
+ * - image (필수, string): 대표 아키텍처/컨셉 다이어그램 이미지 경로 (예: '/images/research_1.jpg')
+ * - imageCaption (필수, string): 다이어그램 하단 설명 캡션
+ * - highlights (필수, string[]): 주요 연구 성과 및 핵심 포인트 (3~4개 글머리 기호)
+ *
+ * ----------------------------------------------------------------------------
+ * ■ 2. researchProjects (연구 프로젝트 목록) 필드 설명
+ * ----------------------------------------------------------------------------
+ * - id (필수, string): 프로젝트 고유 ID (예: 'proj-iitp-2026')
+ * - title (필수, string): 과제 정식 명칭 (국문/영문)
+ * - agency (필수, string): 지원 기관 전체 명칭 (예: 'IITP (Institute of ...)')
+ * - agencyBadge (선택, string): 뱃지용 기관 약칭 (예: 'IITP', 'NRF', 'ADD', 'KIOST')
+ * - period (필수, string): 총 연구 수행 기간 (예: '2026.04 – 2028.12')
+ * - topicId (선택, string): 연관된 researchTopics의 id (연계 필터링용)
+ * - description (선택, string): 과제에 대한 간략한 설명 요약
+ * - status (필수, 'ongoing' | 'completed'): 과제 진행 상태 ('ongoing': 진행중, 'completed': 완료)
+ *
+ * ----------------------------------------------------------------------------
+ * ■ 새로운 연구 테마 추가 템플릿
+ * ----------------------------------------------------------------------------
+ * {
+ *   id: "new-topic-id",
+ *   title: "New Research Topic Title",
+ *   shortTitle: "New Topic",
+ *   question: "What is the core scientific question to solve?",
+ *   summary: "A concise lead summary of this topic.",
+ *   description: [
+ *     "Detailed paragraph 1 explaining the problem and limitations of existing methods.",
+ *     "Detailed paragraph 2 describing our lab's novel approach and contributions."
+ *   ],
+ *   keywords: ["Keyword 1", "Keyword 2", "Keyword 3"],
+ *   image: "/images/research_new.jpg",
+ *   imageCaption: "Figure: Framework overview of the proposed sensing method.",
+ *   highlights: ["Highlight point 1", "Highlight point 2", "Highlight point 3"]
+ * }
+ * ============================================================================
+ */
+
 import type { ResearchTopic, ResearchProject } from '../types';
 
 export const researchTopics: ResearchTopic[] = [

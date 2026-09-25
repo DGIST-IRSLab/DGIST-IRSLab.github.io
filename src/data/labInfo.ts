@@ -1,3 +1,37 @@
+/**
+ * ============================================================================
+ * [데이터 파일 가이드: 연구실 기본 정보 및 메타데이터 (Lab Information)]
+ * ============================================================================
+ * 이 파일은 웹사이트 전역(헤더, 푸터, 홈 히어로 섹션, 소개, 통계, 연락처 페이지 등)에서
+ * 공통으로 참조되는 연구실의 핵심 메타데이터를 관리합니다.
+ *
+ * ----------------------------------------------------------------------------
+ * ■ labInfo 객체의 주요 필드 설명
+ * ----------------------------------------------------------------------------
+ * - name (string): 연구실 공식 영문 명칭 ("Intelligent Radio Sensing Laboratory")
+ * - shortName (string): 연구실 약칭 ("IRS Lab")
+ * - affiliation (string): 대표 소속 기관명 ("DGIST")
+ * - fullAffiliation (string): 소속 학과 전체 명칭 (EECS 및 AI 전공)
+ * - university (string): 대학교 정식 명칭
+ * - location (string): 도시 및 국가명 ("Daegu, Republic of Korea")
+ * - address (string): 연구실 상세 도로명 주소
+ * - building (string): 연구실 위치 건물 및 호수 ("Engineering Building E3, Room 406")
+ * - email (string): 연구실 대표 문의 이메일 ("jhochoi@dgist.ac.kr")
+ * - phone (string): 연구실 대표 전화번호
+ * - opened (string): 연구실 개소 시점 ("December 2024")
+ * - tagline (string): 홈 화면 히어로 섹션에 노출되는 대표 슬로건
+ *     예: "AI-driven radio sensing for understanding the physical world."
+ * - keywords (string[]): 연구실 핵심 연구 분야 키워드 태그 목록
+ * - mission (string): 연구실 비전 및 미션 선언문
+ * - notionContactLink (string): 컨택 관련 Notion 페이지 링크 URL
+ * - notionPostdocLink (string): 포닥/연구원 채용 공고 Notion 페이지 링크 URL
+ * - coordinates (object): 지도 표기용 위도(lat), 경도(lng) 지리 좌표
+ * - stats (array): 홈 화면 및 소개에 노출되는 연구실 대표 통계 지표 배열
+ *     - label: 통계 라벨 (예: "Active Research Grants", "Lab Members")
+ *     - value: 통계 값 (예: "9+", "16")
+ * ============================================================================
+ */
+
 export const labInfo = {
   name: "Intelligent Radio Sensing Laboratory",
   shortName: "IRS Lab",

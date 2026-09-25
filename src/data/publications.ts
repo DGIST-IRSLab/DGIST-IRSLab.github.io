@@ -1,3 +1,61 @@
+/**
+ * ============================================================================
+ * [데이터 파일 가이드: 연구 논문 및 출판물 (Publications)]
+ * ============================================================================
+ * 이 파일은 IRS Lab에서 발표한 국제/국내 학술대회(Conference), 저널(Journal),
+ * 워크숍(Workshop) 논문 목록을 관리합니다.
+ *
+ * ----------------------------------------------------------------------------
+ * ■ Publication 객체의 주요 필드 설명
+ * ----------------------------------------------------------------------------
+ * - id (필수, string): 논문 고유 ID (BibTeX key 형태 권장, 예: 'choi2025mvdoppler')
+ * - title (필수, string): 논문 제목 (영문)
+ * - authors (필수, string[]): 전체 저자 이름 배열 (교신저자는 관례상 '이름*' 표기)
+ *     예: ["Gildong Hong", "Jaehyeon Kim", "Jae-Ho Choi*"]
+ * - labAuthors (선택, string[]): 연구실 소속 저자 이름 배열
+ *     (웹사이트 논문 뷰에서 해당 저자명이 굵은 글씨(Bold)로 강조 표기됩니다)
+ * - venue (필수, string): 발표된 학술대회 또는 학술지의 정식 명칭
+ *     예: "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)"
+ * - venueShort (선택, string): 화면 배지에 간결하게 노출될 약칭
+ *     예: "CVPR", "NeurIPS", "IEEE SPL", "WACV"
+ * - year (필수, number): 발표 연도 (숫자, 예: 2026)
+ * - type (필수, string): 논문 발표 형태
+ *     'conference' (국제학술대회) | 'journal' (학술저널) | 'workshop' (워크숍)
+ * - isTopConf (선택, boolean): CVPR, NeurIPS, ICML 등 최우수(Top-tier) 학회 여부 (강조 배지 부착)
+ * - isSCI (선택, boolean): SCI/SCIE 등재 저널 여부 (강조 배지 부착)
+ * - isDomestic (선택, boolean): 한국전자파학회 등 국내 학술대회/학술지 여부
+ * - pdfUrl (선택, string): 논문 PDF 파일 다운로드 또는 arXiv/IEEE Xplore 링크 URL
+ * - projectUrl (선택, string): 프로젝트 공식 웹사이트/데모 페이지 URL
+ * - codeUrl (선택, string): 오픈소스 GitHub 코드 저장소 URL
+ * - videoUrl (선택, string): 발표 영상 또는 시연 영상 URL (YouTube 등)
+ * - bibtex (선택, string): 인용용 BibTeX 문자열 (화면에서 'Copy BibTeX' 기능으로 제공됨)
+ *
+ * ----------------------------------------------------------------------------
+ * ■ 새로운 논문 추가 템플릿 (배열 맨 위에 최신 순으로 추가)
+ * ----------------------------------------------------------------------------
+ * {
+ *   id: "hong2026sample",
+ *   title: "Paper Title Goes Here",
+ *   authors: ["Gildong Hong", "Jaehyeon Kim", "Jae-Ho Choi*"],
+ *   labAuthors: ["Gildong Hong", "Jaehyeon Kim", "Jae-Ho Choi"],
+ *   venue: "IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+ *   venueShort: "CVPR",
+ *   year: 2026,
+ *   type: "conference",
+ *   isTopConf: true,
+ *   pdfUrl: "https://arxiv.org/pdf/...",
+ *   projectUrl: "https://project-page.github.io/",
+ *   codeUrl: "https://github.com/...",
+ *   bibtex: `@inproceedings{hong2026sample,
+ *   title={Paper Title Goes Here},
+ *   author={Hong, Gildong and Kim, Jaehyeon and Choi, Jae-Ho},
+ *   booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+ *   year={2026}
+ * }`
+ * },
+ * ============================================================================
+ */
+
 import type { Publication } from '../types';
 
 export const publications: Publication[] = [

@@ -1,3 +1,67 @@
+/**
+ * ============================================================================
+ * [데이터 파일 가이드: 연구실 구성원 (Members / People)]
+ * ============================================================================
+ * 이 파일은 IRS Lab의 모든 구성원(교수, 박사후연구원, 대학원생, 학부연구생,
+ * 졸업생(Alumni), 인턴 활동 이력) 정보를 관리합니다.
+ *
+ * ----------------------------------------------------------------------------
+ * ■ 사진(Photo) 추가 및 관리 방법
+ * ----------------------------------------------------------------------------
+ * 1. 기본 프로필 사진 (Standard Photo):
+ *    - 사진 파일을 `public/images/teampic/standard/` 폴더에 넣습니다.
+ *    - 코드에서 `photo: "/images/teampic/standard/파일명.jpg"` 형태로 지정합니다.
+ *
+ * 2. 마우스 호버 시 나오는 특별 사진 (Special Photo, 선택사항):
+ *    - 재미있는 포즈나 일상 사진을 `public/images/teampic/special/` 폴더에 넣습니다.
+ *    - 두 가지 방법 중 하나로 자동 연결됩니다:
+ *      A) 파일명을 구성원의 id와 동일하게 저장 (예: `jaeho-choi.jpg` 또는 `student_KSE.jpg`)
+ *      B) 객체 내에 `specialPhoto: "/images/teampic/special/파일명.jpg"` 직접 명시
+ *
+ * ----------------------------------------------------------------------------
+ * ■ Person 객체의 주요 필드 설명
+ * ----------------------------------------------------------------------------
+ * - id (필수, string): 고유 식별자 (영문 소문자, 하이픈 권장, 예: 'gildong-hong')
+ * - name (필수, string): 영문 이름 (예: 'Gildong Hong')
+ * - nameKr (선택, string): 한글 이름 (예: '홍길동')
+ * - role (필수, string): 역할 및 직급
+ *     가능한 값: 'Professor' | 'Postdoc Fellow' | 'Ph.D. Student' |
+ *               'Integrated M.S./Ph.D.' | 'MS Student' |
+ *               'Undergraduate Researcher' | 'Alumni'
+ * - title (필수, string): 카드 및 상세 모달에 표시될 공식 직함 (예: 'Integrated M.S./Ph.D. Student')
+ * - photo (필수, string): 기본 프로필 이미지 경로 (예: '/images/teampic/standard/student_gdh.jpg')
+ * - specialPhoto (선택, string): 호버 시 노출할 스페셜 사진 경로
+ * - specialPhotoObjectPosition (선택, string): 스페셜 사진 크롭 중심점 (예: '50% 30%')
+ * - email (선택, string): 이메일 주소 (예: 'gdhong@dgist.ac.kr')
+ * - phone (선택, string): 연구실 내선 전화번호
+ * - room (선택, string): 연구실/연구동 위치 (예: 'E3동 406호')
+ * - researchInterests (선택, string[]): 관심 연구 분야 태그 목록 (예: ['Radar AI', 'Computer Vision'])
+ * - website (선택, string): 개인 웹사이트/포트폴리오 URL
+ * - googleScholar (선택, string): 구글 스콜라 프로필 링크 URL
+ * - github (선택, string): GitHub 프로필 URL
+ * - linkedin (선택, string): LinkedIn 프로필 URL
+ * - cvUrl (선택, string): CV(이력서) 링크 URL
+ *
+ * [Alumni(졸업생) 전용 필드]
+ * - alumniPeriod (선택, string): 연구실 활동 기간 (예: '2025 – 2026')
+ * - alumniDestination (선택, string): 진출처/현 직장 (예: 'NASA Jet Propulsion Laboratory')
+ *
+ * ----------------------------------------------------------------------------
+ * ■ 새로운 멤버 추가 예시 (복사해서 해당하는 배열 끝에 추가)
+ * ----------------------------------------------------------------------------
+ * {
+ *   id: "gildong-hong",
+ *   name: "Gildong Hong",
+ *   nameKr: "홍길동",
+ *   role: "MS Student",
+ *   title: "M.S. Student",
+ *   photo: "/images/teampic/standard/student_GDH.jpg",
+ *   email: "gildong@dgist.ac.kr",
+ *   researchInterests: ["Radar Signal Processing", "Machine Learning"]
+ * }
+ * ============================================================================
+ */
+
 import type { Person, InternGroup } from '../types';
 
 // Auto-discover any special photos placed in public/images/teampic/special
