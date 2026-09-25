@@ -90,7 +90,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               }}
               className="btn-academic btn-academic-primary"
             >
-              <span>Explore Research Pillars</span>
+              <span>Explore Research</span>
               <ArrowRight size={15} />
             </button>
             <button

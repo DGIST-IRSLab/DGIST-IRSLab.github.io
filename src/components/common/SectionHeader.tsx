@@ -2,7 +2,6 @@ import React from 'react';
 import { ArrowRight } from 'lucide-react';
 
 interface SectionHeaderProps {
-  eyebrow?: string;
   title: string;
   description?: string;
   actionText?: string;
@@ -11,7 +10,6 @@ interface SectionHeaderProps {
 }
 
 export const SectionHeader: React.FC<SectionHeaderProps> = ({
-  eyebrow,
   title,
   description,
   actionText,
@@ -40,8 +38,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
         }}
       >
         <div>
-          {eyebrow && <span className="eyebrow">{eyebrow}</span>}
-          <h2 className="h2-title" style={{ marginTop: eyebrow ? '2px' : '0' }}>
+          <h2 className="h2-title">
             {title}
           </h2>
         </div>

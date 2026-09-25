@@ -49,7 +49,7 @@ export const ResearchProjectItem: React.FC<ResearchProjectItemProps> = ({ projec
             borderColor: project.status === 'ongoing' ? 'var(--color-accent-border)' : 'var(--color-border)',
           }}
         >
-          {project.status === 'ongoing' ? 'ONGOING' : 'COMPLETED'}
+          {project.status === 'ongoing' ? 'Ongoing' : 'Completed'}
         </span>
       </div>
 

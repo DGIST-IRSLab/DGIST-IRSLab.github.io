@@ -103,7 +103,7 @@ export const JoinUsPage: React.FC = () => {
                 <h3 className="h3-title" style={{ fontSize: '18px' }}>
                   Graduate Students (Ph.D. / M.S. / Integrated Ph.D.)
                 </h3>
-                <span className="badge">OPEN FOR ADMISSION</span>
+                <span className="badge">Open for Admission</span>
               </div>
 
               <p className="body-text" style={{ fontSize: '13.5px', lineHeight: 1.6 }}>
@@ -146,7 +146,7 @@ export const JoinUsPage: React.FC = () => {
                 <h3 className="h3-title" style={{ fontSize: '18px' }}>
                   Postdoctoral Research Fellows
                 </h3>
-                <span className="badge">ACTIVELY HIRING</span>
+                <span className="badge">Actively Hiring</span>
               </div>
 
               <p className="body-text" style={{ fontSize: '13.5px', lineHeight: 1.6 }}>
@@ -184,7 +184,7 @@ export const JoinUsPage: React.FC = () => {
                 <h3 className="h3-title" style={{ fontSize: '18px' }}>
                   Undergraduate Research Interns
                 </h3>
-                <span className="badge badge-outline">SUMMER & WINTER COHORTS</span>
+                <span className="badge badge-outline">Summer & Winter Cohorts</span>
               </div>
 
               <p className="body-text" style={{ fontSize: '13.5px', lineHeight: 1.6 }}>
