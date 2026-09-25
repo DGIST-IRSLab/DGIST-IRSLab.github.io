@@ -22,65 +22,26 @@ export const JoinUsPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Main Narrative & Philosophy */}
-      <section style={{ paddingTop: 'var(--space-2xl)' }}>
+      {/* Intro Editorial Statement */}
+      <section style={{ paddingTop: 'var(--space-2xl)', paddingBottom: 'var(--space-md)' }}>
         <div className="container container-editorial">
-          <div
+          <p
+            className="body-text"
             style={{
-              padding: 'var(--space-xl)',
-              backgroundColor: 'var(--color-surface)',
-              border: '1px solid var(--color-border)',
-              borderRadius: 'var(--radius-sm)',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 'var(--space-md)',
+              fontSize: '15.5px',
+              lineHeight: 1.7,
+              color: 'var(--color-text-secondary)',
+              maxWidth: '820px',
+              margin: '0',
             }}
           >
-            <h2 className="h2-title" style={{ fontSize: '22px' }}>
-              Research Philosophy & Environment
-            </h2>
-            <p className="body-text" style={{ lineHeight: 1.65 }}>
-              At the Intelligent Radio Sensing Laboratory, we explore fundamentally new perception paradigms by joining electromagnetic wave theory with deep representation learning. Members work with high-frequency mmWave radar equipment, RF anechoic chambers, GPU computing clusters, and multi-sensor fusion rigs.
-            </p>
-
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-                gap: 'var(--space-md)',
-                marginTop: 'var(--space-xs)',
-              }}
-            >
-              {[
-                { title: 'Top-Tier Mentorship', desc: 'Direct, regular one-on-one advising aimed at publishing in premier AI and signal processing conferences (CVPR, NeurIPS, AAAI, ICASSP, IEEE Transactions).' },
-                { title: 'International Network', desc: 'Strong collaborative relationships with Stanford University, NASA JPL, and leading domestic defense and telecommunication institutes.' },
-                { title: 'Full Financial Support', desc: 'Competitive tuition waivers, monthly research stipends, state-of-the-art computing hardware, and travel funding for conference presentations.' },
-                { title: 'Interdisciplinary Growth', desc: 'Joint affiliation with DGIST Department of EECS and Department of Interdisciplinary Studies of AI.' },
-              ].map((item, i) => (
-                <div
-                  key={i}
-                  style={{
-                    padding: 'var(--space-sm) var(--space-md)',
-                    backgroundColor: 'var(--color-bg-secondary)',
-                    borderRadius: 'var(--radius-xs)',
-                    border: '1px solid var(--color-border-subtle)',
-                  }}
-                >
-                  <div style={{ fontWeight: 600, fontSize: '14px', color: 'var(--color-text-primary)' }}>
-                    {item.title}
-                  </div>
-                  <div style={{ fontSize: '12.5px', color: 'var(--color-text-secondary)', marginTop: '4px', lineHeight: 1.5 }}>
-                    {item.desc}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+            We welcome motivated graduate students (Ph.D., M.S., and Integrated M.S./Ph.D.), undergraduate research interns, and postdoctoral researchers who are passionate about radio sensing, RF signal processing, and physical artificial intelligence.
+          </p>
         </div>
       </section>
 
       {/* Open Positions Grid */}
-      <section style={{ paddingTop: 'var(--space-2xl)' }}>
+      <section style={{ paddingTop: 'var(--space-xl)' }}>
         <div className="container container-editorial">
           <SectionHeader
             title="Open Positions"
@@ -101,7 +62,7 @@ export const JoinUsPage: React.FC = () => {
             >
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap' }}>
                 <h3 className="h3-title" style={{ fontSize: '18px' }}>
-                  Graduate Students (Ph.D. / M.S. / Integrated Ph.D.)
+                  Graduate Students (Ph.D. / M.S. / Integrated M.S./Ph.D.)
                 </h3>
                 <span style={{ fontSize: '13px', fontWeight: 500, color: 'var(--color-text-secondary)' }}>Open for Admission</span>
               </div>
@@ -150,7 +111,7 @@ export const JoinUsPage: React.FC = () => {
               </div>
 
               <p className="body-text" style={{ fontSize: '13.5px', lineHeight: 1.6 }}>
-                We are actively recruiting postdocs in wireless systems, radio signal processing, and physical AI, supported by long-term MSIT InnoCORE and NRF grants. Fellows will lead high-impact papers and collaborate with global institutions (such as NASA JPL and Stanford).
+                We are actively recruiting postdocs in wireless systems, radio signal processing, and physical AI, supported by national research initiatives (MSIT, NRF, ADD, IITP). Fellows will lead high-impact publications and collaborate on cutting-edge research projects.
               </p>
 
               <div style={{ display: 'flex', gap: 'var(--space-sm)', marginTop: 'var(--space-xs)', flexWrap: 'wrap' }}>
