@@ -197,7 +197,7 @@ export const JoinUsPage: React.FC = () => {
               </div>
 
               <p className="body-text" style={{ fontSize: '14px', lineHeight: 1.65, color: 'var(--color-text-secondary)' }}>
-                <strong style={{ color: 'var(--color-text-primary)' }}>DGIST and visiting undergraduate students</strong> are invited to join research projects during <strong style={{ color: 'var(--color-accent)' }}>summer/winter vacations</strong> or <strong style={{ color: 'var(--color-text-primary)' }}>semester sessions</strong>. Interns participate in <strong style={{ color: 'var(--color-text-primary)' }}>testbed experiments, algorithm implementations, and weekly paper readings</strong>.
+                <strong style={{ color: 'var(--color-text-primary)' }}>DGIST and visiting undergraduate students</strong> are invited to join research projects during <strong style={{ color: 'var(--color-accent)' }}>summer/winter vacations</strong> or <strong style={{ color: 'var(--color-text-primary)' }}>semester sessions</strong>.
               </p>
             </div>
           </div>
