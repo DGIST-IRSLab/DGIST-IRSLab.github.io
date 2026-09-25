@@ -24,47 +24,8 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
 
   return (
     <div className="pi-page-root" style={{ paddingBottom: 'var(--space-section)' }}>
-      {/* Header Banner */}
-      <section
-        style={{
-          borderBottom: '1px solid var(--color-border)',
-          backgroundColor: 'var(--color-bg-secondary)',
-          paddingTop: 'var(--space-2xl)',
-          paddingBottom: 'var(--space-xl)',
-        }}
-      >
-        <div className="container">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-            <span
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '13px',
-                color: 'var(--color-accent)',
-                letterSpacing: '0.04em',
-                fontWeight: 600,
-                textTransform: 'uppercase',
-              }}
-            >
-              Principal Investigator
-            </span>
-          </div>
-          <h1 className="h1-title">
-            Jae-Ho Choi, Ph.D.
-          </h1>
-          <p
-            style={{
-              marginTop: '6px',
-              color: 'var(--color-text-secondary)',
-              fontSize: '16px',
-            }}
-          >
-            최재호 교수 &middot; Assistant Professor @ DGIST EECS &amp; AI
-          </p>
-        </div>
-      </section>
-
       {/* Main Profile & Contact Block */}
-      <section style={{ paddingTop: 'var(--space-2xl)' }}>
+      <section style={{ paddingTop: 'clamp(2.5rem, 5vw, 4rem)' }}>
         <div className="container">
           <div className="pi-profile-grid">
             {/* Left: Photo & Quick Links */}
@@ -150,7 +111,7 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
             <div className="pi-info-col">
               <div className="pi-header-group">
                 <div className="pi-name-row">
-                  <h2 className="pi-full-name">{professorData.name}</h2>
+                  <h1 className="pi-full-name">{professorData.name}</h1>
                   <span className="pi-name-kr">({professorData.nameKr})</span>
                   <span className="pi-title-badge">{professorData.title}</span>
                 </div>
@@ -440,13 +401,6 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
           overflow: hidden;
           border: 1px solid var(--color-border);
           background-color: var(--color-bg-secondary);
-          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-        }
-
-        .pi-photo-wrapper:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
         }
 
         .pi-portrait-img {
@@ -457,11 +411,6 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
           object-fit: cover;
           object-position: center center;
           display: block;
-          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .pi-photo-wrapper:hover .pi-portrait-img {
-          transform: scale(1.03);
         }
 
         .pi-photo-fallback {
@@ -471,20 +420,20 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
           align-items: center;
           justify-content: center;
           color: var(--color-text-dim);
-          font-family: var(--font-mono);
+          font-family: var(--font-sans);
         }
 
         .pi-quick-actions {
           display: flex;
           flex-direction: column;
-          gap: 8px;
+          gap: 6px;
         }
 
         .pi-action-btn {
           display: flex;
           align-items: center;
           gap: 10px;
-          padding: 9px 14px;
+          padding: 8px 12px;
           font-size: 13.5px;
           font-weight: 500;
           color: var(--color-text-primary);
@@ -492,15 +441,13 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
           border: 1px solid var(--color-border);
           border-radius: var(--radius-xs);
           text-decoration: none;
-          transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+          transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
         }
 
         .pi-action-btn:hover {
           background-color: var(--color-surface-hover);
-          border-color: var(--color-accent-border);
+          border-color: var(--color-border-dark);
           color: var(--color-accent);
-          transform: translateY(-2px);
-          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
         }
 
         .pi-external-icon {
@@ -523,7 +470,8 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
         }
 
         .pi-full-name {
-          font-size: clamp(1.8rem, 3vw, 2.3rem);
+          font-family: var(--font-heading);
+          font-size: clamp(2rem, 3.2vw, 2.5rem);
           font-weight: 700;
           letter-spacing: -0.02em;
           margin: 0;
@@ -532,20 +480,20 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
 
         .pi-name-kr {
           font-size: 1.25rem;
-          font-weight: 600;
+          font-weight: 500;
           color: var(--color-text-secondary);
         }
 
         .pi-title-badge {
           display: inline-block;
-          font-family: var(--font-mono);
-          font-size: 12px;
-          font-weight: 600;
-          padding: 2px 10px;
-          border-radius: 999px;
-          background-color: var(--color-accent-subtle);
+          font-family: var(--font-sans);
+          font-size: 13px;
+          font-weight: 500;
+          padding: 2px 8px;
+          border-radius: var(--radius-xs);
+          background-color: var(--color-bg-secondary);
           color: var(--color-accent);
-          border: 1px solid var(--color-accent-border);
+          border: 1px solid var(--color-border);
         }
 
         .pi-affiliation-text {
@@ -567,7 +515,7 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
         }
 
         .pi-bio-prose {
-          font-size: 15.5px;
+          font-size: 15px;
           line-height: 1.7;
           color: var(--color-text-secondary);
           display: flex;
@@ -589,11 +537,11 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
           display: flex;
           flex-direction: column;
           gap: 8px;
-          padding: 16px;
+          padding: 14px 16px;
           background-color: var(--color-surface);
           border: 1px solid var(--color-border);
           border-radius: var(--radius-xs);
-          font-size: 14px;
+          font-size: 13.5px;
         }
 
         .pi-contact-item {
@@ -604,14 +552,14 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
         }
 
         .pi-contact-icon {
-          color: var(--color-accent);
+          color: var(--color-text-muted);
           flex-shrink: 0;
         }
 
         .pi-contact-label {
           font-weight: 600;
           color: var(--color-text-primary);
-          min-width: 60px;
+          min-width: 55px;
         }
 
         .pi-contact-value {

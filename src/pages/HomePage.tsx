@@ -3,7 +3,6 @@ import { ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
 import { newsItems } from '../data/news';
 import type { Publication } from '../types';
 import { assetUrl } from '../utils/asset';
-import { GithubIcon } from '../components/common/GithubIcon';
 
 interface HomePageProps {
   onNavigate: (page: string, anchorId?: string) => void;
@@ -71,36 +70,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               <p className="hero-statement">
                 AI-driven radio sensing for understanding the physical world.
               </p>
-
-              <div className="hero-descriptors">
-                Radar Sensing · Artificial Intelligence · Physical Intelligence
-              </div>
-
-              <div className="hero-actions-row">
-                <button
-                  type="button"
-                  onClick={() => {
-                    onNavigate('research');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                  className="hero-research-btn"
-                >
-                  <span>Our Research</span>
-                  <ArrowRight size={15} />
-                </button>
-
-                <a
-                  href="https://github.com/DGIST-IRSLab"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hero-github-btn"
-                  title="Visit DGIST IRS Lab on GitHub (DGIST-IRSLab)"
-                  aria-label="Visit DGIST IRS Lab on GitHub"
-                >
-                  <GithubIcon size={16} />
-                  <span>GitHub</span>
-                </a>
-              </div>
             </div>
 
             <div className="hero-photo-col">
@@ -118,7 +87,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       </section>
 
       {/* ====================================================================
-          2. RECRUITMENT CALLOUT (Clean horizontal editorial bar)
+          2. RECRUITMENT CALLOUT (Clean horizontal divider)
           ==================================================================== */}
       <section className="admissions-section">
         <div className="container admissions-bar">
@@ -126,9 +95,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             <h3 className="admissions-title">
               We are actively looking for <span style={{ color: 'var(--color-accent)' }}>passionate graduate students</span> (Ph.D. &amp; M.S.), undergraduate interns, and postdocs.
             </h3>
-            <p className="admissions-subtext">
-              Pioneering radio sensing, RF signal processing, and physical artificial intelligence at DGIST.
-            </p>
           </div>
           <div className="admissions-action-wrap">
             <button
@@ -137,10 +103,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 onNavigate('join');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="link-subtle"
-              style={{ fontSize: '15px', whiteSpace: 'nowrap' }}
+              className="admissions-join-btn"
             >
-              <span>View Openings</span>
+              <span>Join Us</span>
               <ArrowRight size={15} />
             </button>
           </div>
@@ -287,14 +252,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           transform: scale(1.02);
         }
 
-        .hero-descriptors {
-          font-family: var(--font-mono);
-          font-size: clamp(0.8rem, 1.2vw, 0.9rem);
-          color: var(--color-accent);
-          letter-spacing: 0.02em;
-          margin-top: 14px;
-        }
-
         @media (max-width: 860px) {
           .hero-grid {
             flex-direction: column;
@@ -363,10 +320,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           animation: heroFloatIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
         }
 
-        .hero-descriptors {
-          animation: heroFloatIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
-        }
-
         .hero-photo-frame {
           animation: heroPhotoIn 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
           transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
@@ -415,143 +368,70 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           letter-spacing: 0.02em;
         }
 
-        .hero-actions-row {
-          margin-top: var(--space-xl);
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          flex-wrap: wrap;
-          animation: heroFloatIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.42s both;
-        }
-
-        .hero-research-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          padding: 7px 16px;
-          font-family: var(--font-sans);
-          font-size: 14px;
-          font-weight: 600;
-          color: #ffffff;
-          background-color: var(--color-accent);
-          border: 1px solid var(--color-accent);
-          border-radius: var(--radius-sm);
-          cursor: pointer;
-          text-decoration: none;
-          line-height: 1.4;
-          transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        [data-theme='dark'] .hero-research-btn {
-          color: #0b0f14;
-          background-color: var(--color-accent);
-          border-color: var(--color-accent);
-          font-weight: 600;
-        }
-
-        .hero-research-btn:hover {
-          background-color: var(--color-accent-hover);
-          border-color: var(--color-accent-hover);
-          color: #ffffff;
-          transform: translateY(-1.5px);
-          box-shadow: 0 4px 14px rgba(2, 140, 255, 0.25);
-        }
-
-        [data-theme='dark'] .hero-research-btn:hover {
-          color: #0b0f14;
-        }
-
-        .hero-research-btn:hover svg {
-          transform: translateX(3px);
-        }
-
-        .hero-research-btn svg {
-          transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .hero-research-btn:active {
-          transform: translateY(0) scale(0.97);
-        }
-
-        .hero-github-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          padding: 7px 16px;
-          font-family: var(--font-sans);
-          font-size: 14px;
-          font-weight: 500;
-          color: var(--color-text-secondary);
-          background-color: var(--color-bg-secondary);
-          border: 1px solid var(--color-border);
-          border-radius: var(--radius-sm);
-          text-decoration: none;
-          line-height: 1.4;
-          cursor: pointer;
-          transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .hero-github-btn:hover {
-          color: var(--color-text-primary);
-          background-color: var(--color-surface-hover);
-          border-color: var(--color-accent-border);
-          transform: translateY(-1.5px);
-          box-shadow: 0 4px 12px rgba(2, 140, 255, 0.08);
-        }
-
-        .hero-github-btn:active {
-          transform: translateY(0) scale(0.97);
-        }
-
-        .hero-research-btn:focus-visible,
-        .hero-github-btn:focus-visible {
-          outline: 2px solid var(--color-accent);
-          outline-offset: 2px;
-        }
-
-        /* Admissions Section (Clean horizontal bar) */
+        /* Admissions Section (Clean horizontal divider) */
         .admissions-section {
-          padding-top: clamp(2rem, 3.5vw, 2.75rem);
-          padding-bottom: clamp(2rem, 3.5vw, 2.75rem);
+          padding-top: clamp(1.75rem, 3vw, 2.25rem);
+          padding-bottom: clamp(1.75rem, 3vw, 2.25rem);
           background-color: var(--color-bg);
           border-bottom: 1px solid var(--color-border);
         }
 
         .admissions-bar {
           display: flex;
+          flex-direction: column;
           align-items: center;
-          justify-content: space-between;
-          gap: var(--space-xl);
-          padding: 16px 20px;
-          border-radius: var(--radius-sm);
-          background-color: var(--color-bg-secondary);
-          border: 1px solid var(--color-border);
-          transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .admissions-bar:hover {
-          border-color: var(--color-accent-border);
-          transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(2, 140, 255, 0.07);
+          justify-content: center;
+          text-align: center;
+          gap: 16px;
+          max-width: 840px;
+          margin: 0 auto;
+          padding: 0;
+          background-color: transparent;
+          border: none;
         }
 
         .admissions-title {
           font-family: var(--font-heading);
-          font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+          font-size: clamp(1.15rem, 1.8vw, 1.35rem);
           font-weight: 600;
           color: var(--color-text-primary);
-          line-height: 1.4;
-          margin-bottom: 6px;
-        }
-
-        .admissions-subtext {
-          font-size: 14.5px;
-          color: var(--color-text-secondary);
-          line-height: 1.5;
+          line-height: 1.45;
+          margin: 0;
+          text-align: center;
+          word-break: keep-all;
         }
 
         .admissions-action-wrap {
-          flex-shrink: 0;
+          display: flex;
+          justify-content: center;
+        }
+
+        .admissions-join-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 8px 18px;
+          font-family: var(--font-sans);
+          font-size: 14px;
+          font-weight: 600;
+          color: #ffffff;
+          background-color: var(--color-accent);
+          border: 1px solid var(--color-accent);
+          border-radius: var(--radius-xs);
+          cursor: pointer;
+          white-space: nowrap;
+          transition: background-color var(--transition-fast), border-color var(--transition-fast);
+        }
+
+        .admissions-join-btn:hover {
+          background-color: var(--color-accent-hover);
+          border-color: var(--color-accent-hover);
+        }
+
+        [data-theme='dark'] .admissions-join-btn {
+          color: #0b0f14;
+          background-color: var(--color-accent);
+          border-color: var(--color-accent);
         }
 
         /* News Section */
@@ -708,8 +588,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         @media (max-width: 860px) {
           .admissions-bar {
             flex-direction: column;
-            align-items: flex-start;
-            gap: var(--space-md);
+            align-items: center;
+            text-align: center;
+            gap: 14px;
           }
           .news-item-row {
             grid-template-columns: 75px 75px 1fr;
