@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { ThemeToggle } from '../common/ThemeToggle';
-import { RadarLogoIcon } from '../common/RadarLogoIcon';
 import { GithubIcon } from '../common/GithubIcon';
+import { assetUrl } from '../../utils/asset';
 
 interface HeaderProps {
   currentPage: string;
@@ -12,7 +12,6 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [brandHovered, setBrandHovered] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,20 +63,19 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
         {/* Left: Identity & Affiliation */}
         <div
           onClick={() => handleNavClick('home')}
-          onMouseEnter={() => setBrandHovered(true)}
-          onMouseLeave={() => setBrandHovered(false)}
           className="header-brand-wrap"
           title="IRS Lab — DGIST"
         >
-          <RadarLogoIcon size={30} isHovered={brandHovered} />
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span className="header-lab-fullname">
-              Intelligent Radio Sensing Lab, DGIST
-            </span>
-            <span className="header-lab-shortname">
-              Intelligent Radio Sensing Lab
-            </span>
-          </div>
+          <img
+            src={assetUrl('/images/logopic/lab_logo_light.png')}
+            alt="IRS Lab"
+            className="header-lab-logo logo-light-only"
+          />
+          <img
+            src={assetUrl('/images/logopic/lab_logo_dark.png')}
+            alt="IRS Lab"
+            className="header-lab-logo logo-dark-only"
+          />
         </div>
 
         {/* Center / Right: Desktop Navigation */}
@@ -214,28 +212,32 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
           cursor: pointer;
           display: flex;
           align-items: center;
-          gap: 12px;
           user-select: none;
           transition: opacity var(--transition-fast), transform var(--transition-fast);
         }
         .header-brand-wrap:hover {
-          opacity: 0.95;
+          opacity: 0.88;
           transform: translateY(-0.5px);
         }
-        .header-lab-fullname {
-          font-family: var(--font-sans);
-          font-weight: 700;
-          font-size: 15px;
-          letter-spacing: -0.01em;
-          color: var(--color-text-primary);
+        .header-lab-logo {
+          height: 42px;
+          width: auto;
+          max-width: 170px;
+          object-fit: contain;
+          display: block;
+          transition: opacity var(--transition-fast), transform var(--transition-fast);
         }
-        .header-lab-shortname {
-          font-family: var(--font-sans);
-          font-weight: 700;
-          font-size: 15px;
-          letter-spacing: -0.01em;
-          color: var(--color-text-primary);
+        .header-lab-logo.logo-light-only {
+          display: block;
+        }
+        .header-lab-logo.logo-dark-only {
           display: none;
+        }
+        [data-theme='dark'] .header-lab-logo.logo-light-only {
+          display: none;
+        }
+        [data-theme='dark'] .header-lab-logo.logo-dark-only {
+          display: block;
         }
 
         .desktop-nav {
@@ -324,12 +326,9 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
           transform: translateY(-1.5px) scale(1.08);
         }
 
-        @media (max-width: 1080px) {
-          .header-lab-fullname {
-            display: none !important;
-          }
-          .header-lab-shortname {
-            display: inline !important;
+        @media (max-width: 640px) {
+          .header-lab-logo {
+            height: 35px;
           }
         }
         @media (min-width: 860px) {
