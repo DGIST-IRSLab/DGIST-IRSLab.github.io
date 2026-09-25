@@ -215,14 +215,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         }
 
         .hero-text-col {
-          flex: 1 1 54%;
+          flex: 1 1 48%;
           min-width: 0;
         }
 
         .hero-photo-col {
-          flex: 1 1 46%;
+          flex: 1 1 52%;
           display: flex;
-          justify-content: center;
+          justify-content: flex-end;
           align-items: center;
           min-width: 0;
         }
@@ -230,25 +230,31 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         .hero-photo-frame {
           position: relative;
           width: 100%;
-          max-width: 500px;
+          max-width: 630px;
           display: flex;
           align-items: center;
           justify-content: center;
+          animation: heroPhotoIn 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hero-photo-frame:hover {
+          transform: translateY(-3px) scale(1.01);
         }
 
         .hero-group-photo {
           width: 100%;
           height: auto;
-          aspect-ratio: 16 / 10.8;
+          aspect-ratio: 16 / 10.6;
           object-fit: cover;
-          object-position: center 52%;
+          object-position: center 50%;
           display: block;
-          mask-image: radial-gradient(ellipse 72% 64% at 50% 52%, black 84%, rgba(0, 0, 0, 0.25) 96%, transparent 100%);
-          -webkit-mask-image: radial-gradient(ellipse 72% 64% at 50% 52%, black 84%, rgba(0, 0, 0, 0.25) 96%, transparent 100%);
-          transition: transform var(--transition-normal);
+          mask-image: radial-gradient(ellipse 90% 56% at 50% 50%, black 25%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.35) 75%, rgba(0, 0, 0, 0.05) 90%, transparent 100%);
+          -webkit-mask-image: radial-gradient(ellipse 90% 56% at 50% 50%, black 25%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.35) 75%, rgba(0, 0, 0, 0.05) 90%, transparent 100%);
+          transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .hero-group-photo:hover {
+        .hero-photo-frame:hover .hero-group-photo {
           transform: scale(1.02);
         }
 
@@ -265,7 +271,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           }
 
           .hero-photo-frame {
-            max-width: 420px;
+            max-width: 520px;
             margin: 0 auto;
           }
         }
@@ -318,24 +324,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           color: var(--color-text-primary);
           margin: 0 0 10px 0;
           animation: heroFloatIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
-        }
-
-        .hero-photo-frame {
-          animation: heroPhotoIn 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
-          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
-        }
-
-        .hero-photo-frame:hover {
-          transform: translateY(-3px) scale(1.01);
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-        }
-
-        .hero-group-photo {
-          transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .hero-photo-frame:hover .hero-group-photo {
-          transform: scale(1.02);
         }
 
         .hero-description {
