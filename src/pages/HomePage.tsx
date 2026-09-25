@@ -96,7 +96,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         <div className="container admissions-bar">
           <div className="admissions-text-wrap">
             <h3 className="admissions-title">
-              We are actively looking for passionate graduate students (Ph.D. &amp; M.S.), undergraduate interns, and postdocs.
+              We are actively looking for <span style={{ color: 'var(--color-accent)' }}>passionate graduate students</span> (Ph.D. &amp; M.S.), undergraduate interns, and postdocs.
             </h3>
             <p className="admissions-subtext">
               Pioneering radio sensing, RF signal processing, and physical artificial intelligence at DGIST.
