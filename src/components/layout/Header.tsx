@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Menu, X, Radio } from 'lucide-react';
+import { Search, Menu, X } from 'lucide-react';
 import { ThemeToggle } from '../common/ThemeToggle';
+import { RadarLogoIcon } from '../common/RadarLogoIcon';
 
 interface HeaderProps {
   currentPage: string;
@@ -11,6 +12,7 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenSearch }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [brandHovered, setBrandHovered] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,67 +64,24 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenS
         {/* Left: Identity & Affiliation */}
         <div
           onClick={() => handleNavClick('home')}
-          style={{
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            gap: 'var(--space-sm)',
-            userSelect: 'none',
-          }}
+          onMouseEnter={() => setBrandHovered(true)}
+          onMouseLeave={() => setBrandHovered(false)}
+          className="header-brand-wrap"
+          title="IRS Lab — DGIST"
         >
-          <div
-            style={{
-              width: '26px',
-              height: '26px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: 'var(--radius-xs)',
-              border: '1px solid var(--color-accent-border)',
-              backgroundColor: 'var(--color-accent-subtle)',
-              color: 'var(--color-accent)',
-            }}
-          >
-            <Radio size={15} />
-          </div>
+          <RadarLogoIcon size={30} isHovered={brandHovered} />
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span
-              className="header-lab-fullname"
-              style={{
-                fontFamily: 'var(--font-sans)',
-                fontWeight: 700,
-                fontSize: '15px',
-                letterSpacing: '-0.01em',
-                color: 'var(--color-text-primary)',
-              }}
-            >
+            <span className="header-lab-fullname">
               Intelligent Radio Sensing Lab, DGIST
             </span>
-            <span
-              className="header-lab-shortname"
-              style={{
-                fontFamily: 'var(--font-sans)',
-                fontWeight: 700,
-                fontSize: '15px',
-                letterSpacing: '-0.01em',
-                color: 'var(--color-text-primary)',
-                display: 'none',
-              }}
-            >
+            <span className="header-lab-shortname">
               Intelligent Radio Sensing Lab
             </span>
           </div>
         </div>
 
         {/* Center / Right: Desktop Navigation */}
-        <nav
-          style={{
-            display: 'none',
-            alignItems: 'center',
-            gap: 'var(--space-md)',
-          }}
-          className="desktop-nav"
-        >
+        <nav className="desktop-nav">
           {navItems.map((item) => {
             const isActive = currentPage === item.id || (item.id === 'members' && currentPage === 'people');
             return (
@@ -130,33 +89,10 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenS
                 key={item.id}
                 type="button"
                 onClick={() => handleNavClick(item.id)}
-                style={{
-                  position: 'relative',
-                  background: 'none',
-                  border: 'none',
-                  padding: '8px 6px',
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: '14px',
-                  fontWeight: isActive ? 600 : 400,
-                  color: isActive ? 'var(--color-accent)' : 'var(--color-text-secondary)',
-                  cursor: 'pointer',
-                  transition: 'color var(--transition-fast)',
-                }}
+                className={`desktop-nav-link ${isActive ? 'is-active' : ''}`}
+                aria-current={isActive ? 'page' : undefined}
               >
-                {item.label}
-                {isActive && (
-                  <span
-                    style={{
-                      position: 'absolute',
-                      bottom: '-2px',
-                      left: '6px',
-                      right: '6px',
-                      height: '2px',
-                      backgroundColor: 'var(--color-accent)',
-                      borderRadius: '1px',
-                    }}
-                  />
-                )}
+                <span className="nav-label-text">{item.label}</span>
               </button>
             );
           })}
@@ -278,6 +214,129 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenS
       )}
 
       <style>{`
+        .header-brand-wrap {
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          user-select: none;
+          transition: opacity var(--transition-fast), transform var(--transition-fast);
+        }
+        .header-brand-wrap:hover {
+          opacity: 0.95;
+          transform: translateY(-0.5px);
+        }
+        .header-lab-fullname {
+          font-family: var(--font-sans);
+          font-weight: 700;
+          font-size: 15px;
+          letter-spacing: -0.01em;
+          color: var(--color-text-primary);
+        }
+        .header-lab-shortname {
+          font-family: var(--font-sans);
+          font-weight: 700;
+          font-size: 15px;
+          letter-spacing: -0.01em;
+          color: var(--color-text-primary);
+          display: none;
+        }
+
+        .desktop-nav {
+          display: none;
+          align-items: center;
+          gap: 6px;
+        }
+
+        .desktop-nav-link {
+          position: relative;
+          background: transparent;
+          border: none;
+          padding: 8px 14px;
+          font-family: var(--font-sans);
+          font-size: 14px;
+          font-weight: 500;
+          color: var(--color-text-secondary);
+          border-radius: var(--radius-sm);
+          cursor: pointer;
+          transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+          outline: none;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .desktop-nav-link .nav-label-text {
+          position: relative;
+          z-index: 1;
+          transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .desktop-nav-link:hover {
+          color: var(--color-text-primary);
+          background-color: var(--color-surface-hover);
+          transform: translateY(-1.5px);
+        }
+
+        .desktop-nav-link:active {
+          transform: translateY(0) scale(0.97);
+        }
+
+        .desktop-nav-link.is-active {
+          color: var(--color-accent);
+          font-weight: 600;
+          background-color: var(--color-accent-subtle);
+        }
+
+        .desktop-nav-link.is-active:hover {
+          color: var(--color-accent);
+          background-color: var(--color-accent-subtle);
+          transform: translateY(-1px);
+        }
+
+        /* Animated underline indicator */
+        .desktop-nav-link::after {
+          content: '';
+          position: absolute;
+          bottom: 2px;
+          left: 12px;
+          right: 12px;
+          height: 2px;
+          background-color: var(--color-accent);
+          border-radius: 999px;
+          transform: scaleX(0);
+          transform-origin: center;
+          transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+          opacity: 0;
+          pointer-events: none;
+        }
+
+        .desktop-nav-link:hover::after {
+          transform: scaleX(0.7);
+          opacity: 0.65;
+        }
+
+        .desktop-nav-link.is-active::after {
+          transform: scaleX(1);
+          opacity: 1;
+          box-shadow: 0 1px 4px rgba(2, 132, 199, 0.4);
+        }
+
+        /* Search shortcut interactive button */
+        .search-shortcut-btn {
+          border-radius: var(--radius-sm);
+          padding: 6px 10px !important;
+          background-color: var(--color-bg-secondary) !important;
+          border: 1px solid var(--color-border) !important;
+          transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+        .search-shortcut-btn:hover {
+          background-color: var(--color-surface-hover) !important;
+          border-color: var(--color-accent-border) !important;
+          color: var(--color-text-primary) !important;
+          transform: translateY(-1px);
+        }
+
         @media (max-width: 1080px) {
           .header-lab-fullname {
             display: none !important;
