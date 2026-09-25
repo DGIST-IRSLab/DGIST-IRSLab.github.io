@@ -33,6 +33,15 @@ export const Footer: React.FC<FooterProps> = () => {
               className="footer-logo-img dgist-logo"
             />
           </div>
+
+          {/* DGIST EECS Department Logo */}
+          <div className="footer-logo-item" title="DGIST Department of Electrical Engineering & Computer Science (EECS)">
+            <img
+              src="/images/logopic/eecs_logo.png"
+              alt="DGIST EECS Logo"
+              className="footer-logo-img eecs-logo"
+            />
+          </div>
         </div>
 
         {/* Concise Academic Affiliation & Address */}
@@ -100,6 +109,12 @@ export const Footer: React.FC<FooterProps> = () => {
 
         [data-theme='dark'] .dgist-logo {
           filter: brightness(1.2) contrast(1.05);
+        }
+
+        [data-theme='dark'] .eecs-logo {
+          background-color: #ffffff;
+          padding: 3px 6px;
+          border-radius: var(--radius-xs);
         }
 
         .footer-info-block {
