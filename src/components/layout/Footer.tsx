@@ -1,222 +1,130 @@
 import React from 'react';
 import { labInfo } from '../../data/labInfo';
-import { Mail, Phone, MapPin, ExternalLink, Radio } from 'lucide-react';
 
 interface FooterProps {
-  onNavigate: (page: string) => void;
+  onNavigate?: (page: string) => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+export const Footer: React.FC<FooterProps> = () => {
   return (
-    <footer
-      style={{
-        marginTop: 'auto',
-        borderTop: '1px solid var(--color-border)',
-        backgroundColor: 'var(--color-bg-secondary)',
-        paddingTop: 'var(--space-2xl)',
-        paddingBottom: 'var(--space-xl)',
-        position: 'relative',
-        zIndex: 1,
-      }}
-    >
+    <footer className="site-footer">
       <div className="container">
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: 'var(--space-xl)',
-            paddingBottom: 'var(--space-xl)',
-            borderBottom: '1px solid var(--color-border-subtle)',
-          }}
-        >
-          {/* Col 1: Identity & Mission */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-xs)' }}>
-              <div
-                style={{
-                  width: '24px',
-                  height: '24px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderRadius: 'var(--radius-xs)',
-                  border: '1px solid var(--color-accent-border)',
-                  backgroundColor: 'var(--color-accent-subtle)',
-                  color: 'var(--color-accent)',
-                }}
-              >
-                <Radio size={14} />
-              </div>
-              <span style={{ fontWeight: 700, fontSize: '15.5px', color: 'var(--color-text-primary)' }}>
-                {labInfo.name}
-              </span>
-            </div>
-
-            <p style={{ fontSize: '13.5px', color: 'var(--color-text-secondary)', lineHeight: 1.55 }}>
-              {labInfo.tagline}
-            </p>
-
-            <div style={{ fontSize: '12px', color: 'var(--color-text-muted)', lineHeight: 1.5 }}>
-              {labInfo.fullAffiliation}
-              <br />
-              <a
-                href="https://www.dgist.ac.kr/eng/index.do"
-                target="_blank"
-                rel="noreferrer"
-                style={{ color: 'var(--color-accent)', textDecoration: 'none' }}
-              >
-                {labInfo.university}
-              </a>
-            </div>
+        {/* Logos Row (IRS Lab, DGIST, and slots for future department logos) */}
+        <div className="footer-logos-row">
+          {/* IRS Lab Logo */}
+          <div className="footer-logo-item" title="Intelligent Radio Sensing Laboratory">
+            <img
+              src="/images/logopic/lab_logo_light.png"
+              alt="IRS Lab Logo"
+              className="footer-logo-img logo-light-only"
+            />
+            <img
+              src="/images/logopic/lab_logo_dark.png"
+              alt="IRS Lab Logo"
+              className="footer-logo-img logo-dark-only"
+            />
           </div>
 
-          {/* Col 2: Navigation Links */}
-          <div>
-            <span className="eyebrow">NAVIGATION</span>
-            <ul
-              style={{
-                listStyle: 'none',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '8px',
-                marginTop: 'var(--space-xs)',
-              }}
-            >
-              {[
-                { label: 'Home', id: 'home' },
-                { label: 'Research Themes', id: 'research' },
-                { label: 'Publications Index', id: 'publications' },
-                { label: 'Members & Alumni', id: 'people' },
-                { label: 'Activity News', id: 'news' },
-                { label: 'Lab Gallery', id: 'gallery' },
-                { label: 'Join IRS Lab (Openings)', id: 'join' },
-              ].map((item) => (
-                <li key={item.id}>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      onNavigate(item.id);
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                    style={{
-                      background: 'none',
-                      border: 'none',
-                      padding: 0,
-                      cursor: 'pointer',
-                      fontFamily: 'var(--font-sans)',
-                      fontSize: '13.5px',
-                      color: 'var(--color-text-secondary)',
-                      transition: 'color var(--transition-fast)',
-                    }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-accent)')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-text-secondary)')}
-                  >
-                    {item.label}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Col 3: Research Pillars */}
-          <div>
-            <span className="eyebrow">RESEARCH PILLARS</span>
-            <ul
-              style={{
-                listStyle: 'none',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '8px',
-                marginTop: 'var(--space-xs)',
-              }}
-            >
-              {[
-                'Wireless-Centric AI',
-                'Radar Signal Processing',
-                'RF-Vital Physiological Sensing',
-                'Micro-Doppler Kinematics',
-                'Synthetic Aperture Radar (SAR)',
-                'Multi-Modal Physical AI',
-              ].map((topic, i) => (
-                <li
-                  key={i}
-                  style={{
-                    fontSize: '13px',
-                    fontFamily: 'var(--font-mono)',
-                    color: 'var(--color-text-muted)',
-                  }}
-                >
-                  <span style={{ color: 'var(--color-accent)', marginRight: '6px' }}>#</span>
-                  {topic}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Col 4: Contact & Office */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xs)' }}>
-            <span className="eyebrow">CONTACT & LOCATION</span>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: 'var(--space-xs)' }}>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '13px', color: 'var(--color-text-secondary)' }}>
-                <MapPin size={15} style={{ color: 'var(--color-accent)', flexShrink: 0, marginTop: '2px' }} />
-                <span>
-                  {labInfo.building}
-                  <br />
-                  {labInfo.location}
-                </span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', color: 'var(--color-text-secondary)' }}>
-                <Mail size={15} style={{ color: 'var(--color-accent)', flexShrink: 0 }} />
-                <a
-                  href={`mailto:${labInfo.email}`}
-                  style={{ color: 'var(--color-text-primary)', textDecoration: 'none' }}
-                >
-                  {labInfo.email}
-                </a>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px', color: 'var(--color-text-secondary)' }}>
-                <Phone size={15} style={{ color: 'var(--color-accent)', flexShrink: 0 }} />
-                <span>{labInfo.phone}</span>
-              </div>
-              <div style={{ marginTop: 'var(--space-2xs)' }}>
-                <a
-                  href={labInfo.notionContactLink}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="link-subtle"
-                  style={{ fontSize: '12.5px' }}
-                >
-                  <span>Admission Information (Notion)</span>
-                  <ExternalLink size={12} />
-                </a>
-              </div>
-            </div>
+          {/* DGIST University Logo */}
+          <div className="footer-logo-item" title="Daegu Gyeongbuk Institute of Science and Technology (DGIST)">
+            <img
+              src="/images/logopic/dgist_logo.png"
+              alt="DGIST Logo"
+              className="footer-logo-img dgist-logo"
+            />
           </div>
         </div>
 
-        {/* Bottom Bar: Copyright & System Coordinates */}
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: 'var(--space-sm)',
-            paddingTop: 'var(--space-md)',
-            fontSize: '12px',
-            fontFamily: 'var(--font-mono)',
-            color: 'var(--color-text-dim)',
-          }}
-        >
-          <div>
-            © {new Date().getFullYear()} Intelligent Radio Sensing (IRS) Laboratory, DGIST. All rights reserved.
-          </div>
-          <div style={{ display: 'flex', gap: 'var(--space-md)' }}>
-            <span>LOC: 35.7061° N, 128.4533° E</span>
-            <span>SYSTEM: REACT + TS</span>
-          </div>
+        {/* Concise Academic Affiliation & Address */}
+        <div className="footer-info-block">
+          <p className="footer-address-line">
+            Intelligent Radio Sensing Lab (#E3-406, DGIST), Department of Electrical Engineering and Computer Science (EECS) &amp; Department of Interdisciplinary Studies of Artificial Intelligence (AI), Daegu Gyeongbuk Institute of Science and Technology (DGIST), Republic of Korea
+          </p>
+          <p className="footer-copyright-line">
+            Copyright &copy; {new Date().getFullYear()} {labInfo.name}
+          </p>
         </div>
       </div>
+
+      <style>{`
+        .site-footer {
+          margin-top: auto;
+          border-top: 1px solid var(--color-border);
+          background-color: var(--color-bg-secondary);
+          padding-top: clamp(2rem, 3.5vw, 3rem);
+          padding-bottom: clamp(2rem, 3.5vw, 3rem);
+        }
+
+        .footer-logos-row {
+          display: flex;
+          align-items: center;
+          gap: 28px;
+          flex-wrap: wrap;
+          margin-bottom: 20px;
+        }
+
+        .footer-logo-item {
+          display: inline-flex;
+          align-items: center;
+        }
+
+        .footer-logo-img {
+          height: 38px;
+          width: auto;
+          max-width: 180px;
+          object-fit: contain;
+          display: block;
+          opacity: 0.9;
+          transition: opacity var(--transition-fast);
+        }
+
+        .footer-logo-img:hover {
+          opacity: 1;
+        }
+
+        .logo-light-only {
+          display: block;
+        }
+
+        .logo-dark-only {
+          display: none;
+        }
+
+        [data-theme='dark'] .logo-light-only {
+          display: none;
+        }
+
+        [data-theme='dark'] .logo-dark-only {
+          display: block;
+        }
+
+        [data-theme='dark'] .dgist-logo {
+          filter: brightness(1.2) contrast(1.05);
+        }
+
+        .footer-info-block {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          max-width: 980px;
+        }
+
+        .footer-address-line {
+          font-family: var(--font-sans);
+          font-size: 13.5px;
+          line-height: 1.6;
+          color: var(--color-text-secondary);
+          margin: 0;
+        }
+
+        .footer-copyright-line {
+          font-family: var(--font-sans);
+          font-size: 13px;
+          line-height: 1.5;
+          color: var(--color-text-muted);
+          margin: 0;
+        }
+      `}</style>
     </footer>
   );
 };
