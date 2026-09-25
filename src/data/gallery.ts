@@ -1,15 +1,14 @@
 import type { GalleryFolder, GalleryFolderItem } from '../types';
 
 // Automatically discover all gallery images in public/images/gallery
-const galleryImageModules = import.meta.glob<string>(
-  '/public/images/gallery/**/*.{jpg,jpeg,png,webp,gif,JPG,JPEG,PNG,WEBP,GIF}',
-  { eager: true, query: '?url', import: 'default' }
+const galleryImageGlobs = import.meta.glob(
+  '/public/images/gallery/**/*.{jpg,jpeg,png,webp,gif,JPG,JPEG,PNG,WEBP,GIF}'
 );
 
 // Group images by folder name
 const folderImageMap: Record<string, { src: string; filename: string }[]> = {};
 
-for (const [path, url] of Object.entries(galleryImageModules)) {
+for (const path of Object.keys(galleryImageGlobs)) {
   const match = path.match(/\/gallery\/([^/]+)\/([^/]+)$/);
   if (match) {
     const [, folder, filename] = match;
@@ -17,7 +16,7 @@ for (const [path, url] of Object.entries(galleryImageModules)) {
       folderImageMap[folder] = [];
     }
     folderImageMap[folder].push({
-      src: url,
+      src: `/images/gallery/${folder}/${filename}`,
       filename,
     });
   }
