@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Menu, X, Radio } from 'lucide-react';
 import { ThemeToggle } from '../common/ThemeToggle';
-import { labInfo } from '../../data/labInfo';
 
 interface HeaderProps {
   currentPage: string;
@@ -86,27 +85,40 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenS
           >
             <Radio size={15} />
           </div>
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <span
               style={{
                 fontFamily: 'var(--font-sans)',
-                fontWeight: 700,
-                fontSize: '16.5px',
+                fontWeight: 800,
+                fontSize: '17px',
                 letterSpacing: '-0.02em',
+                color: 'var(--color-accent)',
+              }}
+            >
+              IRS
+            </span>
+            <span
+              className="header-lab-fullname"
+              style={{
+                fontFamily: 'var(--font-sans)',
+                fontWeight: 600,
+                fontSize: '15px',
                 color: 'var(--color-text-primary)',
               }}
             >
-              IRS Lab
+              Intelligent Radio Sensing Lab, DGIST
             </span>
             <span
+              className="header-lab-shortname"
               style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '12px',
-                color: 'var(--color-text-muted)',
-                fontWeight: 500,
+                fontFamily: 'var(--font-sans)',
+                fontWeight: 600,
+                fontSize: '15px',
+                color: 'var(--color-text-primary)',
+                display: 'none',
               }}
             >
-              @ {labInfo.affiliation}
+              IRS Lab, DGIST
             </span>
           </div>
         </div>
@@ -277,6 +289,14 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenS
       )}
 
       <style>{`
+        @media (max-width: 1080px) {
+          .header-lab-fullname {
+            display: none !important;
+          }
+          .header-lab-shortname {
+            display: inline !important;
+          }
+        }
         @media (min-width: 860px) {
           .desktop-nav {
             display: flex !important;
