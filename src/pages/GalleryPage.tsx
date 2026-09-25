@@ -1,17 +1,34 @@
 import React, { useState } from 'react';
+import { Images } from 'lucide-react';
 import { galleryFolders } from '../data/gallery';
 import { ImageLightbox } from '../components/gallery/ImageLightbox';
+import type { GalleryFolder } from '../types';
 
 export const GalleryPage: React.FC = () => {
-  // Lightbox state
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [activeAlbumImages, setActiveAlbumImages] = useState<{ src: string; caption?: string }[]>([]);
+  const [selectedAlbum, setSelectedAlbum] = useState<GalleryFolder | null>(null);
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
 
-  const handleOpenLightbox = (images: { src: string; caption?: string }[], index: number) => {
-    setActiveAlbumImages(images);
-    setCurrentImgIndex(index);
-    setLightboxOpen(true);
+  const handleOpenAlbum = (album: GalleryFolder) => {
+    setSelectedAlbum(album);
+    setCurrentImgIndex(0);
+  };
+
+  const handleCloseLightbox = () => {
+    setSelectedAlbum(null);
+  };
+
+  const handlePrev = () => {
+    if (!selectedAlbum) return;
+    setCurrentImgIndex((prev) =>
+      prev > 0 ? prev - 1 : selectedAlbum.images.length - 1
+    );
+  };
+
+  const handleNext = () => {
+    if (!selectedAlbum) return;
+    setCurrentImgIndex((prev) =>
+      prev < selectedAlbum.images.length - 1 ? prev + 1 : 0
+    );
   };
 
   return (
@@ -26,107 +43,82 @@ export const GalleryPage: React.FC = () => {
         }}
       >
         <div className="container">
-          <h1 className="h1-title">
-            Gallery
-          </h1>
+          <h1 className="h1-title">Gallery</h1>
+          <p
+            style={{
+              marginTop: '8px',
+              color: 'var(--color-text-secondary)',
+              fontSize: '15px',
+            }}
+          >
+            Moments, academic conferences, seminar sessions, and laboratory life at IRS Lab.
+          </p>
         </div>
       </section>
 
-      {/* Albums Section */}
+      {/* Album Cards Grid */}
       <section style={{ paddingTop: 'var(--space-2xl)' }}>
-        <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3xl)' }}>
-          {galleryFolders.map((album) => (
-            <div key={album.id} id={album.id}>
-              {/* Album Sub-header */}
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'baseline',
-                  justifyContent: 'space-between',
-                  borderBottom: '1px solid var(--color-border)',
-                  paddingBottom: 'var(--space-xs)',
-                  marginBottom: 'var(--space-md)',
-                }}
-              >
-                <h3 className="h3-title" style={{ fontSize: '18px' }}>
-                  {album.title}
-                </h3>
-                <span className="metadata-text">{album.date}</span>
-              </div>
-
-              {/* Album Image Grid */}
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
-                  gap: 'var(--space-md)',
-                }}
-              >
-                {album.images.map((img, idx) => (
-                  <div
-                    key={idx}
-                    onClick={() => handleOpenLightbox(album.images, idx)}
-                    className="research-figure-frame"
-                    style={{
-                      cursor: 'pointer',
-                      aspectRatio: '4 / 3',
-                      backgroundColor: 'var(--color-bg-secondary)',
-                    }}
-                  >
-                    <img
-                      src={img.src}
-                      alt={img.caption || album.title}
-                      loading="lazy"
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        display: 'block',
-                      }}
-                    />
-                    {img.caption && (
-                      <div
-                        className="figure-caption"
-                        style={{
-                          position: 'absolute',
-                          bottom: 0,
-                          left: 0,
-                          right: 0,
-                          backgroundColor: 'rgba(11, 15, 20, 0.75)',
-                          color: '#ffffff',
-                          backdropFilter: 'blur(3px)',
-                          fontSize: '11.5px',
-                          padding: '4px 8px',
-                          borderTop: 'none',
-                          whiteSpace: 'nowrap',
-                          overflow: 'hidden',
-                          textOverflow: 'ellipsis',
-                        }}
-                      >
-                        {img.caption}
-                      </div>
+        <div className="container">
+          <div className="gallery-grid">
+            {galleryFolders.map((album) => {
+              const coverImage = album.images[0]?.src;
+              return (
+                <div
+                  key={album.id}
+                  className="gallery-card"
+                  onClick={() => handleOpenAlbum(album)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      handleOpenAlbum(album);
+                    }
+                  }}
+                  aria-label={`Open album: ${album.title} (${album.date})`}
+                >
+                  {/* Card Cover Thumbnail */}
+                  <div className="gallery-card-thumb-wrap">
+                    {coverImage && (
+                      <img
+                        src={coverImage}
+                        alt={album.title}
+                        loading="lazy"
+                        className="gallery-card-thumb"
+                      />
                     )}
+                    <div className="gallery-card-count-badge">
+                      <Images size={13} />
+                      <span>{album.images.length}</span>
+                    </div>
                   </div>
-                ))}
-              </div>
-            </div>
-          ))}
+
+                  {/* Card Body: Date and Title */}
+                  <div className="gallery-card-body">
+                    <span className="gallery-card-date">{album.date}</span>
+                    <h3 className="gallery-card-title">{album.title}</h3>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
-      {/* Lightbox Modal */}
-      <ImageLightbox
-        isOpen={lightboxOpen}
-        images={activeAlbumImages}
-        currentIndex={currentImgIndex}
-        onClose={() => setLightboxOpen(false)}
-        onPrev={() =>
-          setCurrentImgIndex((prev) => (prev > 0 ? prev - 1 : activeAlbumImages.length - 1))
-        }
-        onNext={() =>
-          setCurrentImgIndex((prev) => (prev < activeAlbumImages.length - 1 ? prev + 1 : 0))
-        }
-      />
+      {/* Lightbox / Slideshow Modal */}
+      {selectedAlbum && (
+        <ImageLightbox
+          isOpen={!!selectedAlbum}
+          albumTitle={selectedAlbum.title}
+          albumDate={selectedAlbum.date}
+          images={selectedAlbum.images}
+          currentIndex={currentImgIndex}
+          onClose={handleCloseLightbox}
+          onPrev={handlePrev}
+          onNext={handleNext}
+          onSelectIndex={(index) => setCurrentImgIndex(index)}
+        />
+      )}
     </div>
   );
 };
