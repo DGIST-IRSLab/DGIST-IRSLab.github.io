@@ -261,12 +261,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         .hero-group-photo {
           width: 100%;
           height: auto;
-          aspect-ratio: 16 / 11;
+          aspect-ratio: 16 / 10.8;
           object-fit: cover;
-          object-position: center 54%;
+          object-position: center 52%;
           display: block;
-          mask-image: radial-gradient(ellipse 49% 47% at 50% 53%, black 28%, rgba(0, 0, 0, 0.85) 50%, rgba(0, 0, 0, 0.32) 74%, transparent 97%);
-          -webkit-mask-image: radial-gradient(ellipse 49% 47% at 50% 53%, black 28%, rgba(0, 0, 0, 0.85) 50%, rgba(0, 0, 0, 0.32) 74%, transparent 97%);
+          mask-image: radial-gradient(ellipse 72% 64% at 50% 52%, black 84%, rgba(0, 0, 0, 0.25) 96%, transparent 100%);
+          -webkit-mask-image: radial-gradient(ellipse 72% 64% at 50% 52%, black 84%, rgba(0, 0, 0, 0.25) 96%, transparent 100%);
           transition: transform var(--transition-normal);
         }
 
