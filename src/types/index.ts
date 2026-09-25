@@ -84,13 +84,17 @@ export interface NewsItem {
   highlight?: boolean;
 }
 
-export interface GalleryFolder {
+export interface GalleryFolderItem {
   id: string;
   title: string;
   date: string;
   folder: string;
+}
+
+export interface GalleryFolder extends GalleryFolderItem {
   images: {
     src: string;
     caption?: string;
   }[];
 }
+
