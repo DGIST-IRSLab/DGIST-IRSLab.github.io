@@ -102,16 +102,6 @@ export const postdocs: Person[] = [
 
 export const graduateStudents: Person[] = [
   {
-    id: "seongryeong-lee",
-    name: "Seongryeong Lee",
-    nameKr: "이성령",
-    role: "Ph.D. Student",
-    title: "Ph.D. Student",
-    photo: "/images/teampic/standard/student_LSR.jpg",
-    email: "seongryeong.lee@dgist.ac.kr",
-    researchInterests: ["Radar Signal Processing", "Physical AI", "Micro-Doppler Kinematics"]
-  },
-  {
     id: "jaehyeon-kim",
     name: "Jaehyeon Kim",
     nameKr: "김재현",
