@@ -20,7 +20,6 @@ interface PIPageProps {
 
 export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
   const [photoError, setPhotoError] = useState(false);
-  const [specialHover, setSpecialHover] = useState(false);
 
   return (
     <div className="pi-page-root" style={{ paddingBottom: 'var(--space-section)' }}>
@@ -67,38 +66,19 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
       <section style={{ paddingTop: 'var(--space-2xl)' }}>
         <div className="container">
           <div className="pi-profile-grid">
-            {/* Left: ID Photo & Quick Links */}
+            {/* Left: Photo & Quick Links */}
             <div className="pi-photo-col">
-              <div
-                className="pi-photo-wrapper"
-                onMouseEnter={() => setSpecialHover(true)}
-                onMouseLeave={() => setSpecialHover(false)}
-                title="Hover for field photo"
-              >
+              <div className="pi-photo-wrapper">
                 {!photoError ? (
-                  <>
-                    <img
-                      src={professorData.photo}
-                      alt={professorData.name}
-                      onError={() => setPhotoError(true)}
-                      className={`pi-portrait-img ${specialHover && professorData.specialPhoto ? 'hovered-out' : ''}`}
-                    />
-                    {professorData.specialPhoto && (
-                      <img
-                        src={professorData.specialPhoto}
-                        alt={`${professorData.name} field`}
-                        className={`pi-portrait-special ${specialHover ? 'hovered-in' : ''}`}
-                      />
-                    )}
-                  </>
+                  <img
+                    src={professorData.photo}
+                    alt={professorData.name}
+                    onError={() => setPhotoError(true)}
+                    className="pi-portrait-img"
+                  />
                 ) : (
                   <div className="pi-photo-fallback">
                     <span>Prof. Jae-Ho Choi</span>
-                  </div>
-                )}
-                {professorData.specialPhoto && (
-                  <div className="pi-photo-caption-hint">
-                    {specialHover ? 'Yosemite (Stanford Postdoc)' : 'ID Photo (Hover for field)'}
                   </div>
                 )}
               </div>
@@ -468,48 +448,8 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          object-position: center 20%;
+          object-position: center center;
           display: block;
-          transition: opacity 0.35s ease, transform 0.35s ease;
-        }
-
-        .pi-portrait-img.hovered-out {
-          opacity: 0;
-          transform: scale(1.03);
-        }
-
-        .pi-portrait-special {
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: 67% 40%;
-          display: block;
-          opacity: 0;
-          transition: opacity 0.35s ease, transform 0.35s ease;
-          transform: scale(0.98);
-        }
-
-        .pi-portrait-special.hovered-in {
-          opacity: 1;
-          transform: scale(1);
-        }
-
-        .pi-photo-caption-hint {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          padding: 6px 10px;
-          background: rgba(0, 0, 0, 0.65);
-          backdrop-filter: blur(4px);
-          color: #f3f4f6;
-          font-family: var(--font-mono);
-          font-size: 11px;
-          text-align: center;
-          letter-spacing: 0.02em;
-          pointer-events: none;
         }
 
         .pi-photo-fallback {
