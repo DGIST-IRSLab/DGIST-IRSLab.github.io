@@ -200,9 +200,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onNav
 
           {!cleanQuery && (
             <div style={{ color: 'var(--color-text-secondary)', padding: 'var(--space-sm) 0' }}>
-              <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--color-text-muted)', marginBottom: 'var(--space-xs)' }}>
-                Quick Shortcuts
-              </div>
+              <span className="eyebrow">QUICK DIRECTORY SHORTCUTS</span>
               <div
                 style={{
                   display: 'grid',
@@ -215,6 +213,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onNav
                   { label: 'Research Topics', page: 'research' },
                   { label: 'Publications', page: 'publications' },
                   { label: 'Lab Members', page: 'people' },
+                  { label: 'Activity News', page: 'news' },
                   { label: 'Join IRS Lab', page: 'join' },
                 ].map((item) => (
                   <button
@@ -247,7 +246,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onNav
                 }}
               >
                 <Radio size={14} style={{ color: 'var(--color-accent)' }} />
-                <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--color-text-secondary)' }}>Research Themes</span>
+                <span className="eyebrow" style={{ marginBottom: 0 }}>RESEARCH THEMES</span>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xs)' }}>
                 {matchingTopics.map((topic) => (
@@ -289,7 +288,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onNav
                 }}
               >
                 <FileText size={14} style={{ color: 'var(--color-accent)' }} />
-                <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--color-text-secondary)' }}>Publications</span>
+                <span className="eyebrow" style={{ marginBottom: 0 }}>PUBLICATIONS</span>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xs)' }}>
                 {matchingPubs.map((pub) => (
@@ -343,7 +342,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onNav
                 }}
               >
                 <User size={14} style={{ color: 'var(--color-accent)' }} />
-                <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--color-text-secondary)' }}>People</span>
+                <span className="eyebrow" style={{ marginBottom: 0 }}>PEOPLE</span>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xs)' }}>
                 {matchingPeople.map((person) => (
@@ -395,14 +394,14 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onNav
                 }}
               >
                 <Newspaper size={14} style={{ color: 'var(--color-accent)' }} />
-                <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--color-text-secondary)' }}>News</span>
+                <span className="eyebrow" style={{ marginBottom: 0 }}>NEWS & ANNOUNCEMENTS</span>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xs)' }}>
                 {matchingNews.map((item) => (
                   <div
                     key={item.id}
                     onClick={() => {
-                      onNavigate('home', item.id);
+                      onNavigate('news', item.id);
                       onClose();
                     }}
                     style={{

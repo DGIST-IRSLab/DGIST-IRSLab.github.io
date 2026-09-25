@@ -9,20 +9,30 @@ interface HomePageProps {
 }
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
-  // Category filter for News on the homepage
-  const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   const INITIAL_COUNT = 5;
 
-  // Filtered news items
-  const allFilteredNews = selectedCategory === 'ALL'
-    ? newsItems
-    : newsItems.filter((item) => item.category === selectedCategory);
-
   const displayedNews = isExpanded
-    ? allFilteredNews
-    : allFilteredNews.slice(0, INITIAL_COUNT);
+    ? newsItems
+    : newsItems.slice(0, INITIAL_COUNT);
+
+  const getCategoryEmoji = (category: string) => {
+    switch (category) {
+      case 'AWARD':
+        return '🏆';
+      case 'PAPER':
+        return '📝';
+      case 'GRANT':
+        return '💰';
+      case 'PEOPLE':
+        return '👥';
+      case 'TALK':
+        return '📢';
+      default:
+        return '📣';
+    }
+  };
 
   const getCategoryClass = (category: string) => {
     switch (category) {
@@ -110,37 +120,24 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       </section>
 
       {/* ====================================================================
-          3. NEWS (Clean "News" heading only, no subheadings or descriptions)
+          3. NEWS (Clean "News" heading only, no category filter)
           ==================================================================== */}
       <section className="news-section">
         <div className="container">
           {/* Section Header */}
           <div className="news-section-header">
             <h2 className="news-heading">News</h2>
-
-            {/* Category Filter Pills */}
-            <div className="news-filter-pills">
-              {['ALL', 'PAPER', 'GRANT', 'AWARD', 'PEOPLE'].map((cat) => (
-                <button
-                  key={cat}
-                  type="button"
-                  onClick={() => setSelectedCategory(cat)}
-                  className={`news-filter-btn ${selectedCategory === cat ? 'active' : ''}`}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
           </div>
 
           {/* News List Items */}
           <div className="news-stream-container">
             {displayedNews.map((item) => (
               <div key={item.id} className="news-item-row">
-                {/* Category */}
+                {/* Category with Emoji */}
                 <div className="news-item-cat">
                   <span className={`news-cat-pill ${getCategoryClass(item.category)}`}>
-                    {item.category}
+                    <span className="news-cat-emoji">{getCategoryEmoji(item.category)}</span>
+                    <span>{item.category}</span>
                   </span>
                 </div>
 
@@ -165,7 +162,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           </div>
 
           {/* Footer of News Section: Expand / Collapse Toggle */}
-          {allFilteredNews.length > INITIAL_COUNT && (
+          {newsItems.length > INITIAL_COUNT && (
             <div className="news-section-footer">
               <button
                 type="button"
@@ -174,7 +171,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 style={{ fontSize: '14px', gap: '6px' }}
               >
                 <span>
-                  {isExpanded ? 'Collapse' : `Expand (${allFilteredNews.length - INITIAL_COUNT} more)`}
+                  {isExpanded ? 'Collapse' : `Expand (${newsItems.length - INITIAL_COUNT} more)`}
                 </span>
                 {isExpanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
               </button>
@@ -337,34 +334,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           line-height: 1.15;
         }
 
-        .news-filter-pills {
-          display: inline-flex;
-          align-items: center;
-          gap: var(--space-md);
-        }
-
-        .news-filter-btn {
-          background: none;
-          border: none;
-          padding: 4px 0;
-          font-family: var(--font-sans);
-          font-size: 14px;
-          font-weight: 500;
-          color: var(--color-text-muted);
-          cursor: pointer;
-          transition: all var(--transition-fast);
-          border-bottom: 1px solid transparent;
-        }
-
-        .news-filter-btn:hover {
-          color: var(--color-text-primary);
-        }
-
-        .news-filter-btn.active {
-          color: var(--color-accent);
-          border-bottom: 1px solid var(--color-accent);
-        }
-
         .news-stream-container {
           display: flex;
           flex-direction: column;
@@ -373,7 +342,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
         .news-item-row {
           display: grid;
-          grid-template-columns: 80px 80px 1fr;
+          grid-template-columns: 110px 75px 1fr;
           align-items: baseline;
           padding: 14px 0;
           border-bottom: 1px solid var(--color-border-subtle);
@@ -400,10 +369,16 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         .news-cat-pill {
           display: inline-flex;
           align-items: center;
+          gap: 6px;
           font-family: var(--font-sans);
           font-size: 13px;
           font-weight: 600;
           letter-spacing: 0.02em;
+        }
+
+        .news-cat-emoji {
+          font-size: 13px;
+          line-height: 1;
         }
 
         .cat-badge-paper {

@@ -71,8 +71,8 @@ export const graduateStudents: Person[] = [
     id: "jaehyeon-kim",
     name: "Jaehyeon Kim",
     nameKr: "김재현",
-    role: "Joint MS & PhD",
-    title: "Joint MS & Ph.D. Student",
+    role: "Integrated M.S./Ph.D.",
+    title: "Integrated M.S./Ph.D. Student",
     photo: "/images/teampic/student_jaehyun.jpg",
     email: "sks05248@dgist.ac.kr",
     researchInterests: ["mmWave Radar 3D Pose Estimation", "Foundation Models for Radar", "LLM Radar Understanding"]
@@ -81,8 +81,8 @@ export const graduateStudents: Person[] = [
     id: "jihyuck-hong",
     name: "Ji-Hyuck Hong",
     nameKr: "홍지혁",
-    role: "Joint MS & PhD",
-    title: "Joint MS & Ph.D. Student",
+    role: "Integrated M.S./Ph.D.",
+    title: "Integrated M.S./Ph.D. Student",
     photo: "/images/teampic/student_jihyeok.jpg",
     email: "jh.hong@dgist.ac.kr",
     researchInterests: ["Maritime Radar Signal Processing", "UAV Micro-Doppler Augmentation", "IEEE GRSS Seoul Chapter Awardee"]
@@ -91,8 +91,8 @@ export const graduateStudents: Person[] = [
     id: "jaeryong-lee",
     name: "Jaeryong Lee",
     nameKr: "이재룡",
-    role: "Joint MS & PhD",
-    title: "Joint MS & Ph.D. Student",
+    role: "Integrated M.S./Ph.D.",
+    title: "Integrated M.S./Ph.D. Student",
     photo: "/images/teampic/student_LJR2.jpg",
     email: "wofyd0826@dgist.ac.kr",
     researchInterests: ["Diffusion Models for Radar-Camera Fusion", "Metric Depth Estimation", "Sensor Fusion"]
@@ -100,9 +100,9 @@ export const graduateStudents: Person[] = [
   {
     id: "seungeun-kang",
     name: "Seungeun Kang",
-    nameKr: "강승은",
-    role: "Joint MS & PhD",
-    title: "Joint MS & Ph.D. Student",
+    nameKr: "강성은",
+    role: "Integrated M.S./Ph.D.",
+    title: "Integrated M.S./Ph.D. Student",
     photo: "/images/teampic/student_KSE2.jpg",
     email: "seungeun.kang@dgist.ac.kr",
     researchInterests: ["Wireless AI", "Contactless Sensing", "Signal Representation Learning"]

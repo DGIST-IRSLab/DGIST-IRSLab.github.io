@@ -50,7 +50,7 @@ export interface Person {
   id: string;
   name: string;
   nameKr?: string;
-  role: 'Professor' | 'Postdoc Fellow' | 'Ph.D. Student' | 'Joint MS & PhD' | 'MS Student' | 'Undergraduate Researcher' | 'Alumni';
+  role: 'Professor' | 'Postdoc Fellow' | 'Ph.D. Student' | 'Integrated M.S./Ph.D.' | 'Integrated Ph.D.' | 'Joint MS & PhD' | 'MS Student' | 'Undergraduate Researcher' | 'Alumni';
   title: string;
   photo: string;
   email?: string;
