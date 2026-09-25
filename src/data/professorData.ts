@@ -204,7 +204,7 @@ export const professorData = {
     },
     {
       id: "nrf-typeb-2026",
-      title: "신진연구-유형B (다중 주파수, 다중 변조, 다중 환경 통합 학습 기반 레이더 파운데이션 모델 연구)",
+      title: "신진연구-유형B(다중 주파수, 다중 변조, 다중 환경 통합 학습 기반 레이더 파운데이션 모델 연구)",
       agency: "NRF (National Research Foundation of Korea)",
       agencyBadge: "NRF",
       period: "2026.03 ~ 2031.02",
@@ -212,7 +212,7 @@ export const professorData = {
     },
     {
       id: "add-moonshot-2025",
-      title: "룬샷프로젝트 (Physical AI 기반 고속 군집 자폭 무인수상정 대응 체계 연구)",
+      title: "룬샷프로젝트(Physical AI 기반 고속 군집 자폭 무인수상정 대응 체계 연구)",
       agency: "ADD (Agency for Defense Development)",
       agencyBadge: "ADD",
       period: "2025.12 ~ 2026.11",
@@ -228,7 +228,7 @@ export const professorData = {
     },
     {
       id: "msit-innocore-llm-2025",
-      title: "InnoCore (LLM 2.0: Inference Enhancement, Domain Specialization, Multimodal Expansion, and Trustworthy AI)",
+      title: "InnoCore(LLM 2.0: Inference Enhancement, Domain Specialization, Multimodal Expansion, and Trustworthy AI)",
       agency: "MSIT (Ministry of Science and ICT)",
       agencyBadge: "MSIT",
       period: "2025.07 ~ 2029.12",
@@ -236,7 +236,7 @@ export const professorData = {
     },
     {
       id: "msit-innocore-bio-2025",
-      title: "InnoCore (Trust-Enhanced Mutualistic Bio-Embedded AI)",
+      title: "InnoCore(Trust-Enhanced Mutualistic Bio-Embedded AI)",
       agency: "MSIT (Ministry of Science and ICT)",
       agencyBadge: "MSIT",
       period: "2025.07 ~ 2029.12",
@@ -244,7 +244,7 @@ export const professorData = {
     },
     {
       id: "msit-star-2025",
-      title: "AI Starfellowship (AI 스타펠로우십사업)",
+      title: "AI Starfellowship",
       agency: "MSIT (Ministry of Science and ICT)",
       agencyBadge: "MSIT",
       period: "2025.04 ~ 2030.12",
@@ -252,7 +252,7 @@ export const professorData = {
     },
     {
       id: "dgist-startup-2025",
-      title: "DGIST Start-Up Grant (정착연구지원과제)",
+      title: "DGIST Start-Up Grant",
       agency: "DGIST",
       agencyBadge: "DGIST",
       period: "2025.01 ~ 2028.12",
@@ -264,18 +264,10 @@ export const professorData = {
     areaChair: ["NeurIPS’26"],
     tpc: ["AAAI’26"],
     reviewerConferences: [
-      "CVPR", "ICCV", "ECCV", "NeurIPS", "AAAI", "BMVC", "WACV"
+      "CVPR, ICCV, ECCV, NeurIPS, AAAI, BMVC, WACV etc."
     ],
     reviewerJournals: [
-      "IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI)",
-      "IEEE Transactions on Image Processing (TIP)",
-      "IEEE Internet of Things Journal (IoTJ)",
-      "IEEE Sensors Journal (SensJ)",
-      "IEEE Transactions on Mobile Computing (TMC)",
-      "IEEE Transactions on Geoscience and Remote Sensing (TGRS)",
-      "IEEE Transactions on Microwave Theory and Techniques (TMTT)",
-      "IEEE Transactions on Aerospace and Electronic Systems (TAES)",
-      "IEEE Signal Processing Letters (SPL)"
+      "IEEE TPAMI, IEEE TIP, IEEE IoTJ, IEEE SensJ, IEEE TMC, IEEE TGRS, IEEE TMTT, IEEE TAES, IEEE SPL, etc."
     ]
   } as AcademicService,
 
@@ -292,7 +284,7 @@ export const professorData = {
     },
     {
       title: "AI-Based Radar/Sonar microDoppler",
-      venue: "한국해양과학기술원 (KIOST)",
+      venue: "한국해양과학기술원",
       date: "2025.12"
     },
     {
@@ -302,12 +294,12 @@ export const professorData = {
     },
     {
       title: "Radio+AI: Wireless Perception beyond Human Vision",
-      venue: "DGIST EECS / AI Colloquium",
+      venue: "DGIST-EECS/AI",
       date: "2025.05"
     },
     {
       title: "Radio+AI: Wireless Perception beyond Human Vision",
-      venue: "POSTECH EE Seminar",
+      venue: "POSTECH-EE",
       date: "2025.05"
     },
     {

@@ -6,7 +6,6 @@ import {
   ExternalLink,
   GraduationCap,
   Briefcase,
-  Calendar,
   FileText,
   User,
   Radio
@@ -241,46 +240,27 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* Funded Research Projects Section (과제정보) */}
+      {/* Projects Section */}
       <section id="pi-projects" style={{ paddingTop: 'var(--space-2xl)' }}>
         <div className="container">
           <SectionHeader
             title="Projects"
-            description="Funded national and industrial research initiatives led and contributed by Prof. Jae-Ho Choi"
           />
 
-          <div className="pi-projects-list">
+          <ul className="pi-plain-list">
             {professorData.projects.map((proj, idx) => (
-              <div key={proj.id || idx} className="pi-project-row">
-                {/* Left Meta: Period & Agency */}
-                <div className="pi-proj-meta">
-                  <span className="pi-proj-agency-badge">{proj.agencyBadge}</span>
-                  <div className="pi-proj-period-wrap">
-                    <span className="pi-proj-period">{proj.period}</span>
-                    {proj.totalPeriod && (
-                      <span className="pi-proj-total-period">({proj.totalPeriod})</span>
-                    )}
-                  </div>
-                </div>
-
-                {/* Right Body: Title & Details */}
-                <div className="pi-proj-body">
-                  <div className="pi-proj-header">
-                    <h4 className="pi-proj-title">{proj.title}</h4>
-                  </div>
-                  <div className="pi-proj-footer-info">
-                    <span className="pi-proj-agency-name">{proj.agency}</span>
-                    {proj.role && (
-                      <>
-                        <span className="pi-proj-bullet">&bull;</span>
-                        <span className="pi-proj-role">{proj.role}</span>
-                      </>
-                    )}
-                  </div>
-                </div>
-              </div>
+              <li key={proj.id || idx} className="pi-plain-item">
+                <span className="pi-plain-title">{proj.title}</span>
+                <span className="pi-plain-dash"> - </span>
+                <span className="pi-plain-agency">{proj.agencyBadge}</span>
+                <span className="pi-plain-dash"> - </span>
+                <span className="pi-plain-period">
+                  {proj.period}
+                  {proj.totalPeriod && proj.totalPeriod !== proj.period && ` (${proj.totalPeriod})`}
+                </span>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
@@ -289,58 +269,35 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
         <div className="container">
           <SectionHeader
             title="Academic Service"
-            description="Professional contributions to international machine learning and signal processing communities"
           />
 
-          <div className="pi-service-grid">
-            {/* Area Chair */}
-            <div className="pi-service-box">
-              <div className="pi-service-box-header">
-                <span className="pi-service-type">Area Chair</span>
-              </div>
-              <ul className="pi-service-items">
+          <div className="pi-service-section">
+            <div className="pi-service-group">
+              <h3 className="pi-service-heading">Area Chair</h3>
+              <ul className="pi-plain-list">
                 {professorData.academicService.areaChair.map((item, idx) => (
-                  <li key={idx} className="pi-service-badge-item">
-                    {item}
-                  </li>
+                  <li key={idx} className="pi-plain-item">{item}</li>
                 ))}
               </ul>
             </div>
 
-            {/* Technical Program Committee */}
-            <div className="pi-service-box">
-              <div className="pi-service-box-header">
-                <span className="pi-service-type">Technical Program Committee</span>
-              </div>
-              <ul className="pi-service-items">
+            <div className="pi-service-group">
+              <h3 className="pi-service-heading">Technical Program Committee</h3>
+              <ul className="pi-plain-list">
                 {professorData.academicService.tpc.map((item, idx) => (
-                  <li key={idx} className="pi-service-badge-item">
-                    {item}
-                  </li>
+                  <li key={idx} className="pi-plain-item">{item}</li>
                 ))}
               </ul>
             </div>
 
-            {/* Conference Reviewer */}
-            <div className="pi-service-box">
-              <div className="pi-service-box-header">
-                <span className="pi-service-type">Conference Reviewer</span>
-              </div>
-              <p className="pi-service-text">
-                {professorData.academicService.reviewerConferences.join(', ')}
-              </p>
-            </div>
-
-            {/* Journal Reviewer */}
-            <div className="pi-service-box">
-              <div className="pi-service-box-header">
-                <span className="pi-service-type">Journal Reviewer</span>
-              </div>
-              <ul className="pi-journal-list">
-                {professorData.academicService.reviewerJournals.map((journal, idx) => (
-                  <li key={idx} className="pi-journal-item">
-                    {journal}
-                  </li>
+            <div className="pi-service-group">
+              <h3 className="pi-service-heading">Reviewer</h3>
+              <ul className="pi-plain-list">
+                {professorData.academicService.reviewerConferences.map((item, idx) => (
+                  <li key={idx} className="pi-plain-item">{item}</li>
+                ))}
+                {professorData.academicService.reviewerJournals.map((item, idx) => (
+                  <li key={idx} className="pi-plain-item">{item}</li>
                 ))}
               </ul>
             </div>
@@ -353,23 +310,15 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
         <div className="container">
           <SectionHeader
             title="Invited Talks"
-            description="Selected keynote speeches, technical seminars, and invited presentations"
           />
 
-          <div className="pi-talks-list">
+          <ul className="pi-plain-list">
             {professorData.invitedTalks.map((talk, idx) => (
-              <div key={idx} className="pi-talk-row">
-                <div className="pi-talk-date">
-                  <Calendar size={14} className="pi-talk-icon" />
-                  <span>{talk.date}</span>
-                </div>
-                <div className="pi-talk-body">
-                  <div className="pi-talk-title">{talk.title}</div>
-                  <div className="pi-talk-venue">{talk.venue}</div>
-                </div>
-              </div>
+              <li key={idx} className="pi-plain-item">
+                &ldquo;{talk.title}&rdquo;, {talk.venue}, {talk.date}
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
@@ -706,244 +655,58 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
           margin: 0;
         }
 
-        /* Projects List (과제정보) */
-        .pi-projects-list {
-          display: flex;
-          flex-direction: column;
-          border: 1px solid var(--color-border);
-          border-radius: var(--radius-sm);
-          background-color: var(--color-surface);
-          overflow: hidden;
-        }
-
-        .pi-project-row {
-          display: grid;
-          grid-template-columns: 240px 1fr;
-          gap: var(--space-lg);
-          padding: 18px 24px;
-          border-bottom: 1px solid var(--color-border-subtle);
-          align-items: baseline;
-          transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .pi-project-row:last-child {
-          border-bottom: none;
-        }
-
-        .pi-project-row:hover {
-          background-color: var(--color-surface-hover);
-          transform: translateX(5px);
-        }
-
-        .pi-proj-meta {
-          display: flex;
-          flex-direction: column;
-          gap: 6px;
-        }
-
-        .pi-proj-agency-badge {
-          display: inline-block;
-          align-self: flex-start;
-          font-family: var(--font-mono);
-          font-size: 11px;
-          font-weight: 700;
-          padding: 2px 8px;
-          border-radius: var(--radius-xs);
-          background-color: var(--color-accent-subtle);
-          color: var(--color-accent);
-          border: 1px solid var(--color-accent-border);
-          letter-spacing: 0.04em;
-        }
-
-        .pi-proj-period-wrap {
-          display: flex;
-          flex-direction: column;
-          font-family: var(--font-mono);
-          font-size: 12.5px;
-          color: var(--color-text-muted);
-          line-height: 1.4;
-        }
-
-        .pi-proj-total-period {
-          font-size: 11px;
-          color: var(--color-text-dim);
-        }
-
-        .pi-proj-body {
-          display: flex;
-          flex-direction: column;
-          gap: 6px;
-        }
-
-        .pi-proj-title {
-          font-size: 15px;
-          font-weight: 600;
-          line-height: 1.45;
+        /* Plain Academic Lists (Projects, Service, Talks) */
+        .pi-plain-list {
+          list-style: disc;
+          padding-left: 20px;
           margin: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .pi-plain-item {
+          font-size: 14.5px;
+          line-height: 1.6;
+          color: var(--color-text-secondary);
+        }
+
+        .pi-plain-title {
           color: var(--color-text-primary);
         }
 
-        .pi-proj-footer-info {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          font-size: 12.5px;
-          color: var(--color-text-secondary);
-          flex-wrap: wrap;
-        }
-
-        .pi-proj-agency-name {
-          color: var(--color-text-secondary);
-        }
-
-        .pi-proj-bullet {
-          color: var(--color-text-dim);
-        }
-
-        .pi-proj-role {
-          font-family: var(--font-mono);
-          color: var(--color-accent);
+        .pi-plain-agency {
+          color: var(--color-text-primary);
           font-weight: 500;
         }
 
-        /* Academic Service */
-        .pi-service-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: var(--space-lg);
-        }
-
-        .pi-service-box {
-          background-color: var(--color-surface);
-          border: 1px solid var(--color-border);
-          border-radius: var(--radius-sm);
-          padding: var(--space-lg);
-        }
-
-        .pi-service-box-header {
-          margin-bottom: 12px;
-          padding-bottom: 8px;
-          border-bottom: 1px solid var(--color-border-subtle);
-        }
-
-        .pi-service-type {
-          font-family: var(--font-mono);
-          font-size: 12.5px;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.04em;
-          color: var(--color-accent);
-        }
-
-        .pi-service-items {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          display: flex;
-          flex-wrap: wrap;
-          gap: 8px;
-        }
-
-        .pi-service-badge-item {
-          display: inline-block;
-          font-size: 13.5px;
-          font-weight: 600;
-          padding: 4px 10px;
-          border-radius: var(--radius-xs);
-          background-color: var(--color-bg-secondary);
-          border: 1px solid var(--color-border);
-          color: var(--color-text-primary);
-        }
-
-        .pi-service-text {
-          font-size: 14px;
-          line-height: 1.6;
+        .pi-plain-period {
           color: var(--color-text-secondary);
-          margin: 0;
         }
 
-        .pi-journal-list {
-          list-style: none;
-          padding: 0;
-          margin: 0;
+        .pi-plain-dash {
+          color: var(--color-text-muted);
+          user-select: none;
+        }
+
+        .pi-service-section {
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+        }
+
+        .pi-service-group {
           display: flex;
           flex-direction: column;
           gap: 8px;
         }
 
-        .pi-journal-item {
-          font-size: 13.5px;
-          line-height: 1.45;
-          color: var(--color-text-secondary);
-          padding-left: 14px;
-          position: relative;
-        }
-
-        .pi-journal-item::before {
-          content: '—';
-          position: absolute;
-          left: 0;
-          color: var(--color-text-dim);
-        }
-
-        /* Invited Talks */
-        .pi-talks-list {
-          display: flex;
-          flex-direction: column;
-          border: 1px solid var(--color-border);
-          border-radius: var(--radius-sm);
-          background-color: var(--color-surface);
-          overflow: hidden;
-        }
-
-        .pi-talk-row {
-          display: grid;
-          grid-template-columns: 140px 1fr;
-          gap: var(--space-md);
-          padding: 16px 20px;
-          border-bottom: 1px solid var(--color-border-subtle);
-          align-items: baseline;
-          transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .pi-talk-row:last-child {
-          border-bottom: none;
-        }
-
-        .pi-talk-row:hover {
-          background-color: var(--color-surface-hover);
-          transform: translateX(5px);
-        }
-
-        .pi-talk-date {
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          font-family: var(--font-mono);
-          font-size: 13px;
-          font-weight: 600;
-          color: var(--color-accent);
-        }
-
-        .pi-talk-icon {
-          opacity: 0.8;
-        }
-
-        .pi-talk-body {
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
-        }
-
-        .pi-talk-title {
-          font-size: 15px;
+        .pi-service-heading {
+          font-family: var(--font-sans);
+          font-size: 15.5px;
           font-weight: 600;
           color: var(--color-text-primary);
-        }
-
-        .pi-talk-venue {
-          font-size: 13.5px;
-          color: var(--color-text-secondary);
+          margin: 0;
         }
 
         /* Responsive Breakpoints */
@@ -959,19 +722,8 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
           }
 
           .pi-twocol-grid,
-          .pi-interests-grid,
-          .pi-service-grid {
+          .pi-interests-grid {
             grid-template-columns: 1fr;
-          }
-
-          .pi-project-row {
-            grid-template-columns: 1fr;
-            gap: 8px;
-          }
-
-          .pi-talk-row {
-            grid-template-columns: 1fr;
-            gap: 4px;
           }
         }
       `}</style>
