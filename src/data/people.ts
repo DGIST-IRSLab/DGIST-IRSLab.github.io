@@ -183,7 +183,7 @@ export const graduateStudents: Person[] = [
     title: "Integrated M.S./Ph.D. Student",
     photo: "/images/teampic/standard/student_jihyeok.jpg",
     email: "jh.hong@dgist.ac.kr",
-    researchInterests: ["Maritime Radar Signal Processing", "UAV Micro-Doppler Augmentation", "IEEE GRSS Seoul Chapter Awardee"]
+    researchInterests: ["Digital Twin", "UAV", "Radar Sim2Real"]
   },
   {
     id: "jaeryong-lee",
@@ -193,7 +193,7 @@ export const graduateStudents: Person[] = [
     title: "Integrated M.S./Ph.D. Student",
     photo: "/images/teampic/standard/student_LJR2.jpg",
     email: "wofyd0826@dgist.ac.kr",
-    researchInterests: ["Diffusion Models for Radar-Camera Fusion", "Metric Depth Estimation", "Sensor Fusion"]
+    researchInterests: ["Radar for Autonomous Driving", "Radar-Camera Fusion"]
   },
   {
     id: "seungeun-kang",
@@ -204,7 +204,7 @@ export const graduateStudents: Person[] = [
     photo: "/images/teampic/standard/student_KSE2.jpg",
     specialPhoto: "/images/teampic/special/student_KSE.jpg",
     email: "seungeun.kang@dgist.ac.kr",
-    researchInterests: ["Wireless AI", "Contactless Sensing", "Signal Representation Learning"]
+    researchInterests: ["Language Models for Radar", "Sensor Fusion"]
   },
   {
     id: "eunchan-kim",
@@ -214,7 +214,7 @@ export const graduateStudents: Person[] = [
     title: "M.S. Student",
     photo: "/images/teampic/standard/student_eunchan.jpg",
     email: "eunchan.kim@dgist.ac.kr",
-    researchInterests: ["Masked Autoencoders for Radar", "Self-Supervised Learning", "Range-Doppler Detection"]
+    researchInterests: ["Radar-Specific Self-Supervised Learning", "Radar for Autonomous Driving"]
   },
   {
     id: "donguk-ko",
@@ -224,7 +224,7 @@ export const graduateStudents: Person[] = [
     title: "M.S. Student",
     photo: "/images/teampic/standard/student_DW.jpg",
     email: "duko@dgist.ac.kr",
-    researchInterests: ["LLMs for mmWave Data", "Multimodal Benchmarking", "Signal Processing"]
+    researchInterests: ["LLMs for mmWave Data", "Multimodal Benchmarking"]
   },
   {
     id: "bumjoon-kim",
@@ -234,7 +234,7 @@ export const graduateStudents: Person[] = [
     title: "M.S. Student",
     photo: "/images/teampic/standard/student_BJK.jpg",
     email: "bj1430@dgist.ac.kr",
-    researchInterests: ["RF Sensing Systems", "Hardware Testbeds", "Real-Time Embedded AI"]
+    researchInterests: ["RF Sensing Systems", "Wi-Fi CSI/BFI Sensing"]
   },
   {
     id: "minkyoung-shim",
@@ -244,7 +244,7 @@ export const graduateStudents: Person[] = [
     title: "M.S. Student",
     photo: "/images/teampic/standard/student_MKS.jpg",
     email: "musum129@dgist.ac.kr",
-    researchInterests: ["Physiological Sensing", "Contactless Vital Monitoring", "Deep Signal Analysis"]
+    researchInterests: ["Physiological Sensing", "Contactless Vital Monitoring", "Deep Signal Processing"]
   },
   {
     id: "jeongwoo-han",
@@ -254,7 +254,7 @@ export const graduateStudents: Person[] = [
     title: "M.S. Student",
     photo: "/images/teampic/standard/student_JWH.jpg",
     email: "hanjw927@dgist.ac.kr",
-    researchInterests: ["Radar Signal Processing", "Autonomous Vehicle Perception", "Spatial Clustering"]
+    researchInterests: ["Synthetic Aperture Radar", "Radar-Specific Super-Resolution"]
   },
   {
     id: "minjae-kim",
@@ -264,7 +264,7 @@ export const graduateStudents: Person[] = [
     title: "M.S. Student",
     photo: "/images/teampic/standard/student_KMJ.jpg",
     email: "minjaek@dgist.ac.kr",
-    researchInterests: ["Multimodal Fusion", "Complex Neural Networks", "Sensing Under Darkness"]
+    researchInterests: ["5G Integrated Sensing and Communication"]
   }
 ];
 
@@ -277,7 +277,7 @@ export const undergraduateResearchers: Person[] = [
     title: "Undergraduate Researcher",
     photo: "/images/teampic/standard/student_JW.jpg",
     email: "jaeoneyun@dgist.ac.kr",
-    researchInterests: ["Radar Signal Processing", "Machine Learning"]
+    researchInterests: ["Radar Vital Sign Processing"]
   },
   {
     id: "yunjung-jeong",
@@ -288,7 +288,7 @@ export const undergraduateResearchers: Person[] = [
     photo: "/images/teampic/standard/student_YJJ.jpg",
     email: "ak0147@dgist.ac.kr",
     website: "https://yunjung-jeong.github.io/cv/",
-    researchInterests: ["Wireless AI", "Deep Learning Architectures"]
+    researchInterests: ["Digital Twin", "UAV Simulation"]
   },
   {
     id: "junhyung-gong",
@@ -298,7 +298,7 @@ export const undergraduateResearchers: Person[] = [
     title: "Undergraduate Researcher",
     photo: "/images/teampic/standard/student_jhgong.jpg",
     email: "jhgong@dgist.ac.kr",
-    researchInterests: ["RF Sensing", "Embedded Systems"]
+    researchInterests: ["Synthetic Aperture Radar"]
   }
 ];
 
