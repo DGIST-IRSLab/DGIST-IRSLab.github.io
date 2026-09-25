@@ -1,7 +1,7 @@
 import React from 'react';
-import { researchTopics, researchProjects } from '../data/research';
+import { researchProjects } from '../data/research';
 import { SectionHeader } from '../components/common/SectionHeader';
-import { ResearchTopicCard } from '../components/research/ResearchTopicCard';
+import { ResearchTopicsSection } from '../components/research/ResearchTopicsSection';
 import { ResearchProjectItem } from '../components/research/ResearchProjectItem';
 import { ResearchCarousel } from '../components/research/ResearchCarousel';
 
@@ -46,20 +46,10 @@ export const ResearchPage: React.FC<ResearchPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* Three Research Pillars Detailed */}
-      <section>
-        <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-2xl)' }}>
-          {researchTopics.map((topic) => (
-            <ResearchTopicCard
-              key={topic.id}
-              topic={topic}
-              editorial={true}
-              onExplore={() => {
-                const el = document.getElementById('projects-directory');
-                el?.scrollIntoView({ behavior: 'smooth' });
-              }}
-            />
-          ))}
+      {/* Three Research Pillars Interactive Cards */}
+      <section style={{ marginBottom: 'var(--space-2xl)' }}>
+        <div className="container">
+          <ResearchTopicsSection />
         </div>
       </section>
 
