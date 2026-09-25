@@ -20,20 +20,6 @@ export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
         }}
       >
         <div className="container">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-            <span
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: '13px',
-                color: 'var(--color-accent)',
-                letterSpacing: '0.04em',
-                fontWeight: 600,
-                textTransform: 'uppercase',
-              }}
-            >
-              Lab Directory
-            </span>
-          </div>
           <h1 className="h1-title">
             Members
           </h1>
