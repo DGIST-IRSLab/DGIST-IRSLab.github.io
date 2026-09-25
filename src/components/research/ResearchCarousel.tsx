@@ -1,56 +1,13 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-interface ResearchSlide {
-  id: string;
-  image: string;
-  alt: string;
-  tag: string;
-  title: string;
-  caption: string;
-}
-
-const slides: ResearchSlide[] = [
-  {
-    id: "overview",
-    image: "/images/research_home2.jpg",
-    alt: "IRS Lab Overall Research Vision & Architecture",
-    tag: "OVERVIEW",
-    title: "IRS Lab Research Vision & System Architecture",
-    caption: "Comprehensive system overview of IRS Lab — AI-driven wireless sensing pipelines connecting raw RF physical signals, neural representation learning, and multi-modal embodied perception."
-  },
-  {
-    id: "pillar-1",
-    image: "/images/research_1.jpg",
-    alt: "Wireless-Centric AI",
-    tag: "PILLAR 1",
-    title: "Wireless-Centric AI & Foundation Models",
-    caption: "Wireless-centric neural networks, physics-informed learning representations, and video-to-radar generative synthesis for RF feature extraction."
-  },
-  {
-    id: "pillar-2",
-    image: "/images/research_2.jpg",
-    alt: "Innovative Wireless+X Perception Systems",
-    tag: "PILLAR 2",
-    title: "Innovative Wireless+X Perception Systems",
-    caption: "Non-line-of-sight contactless physiological monitoring, UAV detection, satellite SAR remote sensing, and dense crowd localization."
-  },
-  {
-    id: "pillar-3",
-    image: "/images/research_3.jpg",
-    alt: "Multi-Modal / Multi-Sensor Fusion & Physical AI",
-    tag: "PILLAR 3",
-    title: "Multi-Modal Sensor Fusion & Physical AI",
-    caption: "Cross-modal sensor fusion uniting multi-frequency radar arrays, optical vision, infrared, and embodied AI for resilient perception."
-  },
-  {
-    id: "applications",
-    image: "/images/research_home.png",
-    alt: "Radio + AI Application Domains",
-    tag: "APPLICATIONS",
-    title: "Radio + AI Real-World Application Domains",
-    caption: "Translating foundational wireless AI breakthroughs into defense, satellite remote sensing, autonomous vehicles, healthcare, HCI, and smart IoT."
-  }
+const slides = [
+  { id: 'homepic-1', image: '/images/homepic/dgist_1.jpg', alt: 'IRS Lab & DGIST 1' },
+  { id: 'homepic-2', image: '/images/homepic/dgist_2.jpg', alt: 'IRS Lab & DGIST 2' },
+  { id: 'homepic-3', image: '/images/homepic/dgist_3.jpg', alt: 'IRS Lab & DGIST 3' },
+  { id: 'homepic-4', image: '/images/homepic/dgist_4.jpg', alt: 'IRS Lab & DGIST 4' },
+  { id: 'homepic-5', image: '/images/homepic/dgist_5.jpg', alt: 'IRS Lab & DGIST 5' },
+  { id: 'homepic-6', image: '/images/homepic/dgist_6.jpg', alt: 'IRS Lab & DGIST 6' },
 ];
 
 export const ResearchCarousel: React.FC = () => {
@@ -111,7 +68,7 @@ export const ResearchCarousel: React.FC = () => {
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
       aria-roledescription="carousel"
-      aria-label="Research vision and key pillars slideshow"
+      aria-label="Research and Laboratory Slideshow"
     >
       {/* Visual Image Stage */}
       <div className="carousel-stage">
@@ -143,9 +100,9 @@ export const ResearchCarousel: React.FC = () => {
           type="button"
           onClick={prevSlide}
           className="carousel-nav-btn prev-btn"
-          aria-label="Previous research slide"
+          aria-label="Previous slide"
         >
-          <ChevronLeft size={18} />
+          <ChevronLeft size={20} />
         </button>
 
         {/* Right Arrow Button */}
@@ -153,9 +110,9 @@ export const ResearchCarousel: React.FC = () => {
           type="button"
           onClick={nextSlide}
           className="carousel-nav-btn next-btn"
-          aria-label="Next research slide"
+          aria-label="Next slide"
         >
-          <ChevronRight size={18} />
+          <ChevronRight size={20} />
         </button>
 
         {/* Floating Indicator Dots overlay on image bottom */}
@@ -172,30 +129,16 @@ export const ResearchCarousel: React.FC = () => {
         </div>
       </div>
 
-      {/* Caption & Metadata Bar */}
-      <div className="carousel-caption-bar">
-        <div className="carousel-caption-header">
-          <span className="carousel-tag">{slides[currentIndex].tag}</span>
-          <span className="carousel-counter">
-            {String(currentIndex + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
-          </span>
-        </div>
-        <p className="carousel-caption-text">
-          <strong className="carousel-caption-title">{slides[currentIndex].title}</strong>
-          {' — '}
-          <span>{slides[currentIndex].caption}</span>
-        </p>
-      </div>
-
       <style>{`
         .research-carousel-wrapper {
-          max-width: 900px;
+          max-width: 1000px;
           margin: 0 auto;
           background-color: var(--color-surface);
           border: 1px solid var(--color-border);
-          border-radius: var(--radius-sm);
+          border-radius: var(--radius-md);
           overflow: hidden;
-          transition: border-color var(--transition-fast);
+          transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
         }
 
         .research-carousel-wrapper:hover {
@@ -205,8 +148,8 @@ export const ResearchCarousel: React.FC = () => {
         .carousel-stage {
           position: relative;
           width: 100%;
-          height: clamp(280px, 42vw, 440px);
-          background-color: #ffffff;
+          aspect-ratio: 2 / 1;
+          background-color: var(--color-bg-secondary);
           overflow: hidden;
           display: flex;
           align-items: center;
@@ -227,17 +170,13 @@ export const ResearchCarousel: React.FC = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 16px 20px;
-          box-sizing: border-box;
           user-select: none;
         }
 
         .carousel-image {
-          max-width: 100%;
-          max-height: 100%;
-          width: auto;
-          height: auto;
-          object-fit: contain;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
           display: block;
         }
 
@@ -246,59 +185,59 @@ export const ResearchCarousel: React.FC = () => {
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
-          width: 36px;
-          height: 36px;
+          width: 40px;
+          height: 40px;
           border-radius: 50%;
-          background-color: rgba(255, 255, 255, 0.94);
-          color: #0f172a;
-          border: 1px solid rgba(0, 0, 0, 0.12);
+          background-color: rgba(15, 23, 42, 0.6);
+          backdrop-filter: blur(4px);
+          color: #ffffff;
+          border: 1px solid rgba(255, 255, 255, 0.2);
           display: flex;
           align-items: center;
           justify-content: center;
           cursor: pointer;
-          opacity: 0.88;
+          opacity: 0.85;
           transition: all var(--transition-fast);
           z-index: 2;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
         }
 
         .carousel-nav-btn:hover {
           opacity: 1;
-          background-color: #ffffff;
-          border-color: rgba(0, 0, 0, 0.25);
+          background-color: rgba(15, 23, 42, 0.85);
           transform: translateY(-50%) scale(1.08);
-          color: var(--color-accent);
+          color: #ffffff;
         }
 
         .carousel-nav-btn.prev-btn {
-          left: 14px;
+          left: 16px;
         }
 
         .carousel-nav-btn.next-btn {
-          right: 14px;
+          right: 16px;
         }
 
         /* Dots */
         .carousel-dots-wrap {
           position: absolute;
-          bottom: 12px;
+          bottom: 14px;
           left: 50%;
           transform: translateX(-50%);
           display: flex;
           align-items: center;
-          gap: 6px;
+          gap: 7px;
           z-index: 2;
-          padding: 4px 10px;
+          padding: 5px 12px;
           border-radius: 20px;
-          background-color: rgba(15, 23, 42, 0.16);
-          backdrop-filter: blur(4px);
+          background-color: rgba(15, 23, 42, 0.5);
+          backdrop-filter: blur(6px);
+          border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
         .carousel-dot {
-          width: 6px;
-          height: 6px;
-          border-radius: 3px;
-          background-color: rgba(15, 23, 42, 0.35);
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          background-color: rgba(255, 255, 255, 0.4);
           border: none;
           padding: 0;
           cursor: pointer;
@@ -306,64 +245,19 @@ export const ResearchCarousel: React.FC = () => {
         }
 
         .carousel-dot:hover {
-          background-color: rgba(15, 23, 42, 0.65);
+          background-color: rgba(255, 255, 255, 0.8);
         }
 
         .carousel-dot.active {
-          width: 18px;
-          background-color: var(--color-accent);
-        }
-
-        /* Caption Bar */
-        .carousel-caption-bar {
-          padding: 16px 20px;
-          background-color: var(--color-surface);
-          border-top: 1px solid var(--color-border);
-        }
-
-        .carousel-caption-header {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          margin-bottom: 6px;
-        }
-
-        .carousel-tag {
-          font-family: var(--font-mono);
-          font-size: 11px;
-          font-weight: 600;
-          letter-spacing: 0.05em;
-          color: var(--color-accent);
-          text-transform: uppercase;
-        }
-
-        .carousel-counter {
-          font-family: var(--font-mono);
-          font-size: 12px;
-          color: var(--color-text-muted);
-          font-weight: 500;
-        }
-
-        .carousel-caption-text {
-          font-family: var(--font-body);
-          font-size: 13.5px;
-          line-height: 1.55;
-          color: var(--color-text-secondary);
-          margin: 0;
-        }
-
-        .carousel-caption-title {
-          font-weight: 600;
-          color: var(--color-text-primary);
+          width: 22px;
+          border-radius: 4px;
+          background-color: #ffffff;
         }
 
         @media (max-width: 640px) {
-          .carousel-stage {
-            height: 240px;
-          }
           .carousel-nav-btn {
-            width: 30px;
-            height: 30px;
+            width: 32px;
+            height: 32px;
           }
           .carousel-nav-btn.prev-btn {
             left: 8px;
@@ -371,8 +265,9 @@ export const ResearchCarousel: React.FC = () => {
           .carousel-nav-btn.next-btn {
             right: 8px;
           }
-          .carousel-caption-bar {
-            padding: 12px 16px;
+          .carousel-dots-wrap {
+            bottom: 8px;
+            padding: 3px 8px;
           }
         }
       `}</style>
