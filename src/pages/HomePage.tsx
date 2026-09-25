@@ -3,6 +3,7 @@ import { ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
 import { newsItems } from '../data/news';
 import type { Publication } from '../types';
 import { assetUrl } from '../utils/asset';
+import { GithubIcon } from '../components/common/GithubIcon';
 
 interface HomePageProps {
   onNavigate: (page: string, anchorId?: string) => void;
@@ -75,19 +76,33 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 Radar Sensing · Artificial Intelligence · Physical Intelligence
               </div>
 
-              <div style={{ marginTop: 'var(--space-xl)' }}>
+              <div className="hero-actions-row">
                 <button
                   type="button"
                   onClick={() => {
                     onNavigate('research');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="link-subtle"
+                  className="link-subtle hero-explore-btn"
                   style={{ fontSize: '15px' }}
                 >
                   <span>Explore Research</span>
                   <ArrowRight size={15} />
                 </button>
+
+                <span className="hero-action-sep" aria-hidden="true">·</span>
+
+                <a
+                  href="https://github.com/DGIST-IRSLab"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hero-github-btn"
+                  title="Visit DGIST IRS Lab on GitHub (DGIST-IRSLab)"
+                  aria-label="Visit DGIST IRS Lab on GitHub"
+                >
+                  <GithubIcon size={16} />
+                  <span>GitHub</span>
+                </a>
               </div>
             </div>
 
@@ -381,10 +396,47 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           letter-spacing: 0.02em;
         }
 
-        .hero-actions {
+        .hero-actions-row {
+          margin-top: var(--space-xl);
           display: flex;
+          align-items: center;
+          gap: 14px;
           flex-wrap: wrap;
-          gap: 12px;
+          animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
+        }
+
+        .hero-action-sep {
+          color: var(--color-border-strong);
+          font-size: 16px;
+          user-select: none;
+        }
+
+        .hero-github-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 7px;
+          padding: 6px 13px;
+          font-family: var(--font-sans);
+          font-size: 14px;
+          font-weight: 500;
+          color: var(--color-text-secondary);
+          background-color: var(--color-bg-secondary);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-sm);
+          text-decoration: none;
+          transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hero-github-btn:hover {
+          color: var(--color-text-primary);
+          background-color: var(--color-surface-hover);
+          border-color: var(--color-accent-border);
+          transform: translateY(-1.5px);
+          box-shadow: 0 4px 12px rgba(2, 140, 255, 0.08);
+        }
+
+        .hero-github-btn:active {
+          transform: translateY(0) scale(0.97);
         }
 
         /* Admissions Section (Clean horizontal bar) */

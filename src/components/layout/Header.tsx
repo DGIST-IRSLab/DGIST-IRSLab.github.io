@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Search, Menu, X } from 'lucide-react';
 import { ThemeToggle } from '../common/ThemeToggle';
 import { RadarLogoIcon } from '../common/RadarLogoIcon';
+import { GithubIcon } from '../common/GithubIcon';
 
 interface HeaderProps {
   currentPage: string;
@@ -127,6 +128,29 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenS
               ⌘K
             </span>
           </button>
+
+          {/* GitHub Organization Link */}
+          <a
+            href="https://github.com/DGIST-IRSLab"
+            target="_blank"
+            rel="noreferrer"
+            className="header-github-btn"
+            title="DGIST IRS Lab on GitHub (DGIST-IRSLab)"
+            aria-label="DGIST IRS Lab on GitHub"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '34px',
+              height: '34px',
+              color: 'var(--color-text-secondary)',
+              transition: 'color var(--transition-fast), transform var(--transition-fast)',
+              borderRadius: 'var(--radius-xs)',
+              textDecoration: 'none',
+            }}
+          >
+            <GithubIcon size={18} />
+          </a>
 
           {/* Theme Switcher */}
           <ThemeToggle />
@@ -335,6 +359,11 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate, onOpenS
           border-color: var(--color-accent-border) !important;
           color: var(--color-text-primary) !important;
           transform: translateY(-1px);
+        }
+
+        .header-github-btn:hover {
+          color: var(--color-text-primary) !important;
+          transform: translateY(-1.5px) scale(1.08);
         }
 
         @media (max-width: 1080px) {
