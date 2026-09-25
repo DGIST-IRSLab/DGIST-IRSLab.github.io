@@ -9,6 +9,7 @@ interface PersonCardProps {
 
 export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false }) => {
   const [imageError, setImageError] = useState(false);
+  const homeUrl = person.website || person.googleScholar || person.cvUrl || person.github;
 
   return (
     <div
@@ -34,35 +35,78 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false 
           overflow: 'hidden',
         }}
       >
-        {!imageError ? (
-          <img
-            src={person.photo}
-            alt={person.name}
-            onError={() => setImageError(true)}
-            loading="lazy"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              objectPosition: 'center 20%',
-              display: 'block',
-            }}
-          />
-        ) : (
-          <div
-            style={{
-              width: '100%',
-              height: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'var(--color-text-dim)',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '13px',
-            }}
+        {homeUrl ? (
+          <a
+            href={homeUrl}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`${person.name}'s homepage`}
+            style={{ display: 'block', width: '100%', height: '100%', cursor: 'pointer' }}
           >
-            {person.name.split(' ').map((n) => n[0]).join('')}
-          </div>
+            {!imageError ? (
+              <img
+                src={person.photo}
+                alt={person.name}
+                onError={() => setImageError(true)}
+                loading="lazy"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center 20%',
+                  display: 'block',
+                  transition: 'transform var(--transition-fast)',
+                }}
+                className="person-photo-img"
+              />
+            ) : (
+              <div
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'var(--color-text-dim)',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '13px',
+                }}
+              >
+                {person.name.split(' ').map((n) => n[0]).join('')}
+              </div>
+            )}
+          </a>
+        ) : (
+          !imageError ? (
+            <img
+              src={person.photo}
+              alt={person.name}
+              onError={() => setImageError(true)}
+              loading="lazy"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center 20%',
+                display: 'block',
+              }}
+            />
+          ) : (
+            <div
+              style={{
+                width: '100%',
+                height: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'var(--color-text-dim)',
+                fontFamily: 'var(--font-mono)',
+                fontSize: '13px',
+              }}
+            >
+              {person.name.split(' ').map((n) => n[0]).join('')}
+            </div>
+          )
         )}
 
         {/* Small subtle role tag overlay */}
@@ -102,20 +146,59 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false 
               fontWeight: 600,
               color: 'var(--color-text-primary)',
               lineHeight: 1.3,
+              margin: 0,
             }}
           >
-            {person.name}
+            {homeUrl ? (
+              <a
+                href={homeUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="member-name-link"
+                style={{
+                  color: 'inherit',
+                  textDecoration: 'none',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  transition: 'color var(--transition-fast)',
+                }}
+              >
+                <span>{person.name}</span>
+                <ExternalLink size={11} className="member-name-icon" style={{ opacity: 0.5, flexShrink: 0 }} />
+              </a>
+            ) : (
+              <span>{person.name}</span>
+            )}
           </h4>
           {person.nameKr && (
-            <span
-              style={{
-                fontSize: '12px',
-                color: 'var(--color-text-muted)',
-                fontFamily: 'var(--font-sans)',
-              }}
-            >
-              {person.nameKr}
-            </span>
+            homeUrl ? (
+              <a
+                href={homeUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="member-name-kr-link"
+                style={{
+                  fontSize: '12px',
+                  color: 'var(--color-text-muted)',
+                  fontFamily: 'var(--font-sans)',
+                  textDecoration: 'none',
+                  transition: 'color var(--transition-fast)',
+                }}
+              >
+                {person.nameKr}
+              </a>
+            ) : (
+              <span
+                style={{
+                  fontSize: '12px',
+                  color: 'var(--color-text-muted)',
+                  fontFamily: 'var(--font-sans)',
+                }}
+              >
+                {person.nameKr}
+              </span>
+            )
           )}
         </div>
 
@@ -232,6 +315,24 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false 
           )}
         </div>
       </div>
+
+      <style>{`
+        .person-photo-img:hover {
+          transform: scale(1.03);
+        }
+        .member-name-link:hover {
+          color: var(--color-accent) !important;
+          text-decoration: underline;
+        }
+        .member-name-link:hover .member-name-icon {
+          opacity: 1 !important;
+          color: var(--color-accent);
+        }
+        .member-name-kr-link:hover {
+          color: var(--color-accent) !important;
+          text-decoration: underline;
+        }
+      `}</style>
     </div>
   );
 };

@@ -240,7 +240,7 @@ export const internHistory: InternGroup[] = [
     names: ["Jaeryong Lee (이재룡)", "Jaeone Yun (윤재원)", "Yunjung Jeong (정윤중)"]
   },
   {
-    period: "2025 Fall (2025.07 ~ 2025.12)",
+    period: "2025 Fall",
     names: ["Nahyeon Kim (김나현)"]
   },
   {
