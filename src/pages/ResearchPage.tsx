@@ -1,9 +1,10 @@
 import React from 'react';
 import { researchProjects } from '../data/research';
 import { SectionHeader } from '../components/common/SectionHeader';
+import { ResearchIntroQuote } from '../components/research/ResearchIntroQuote';
+import { ResearchCarousel } from '../components/research/ResearchCarousel';
 import { ResearchTopicsSection } from '../components/research/ResearchTopicsSection';
 import { ResearchProjectItem } from '../components/research/ResearchProjectItem';
-import { ResearchCarousel } from '../components/research/ResearchCarousel';
 
 interface ResearchPageProps {
   onNavigate: (page: string, anchorId?: string) => void;
@@ -25,22 +26,14 @@ export const ResearchPage: React.FC<ResearchPageProps> = ({ onNavigate }) => {
           <h1 className="h1-title">
             Research
           </h1>
-          <p
-            style={{
-              marginTop: 'var(--space-md)',
-              fontSize: '15.5px',
-              lineHeight: 1.7,
-              color: 'var(--color-text-secondary)',
-              maxWidth: '860px',
-            }}
-          >
-            Our goal is to develop new sensing technologies to see the world from an entirely new perspective, through AI-Driven Wireless+X Sensing. By Integrating the Power of AI with Radio-Frequency Signal Processing—and further expanding these capabilities through Sensor Fusion—we aim to push the boundaries of human perceptual capabilities in diverse areas such as IoT, Health Monitoring, Autonomous Driving, Defense/Remote Sensing, and HCI.
-          </p>
         </div>
       </section>
 
+      {/* Intro Vision Editorial Quote Section */}
+      <ResearchIntroQuote />
+
       {/* Main Research Figure Carousel */}
-      <section style={{ paddingTop: 'var(--space-xl)', marginBottom: 'var(--space-2xl)' }}>
+      <section style={{ marginBottom: 'var(--space-2xl)' }}>
         <div className="container">
           <ResearchCarousel />
         </div>
