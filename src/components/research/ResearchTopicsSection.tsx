@@ -29,16 +29,12 @@ export const ResearchTopicsSection: React.FC = () => {
   };
 
   const renderDetailsContent = (topic: ResearchTopic) => {
-    const topicIndex = researchTopics.findIndex((t) => t.id === topic.id) + 1;
     const lead = getIntegratedLead(topic);
 
     return (
       <div className="topic-expanded-details">
         {/* Top: Concise Title */}
         <div className="detail-top-bar">
-          <div className="detail-pillar-kicker">
-            Research Pillar 0{topicIndex}
-          </div>
           <h3 className="detail-compact-heading">
             {topic.shortTitle || topic.title}
           </h3>
@@ -75,27 +71,27 @@ export const ResearchTopicsSection: React.FC = () => {
         {/* Figure Section with Highlights naturally placed ABOVE the image */}
         {topic.image && (
           <div className="detail-figure-section">
-            {/* Key Highlights placed directly above the figure */}
+            {/* Key Highlights as clean bullet list */}
             {topic.highlights && topic.highlights.length > 0 && (
               <div className="figure-highlights-wrapper">
                 <div className="figure-highlights-header">
                   <span className="figure-highlights-label">Key Research Highlights</span>
                 </div>
-                <div className="figure-highlights-grid">
+                <ul className="figure-highlights-list">
                   {topic.highlights.map((hl, idx) => (
-                    <div key={idx} className="figure-highlight-card">
-                      <span className="highlight-card-num">0{idx + 1}</span>
-                      <p className="highlight-card-text">{hl}</p>
-                    </div>
+                    <li key={idx} className="figure-highlight-item">
+                      <span className="highlight-bullet" aria-hidden="true" />
+                      <span className="highlight-item-text">{hl}</span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
             )}
 
             {/* Architecture / Pipeline Figure */}
             <div className="figure-media-container">
               <div className="figure-media-header">
-                <span className="figure-media-title">Architecture & Experimental Pipeline</span>
+                <span className="figure-media-title">Architecture &amp; Experimental Pipeline</span>
                 <a
                   href={topic.image}
                   target="_blank"
@@ -240,9 +236,8 @@ export const ResearchTopicsSection: React.FC = () => {
           flex-direction: column;
           justify-content: space-between;
           height: 100%;
-          min-height: 310px;
-          aspect-ratio: 1 / 0.95;
-          padding: 32px 28px;
+          min-height: 200px;
+          padding: 22px 24px;
           background-color: var(--color-surface);
           border: 1px solid var(--color-border);
           border-radius: var(--radius-sm);
@@ -253,12 +248,12 @@ export const ResearchTopicsSection: React.FC = () => {
 
         .topic-card:hover {
           border-color: var(--color-accent-border);
-          transform: translateY(-5px);
-          box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
+          transform: translateY(-4px);
+          box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
         }
 
         [data-theme='dark'] .topic-card:hover {
-          box-shadow: 0 14px 32px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
         }
 
         .topic-card:hover .view-details-action svg {
@@ -278,18 +273,18 @@ export const ResearchTopicsSection: React.FC = () => {
 
         .topic-card-title {
           font-family: var(--font-heading);
-          font-size: clamp(18px, 1.5vw, 21px);
+          font-size: clamp(16.5px, 1.35vw, 19px);
           font-weight: 700;
           line-height: 1.35;
           letter-spacing: -0.02em;
           color: var(--color-text-primary);
-          margin: 0 0 16px 0;
+          margin: 0 0 10px 0;
         }
 
         .topic-card-question {
           font-family: var(--font-sans);
-          font-size: 15px;
-          line-height: 1.6;
+          font-size: 14px;
+          line-height: 1.55;
           color: var(--color-text-secondary);
           margin: 0;
         }
@@ -303,9 +298,9 @@ export const ResearchTopicsSection: React.FC = () => {
           align-items: center;
           gap: 6px;
           margin-top: auto;
-          padding-top: 24px;
+          padding-top: 16px;
           font-family: var(--font-mono);
-          font-size: 13px;
+          font-size: 12.5px;
           font-weight: 500;
           color: var(--color-accent);
         }
@@ -337,16 +332,6 @@ export const ResearchTopicsSection: React.FC = () => {
           margin-bottom: 20px;
           padding-bottom: 16px;
           border-bottom: 1px solid var(--color-border-subtle);
-        }
-
-        .detail-pillar-kicker {
-          font-family: var(--font-mono);
-          font-size: 11px;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.08em;
-          color: var(--color-accent);
-          margin-bottom: 6px;
         }
 
         .detail-compact-heading {
@@ -447,34 +432,36 @@ export const ResearchTopicsSection: React.FC = () => {
           color: var(--color-accent);
         }
 
-        .figure-highlights-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 14px;
-        }
-
-        .figure-highlight-card {
-          padding: 12px 14px;
-          background-color: var(--color-bg-secondary);
-          border: 1px solid var(--color-border-subtle);
-          border-radius: var(--radius-xs, 3px);
+        .figure-highlights-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
           display: flex;
           flex-direction: column;
-          gap: 4px;
+          gap: 10px;
         }
 
-        .highlight-card-num {
-          font-family: var(--font-mono);
-          font-size: 11px;
-          font-weight: 700;
-          color: var(--color-accent);
-        }
-
-        .highlight-card-text {
-          font-size: 13px;
-          line-height: 1.5;
+        .figure-highlight-item {
+          display: flex;
+          align-items: baseline;
+          gap: 10px;
+          font-size: 14px;
+          line-height: 1.6;
           color: var(--color-text-secondary);
-          margin: 0;
+        }
+
+        .highlight-bullet {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background-color: var(--color-accent);
+          flex-shrink: 0;
+          position: relative;
+          top: -2px;
+        }
+
+        .highlight-item-text {
+          flex: 1;
         }
 
         /* Figure Media Frame */
@@ -482,16 +469,17 @@ export const ResearchTopicsSection: React.FC = () => {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin-bottom: 10px;
+          margin-bottom: 12px;
+          padding-bottom: 8px;
+          border-bottom: 1px solid var(--color-border-subtle);
         }
 
         .figure-media-title {
-          font-family: var(--font-mono);
-          font-size: 11px;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-          color: var(--color-text-muted);
+          font-family: var(--font-heading);
+          font-size: 14.5px;
+          font-weight: 700;
+          letter-spacing: -0.01em;
+          color: var(--color-text-primary);
         }
 
         .figure-zoom-link {
@@ -523,18 +511,14 @@ export const ResearchTopicsSection: React.FC = () => {
           }
           .topic-card {
             aspect-ratio: auto !important;
-            min-height: 220px !important;
-            padding: 24px 20px !important;
+            min-height: 170px !important;
+            padding: 18px 18px !important;
           }
           .desktop-topic-details {
             display: none !important;
           }
           .mobile-topic-details {
             display: block !important;
-          }
-          .figure-highlights-grid {
-            grid-template-columns: 1fr !important;
-            gap: 10px;
           }
           .topic-expanded-details {
             padding: 24px 18px;
