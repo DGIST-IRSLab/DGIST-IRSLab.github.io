@@ -416,20 +416,23 @@ export const ResearchTopicsSection: React.FC = () => {
 
         /* Highlights directly above the figure */
         .figure-highlights-wrapper {
-          margin-bottom: 22px;
+          margin-bottom: 28px;
         }
 
         .figure-highlights-header {
+          display: flex;
+          align-items: center;
           margin-bottom: 12px;
+          padding-bottom: 8px;
+          border-bottom: 1px solid var(--color-border-subtle);
         }
 
         .figure-highlights-label {
-          font-family: var(--font-mono);
-          font-size: 11px;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.06em;
-          color: var(--color-accent);
+          font-family: var(--font-heading);
+          font-size: 15px;
+          font-weight: 700;
+          letter-spacing: -0.01em;
+          color: var(--color-text-primary);
         }
 
         .figure-highlights-list {
