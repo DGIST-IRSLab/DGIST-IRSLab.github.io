@@ -67,9 +67,20 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 <span className="hero-title-sub">@ DGIST</span>
               </h1>
 
-              <p className="hero-statement">
-                AI-driven radio sensing for understanding the physical world.
-              </p>
+              <div className="hero-statement-wrap">
+                <button
+                  type="button"
+                  onClick={() => {
+                    onNavigate('research');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="hero-statement-link"
+                  title="Explore IRS Lab Research"
+                >
+                  <span className="hero-statement-text">AI-Driven Wireless+X Sensing</span>
+                  <ArrowRight size={17} className="hero-statement-arrow" />
+                </button>
+              </div>
             </div>
 
             <div className="hero-photo-col">
@@ -350,14 +361,52 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           color: var(--color-text-muted);
         }
 
-        .hero-statement {
+        .hero-statement-wrap {
+          margin-bottom: 12px;
+          animation: heroFloatIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+        }
+
+        .hero-statement-link {
+          background: none;
+          border: none;
+          padding: 0;
+          margin: 0;
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
           font-family: var(--font-body);
           font-size: clamp(1.15rem, 2vw, 1.35rem);
           font-weight: 600;
           line-height: 1.45;
           color: var(--color-text-primary);
-          margin: 0 0 10px 0;
-          animation: heroFloatIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+          text-align: left;
+          text-decoration: none;
+          transition: color var(--transition-fast);
+        }
+
+        .hero-statement-text {
+          position: relative;
+          border-bottom: 1.5px solid transparent;
+          transition: border-color var(--transition-fast), color var(--transition-fast);
+        }
+
+        .hero-statement-arrow {
+          color: var(--color-accent);
+          transition: transform var(--transition-fast);
+          flex-shrink: 0;
+        }
+
+        .hero-statement-link:hover {
+          color: var(--color-accent);
+        }
+
+        .hero-statement-link:hover .hero-statement-text {
+          border-color: var(--color-accent);
+        }
+
+        .hero-statement-link:hover .hero-statement-arrow {
+          transform: translateX(4px);
         }
 
         .hero-description {

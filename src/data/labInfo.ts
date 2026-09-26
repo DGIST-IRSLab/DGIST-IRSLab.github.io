@@ -20,7 +20,7 @@
  * - phone (string): 연구실 대표 전화번호
  * - opened (string): 연구실 개소 시점 ("December 2024")
  * - tagline (string): 홈 화면 히어로 섹션에 노출되는 대표 슬로건
- *     예: "AI-driven radio sensing for understanding the physical world."
+ *     예: "AI-Driven Wireless+X Sensing"
  * - keywords (string[]): 연구실 핵심 연구 분야 키워드 태그 목록
  * - mission (string): 연구실 비전 및 미션 선언문
  * - notionContactLink (string): 컨택 관련 Notion 페이지 링크 URL
@@ -44,7 +44,7 @@ export const labInfo = {
   email: "jhochoi@dgist.ac.kr",
   phone: "+82-53-785-6328",
   opened: "December 2024",
-  tagline: "AI-driven radio sensing for understanding the physical world.",
+  tagline: "AI-Driven Wireless+X Sensing",
   keywords: ["RADAR SENSING", "AI FOR WIRELESS", "MULTIMODAL PERCEPTION", "PHYSICAL INTELLIGENCE"],
   mission: "Our mission is to develop new sensing technologies to perceive the world from entirely new perspectives through AI-Driven Wireless+X Sensing. By integrating the power of artificial intelligence with radio-frequency signal processing—and expanding these capabilities through multi-modal sensor fusion—we push the boundaries of human and robotic perceptual capabilities.",
   notionContactLink: "https://modern-plutonium-519.notion.site/IRS-Lab-Contact-Info-18ed30c1d89b80a18087f093927b241b?pvs=4",
