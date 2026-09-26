@@ -59,6 +59,28 @@
 import type { Publication } from '../types';
 
 export const publications: Publication[] = [
+    {
+    id: "shin2026mmLIP",
+    title:"mmLIP: mmWave Radar-Language Interactive Pretraining via Point Confidence",
+    authors :["Jeongwan Shin","Jaehyeon Kim", "Jae-Ho Choi*"],
+    labAuthors :["Jeongwan Shin","Jaehyeon Kim", "Jae-Ho Choi"],
+    venue : "Neural Information Processing Systems (NeurIPS)",
+    venueShort : "NeurIPS",
+    year : 2026,
+    type : "conference",
+    isTopConf : true,
+  },
+  {
+    id: "eun2026radarmae",
+    title:"RadarMAE: Injecting Physical Inductive Biases into Masked Autoencoders for Advanced Radar Object Detection",
+    authors :["Eunchan Kim", "Jeongwan Shin", "Jae-Ho Choi*"],
+    labAuthors :["Eunchan Kim", "Jeongwan Shin", "Jae-Ho Choi"],
+    venue : "Neural Information Processing Systems (NeurIPS)",
+    venueShort : "NeurIPS",
+    year : 2026,
+    type : "conference",
+    isTopConf : true,
+  },
   {
     id: "shin2026llm-mmwave",
     title: "Can Language Models Understand mmWave Data? Benchmarking Large Language Models for mmWave Radar-Based Human Understanding",
