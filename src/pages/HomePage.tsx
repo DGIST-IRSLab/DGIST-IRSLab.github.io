@@ -354,7 +354,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           display: inline-flex;
           align-items: center;
           padding: 4px 12px;
-          font-family: var(--font-mono);
+          font-family: var(--font-sans);
           font-size: 12px;
           font-weight: 500;
           border-radius: var(--radius-xs);
@@ -525,7 +525,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           display: inline-flex;
           align-items: center;
           gap: 9px;
-          font-family: var(--font-mono);
+          font-family: var(--font-sans);
           font-size: 13px;
           color: var(--color-text-muted);
           flex-shrink: 0;

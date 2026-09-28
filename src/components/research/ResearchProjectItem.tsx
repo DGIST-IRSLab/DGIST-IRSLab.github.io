@@ -57,7 +57,7 @@ export const ResearchProjectItem: React.FC<ResearchProjectItemProps> = ({ projec
         }
 
         .project-period {
-          font-family: var(--font-mono);
+          font-family: var(--font-sans);
           font-size: 12.5px;
           color: var(--color-text-muted);
           line-height: 1.4;
@@ -70,7 +70,7 @@ export const ResearchProjectItem: React.FC<ResearchProjectItemProps> = ({ projec
         }
 
         .project-agency-badge {
-          font-family: var(--font-mono);
+          font-family: var(--font-sans);
           font-size: 12px;
           font-weight: 700;
           color: var(--color-text-primary);
@@ -111,7 +111,7 @@ export const ResearchProjectItem: React.FC<ResearchProjectItemProps> = ({ projec
           display: inline-flex;
           align-items: center;
           gap: 6px;
-          font-family: var(--font-mono);
+          font-family: var(--font-sans);
           font-size: 11px;
           font-weight: 500;
           flex-shrink: 0;

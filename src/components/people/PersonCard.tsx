@@ -294,7 +294,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
           <div
             style={{
               fontSize: '12px',
-              fontFamily: 'var(--font-mono)',
+              fontFamily: 'var(--font-sans)',
               color: 'var(--color-accent)',
               fontWeight: 500,
             }}
