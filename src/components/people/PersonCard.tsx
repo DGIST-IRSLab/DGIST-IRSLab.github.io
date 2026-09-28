@@ -40,6 +40,9 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
   const specialPhoto = getSpecialPhoto(person);
   const hasSpecial = Boolean(specialPhoto && !specialError);
 
+  const alumniLogo = person.alumniLogo || (person.alumniDestination && (person.alumniDestination.includes('NASA') || person.alumniDestination.includes('JPL')) ? '/images/alumni/nasa_jpl.svg' : undefined);
+  const alumniLogoDark = person.alumniLogoDark || (person.alumniDestination && (person.alumniDestination.includes('NASA') || person.alumniDestination.includes('JPL')) ? '/images/alumni/nasa_jpl_dark.svg' : undefined);
+
   const handleCardClick = (e: React.MouseEvent) => {
     if (isPI && onNavigate) {
       e.preventDefault();
@@ -292,15 +295,15 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
         {/* Alumni Destination or Period */}
         {person.alumniDestination && (
           <div className="person-alumni-block">
-            {person.alumniLogo && (
+            {alumniLogo && (
               <div className="person-alumni-logo-row">
                 <img
-                  src={assetUrl(person.alumniLogo)}
+                  src={assetUrl(alumniLogo)}
                   alt={person.alumniDestination}
                   className="person-alumni-logo logo-light-only"
                 />
                 <img
-                  src={assetUrl(person.alumniLogoDark || person.alumniLogo)}
+                  src={assetUrl(alumniLogoDark || alumniLogo)}
                   alt={person.alumniDestination}
                   className="person-alumni-logo logo-dark-only"
                 />
@@ -566,26 +569,26 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
 
         /* Alumni Affiliation Block & Company Logo */
         .person-alumni-block {
-          margin-top: 5px;
-          margin-bottom: 3px;
-          padding: 6px 8px;
+          margin-top: 8px;
+          margin-bottom: 5px;
+          padding: 10px 12px;
           background-color: var(--color-bg-secondary);
-          border: 1px solid var(--color-border-subtle);
-          border-radius: var(--radius-sm, 4px);
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius-md, 6px);
           display: flex;
           flex-direction: column;
-          gap: 5px;
+          gap: 7px;
         }
 
         .person-alumni-logo-row {
           display: flex;
           align-items: center;
-          padding-bottom: 2px;
+          padding: 3px 0;
         }
 
         .person-alumni-logo {
-          height: 19px;
-          max-width: 110px;
+          height: clamp(34px, 4.2vw, 44px);
+          max-width: 100%;
           width: auto;
           object-fit: contain;
           display: block;
@@ -606,11 +609,11 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
         }
 
         .person-alumni-dest-text {
-          font-size: 11.5px;
+          font-size: 13px;
           font-family: var(--font-sans);
           font-weight: 600;
           color: var(--color-accent);
-          line-height: 1.35;
+          line-height: 1.4;
           word-break: keep-all;
         }
 
