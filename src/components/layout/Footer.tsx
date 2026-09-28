@@ -135,6 +135,11 @@ export const Footer: React.FC<FooterProps> = () => {
           opacity: 1;
         }
 
+        [data-theme='dark'] .dgist-logo {
+          filter: brightness(0) invert(0.96);
+          opacity: 0.92;
+        }
+
         [data-theme='dark'] .eecs-logo {
           filter: brightness(0) invert(0.92);
           opacity: 0.88;

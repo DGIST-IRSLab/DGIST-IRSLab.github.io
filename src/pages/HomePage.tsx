@@ -347,6 +347,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         }
         [data-theme='dark'] .hero-dgist-logo.logo-dark-only {
           display: block;
+          filter: brightness(0) invert(0.96);
+          opacity: 0.95;
         }
 
         .hero-statement-wrap {
