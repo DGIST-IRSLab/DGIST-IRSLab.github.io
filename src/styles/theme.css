@@ -80,17 +80,17 @@
   --color-border-subtle: #edf2f7;
   --color-border-strong: #cbd5e1;
 
-  --color-accent: #2E91FF;
-  --color-accent-hover: #1b7ee5;
-  --color-accent-subtle: rgba(46, 145, 255, 0.08);
-  --color-accent-border: rgba(46, 145, 255, 0.25);
+  --color-accent: #1B3BD1;
+  --color-accent-hover: #142ea8;
+  --color-accent-subtle: rgba(27, 59, 209, 0.08);
+  --color-accent-border: rgba(27, 59, 209, 0.25);
 
-  --color-badge-bg: rgba(46, 145, 255, 0.08);
-  --color-badge-text: #2E91FF;
-  --color-badge-border: rgba(46, 145, 255, 0.25);
+  --color-badge-bg: rgba(27, 59, 209, 0.08);
+  --color-badge-text: #1B3BD1;
+  --color-badge-border: rgba(27, 59, 209, 0.25);
 
   --color-card-border: #e5ebf1;
-  --color-grid-line: rgba(46, 145, 255, 0.06);
+  --color-grid-line: rgba(27, 59, 209, 0.06);
   --color-code-bg: #f1f5f9;
   --color-code-text: #1e293b;
   --color-overlay: rgba(15, 23, 42, 0.4);
@@ -116,17 +116,17 @@
   --color-border-subtle: #15202d;
   --color-border-strong: #334155;
 
-  --color-accent: #1B3BD1;
-  --color-accent-hover: #3253e8;
-  --color-accent-subtle: rgba(27, 59, 209, 0.15);
-  --color-accent-border: rgba(27, 59, 209, 0.35);
+  --color-accent: #2B89EF;
+  --color-accent-hover: #50a1f5;
+  --color-accent-subtle: rgba(43, 137, 239, 0.15);
+  --color-accent-border: rgba(43, 137, 239, 0.35);
 
-  --color-badge-bg: rgba(27, 59, 209, 0.15);
-  --color-badge-text: #1B3BD1;
-  --color-badge-border: rgba(27, 59, 209, 0.35);
+  --color-badge-bg: rgba(43, 137, 239, 0.15);
+  --color-badge-text: #2B89EF;
+  --color-badge-border: rgba(43, 137, 239, 0.35);
 
   --color-card-border: #1e293b;
-  --color-grid-line: rgba(27, 59, 209, 0.08);
+  --color-grid-line: rgba(43, 137, 239, 0.08);
   --color-code-bg: #070a0e;
   --color-code-text: #e2e8f0;
   --color-overlay: rgba(0, 0, 0, 0.7);

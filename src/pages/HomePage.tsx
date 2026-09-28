@@ -43,7 +43,27 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             <h1 className="hero-title">
               Intelligent Radio Sensing Lab
               <br />
-              <span className="hero-title-sub">@ DGIST</span>
+              <span className="hero-title-sub">
+                <span className="hero-at-symbol">@</span>
+                <a
+                  href="https://www.dgist.ac.kr"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hero-dgist-link"
+                  title="Daegu Gyeongbuk Institute of Science and Technology (DGIST)"
+                >
+                  <img
+                    src={assetUrl('/images/logopic/dgist_logo.png')}
+                    alt="DGIST"
+                    className="hero-dgist-logo logo-light-only"
+                  />
+                  <img
+                    src={assetUrl('/images/logopic/dgist_logo_dark.png')}
+                    alt="DGIST"
+                    className="hero-dgist-logo logo-dark-only"
+                  />
+                </a>
+              </span>
             </h1>
 
             <div className="hero-statement-wrap">
@@ -282,8 +302,51 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         }
 
         .hero-title-sub {
+          display: inline-flex;
+          align-items: center;
+          gap: clamp(8px, 1.2vw, 14px);
+          vertical-align: middle;
+          margin-top: 6px;
+        }
+
+        .hero-at-symbol {
           font-weight: 400;
           color: var(--color-text-muted);
+          font-size: 0.85em;
+          line-height: 1;
+        }
+
+        .hero-dgist-link {
+          display: inline-flex;
+          align-items: center;
+          text-decoration: none;
+          transition: opacity var(--transition-fast), transform var(--transition-fast);
+        }
+
+        .hero-dgist-link:hover {
+          opacity: 0.82;
+          transform: translateY(-1px);
+        }
+
+        .hero-dgist-logo {
+          height: clamp(26px, 3.8vw, 42px);
+          width: auto;
+          object-fit: contain;
+          display: block;
+        }
+
+        .hero-dgist-logo.logo-light-only {
+          display: block;
+        }
+        .hero-dgist-logo.logo-dark-only {
+          display: none;
+        }
+
+        [data-theme='dark'] .hero-dgist-logo.logo-light-only {
+          display: none;
+        }
+        [data-theme='dark'] .hero-dgist-logo.logo-dark-only {
+          display: block;
         }
 
         .hero-statement-wrap {
@@ -484,8 +547,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         }
 
         /* Category Left Accent Lines */
-        .news-row-paper { border-left-color: rgba(46, 145, 255, 0.45); }
-        .news-row-paper:hover { border-left-color: #2E91FF; }
+        .news-row-paper { border-left-color: rgba(27, 59, 209, 0.45); }
+        .news-row-paper:hover { border-left-color: #1B3BD1; }
 
         .news-row-award { border-left-color: rgba(245, 158, 11, 0.5); }
         .news-row-award:hover { border-left-color: #f59e0b; }
@@ -502,8 +565,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         .news-row-news { border-left-color: rgba(100, 116, 139, 0.35); }
         .news-row-news:hover { border-left-color: #64748b; }
 
-        [data-theme='dark'] .news-row-paper { border-left-color: rgba(27, 59, 209, 0.5); }
-        [data-theme='dark'] .news-row-paper:hover { border-left-color: #1B3BD1; }
+        [data-theme='dark'] .news-row-paper { border-left-color: rgba(43, 137, 239, 0.5); }
+        [data-theme='dark'] .news-row-paper:hover { border-left-color: #2B89EF; }
 
         [data-theme='dark'] .news-row-award { border-left-color: rgba(251, 191, 36, 0.45); }
         [data-theme='dark'] .news-row-award:hover { border-left-color: #fbbf24; }
@@ -546,8 +609,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         }
 
         .dot-paper {
-          background-color: #2E91FF;
-          box-shadow: 0 0 0 2px rgba(46, 145, 255, 0.2);
+          background-color: #1B3BD1;
+          box-shadow: 0 0 0 2px rgba(27, 59, 209, 0.2);
         }
         .dot-award {
           background-color: #f59e0b;
@@ -571,8 +634,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         }
 
         [data-theme='dark'] .dot-paper {
-          background-color: #1B3BD1;
-          box-shadow: 0 0 0 2px rgba(27, 59, 209, 0.3);
+          background-color: #2B89EF;
+          box-shadow: 0 0 0 2px rgba(43, 137, 239, 0.3);
         }
         [data-theme='dark'] .dot-award {
           background-color: #fbbf24;

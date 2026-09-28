@@ -18,7 +18,12 @@ export const Footer: React.FC<FooterProps> = () => {
               <img
                 src={assetUrl('/images/logopic/dgist_logo.png')}
                 alt="DGIST Logo"
-                className="footer-inst-logo dgist-logo"
+                className="footer-inst-logo dgist-logo logo-light-only"
+              />
+              <img
+                src={assetUrl('/images/logopic/dgist_logo_dark.png')}
+                alt="DGIST Logo"
+                className="footer-inst-logo dgist-logo logo-dark-only"
               />
             </div>
 
@@ -128,10 +133,6 @@ export const Footer: React.FC<FooterProps> = () => {
 
         .footer-inst-logo:hover {
           opacity: 1;
-        }
-
-        [data-theme='dark'] .dgist-logo {
-          filter: brightness(1.2) contrast(1.05);
         }
 
         [data-theme='dark'] .eecs-logo {
