@@ -93,6 +93,7 @@ export interface ExperienceItem {
   organization: string;
   period: string;
   detail?: string;
+  logo?: string;
 }
 
 export interface EducationItem {
@@ -101,6 +102,7 @@ export interface EducationItem {
   institution: string;
   period: string;
   advisor?: string;
+  logo?: string;
 }
 
 export const professorData = {
@@ -123,22 +125,26 @@ export const professorData = {
     {
       role: "Assistant Professor",
       organization: "EECS/AI, DGIST",
-      period: "2024.12 –"
+      period: "2024.12 –",
+      logo: "/images/institution/dgist.png"
     },
     {
       role: "Postdoc.",
       organization: "EE, Stanford University",
-      period: "2023.04 – 2024.10"
+      period: "2023.04 – 2024.10",
+      logo: "/images/institution/stanford_seal.svg"
     },
     {
       role: "Postdoc.",
       organization: "Next-Gen. Defense Tech. Research Center, POSTECH",
-      period: "2023.02 – 2023.03"
+      period: "2023.02 – 2023.03",
+      logo: "/images/institution/postech.png"
     },
     {
       role: "Intern",
       organization: "Memory Division, Samsung Electronics",
-      period: "2016.06 – 2016.09"
+      period: "2016.06 – 2016.09",
+      logo: "/images/institution/samsung.svg"
     }
   ] as ExperienceItem[],
 
@@ -147,19 +153,22 @@ export const professorData = {
       degree: "Ph.D.",
       field: "EE",
       institution: "POSTECH",
-      period: "2019.02 – 2023.02"
+      period: "2019.02 – 2023.02",
+      logo: "/images/institution/postech.png"
     },
     {
       degree: "M.S.",
       field: "EE",
       institution: "POSTECH",
-      period: "2017.02 – 2019.02"
+      period: "2017.02 – 2019.02",
+      logo: "/images/institution/postech.png"
     },
     {
       degree: "B.S.",
       field: "CS",
       institution: "Korea University",
-      period: "2011.03 – 2017.02"
+      period: "2011.03 – 2017.02",
+      logo: "/images/institution/korea_univ_emblem.png"
     }
   ] as EducationItem[],
 

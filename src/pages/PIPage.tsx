@@ -161,25 +161,61 @@ export const PIPage: React.FC<PIPageProps> = () => {
             {/* Experience */}
             <div>
               <SectionHeader title="Experience" />
-              <ul className="pi-plain-list">
+              <div className="pi-history-list">
                 {professorData.experience.map((exp, idx) => (
-                  <li key={idx} className="pi-plain-item">
-                    <span className="pi-plain-title">{exp.role}</span>, {exp.organization}, {exp.period}
-                  </li>
+                  <div key={idx} className="pi-history-item">
+                    {exp.logo && (
+                      <div className="pi-history-cube">
+                        <img
+                          src={assetUrl(exp.logo)}
+                          alt={exp.organization}
+                          className="pi-history-logo"
+                          loading="lazy"
+                        />
+                      </div>
+                    )}
+                    <div className="pi-history-body">
+                      <div className="pi-history-headline">
+                        <span className="pi-history-role">{exp.role}</span>
+                        <span className="pi-history-sep">, </span>
+                        <span className="pi-history-org">{exp.organization}</span>
+                      </div>
+                      <div className="pi-history-period">{exp.period}</div>
+                    </div>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
 
             {/* Education */}
             <div>
               <SectionHeader title="Education" />
-              <ul className="pi-plain-list">
+              <div className="pi-history-list">
                 {professorData.education.map((edu, idx) => (
-                  <li key={idx} className="pi-plain-item">
-                    <span className="pi-plain-title">{edu.degree}</span>, {edu.field}, {edu.institution}, {edu.period}
-                  </li>
+                  <div key={idx} className="pi-history-item">
+                    {edu.logo && (
+                      <div className="pi-history-cube">
+                        <img
+                          src={assetUrl(edu.logo)}
+                          alt={edu.institution}
+                          className="pi-history-logo"
+                          loading="lazy"
+                        />
+                      </div>
+                    )}
+                    <div className="pi-history-body">
+                      <div className="pi-history-headline">
+                        <span className="pi-history-role">{edu.degree}</span>
+                        <span className="pi-history-sep">, </span>
+                        <span className="pi-history-field">{edu.field}</span>
+                        <span className="pi-history-sep">, </span>
+                        <span className="pi-history-org">{edu.institution}</span>
+                      </div>
+                      <div className="pi-history-period">{edu.period}</div>
+                    </div>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -485,6 +521,100 @@ export const PIPage: React.FC<PIPageProps> = () => {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: clamp(2rem, 4vw, 3.5rem);
+        }
+
+        /* Experience & Education History with Rounded Square Logo Cubes */
+        .pi-history-list {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .pi-history-item {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          padding: 8px 10px;
+          border-radius: var(--radius-xs);
+          transition: background-color var(--transition-fast);
+        }
+
+        .pi-history-item:hover {
+          background-color: var(--color-surface-hover);
+        }
+
+        .pi-history-cube {
+          width: 48px;
+          height: 48px;
+          min-width: 48px;
+          min-height: 48px;
+          border-radius: 12px;
+          background-color: #ffffff;
+          border: 1px solid var(--color-border);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 5px;
+          box-sizing: border-box;
+          flex-shrink: 0;
+          transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+        }
+
+        .pi-history-item:hover .pi-history-cube {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        [data-theme='dark'] .pi-history-cube {
+          background-color: #ffffff;
+          border-color: rgba(255, 255, 255, 0.15);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+        }
+
+        .pi-history-logo {
+          max-width: 100%;
+          max-height: 100%;
+          width: auto;
+          height: auto;
+          object-fit: contain;
+          display: block;
+        }
+
+        .pi-history-body {
+          display: flex;
+          flex-direction: column;
+          gap: 3px;
+          min-width: 0;
+        }
+
+        .pi-history-headline {
+          font-family: var(--font-body);
+          font-size: 14.5px;
+          line-height: 1.45;
+          color: var(--color-text-secondary);
+          word-break: keep-all;
+        }
+
+        .pi-history-role {
+          font-weight: 600;
+          color: var(--color-text-primary);
+        }
+
+        .pi-history-org,
+        .pi-history-field {
+          color: var(--color-text-secondary);
+        }
+
+        .pi-history-sep {
+          color: var(--color-text-muted);
+        }
+
+        .pi-history-period {
+          font-family: var(--font-sans);
+          font-size: 13px;
+          color: var(--color-text-muted);
+          line-height: 1.3;
         }
 
         .pi-interests-intro {
