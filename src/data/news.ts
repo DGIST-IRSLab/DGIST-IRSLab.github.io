@@ -43,7 +43,7 @@ export const newsItems: NewsItem[] = [
     id:"news-2026-09-paper",
     date: "2026.09",
     category: "PAPER",
-    title:"2 Paper Accepted to NeurIPS 2026.",
+    title:"2 Papers Accepted to NeurIPS 2026.",
     description:"Two papers(Radar MAE, mmLIP) by Eunchan Kim, Jeongwan Shin, and Jaehyeon Kim have been accepted to NeurIPS 2026 🥳 Congratulations!"
   },
   {
