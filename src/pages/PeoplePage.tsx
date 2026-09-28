@@ -36,39 +36,27 @@ export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
       </section>
 
       {/* Principal Investigator */}
-      <section style={{ paddingTop: 'var(--space-2xl)' }}>
+      <section className="members-section">
         <div className="container">
           <SectionHeader
             title="Principal Investigator"
             actionText="View Full P.I Profile"
             onActionClick={() => onNavigate('pi')}
           />
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 300px))',
-              gap: 'var(--space-lg)',
-            }}
-          >
+          <div className="members-grid">
             <PersonCard person={professor} onNavigate={onNavigate} />
           </div>
         </div>
       </section>
 
       {/* Postdoctoral Fellows */}
-      <section style={{ paddingTop: 'var(--space-2xl)' }}>
+      <section className="members-section">
         <div className="container">
           <SectionHeader
             title="Postdoctoral Fellows"
           />
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
-              gap: 'var(--space-lg)',
-            }}
-          >
+          <div className="members-grid">
             {postdocs.map((person) => (
               <PersonCard key={person.id} person={person} />
             ))}
@@ -77,19 +65,13 @@ export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
       </section>
 
       {/* Graduate Students */}
-      <section style={{ paddingTop: 'var(--space-2xl)' }}>
+      <section className="members-section">
         <div className="container">
           <SectionHeader
             title="Graduate Students"
           />
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-              gap: 'var(--space-lg)',
-            }}
-          >
+          <div className="members-grid">
             {graduateStudents.map((person) => (
               <PersonCard key={person.id} person={person} />
             ))}
@@ -98,19 +80,13 @@ export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
       </section>
 
       {/* Undergraduate Researchers */}
-      <section style={{ paddingTop: 'var(--space-2xl)' }}>
+      <section className="members-section">
         <div className="container">
           <SectionHeader
             title="Undergraduate Researchers"
           />
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-              gap: 'var(--space-lg)',
-            }}
-          >
+          <div className="members-grid">
             {undergraduateResearchers.map((person) => (
               <PersonCard key={person.id} person={person} />
             ))}
@@ -119,19 +95,13 @@ export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
       </section>
 
       {/* Alumni Section */}
-      <section style={{ paddingTop: 'var(--space-2xl)' }}>
+      <section className="members-section">
         <div className="container">
           <SectionHeader
             title="Alumni"
           />
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
-              gap: 'var(--space-lg)',
-            }}
-          >
+          <div className="members-grid">
             {alumni.map((person) => (
               <PersonCard key={person.id} person={person} />
             ))}
@@ -140,7 +110,7 @@ export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
       </section>
 
       {/* Intern History */}
-      <section style={{ paddingTop: 'var(--space-2xl)' }}>
+      <section className="members-section">
         <div className="container">
           <SectionHeader
             title="Research Interns"
@@ -162,6 +132,7 @@ export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
             {internHistory.map((cohort, i) => (
               <div
                 key={i}
+                className="intern-row"
                 style={{
                   display: 'flex',
                   alignItems: 'baseline',
@@ -171,17 +142,19 @@ export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
                 }}
               >
                 <span
+                  className="intern-period"
                   style={{
                     fontFamily: 'var(--font-mono)',
                     fontSize: '13px',
                     fontWeight: 600,
                     color: 'var(--color-accent)',
                     minWidth: '150px',
+                    flexShrink: 0,
                   }}
                 >
                   [{cohort.period}]
                 </span>
-                <span style={{ fontSize: '13.5px', color: 'var(--color-text-secondary)' }}>
+                <span className="intern-names" style={{ fontSize: '13.5px', color: 'var(--color-text-secondary)' }}>
                   {cohort.names.join(', ')}
                 </span>
               </div>
@@ -189,6 +162,52 @@ export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
           </div>
         </div>
       </section>
+
+      <style>{`
+        .members-section {
+          padding-top: var(--space-2xl);
+        }
+
+        .members-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+          gap: var(--space-lg);
+        }
+
+        @media (max-width: 1024px) {
+          .members-grid {
+            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+            gap: var(--space-md);
+          }
+        }
+
+        @media (max-width: 640px) {
+          .members-section {
+            padding-top: var(--space-xl);
+          }
+
+          .members-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            gap: 12px !important;
+          }
+
+          .intern-row {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 4px !important;
+          }
+
+          .intern-period {
+            min-width: auto !important;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .members-grid {
+            gap: 8px !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };

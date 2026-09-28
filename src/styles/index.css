@@ -59,6 +59,33 @@
   }
 }
 
+/* Academic Members / People Responsive Grid */
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: var(--space-lg);
+}
+
+@media (max-width: 1024px) {
+  .members-grid {
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: var(--space-md);
+  }
+}
+
+@media (max-width: 640px) {
+  .members-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .members-grid {
+    gap: 8px !important;
+  }
+}
+
 /* Section Wrapper */
 .section {
   padding-top: var(--space-2xl);

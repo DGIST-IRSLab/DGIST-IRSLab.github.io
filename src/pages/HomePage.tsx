@@ -25,7 +25,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       case 'PAPER':
         return '📝';
       case 'GRANT':
-        return '💰';
+        return '🏛️';
       case 'PEOPLE':
         return '👥';
       case 'TALK':
@@ -58,40 +58,39 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           1. HERO SECTION: IRS LAB IDENTITY & SCIENTIFIC AGENDA
           ==================================================================== */}
       <section className="hero-section">
+        {/* Full-width uncropped group photo background (No vignetting) */}
+        <div className="hero-bg-wrap">
+          <img
+            src={assetUrl('/images/main_group_wide.jpg')}
+            alt="IRS Lab Members at DGIST"
+            className="hero-bg-photo"
+            loading="eager"
+          />
+          {/* Subtle left-side light gradient overlay: 아주 살짝 글자만 보이도록 */}
+          <div className="hero-left-scrim" />
+        </div>
+
         <div className="container hero-container">
-          <div className="hero-grid">
-            <div className="hero-text-col">
-              <h1 className="hero-title">
-                Intelligent Radio Sensing Lab
-                <br />
-                <span className="hero-title-sub">@ DGIST</span>
-              </h1>
+          <div className="hero-content">
+            <h1 className="hero-title">
+              Intelligent Radio Sensing Lab
+              <br />
+              <span className="hero-title-sub">@ DGIST</span>
+            </h1>
 
-              <div className="hero-statement-wrap">
-                <button
-                  type="button"
-                  onClick={() => {
-                    onNavigate('research');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                  className="hero-statement-link"
-                  title="Explore IRS Lab Research"
-                >
-                  <span className="hero-statement-text">AI-Driven Wireless+X Sensing</span>
-                  <ArrowRight size={17} className="hero-statement-arrow" />
-                </button>
-              </div>
-            </div>
-
-            <div className="hero-photo-col">
-              <div className="hero-photo-frame">
-                <img
-                  src={assetUrl('/images/main_group_wide.jpg')}
-                  alt="IRS Lab Members at DGIST"
-                  className="hero-group-photo"
-                  loading="eager"
-                />
-              </div>
+            <div className="hero-statement-wrap">
+              <button
+                type="button"
+                onClick={() => {
+                  onNavigate('research');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="hero-statement-link"
+                title="Explore IRS Lab Research"
+              >
+                <span className="hero-statement-text">AI-Driven Wireless+X Sensing</span>
+                <ArrowRight size={17} className="hero-statement-arrow" />
+              </button>
             </div>
           </div>
         </div>
@@ -188,136 +187,95 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           SCOPED STYLES
           ==================================================================== */}
       <style>{`
-        /* Hero Section */
+        /* Hero Section (Full-Width Photo Banner with Subtle Left Gradient) */
         .hero-section {
           position: relative;
-          padding-top: clamp(3rem, 5vw, 4.5rem);
-          padding-bottom: clamp(3rem, 5vw, 4.5rem);
-          background-color: var(--color-bg);
+          width: 100%;
+          min-height: clamp(380px, 46vw, 540px);
+          display: flex;
+          align-items: center;
           border-bottom: 1px solid var(--color-border);
           overflow: hidden;
+          background-color: var(--color-bg);
         }
 
-        .hero-rf-trace {
+        .hero-bg-wrap {
           position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 160px;
-          pointer-events: none;
+          inset: 0;
+          width: 100%;
+          height: 100%;
           z-index: 0;
         }
 
-        .rf-svg {
+        .hero-bg-photo {
           width: 100%;
           height: 100%;
+          object-fit: cover;
+          object-position: center 38%;
+          display: block;
+        }
+
+        /* Subtle left-side light gradient overlay: 아주 살짝 글자만 보이도록 */
+        .hero-left-scrim {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.90) 0%,
+            rgba(255, 255, 255, 0.76) 30%,
+            rgba(255, 255, 255, 0.35) 48%,
+            rgba(255, 255, 255, 0.05) 62%,
+            transparent 74%
+          );
+        }
+
+        [data-theme='dark'] .hero-left-scrim {
+          background: linear-gradient(
+            to right,
+            rgba(11, 15, 20, 0.92) 0%,
+            rgba(11, 15, 20, 0.78) 30%,
+            rgba(11, 15, 20, 0.35) 48%,
+            rgba(11, 15, 20, 0.05) 62%,
+            transparent 74%
+          );
         }
 
         .hero-container {
           position: relative;
           z-index: 1;
-        }
-
-        .hero-grid {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: clamp(1.5rem, 3.5vw, 3rem);
-        }
-
-        .hero-text-col {
-          flex: 1 1 48%;
-          min-width: 0;
-        }
-
-        .hero-photo-col {
-          flex: 1 1 52%;
-          display: flex;
-          justify-content: flex-end;
-          align-items: center;
-          min-width: 0;
-        }
-
-        .hero-photo-frame {
-          position: relative;
           width: 100%;
-          max-width: 550px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          animation: heroPhotoIn 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
-          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-          mask-image: linear-gradient(to bottom,
-            transparent 0%,
-            rgba(0, 0, 0, 0.2) 5%,
-            black 20%,
-            black 80%,
-            rgba(0, 0, 0, 0.2) 95%,
-            transparent 100%
-          );
-          -webkit-mask-image: linear-gradient(to bottom,
-            transparent 0%,
-            rgba(0, 0, 0, 0.2) 5%,
-            black 20%,
-            black 80%,
-            rgba(0, 0, 0, 0.2) 95%,
-            transparent 100%
-          );
+          padding-top: clamp(2.8rem, 5vw, 4.5rem);
+          padding-bottom: clamp(2.8rem, 5vw, 4.5rem);
         }
 
-        .hero-photo-frame:hover {
-          transform: translateY(-3px) scale(1.01);
+        .hero-content {
+          max-width: 660px;
         }
 
-        .hero-group-photo {
-          width: 100%;
-          height: auto;
-          aspect-ratio: 16 / 9.6;
-          object-fit: cover;
-          object-position: center 48%;
-          display: block;
-          mask-image: linear-gradient(to right,
-            transparent 0%,
-            rgba(0, 0, 0, 0.25) 4%,
-            rgba(0, 0, 0, 0.8) 10%,
-            black 14%,
-            black 85%,
-            rgba(0, 0, 0, 0.8) 90%,
-            rgba(0, 0, 0, 0.25) 96%,
-            transparent 100%
-          );
-          -webkit-mask-image: linear-gradient(to right,
-            transparent 0%,
-            rgba(0, 0, 0, 0.25) 4%,
-            rgba(0, 0, 0, 0.8) 10%,
-            black 14%,
-            black 85%,
-            rgba(0, 0, 0, 0.8) 90%,
-            rgba(0, 0, 0, 0.25) 96%,
-            transparent 100%
-          );
-          transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .hero-photo-frame:hover .hero-group-photo {
-          transform: scale(1.02);
-        }
-
-        @media (max-width: 860px) {
-          .hero-grid {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 2rem;
+        @media (max-width: 768px) {
+          .hero-section {
+            min-height: 380px;
           }
 
-          .hero-photo-col {
-            width: 100%;
-            justify-content: center;
+          .hero-left-scrim {
+            background: linear-gradient(
+              to bottom,
+              rgba(255, 255, 255, 0.92) 0%,
+              rgba(255, 255, 255, 0.78) 50%,
+              rgba(255, 255, 255, 0.22) 75%,
+              transparent 100%
+            );
           }
 
-          .hero-photo-frame {
-            max-width: 480px;
-            margin: 0 auto;
+          [data-theme='dark'] .hero-left-scrim {
+            background: linear-gradient(
+              to bottom,
+              rgba(11, 15, 20, 0.94) 0%,
+              rgba(11, 15, 20, 0.80) 50%,
+              rgba(11, 15, 20, 0.22) 75%,
+              transparent 100%
+            );
           }
         }
 

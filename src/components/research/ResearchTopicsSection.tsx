@@ -13,16 +13,11 @@ export const ResearchTopicsSection: React.FC = () => {
 
   const activeTopic = researchTopics.find((t) => t.id === selectedTopicId) || null;
 
-  const renderDetailsContent = (topic: ResearchTopic, pillarIndex: number) => {
+  const renderDetailsContent = (topic: ResearchTopic) => {
     return (
       <div className="topic-expanded-details" id={`details-${topic.id}`}>
         {/* Top Header Bar */}
         <div className="detail-top-bar">
-          <div className="detail-meta-row">
-            <span className="detail-pillar-label">PILLAR 0{pillarIndex + 1}</span>
-            <span className="detail-divider">/</span>
-            <span className="detail-meta-badge">RESEARCH ARCHITECTURE &amp; METHODOLOGY</span>
-          </div>
           <div className="detail-title-row">
             <h3 className="detail-heading">{topic.title}</h3>
             <button
@@ -41,20 +36,16 @@ export const ResearchTopicsSection: React.FC = () => {
         <div className="detail-grid-layout">
           {/* Left Column: Narrative, Motivation & Highlights */}
           <div className="detail-content-col">
-            <div className="detail-lead-box">
-              <span className="detail-lead-label">Executive Overview</span>
-              <p className="detail-lead-summary">{topic.summary}</p>
-            </div>
+            <p className="detail-lead-summary">{topic.summary}</p>
 
             {/* Core Research Question */}
             <div className="detail-rq-box">
-              <span className="detail-rq-prefix">Core Research Question</span>
               <p className="detail-rq-text">&ldquo;{topic.question}&rdquo;</p>
             </div>
 
-            {/* Technical Approach & Motivation */}
+            {/* Technical Approach */}
             <div className="detail-desc-group">
-              <h4 className="detail-subheading">Technical Approach &amp; Challenges</h4>
+              <h4 className="detail-subheading">Technical Approach</h4>
               {topic.description.map((paragraph, idx) => (
                 <p key={idx} className="detail-desc-paragraph">
                   {paragraph}
@@ -65,7 +56,7 @@ export const ResearchTopicsSection: React.FC = () => {
             {/* Key Technical Highlights */}
             {topic.highlights && topic.highlights.length > 0 && (
               <div className="detail-highlights-group">
-                <h4 className="detail-subheading">Key Technical Contributions</h4>
+                <h4 className="detail-subheading">Key Contributions</h4>
                 <ul className="detail-highlights-list">
                   {topic.highlights.map((hl, idx) => (
                     <li key={idx} className="detail-highlight-item">
@@ -77,16 +68,13 @@ export const ResearchTopicsSection: React.FC = () => {
               </div>
             )}
 
-            {/* Academic Keywords Tags (Clean academic chips, NO hashtags) */}
-            <div className="detail-tags-group">
-              <span className="detail-tags-label">Keywords &amp; Methodologies:</span>
-              <div className="detail-tags-list">
-                {topic.keywords.map((kw, idx) => (
-                  <span key={idx} className="academic-keyword-chip">
-                    {kw.trim()}
-                  </span>
-                ))}
-              </div>
+            {/* Academic Keywords Tags */}
+            <div className="detail-tags-list">
+              {topic.keywords.map((kw, idx) => (
+                <span key={idx} className="academic-keyword-chip">
+                  {kw.trim()}
+                </span>
+              ))}
             </div>
           </div>
 
@@ -95,7 +83,7 @@ export const ResearchTopicsSection: React.FC = () => {
             <div className="detail-figure-col">
               <div className="figure-card-frame">
                 <div className="figure-top-bar">
-                  <span className="figure-bar-label">Architecture &amp; Pipeline Diagram</span>
+                  <span className="figure-caption-title">Architecture &amp; Experimental Pipeline</span>
                   <a
                     href={assetUrl(topic.image)}
                     target="_blank"
@@ -142,7 +130,6 @@ export const ResearchTopicsSection: React.FC = () => {
     <section className="research-topics-section">
       {/* Section Header */}
       <div className="topics-section-header">
-        <div className="topics-eyebrow">RESEARCH PILLARS</div>
         <h2 className="explore-heading">
           Explore our research
         </h2>
@@ -153,7 +140,7 @@ export const ResearchTopicsSection: React.FC = () => {
 
       {/* 3 Academic Pillar Cards Grid */}
       <div className="topics-cards-grid">
-        {researchTopics.map((topic, index) => {
+        {researchTopics.map((topic) => {
           const isSelected = selectedTopicId === topic.id;
           return (
             <div key={topic.id} className="topic-card-wrapper">
@@ -170,7 +157,7 @@ export const ResearchTopicsSection: React.FC = () => {
                   }
                 }}
               >
-                {/* 1. Research Figure Thumbnail Banner */}
+                {/* 1. Research Figure Thumbnail Banner (clean, no small badge) */}
                 <div className="card-figure-thumb-wrap">
                   <img
                     src={assetUrl(topic.image)}
@@ -178,9 +165,6 @@ export const ResearchTopicsSection: React.FC = () => {
                     loading="lazy"
                     className="card-figure-thumb-img"
                   />
-                  <div className="card-pillar-pill">
-                    <span>PILLAR 0{index + 1}</span>
-                  </div>
                 </div>
 
                 {/* 2. Card Content Body */}
@@ -197,22 +181,19 @@ export const ResearchTopicsSection: React.FC = () => {
                   {/* Concise Summary */}
                   <p className="card-summary-text">{topic.summary}</p>
 
-                  {/* Key Highlights List */}
+                  {/* Key Highlights List (clean, no small uppercase header) */}
                   {topic.highlights && topic.highlights.length > 0 && (
-                    <div className="card-highlights-box">
-                      <div className="card-highlights-header">Key Research Focus:</div>
-                      <ul className="card-highlights-list">
-                        {topic.highlights.slice(0, 2).map((hl, i) => (
-                          <li key={i} className="card-highlight-item">
-                            <span className="card-bullet-pip" aria-hidden="true" />
-                            <span>{hl}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                    <ul className="card-highlights-list">
+                      {topic.highlights.slice(0, 2).map((hl, i) => (
+                        <li key={i} className="card-highlight-item">
+                          <span className="card-bullet-pip" aria-hidden="true" />
+                          <span>{hl}</span>
+                        </li>
+                      ))}
+                    </ul>
                   )}
 
-                  {/* Academic Keywords Chips (No hashtags) */}
+                  {/* Academic Keywords Chips */}
                   <div className="card-chips-row">
                     {topic.keywords.slice(0, 3).map((kw, i) => (
                       <span key={i} className="card-chip">
@@ -224,11 +205,11 @@ export const ResearchTopicsSection: React.FC = () => {
                     )}
                   </div>
 
-                  {/* Action Link Footer */}
+                  {/* Action Link Footer with natural font */}
                   <div className="card-action-footer">
                     <span className="card-action-btn">
-                      <span>{isSelected ? 'Close Details' : 'View Architecture & Details'}</span>
-                      {isSelected ? <ChevronUp size={14} /> : <ArrowRight size={14} className="card-arrow-icon" />}
+                      <span>{isSelected ? 'Close details' : 'View details & architecture'}</span>
+                      {isSelected ? <ChevronUp size={15} /> : <ArrowRight size={15} className="card-arrow-icon" />}
                     </span>
                   </div>
                 </div>
@@ -237,7 +218,7 @@ export const ResearchTopicsSection: React.FC = () => {
               {/* Mobile details (rendered right below clicked card on mobile) */}
               {isSelected && (
                 <div className="mobile-topic-details">
-                  {renderDetailsContent(topic, index)}
+                  {renderDetailsContent(topic)}
                 </div>
               )}
             </div>
@@ -248,10 +229,7 @@ export const ResearchTopicsSection: React.FC = () => {
       {/* Desktop details (rendered below the 3-column row on large screens) */}
       {activeTopic && (
         <div className="desktop-topic-details">
-          {renderDetailsContent(
-            activeTopic,
-            researchTopics.findIndex((t) => t.id === activeTopic.id)
-          )}
+          {renderDetailsContent(activeTopic)}
         </div>
       )}
 
@@ -262,16 +240,6 @@ export const ResearchTopicsSection: React.FC = () => {
 
         .topics-section-header {
           margin-bottom: var(--space-xl);
-        }
-
-        .topics-eyebrow {
-          font-family: var(--font-mono);
-          font-size: 11.5px;
-          font-weight: 600;
-          color: var(--color-accent);
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          margin-bottom: 6px;
         }
 
         .explore-heading {
@@ -358,23 +326,6 @@ export const ResearchTopicsSection: React.FC = () => {
           transform: scale(1.03);
         }
 
-        .card-pillar-pill {
-          position: absolute;
-          top: 10px;
-          left: 10px;
-          background-color: rgba(11, 15, 20, 0.82);
-          backdrop-filter: blur(4px);
-          color: #ffffff;
-          padding: 2.5px 8px;
-          font-family: var(--font-mono);
-          font-size: 10.5px;
-          font-weight: 600;
-          letter-spacing: 0.04em;
-          border-radius: var(--radius-xs);
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          z-index: 2;
-        }
-
         /* Card Content Body */
         .card-content-body {
           padding: 20px 22px 18px;
@@ -427,22 +378,7 @@ export const ResearchTopicsSection: React.FC = () => {
           overflow: hidden;
         }
 
-        /* Highlights Box */
-        .card-highlights-box {
-          display: flex;
-          flex-direction: column;
-          gap: 6px;
-        }
-
-        .card-highlights-header {
-          font-family: var(--font-mono);
-          font-size: 11px;
-          font-weight: 600;
-          color: var(--color-text-muted);
-          text-transform: uppercase;
-          letter-spacing: 0.04em;
-        }
-
+        /* Highlights List */
         .card-highlights-list {
           list-style: none;
           padding: 0;
@@ -498,9 +434,9 @@ export const ResearchTopicsSection: React.FC = () => {
           padding: 2px 4px;
         }
 
-        /* Action Link Footer */
+        /* Action Link Footer with natural sans font */
         .card-action-footer {
-          padding-top: 10px;
+          padding-top: 12px;
           border-top: 1px solid var(--color-border-subtle);
           display: flex;
           align-items: center;
@@ -511,11 +447,15 @@ export const ResearchTopicsSection: React.FC = () => {
           display: inline-flex;
           align-items: center;
           gap: 6px;
-          font-family: var(--font-mono);
-          font-size: 12px;
-          font-weight: 600;
+          font-family: var(--font-sans);
+          font-size: 13px;
+          font-weight: 500;
           color: var(--color-accent);
-          transition: transform var(--transition-fast);
+          transition: color var(--transition-fast), transform var(--transition-fast);
+        }
+
+        .academic-topic-card:hover .card-action-btn {
+          color: var(--color-accent-hover);
         }
 
         .academic-topic-card:hover .card-arrow-icon {
@@ -525,7 +465,7 @@ export const ResearchTopicsSection: React.FC = () => {
         /* Expanded Details Container */
         .topic-expanded-details {
           margin-top: 24px;
-          padding: 36px 36px 40px;
+          padding: 32px 36px 36px;
           background-color: var(--color-surface);
           border: 1px solid var(--color-border);
           border-top: 3px solid var(--color-accent);
@@ -550,32 +490,9 @@ export const ResearchTopicsSection: React.FC = () => {
           border-bottom: 1px solid var(--color-border-subtle);
         }
 
-        .detail-meta-row {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          font-family: var(--font-mono);
-          font-size: 11.5px;
-          color: var(--color-text-muted);
-          margin-bottom: 6px;
-        }
-
-        .detail-pillar-label {
-          font-weight: 700;
-          color: var(--color-accent);
-        }
-
-        .detail-divider {
-          color: var(--color-border-strong);
-        }
-
-        .detail-meta-badge {
-          letter-spacing: 0.05em;
-        }
-
         .detail-title-row {
           display: flex;
-          align-items: baseline;
+          align-items: center;
           justify-content: space-between;
           gap: 16px;
           flex-wrap: wrap;
@@ -595,14 +512,14 @@ export const ResearchTopicsSection: React.FC = () => {
           display: inline-flex;
           align-items: center;
           gap: 6px;
-          font-family: var(--font-mono);
-          font-size: 12.5px;
-          font-weight: 600;
+          font-family: var(--font-sans);
+          font-size: 13px;
+          font-weight: 500;
           color: var(--color-text-muted);
           background-color: var(--color-bg-secondary);
           border: 1px solid var(--color-border);
           border-radius: var(--radius-xs);
-          padding: 5px 10px;
+          padding: 5px 12px;
           cursor: pointer;
           transition: all var(--transition-fast);
         }
@@ -623,22 +540,7 @@ export const ResearchTopicsSection: React.FC = () => {
         .detail-content-col {
           display: flex;
           flex-direction: column;
-          gap: 20px;
-        }
-
-        .detail-lead-box {
-          display: flex;
-          flex-direction: column;
-          gap: 6px;
-        }
-
-        .detail-lead-label {
-          font-family: var(--font-mono);
-          font-size: 11px;
-          font-weight: 600;
-          color: var(--color-accent);
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
+          gap: 18px;
         }
 
         .detail-lead-summary {
@@ -654,17 +556,6 @@ export const ResearchTopicsSection: React.FC = () => {
           background-color: var(--color-bg-secondary);
           border-left: 3px solid var(--color-accent);
           border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
-        }
-
-        .detail-rq-prefix {
-          display: block;
-          font-family: var(--font-mono);
-          font-size: 10.5px;
-          font-weight: 600;
-          color: var(--color-text-muted);
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-          margin-bottom: 2px;
         }
 
         .detail-rq-text {
@@ -726,27 +617,12 @@ export const ResearchTopicsSection: React.FC = () => {
         }
 
         /* Detail Tags */
-        .detail-tags-group {
-          padding-top: 14px;
-          border-top: 1px solid var(--color-border-subtle);
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-        }
-
-        .detail-tags-label {
-          font-family: var(--font-mono);
-          font-size: 11px;
-          font-weight: 600;
-          color: var(--color-text-muted);
-          text-transform: uppercase;
-          letter-spacing: 0.04em;
-        }
-
         .detail-tags-list {
           display: flex;
           flex-wrap: wrap;
           gap: 6px;
+          padding-top: 10px;
+          border-top: 1px solid var(--color-border-subtle);
         }
 
         .academic-keyword-chip {
@@ -787,19 +663,19 @@ export const ResearchTopicsSection: React.FC = () => {
           border-bottom: 1px solid var(--color-border-subtle);
         }
 
-        .figure-bar-label {
-          font-family: var(--font-heading);
-          font-size: 13px;
+        .figure-caption-title {
+          font-family: var(--font-sans);
+          font-size: 12.5px;
           font-weight: 600;
-          color: var(--color-text-primary);
+          color: var(--color-text-secondary);
         }
 
         .figure-external-link {
           display: inline-flex;
           align-items: center;
           gap: 5px;
-          font-family: var(--font-mono);
-          font-size: 11.5px;
+          font-family: var(--font-sans);
+          font-size: 12px;
           color: var(--color-accent);
           text-decoration: none;
           transition: color var(--transition-fast);
