@@ -120,19 +120,19 @@ export const professor: Person = {
   room: "Engineering Building E3, Room 406",
   bio: "Jae-Ho Choi is an Assistant Professor in the Department of Electrical Engineering and Computer Science (EECS) and Department of Interdisciplinary Studies of Artificial Intelligence (AI) at DGIST since December 2024. Prior to joining DGIST, he was a Postdoctoral Scholar in the Department of Electrical Engineering at Stanford University (advised by Prof. Amin Arbabian) from 2023 to 2024. He received his Ph.D. and M.S. degrees in Electrical Engineering from POSTECH (advised by Prof. Kyung-Tae Kim) in 2023 and 2019, and his B.S. degree in Computer Science from Korea University in 2017.",
   researchInterests: [
-    "Radio+X Perception Technologies (Indoor perception, 3D human pose, vital signs)",
-    "AI for Wireless & Radar (Wireless-centric learning, complex neural networks, foundation models)",
-    "Defense & Remote Sensing (Synthetic aperture radar, target detection/tracking, micro-Doppler)"
+    "Radio+X Perception Technologies (radio or radio+X systems for diverse sensing technologies)",
+    "AI for Wireless/Radar (wireless-centric learning, data-efficient learning, complex neural network)",
+    "Defense/Remote Sensing (radar detection/tracking, synthetic aperture radar (SAR))"
   ],
   education: [
-    "Ph.D., Electrical Engineering, POSTECH (2019.02 – 2023.02)",
-    "M.S., Electrical Engineering, POSTECH (2017.02 – 2019.02)",
-    "B.S., Computer Science, Korea University (2011.03 – 2017.02)"
+    "Ph.D., EE, POSTECH (2019.02 – 2023.02)",
+    "M.S., EE, POSTECH (2017.02 – 2019.02)",
+    "B.S., CS, Korea University (2011.03 – 2017.02)"
   ],
   experience: [
-    "Assistant Professor, EECS & AI, DGIST (2024.12 – Present)",
-    "Postdoctoral Scholar, Department of Electrical Engineering, Stanford University (2023.04 – 2024.10)",
-    "Postdoctoral Researcher, Next-Gen. Defense Tech. Research Center, POSTECH (2023.02 – 2023.03)",
+    "Assistant Professor, EECS/AI, DGIST (2024.12 – )",
+    "Postdoc., EE, Stanford University (2023.04 – 2024.10)",
+    "Postdoc., Next-Gen. Defense Tech. Research Center, POSTECH (2023.02 – 2023.03)",
     "Intern, Memory Division, Samsung Electronics (2016.06 – 2016.09)"
   ],
   googleScholar: "https://scholar.google.com/citations?user=ywDewK4AAAAJ&hl=en",

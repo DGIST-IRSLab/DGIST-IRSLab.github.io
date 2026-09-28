@@ -122,65 +122,61 @@ export const professorData = {
   experience: [
     {
       role: "Assistant Professor",
-      organization: "DGIST (EECS & AI)",
-      period: "2024.12 – Present",
-      detail: "Principal Investigator of Intelligent Radio Sensing Laboratory"
+      organization: "EECS/AI, DGIST",
+      period: "2024.12 –"
     },
     {
-      role: "Postdoctoral Scholar",
-      organization: "Stanford University (EE)",
-      period: "2023.04 – 2024.10",
-      detail: "Advised by Prof. Amin Arbabian (Arbabian Lab)"
+      role: "Postdoc.",
+      organization: "EE, Stanford University",
+      period: "2023.04 – 2024.10"
     },
     {
-      role: "Postdoctoral Researcher",
-      organization: "POSTECH (Next-Gen. Defense Tech. Research Center)",
-      period: "2023.02 – 2023.03",
-      detail: "Radar Signal Processing & Defense Remote Sensing"
+      role: "Postdoc.",
+      organization: "Next-Gen. Defense Tech. Research Center, POSTECH",
+      period: "2023.02 – 2023.03"
     },
     {
       role: "Intern",
-      organization: "Samsung Electronics (Memory Division)",
-      period: "2016.06 – 2016.09",
-      detail: "Semiconductor Memory Systems"
+      organization: "Memory Division, Samsung Electronics",
+      period: "2016.06 – 2016.09"
     }
   ] as ExperienceItem[],
 
   education: [
     {
       degree: "Ph.D.",
-      field: "Electrical Engineering",
+      field: "EE",
       institution: "POSTECH",
-      period: "2019.02 – 2023.02",
-      advisor: "Advised by Prof. Kyung-Tae Kim (IRAS Lab)"
+      period: "2019.02 – 2023.02"
     },
     {
       degree: "M.S.",
-      field: "Electrical Engineering",
+      field: "EE",
       institution: "POSTECH",
-      period: "2017.02 – 2019.02",
-      advisor: "Advised by Prof. Kyung-Tae Kim (IRAS Lab)"
+      period: "2017.02 – 2019.02"
     },
     {
       degree: "B.S.",
-      field: "Computer Science",
+      field: "CS",
       institution: "Korea University",
       period: "2011.03 – 2017.02"
     }
   ] as EducationItem[],
 
+  researchIntro: "I’m interested in developing new sensing technologies to see the world from entirely new perspective, relying primarily on radio-frequency signals. My main research areas include (but not limited to):",
+
   researchInterests: [
     {
       title: "Radio+X Perception Technologies",
-      description: "Radio or radio+X systems for diverse sensing technologies (e.g., indoor perception, 3D human understanding, and contactless health monitoring)."
+      description: "radio or radio+X systems for diverse sensing technologies (e.g., indoor perception, 3D human understanding, and health monitoring)"
     },
     {
-      title: "AI for Wireless / Radar",
-      description: "Wireless-centric learning representations, data-efficient multimodal learning, complex-valued neural networks, and radar foundation models."
+      title: "AI for Wireless/Radar",
+      description: "wireless-centric learning, data-efficient learning, complex neural network"
     },
     {
-      title: "Defense & Remote Sensing",
-      description: "Synthetic aperture radar (SAR) target detection/tracking, micro-Doppler signature analysis, and multi-sensor defense surveillance systems."
+      title: "Defense/Remote Sensing",
+      description: "radar detection/tracking, synthetic aperture radar (SAR)"
     }
   ],
 

@@ -3,12 +3,8 @@ import {
   Mail,
   Phone,
   MapPin,
-  ExternalLink,
   GraduationCap,
-  Briefcase,
-  FileText,
-  User,
-  Radio
+  FileText
 } from 'lucide-react';
 import { professorData } from '../data/professorData';
 import { SectionHeader } from '../components/common/SectionHeader';
@@ -17,6 +13,24 @@ import { assetUrl } from '../utils/asset';
 interface PIPageProps {
   onNavigate?: (page: string, anchorId?: string) => void;
 }
+
+const LinkedinIcon: React.FC<{ size?: number }> = ({ size = 18 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect width="4" height="12" x="2" y="9" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+);
 
 export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
   const [photoError, setPhotoError] = useState(false);
@@ -27,7 +41,7 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
       <section style={{ paddingTop: 'clamp(2.5rem, 5vw, 4rem)' }}>
         <div className="container">
           <div className="pi-profile-grid">
-            {/* Left: Photo & Quick Links */}
+            {/* Left: Photo & Action Icons */}
             <div className="pi-photo-col">
               <div className="pi-photo-wrapper">
                 {!photoError ? (
@@ -44,65 +58,40 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
                 )}
               </div>
 
-              {/* Action Links */}
-              <div className="pi-quick-actions">
+              {/* Action Icons: Curriculum Vitae, Google Scholar, LinkedIn */}
+              <div className="pi-icon-links-row">
                 <a
                   href={professorData.cvUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="pi-action-btn"
+                  className="pi-icon-btn"
+                  title="Curriculum Vitae"
+                  aria-label="Curriculum Vitae"
                 >
-                  <FileText size={15} />
-                  <span>Curriculum Vitae</span>
-                  <ExternalLink size={12} className="pi-external-icon" />
+                  <FileText size={18} />
                 </a>
 
                 <a
                   href={professorData.googleScholar}
                   target="_blank"
                   rel="noreferrer"
-                  className="pi-action-btn"
+                  className="pi-icon-btn"
+                  title="Google Scholar"
+                  aria-label="Google Scholar"
                 >
-                  <GraduationCap size={15} />
-                  <span>Google Scholar</span>
-                  <ExternalLink size={12} className="pi-external-icon" />
+                  <GraduationCap size={18} />
                 </a>
 
                 <a
                   href={professorData.linkedin}
                   target="_blank"
                   rel="noreferrer"
-                  className="pi-action-btn"
+                  className="pi-icon-btn"
+                  title="LinkedIn"
+                  aria-label="LinkedIn"
                 >
-                  <ExternalLink size={15} />
-                  <span>LinkedIn</span>
-                  <ExternalLink size={12} className="pi-external-icon" />
+                  <LinkedinIcon size={17} />
                 </a>
-
-                {onNavigate && (
-                  <>
-                    <button
-                      type="button"
-                      onClick={() => onNavigate('members')}
-                      className="pi-action-btn"
-                      style={{ cursor: 'pointer', textAlign: 'left', width: '100%' }}
-                    >
-                      <User size={15} />
-                      <span>Lab Members</span>
-                      <ExternalLink size={12} className="pi-external-icon" />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => onNavigate('research')}
-                      className="pi-action-btn"
-                      style={{ cursor: 'pointer', textAlign: 'left', width: '100%' }}
-                    >
-                      <Radio size={15} />
-                      <span>Lab Research</span>
-                      <ExternalLink size={12} className="pi-external-icon" />
-                    </button>
-                  </>
-                )}
               </div>
             </div>
 
@@ -170,51 +159,27 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
         <div className="container">
           <div className="pi-twocol-grid">
             {/* Experience */}
-            <div className="pi-card-block">
-              <div className="pi-card-header">
-                <Briefcase size={18} className="pi-section-icon" />
-                <h3 className="pi-section-title">Experience</h3>
-              </div>
-              <div className="pi-timeline">
+            <div>
+              <SectionHeader title="Experience" />
+              <ul className="pi-plain-list">
                 {professorData.experience.map((exp, idx) => (
-                  <div key={idx} className="pi-timeline-item">
-                    <div className="pi-timeline-dot" />
-                    <div className="pi-timeline-content">
-                      <div className="pi-timeline-top">
-                        <span className="pi-timeline-role">{exp.role}</span>
-                        <span className="pi-timeline-period">{exp.period}</span>
-                      </div>
-                      <div className="pi-timeline-org">{exp.organization}</div>
-                      {exp.detail && <div className="pi-timeline-detail">{exp.detail}</div>}
-                    </div>
-                  </div>
+                  <li key={idx} className="pi-plain-item">
+                    <span className="pi-plain-title">{exp.role}</span>, {exp.organization}, {exp.period}
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
 
             {/* Education */}
-            <div className="pi-card-block">
-              <div className="pi-card-header">
-                <GraduationCap size={18} className="pi-section-icon" />
-                <h3 className="pi-section-title">Education</h3>
-              </div>
-              <div className="pi-timeline">
+            <div>
+              <SectionHeader title="Education" />
+              <ul className="pi-plain-list">
                 {professorData.education.map((edu, idx) => (
-                  <div key={idx} className="pi-timeline-item">
-                    <div className="pi-timeline-dot" />
-                    <div className="pi-timeline-content">
-                      <div className="pi-timeline-top">
-                        <span className="pi-timeline-role">
-                          {edu.degree} in {edu.field}
-                        </span>
-                        <span className="pi-timeline-period">{edu.period}</span>
-                      </div>
-                      <div className="pi-timeline-org">{edu.institution}</div>
-                      {edu.advisor && <div className="pi-timeline-detail">{edu.advisor}</div>}
-                    </div>
-                  </div>
+                  <li key={idx} className="pi-plain-item">
+                    <span className="pi-plain-title">{edu.degree}</span>, {edu.field}, {edu.institution}, {edu.period}
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           </div>
         </div>
@@ -223,20 +188,17 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
       {/* Research Interests */}
       <section style={{ paddingTop: 'var(--space-2xl)' }}>
         <div className="container">
-          <SectionHeader
-            title="Research Interests"
-            description="Developing new sensing technologies to perceive the physical world from entirely new perspectives, relying primarily on radio-frequency signals."
-          />
-
-          <div className="pi-interests-grid">
+          <SectionHeader title="Research Interests" />
+          <p className="pi-interests-intro">
+            {professorData.researchIntro}
+          </p>
+          <ul className="pi-plain-list" style={{ marginTop: '14px' }}>
             {professorData.researchInterests.map((interest, idx) => (
-              <div key={idx} className="pi-interest-card">
-                <div className="pi-interest-number">0{idx + 1}</div>
-                <h4 className="pi-interest-title">{interest.title}</h4>
-                <p className="pi-interest-desc">{interest.description}</p>
-              </div>
+              <li key={idx} className="pi-plain-item">
+                <span className="pi-plain-title">{interest.title}:</span> {interest.description}
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
@@ -346,7 +308,7 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
           position: relative;
           width: 100%;
           aspect-ratio: 4 / 5;
-          border-radius: var(--radius-sm);
+          border-radius: 8px;
           overflow: hidden;
           border: 1px solid var(--color-border);
           background-color: var(--color-bg-secondary);
@@ -372,36 +334,34 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
           font-family: var(--font-sans);
         }
 
-        .pi-quick-actions {
-          display: flex;
-          flex-direction: column;
-          gap: 6px;
-        }
-
-        .pi-action-btn {
+        .pi-icon-links-row {
           display: flex;
           align-items: center;
+          justify-content: center;
           gap: 10px;
-          padding: 8px 12px;
-          font-size: 13.5px;
-          font-weight: 500;
-          color: var(--color-text-primary);
+          margin-top: 10px;
+        }
+
+        .pi-icon-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 38px;
+          height: 38px;
+          border-radius: 8px;
           background-color: var(--color-surface);
           border: 1px solid var(--color-border);
-          border-radius: var(--radius-xs);
+          color: var(--color-text-secondary);
           text-decoration: none;
-          transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+          transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .pi-action-btn:hover {
+        .pi-icon-btn:hover {
           background-color: var(--color-surface-hover);
-          border-color: var(--color-border-dark);
+          border-color: var(--color-accent);
           color: var(--color-accent);
-        }
-
-        .pi-external-icon {
-          margin-left: auto;
-          opacity: 0.6;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
         .pi-info-col {
@@ -524,138 +484,17 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
         .pi-twocol-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: var(--space-xl);
+          gap: clamp(2rem, 4vw, 3.5rem);
         }
 
-        .pi-card-block {
-          background-color: var(--color-surface);
-          border: 1px solid var(--color-border);
-          border-radius: var(--radius-sm);
-          padding: var(--space-xl);
-        }
-
-        .pi-card-header {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          margin-bottom: var(--space-lg);
-          padding-bottom: 12px;
-          border-bottom: 1px solid var(--color-border-subtle);
-        }
-
-        .pi-section-icon {
-          color: var(--color-accent);
-        }
-
-        .pi-section-title {
-          font-size: 1.15rem;
-          font-weight: 700;
-          margin: 0;
-          color: var(--color-text-primary);
-          letter-spacing: -0.01em;
-        }
-
-        .pi-timeline {
-          display: flex;
-          flex-direction: column;
-          gap: 18px;
-        }
-
-        .pi-timeline-item {
-          position: relative;
-          padding-left: 18px;
-          border-left: 2px solid var(--color-border);
-        }
-
-        .pi-timeline-dot {
-          position: absolute;
-          left: -5px;
-          top: 5px;
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-          background-color: var(--color-accent);
-        }
-
-        .pi-timeline-top {
-          display: flex;
-          justify-content: space-between;
-          align-items: baseline;
-          gap: 8px;
-          flex-wrap: wrap;
-        }
-
-        .pi-timeline-role {
-          font-weight: 600;
-          font-size: 14.5px;
-          color: var(--color-text-primary);
-        }
-
-        .pi-timeline-period {
-          font-family: var(--font-mono);
-          font-size: 12.5px;
-          color: var(--color-text-muted);
-        }
-
-        .pi-timeline-org {
-          font-size: 14px;
-          color: var(--color-text-secondary);
-          margin-top: 2px;
-        }
-
-        .pi-timeline-detail {
-          font-size: 13px;
-          color: var(--color-text-dim);
-          margin-top: 2px;
-        }
-
-        /* Research Interests Grid */
-        .pi-interests-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: var(--space-lg);
-        }
-
-        .pi-interest-card {
-          background-color: var(--color-surface);
-          border: 1px solid var(--color-border);
-          border-radius: var(--radius-sm);
-          padding: var(--space-lg);
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-          transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
-        }
-
-        .pi-interest-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
-          border-color: var(--color-accent-border);
-        }
-
-        .pi-interest-number {
-          font-family: var(--font-mono);
-          font-size: 12px;
-          font-weight: 700;
-          color: var(--color-accent);
-        }
-
-        .pi-interest-title {
-          font-size: 1.05rem;
-          font-weight: 700;
-          margin: 0;
-          color: var(--color-text-primary);
-          letter-spacing: -0.01em;
-        }
-
-        .pi-interest-desc {
-          font-size: 13.5px;
-          line-height: 1.6;
+        .pi-interests-intro {
+          font-size: 15px;
+          line-height: 1.65;
           color: var(--color-text-secondary);
           margin: 0;
         }
 
-        /* Plain Academic Lists (Projects, Service, Talks) */
+        /* Plain Academic Lists (Projects, Experience, Education, Service, Talks) */
         .pi-plain-list {
           list-style: disc;
           padding-left: 20px;
@@ -673,6 +512,7 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
 
         .pi-plain-title {
           color: var(--color-text-primary);
+          font-weight: 600;
         }
 
         .pi-plain-agency {
@@ -716,14 +556,14 @@ export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
           }
 
           .pi-photo-col {
-            max-width: 300px;
+            max-width: 280px;
             margin: 0 auto;
             width: 100%;
           }
 
-          .pi-twocol-grid,
-          .pi-interests-grid {
+          .pi-twocol-grid {
             grid-template-columns: 1fr;
+            gap: var(--space-xl);
           }
         }
       `}</style>
