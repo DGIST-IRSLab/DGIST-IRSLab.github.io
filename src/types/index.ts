@@ -35,6 +35,9 @@ export interface Publication {
   type: 'conference' | 'journal' | 'workshop';
   isTopConf?: boolean;
   isSCI?: boolean;
+  isOral?: boolean;
+  isTop5Percent?: boolean;
+  customBadge?: string;
   pdfUrl?: string;
   projectUrl?: string;
   codeUrl?: string;

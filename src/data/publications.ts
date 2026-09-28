@@ -146,6 +146,7 @@ export const publications: Publication[] = [
     year: 2025,
     type: "conference",
     isTopConf: true,
+    isOral: true,
     pdfUrl: "https://ieeexplore.ieee.org/abstract/document/10888938",
     bibtex: `@inproceedings{yang2025highres,
   title={High-Resolution Gait Micro-Doppler Synthesis from Videos Over Diverse Trajectories},
@@ -243,6 +244,7 @@ export const publications: Publication[] = [
     venueShort: "IEEE IoTJ",
     year: 2023,
     type: "journal",
+    isTop5Percent: true,
     pdfUrl: "https://ieeexplore.ieee.org/abstract/document/10304252",
     bibtex: `@article{choi2023rfvital,
   title={RF-Vital: Radio-Based Contactless Respiration Monitoring for a Moving Individual},
@@ -304,6 +306,7 @@ export const publications: Publication[] = [
     venueShort: "IEEE IoTJ",
     year: 2022,
     type: "journal",
+    isTop5Percent: true,
     pdfUrl: "https://ieeexplore.ieee.org/abstract/document/9540889"
   },
   {
@@ -348,6 +351,7 @@ export const publications: Publication[] = [
     venueShort: "IEEE IoTJ",
     year: 2021,
     type: "journal",
+    isTop5Percent: true,
     pdfUrl: "https://ieeexplore.ieee.org/document/9234452",
     videoUrl: "https://www.youtube.com/watch?v=SRfiu0eAav8"
   },

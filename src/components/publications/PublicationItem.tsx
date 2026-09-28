@@ -20,6 +20,16 @@ export const PublicationItem: React.FC<PublicationItemProps> = ({
     publication.isSCI !== undefined
       ? publication.isSCI
       : (publication.type === 'journal' && !publication.isDomestic)
+  const isOral = Boolean(
+    publication.isOral ||
+    (publication.title.toLowerCase().includes('high-resolution gait micro-doppler') && publication.type === 'conference')
+  );
+
+  const isIoTJ = /IoTJ|Internet of Things Journal/i.test(publication.venue) || /IoTJ/i.test(publication.venueShort || '');
+  const isTop5Percent = Boolean(
+    publication.isTop5Percent !== undefined
+      ? publication.isTop5Percent
+      : isIoTJ
   );
 
   const renderAuthors = () => {
@@ -79,31 +89,40 @@ export const PublicationItem: React.FC<PublicationItemProps> = ({
         {renderAuthors()}
       </div>
 
-      <div
-        style={{
-          fontFamily: 'var(--font-mono)',
-          fontSize: '13px',
-          color: 'var(--color-text-secondary)',
-          marginTop: '2px',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '8px',
-          flexWrap: 'wrap',
-        }}
-      >
-        <span>
-          {publication.venue}{publication.venue.includes(publication.year.toString()) ? '' : `, ${publication.year}`}
+      <div className="pub-venue-row">
+        <span className="pub-venue-text">
+          <span className="pub-venue-name">{publication.venue}</span>
+          <span className="pub-venue-year">
+            {publication.venue.includes(publication.year.toString()) ? '' : `, ${publication.year}`}
+          </span>
         </span>
-        {isTopConf && (
-          <span className="pub-badge pub-badge-topconf">
-            TOP CONF.
-          </span>
-        )}
-        {isSCI && (
-          <span className="pub-badge pub-badge-sci">
-            SCI
-          </span>
-        )}
+        <span className="pub-badges-wrap">
+          {isOral && (
+            <span className="pub-badge pub-badge-oral">
+              ORAL
+            </span>
+          )}
+          {isTop5Percent && (
+            <span className="pub-badge pub-badge-top5">
+              Top 5%
+            </span>
+          )}
+          {isTopConf && (
+            <span className="pub-badge pub-badge-topconf">
+              TOP CONF.
+            </span>
+          )}
+          {isSCI && (
+            <span className="pub-badge pub-badge-sci">
+              SCI
+            </span>
+          )}
+          {publication.customBadge && (
+            <span className="pub-badge pub-badge-custom">
+              {publication.customBadge}
+            </span>
+          )}
+        </span>
       </div>
 
       <div
@@ -200,6 +219,57 @@ export const PublicationItem: React.FC<PublicationItemProps> = ({
           background-color: var(--color-surface-hover);
           transform: translateX(5px);
           border-left-color: var(--color-accent);
+        }
+        .pub-venue-row {
+          font-family: var(--font-sans);
+          font-size: 13.5px;
+          line-height: 1.5;
+          margin-top: 3px;
+          margin-bottom: 2px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          flex-wrap: wrap;
+        }
+        .pub-venue-text {
+          font-family: var(--font-sans);
+          font-size: 13.5px;
+          line-height: 1.5;
+          color: var(--color-text-secondary);
+        }
+        .pub-venue-name {
+          font-weight: 500;
+          color: var(--color-text-primary);
+        }
+        .pub-venue-year {
+          color: var(--color-text-muted);
+          font-weight: 500;
+        }
+        .pub-badges-wrap {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          flex-wrap: wrap;
+        }
+        .pub-badge-oral {
+          background-color: #fff7ed;
+          color: #c2410c;
+          border: 1px solid #fed7aa;
+        }
+        [data-theme='dark'] .pub-badge-oral {
+          background-color: rgba(249, 115, 22, 0.15);
+          color: #fb923c;
+          border: 1px solid rgba(249, 115, 22, 0.3);
+        }
+        .pub-badge-top5 {
+          background-color: #eff6ff;
+          color: #1d4ed8;
+          border: 1px solid #bfdbfe;
+        }
+        [data-theme='dark'] .pub-badge-top5 {
+          background-color: rgba(59, 130, 246, 0.15);
+          color: #60a5fa;
+          border: 1px solid rgba(59, 130, 246, 0.3);
         }
         .pub-action-link {
           transition: color 0.15s ease, transform 0.15s ease !important;
