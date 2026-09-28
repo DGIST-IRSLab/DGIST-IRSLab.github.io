@@ -484,8 +484,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         }
 
         /* Category Left Accent Lines */
-        .news-row-paper { border-left-color: rgba(2, 140, 255, 0.45); }
-        .news-row-paper:hover { border-left-color: #028cff; }
+        .news-row-paper { border-left-color: rgba(46, 145, 255, 0.45); }
+        .news-row-paper:hover { border-left-color: #2E91FF; }
 
         .news-row-award { border-left-color: rgba(245, 158, 11, 0.5); }
         .news-row-award:hover { border-left-color: #f59e0b; }
@@ -502,8 +502,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         .news-row-news { border-left-color: rgba(100, 116, 139, 0.35); }
         .news-row-news:hover { border-left-color: #64748b; }
 
-        [data-theme='dark'] .news-row-paper { border-left-color: rgba(56, 189, 248, 0.4); }
-        [data-theme='dark'] .news-row-paper:hover { border-left-color: #38bdf8; }
+        [data-theme='dark'] .news-row-paper { border-left-color: rgba(27, 59, 209, 0.5); }
+        [data-theme='dark'] .news-row-paper:hover { border-left-color: #1B3BD1; }
 
         [data-theme='dark'] .news-row-award { border-left-color: rgba(251, 191, 36, 0.45); }
         [data-theme='dark'] .news-row-award:hover { border-left-color: #fbbf24; }
@@ -546,8 +546,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         }
 
         .dot-paper {
-          background-color: #028cff;
-          box-shadow: 0 0 0 2px rgba(2, 140, 255, 0.2);
+          background-color: #2E91FF;
+          box-shadow: 0 0 0 2px rgba(46, 145, 255, 0.2);
         }
         .dot-award {
           background-color: #f59e0b;
@@ -571,8 +571,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         }
 
         [data-theme='dark'] .dot-paper {
-          background-color: #38bdf8;
-          box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.25);
+          background-color: #1B3BD1;
+          box-shadow: 0 0 0 2px rgba(27, 59, 209, 0.3);
         }
         [data-theme='dark'] .dot-award {
           background-color: #fbbf24;
