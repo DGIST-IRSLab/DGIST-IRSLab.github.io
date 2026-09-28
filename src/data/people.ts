@@ -312,6 +312,8 @@ export const alumni: Person[] = [
     photo: "/images/teampic/standard/student_jaehyunpark.jpg",
     alumniPeriod: "2025 – 2026",
     alumniDestination: "NASA Jet Propulsion Laboratory (JPL)",
+    alumniLogo: "/images/alumni/nasa_jpl.svg",
+    alumniLogoDark: "/images/alumni/nasa_jpl_dark.svg",
     website: "https://jhynpark.github.io/",
     researchInterests: ["Planetary Radar", "Remote Sensing", "Signal Processing"]
   },
@@ -324,6 +326,8 @@ export const alumni: Person[] = [
     photo: "/images/teampic/standard/postdoc_DH.jpg",
     alumniPeriod: "2025 – 2026",
     alumniDestination: "NASA Jet Propulsion Laboratory (JPL)",
+    alumniLogo: "/images/alumni/nasa_jpl.svg",
+    alumniLogoDark: "/images/alumni/nasa_jpl_dark.svg",
     website: "https://sites.google.com/view/dohyunpark",
     researchInterests: ["Synthetic Aperture Radar", "Geophysical Inversion", "Machine Learning"]
   }

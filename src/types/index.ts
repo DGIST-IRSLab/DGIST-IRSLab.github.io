@@ -69,6 +69,8 @@ export interface Person {
   cvUrl?: string;
   alumniDestination?: string;
   alumniPeriod?: string;
+  alumniLogo?: string;
+  alumniLogoDark?: string;
 }
 
 export interface InternGroup {

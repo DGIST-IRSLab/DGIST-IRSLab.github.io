@@ -291,15 +291,24 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
 
         {/* Alumni Destination or Period */}
         {person.alumniDestination && (
-          <div
-            style={{
-              fontSize: '12px',
-              fontFamily: 'var(--font-sans)',
-              color: 'var(--color-accent)',
-              fontWeight: 500,
-            }}
-          >
-            → {person.alumniDestination}
+          <div className="person-alumni-block">
+            {person.alumniLogo && (
+              <div className="person-alumni-logo-row">
+                <img
+                  src={assetUrl(person.alumniLogo)}
+                  alt={person.alumniDestination}
+                  className="person-alumni-logo logo-light-only"
+                />
+                <img
+                  src={assetUrl(person.alumniLogoDark || person.alumniLogo)}
+                  alt={person.alumniDestination}
+                  className="person-alumni-logo logo-dark-only"
+                />
+              </div>
+            )}
+            <div className="person-alumni-dest-text">
+              → {person.alumniDestination}
+            </div>
           </div>
         )}
 
@@ -553,6 +562,56 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
           background-color: var(--color-bg-secondary);
           color: var(--color-text-secondary);
           border: 1px solid var(--color-border);
+        }
+
+        /* Alumni Affiliation Block & Company Logo */
+        .person-alumni-block {
+          margin-top: 5px;
+          margin-bottom: 3px;
+          padding: 6px 8px;
+          background-color: var(--color-bg-secondary);
+          border: 1px solid var(--color-border-subtle);
+          border-radius: var(--radius-sm, 4px);
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+        }
+
+        .person-alumni-logo-row {
+          display: flex;
+          align-items: center;
+          padding-bottom: 2px;
+        }
+
+        .person-alumni-logo {
+          height: 19px;
+          max-width: 110px;
+          width: auto;
+          object-fit: contain;
+          display: block;
+        }
+
+        .person-alumni-logo.logo-light-only {
+          display: block;
+        }
+        .person-alumni-logo.logo-dark-only {
+          display: none;
+        }
+
+        [data-theme='dark'] .person-alumni-logo.logo-light-only {
+          display: none;
+        }
+        [data-theme='dark'] .person-alumni-logo.logo-dark-only {
+          display: block;
+        }
+
+        .person-alumni-dest-text {
+          font-size: 11.5px;
+          font-family: var(--font-sans);
+          font-weight: 600;
+          color: var(--color-accent);
+          line-height: 1.35;
+          word-break: keep-all;
         }
 
         .member-name-link:hover {
