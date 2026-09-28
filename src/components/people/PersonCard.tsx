@@ -143,6 +143,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
 
         {/* Small subtle role tag overlay */}
         <div
+          className="person-photo-role-tag"
           style={{
             position: 'absolute',
             bottom: '8px',
@@ -164,6 +165,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
 
       {/* Info Body */}
       <div
+        className="person-card-body"
         style={{
           padding: 'var(--space-sm)',
           display: 'flex',
@@ -172,8 +174,18 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
           gap: '4px',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '4px' }}>
+        <div
+          className="person-name-row"
+          style={{
+            display: 'flex',
+            alignItems: 'baseline',
+            justifyContent: 'space-between',
+            gap: '4px',
+            flexWrap: 'wrap',
+          }}
+        >
           <h4
+            className="member-name-heading"
             style={{
               fontFamily: 'var(--font-sans)',
               fontSize: '14.5px',
@@ -225,6 +237,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
             isPI && onNavigate ? (
               <span
                 onClick={handleCardClick}
+                className="member-name-kr member-name-kr-link"
                 style={{
                   fontSize: '12px',
                   color: 'var(--color-text-muted)',
@@ -239,7 +252,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
                 href={homeUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="member-name-kr-link"
+                className="member-name-kr member-name-kr-link"
                 style={{
                   fontSize: '12px',
                   color: 'var(--color-text-muted)',
@@ -252,6 +265,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
               </a>
             ) : (
               <span
+                className="member-name-kr"
                 style={{
                   fontSize: '12px',
                   color: 'var(--color-text-muted)',
@@ -281,6 +295,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
         {/* Research Interests */}
         {!compact && person.researchInterests && person.researchInterests.length > 0 && (
           <p
+            className="person-card-interests"
             style={{
               fontSize: '12px',
               color: 'var(--color-text-secondary)',
@@ -298,6 +313,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
 
         {/* Links row */}
         <div
+          className="person-card-links"
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -312,6 +328,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
               href={`mailto:${person.email}`}
               title={person.email}
               aria-label={`Email ${person.name}`}
+              className="person-social-link"
               style={{
                 color: 'var(--color-text-muted)',
                 display: 'inline-flex',
@@ -331,6 +348,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
               rel="noreferrer"
               title="Personal Webpage"
               aria-label={`${person.name}'s website`}
+              className="person-social-link"
               style={{
                 color: 'var(--color-text-muted)',
                 display: 'inline-flex',
@@ -350,6 +368,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
               rel="noreferrer"
               title="Google Scholar"
               aria-label={`${person.name}'s Google Scholar`}
+              className="person-social-link"
               style={{
                 color: 'var(--color-text-muted)',
                 display: 'inline-flex',
@@ -382,13 +401,15 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
         .person-academic-card {
           transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.22s ease !important;
         }
-        .person-academic-card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
-          border-color: var(--color-accent-border) !important;
-        }
-        [data-theme='dark'] .person-academic-card:hover {
-          box-shadow: 0 14px 30px rgba(0, 0, 0, 0.38);
+        @media (hover: hover) and (pointer: fine) {
+          .person-academic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+            border-color: var(--color-accent-border) !important;
+          }
+          [data-theme='dark'] .person-academic-card:hover {
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.38);
+          }
         }
         .person-photo-img {
           transition: opacity 0.35s ease, transform 0.35s ease;
@@ -430,6 +451,40 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
         }
         .person-social-link:hover {
           transform: scale(1.2) translateY(-1px);
+        }
+
+        @media (max-width: 640px) {
+          .person-photo-container {
+            max-height: 240px;
+          }
+          .person-photo-role-tag {
+            font-size: 9.5px !important;
+            padding: 2px 5px !important;
+            bottom: 6px !important;
+            left: 6px !important;
+            max-width: calc(100% - 12px) !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+          }
+          .person-card-body {
+            padding: 10px !important;
+            gap: 3px !important;
+          }
+          .member-name-heading {
+            font-size: 13.5px !important;
+          }
+          .member-name-kr {
+            font-size: 11.5px !important;
+          }
+          .person-card-interests {
+            font-size: 11px !important;
+            line-height: 1.35 !important;
+          }
+          .person-card-links {
+            padding-top: 5px !important;
+            gap: 7px !important;
+          }
         }
       `}</style>
     </div>
