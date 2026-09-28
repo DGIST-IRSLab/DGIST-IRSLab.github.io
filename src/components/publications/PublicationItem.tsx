@@ -20,6 +20,8 @@ export const PublicationItem: React.FC<PublicationItemProps> = ({
     publication.isSCI !== undefined
       ? publication.isSCI
       : (publication.type === 'journal' && !publication.isDomestic)
+  );
+
   const isOral = Boolean(
     publication.isOral ||
     (publication.title.toLowerCase().includes('high-resolution gait micro-doppler') && publication.type === 'conference')
