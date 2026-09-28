@@ -32,7 +32,7 @@ const LinkedinIcon: React.FC<{ size?: number }> = ({ size = 18 }) => (
   </svg>
 );
 
-export const PIPage: React.FC<PIPageProps> = ({ onNavigate }) => {
+export const PIPage: React.FC<PIPageProps> = () => {
   const [photoError, setPhotoError] = useState(false);
 
   return (
