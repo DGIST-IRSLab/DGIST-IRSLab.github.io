@@ -18,39 +18,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
     ? newsItems
     : newsItems.slice(0, INITIAL_COUNT);
 
-  const getCategoryEmoji = (category: string) => {
-    switch (category) {
-      case 'AWARD':
-        return '🏆';
-      case 'PAPER':
-        return '📝';
-      case 'GRANT':
-        return '🏛️';
-      case 'PEOPLE':
-        return '👥';
-      case 'TALK':
-        return '📢';
-      default:
-        return '📣';
-    }
-  };
 
-  const getCategoryClass = (category: string) => {
-    switch (category) {
-      case 'PAPER':
-        return 'cat-badge-paper';
-      case 'GRANT':
-        return 'cat-badge-grant';
-      case 'AWARD':
-        return 'cat-badge-award';
-      case 'PEOPLE':
-        return 'cat-badge-people';
-      case 'TALK':
-        return 'cat-badge-talk';
-      default:
-        return 'cat-badge-default';
-    }
-  };
 
   return (
     <div className="homepage-root">
@@ -135,18 +103,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           {/* News List Items */}
           <div className="news-stream-container">
             {displayedNews.map((item) => (
-              <div key={item.id} className="news-item-row">
-                {/* Category with Emoji */}
-                <div className="news-item-cat">
-                  <span className={`news-cat-pill ${getCategoryClass(item.category)}`}>
-                    <span className="news-cat-emoji">{getCategoryEmoji(item.category)}</span>
-                    <span>{item.category}</span>
-                  </span>
-                </div>
-
-                {/* Date */}
-                <div className="news-item-date">
-                  <span>{item.date}</span>
+              <div
+                key={item.id}
+                className={`news-item-row news-row-${item.category.toLowerCase()}`}
+              >
+                {/* Date with subtle category indicator dot */}
+                <div className="news-item-date" title={item.category}>
+                  <span
+                    className={`news-cat-dot dot-${item.category.toLowerCase()}`}
+                    aria-hidden="true"
+                  />
+                  <span className="news-date-text">{item.date}</span>
                 </div>
 
                 {/* Content */}
@@ -497,101 +464,141 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
         .news-item-row {
           display: grid;
-          grid-template-columns: 110px 75px 1fr;
+          grid-template-columns: 95px 1fr;
           align-items: baseline;
-          padding: 14px 12px;
+          padding: 13px 14px;
           border-bottom: 1px solid var(--color-border-subtle);
-          border-radius: var(--radius-xs);
+          border-left: 3px solid transparent;
+          border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
           gap: var(--space-md);
-          transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+          transition: background-color var(--transition-fast), border-left-color var(--transition-fast), transform var(--transition-fast);
         }
 
         .news-item-row:hover {
           background-color: var(--color-surface-hover);
-          transform: translateX(6px);
+          transform: translateX(4px);
         }
 
         .news-item-row:last-child {
           border-bottom: 1px solid var(--color-border);
         }
 
+        /* Category Left Accent Lines */
+        .news-row-paper { border-left-color: rgba(2, 140, 255, 0.45); }
+        .news-row-paper:hover { border-left-color: #028cff; }
+
+        .news-row-award { border-left-color: rgba(245, 158, 11, 0.5); }
+        .news-row-award:hover { border-left-color: #f59e0b; }
+
+        .news-row-grant { border-left-color: rgba(16, 185, 129, 0.5); }
+        .news-row-grant:hover { border-left-color: #10b981; }
+
+        .news-row-people { border-left-color: rgba(99, 102, 241, 0.45); }
+        .news-row-people:hover { border-left-color: #6366f1; }
+
+        .news-row-talk { border-left-color: rgba(139, 92, 246, 0.45); }
+        .news-row-talk:hover { border-left-color: #8b5cf6; }
+
+        .news-row-news { border-left-color: rgba(100, 116, 139, 0.35); }
+        .news-row-news:hover { border-left-color: #64748b; }
+
+        [data-theme='dark'] .news-row-paper { border-left-color: rgba(56, 189, 248, 0.4); }
+        [data-theme='dark'] .news-row-paper:hover { border-left-color: #38bdf8; }
+
+        [data-theme='dark'] .news-row-award { border-left-color: rgba(251, 191, 36, 0.45); }
+        [data-theme='dark'] .news-row-award:hover { border-left-color: #fbbf24; }
+
+        [data-theme='dark'] .news-row-grant { border-left-color: rgba(52, 211, 153, 0.45); }
+        [data-theme='dark'] .news-row-grant:hover { border-left-color: #34d399; }
+
+        [data-theme='dark'] .news-row-people { border-left-color: rgba(129, 140, 248, 0.4); }
+        [data-theme='dark'] .news-row-people:hover { border-left-color: #818cf8; }
+
+        [data-theme='dark'] .news-row-talk { border-left-color: rgba(167, 139, 250, 0.4); }
+        [data-theme='dark'] .news-row-talk:hover { border-left-color: #a78bfa; }
+
+        [data-theme='dark'] .news-row-news { border-left-color: rgba(148, 163, 184, 0.35); }
+        [data-theme='dark'] .news-row-news:hover { border-left-color: #94a3b8; }
+
+        /* Date with Category Dot */
         .news-item-date {
           display: inline-flex;
-          align-items: baseline;
+          align-items: center;
+          gap: 9px;
           font-family: var(--font-mono);
           font-size: 13px;
           color: var(--color-text-muted);
+          flex-shrink: 0;
+          cursor: default;
         }
 
-        .news-item-cat {
-          display: inline-flex;
+        .news-cat-dot {
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          flex-shrink: 0;
+          display: inline-block;
+          transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
         }
 
-        .news-cat-pill {
-          display: inline-flex;
-          align-items: center;
-          transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        .news-item-row:hover .news-cat-dot {
+          transform: scale(1.3);
         }
 
-        .news-item-row:hover .news-cat-pill {
-          transform: scale(1.05);
+        .dot-paper {
+          background-color: #028cff;
+          box-shadow: 0 0 0 2px rgba(2, 140, 255, 0.2);
         }
-          gap: 6px;
-          font-family: var(--font-sans);
-          font-size: 13px;
-          font-weight: 600;
-          letter-spacing: 0.02em;
+        .dot-award {
+          background-color: #f59e0b;
+          box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
         }
-
-        .news-cat-emoji {
-          font-size: 13px;
-          line-height: 1;
+        .dot-grant {
+          background-color: #10b981;
+          box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
         }
-
-        .cat-badge-paper {
-          color: var(--color-accent);
+        .dot-people {
+          background-color: #6366f1;
+          box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
         }
-
-        .cat-badge-grant {
-          color: #059669;
+        .dot-talk {
+          background-color: #8b5cf6;
+          box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
         }
-
-        [data-theme='dark'] .cat-badge-grant {
-          color: #34d399;
+        .dot-news {
+          background-color: #64748b;
+          box-shadow: 0 0 0 2px rgba(100, 116, 139, 0.2);
         }
 
-        .cat-badge-award {
-          color: #d97706;
+        [data-theme='dark'] .dot-paper {
+          background-color: #38bdf8;
+          box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.25);
         }
-
-        [data-theme='dark'] .cat-badge-award {
-          color: #fbbf24;
+        [data-theme='dark'] .dot-award {
+          background-color: #fbbf24;
+          box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.25);
         }
-
-        .cat-badge-people {
-          color: #6366f1;
+        [data-theme='dark'] .dot-grant {
+          background-color: #34d399;
+          box-shadow: 0 0 0 2px rgba(52, 211, 153, 0.25);
         }
-
-        [data-theme='dark'] .cat-badge-people {
-          color: #818cf8;
+        [data-theme='dark'] .dot-people {
+          background-color: #818cf8;
+          box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.25);
         }
-
-        .cat-badge-talk {
-          color: #8b5cf6;
+        [data-theme='dark'] .dot-talk {
+          background-color: #a78bfa;
+          box-shadow: 0 0 0 2px rgba(167, 139, 250, 0.25);
         }
-
-        [data-theme='dark'] .cat-badge-talk {
-          color: #a78bfa;
-        }
-
-        .cat-badge-default {
-          color: var(--color-text-muted);
+        [data-theme='dark'] .dot-news {
+          background-color: #94a3b8;
+          box-shadow: 0 0 0 2px rgba(148, 163, 184, 0.25);
         }
 
         .news-item-content {
           display: flex;
           flex-direction: column;
-          gap: 2px;
+          gap: 3px;
         }
 
         .news-item-title {
@@ -622,7 +629,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             gap: 14px;
           }
           .news-item-row {
-            grid-template-columns: 75px 75px 1fr;
+            grid-template-columns: 90px 1fr;
             gap: var(--space-sm);
           }
         }
@@ -632,8 +639,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            gap: 4px;
-            padding: 12px 0;
+            gap: 5px;
+            padding: 12px 10px;
           }
         }
       `}</style>
