@@ -464,10 +464,10 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
         .person-role-badge {
           display: inline-flex;
           align-items: center;
-          font-family: var(--font-mono);
+          font-family: var(--font-sans);
           font-size: 11px;
           font-weight: 600;
-          letter-spacing: 0.02em;
+          letter-spacing: -0.01em;
           padding: 2.5px 7.5px;
           border-radius: var(--radius-xs, 4px);
           line-height: 1.35;
