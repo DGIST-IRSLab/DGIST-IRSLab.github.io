@@ -104,12 +104,11 @@ export const SupportedByMarquee: React.FC = () => {
         }
 
         .supported-by-kicker {
-          font-family: var(--font-mono);
-          font-size: 11.5px;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.08em;
-          color: var(--color-accent);
+          font-family: var(--font-heading);
+          font-size: 14px;
+          font-weight: 700;
+          letter-spacing: -0.01em;
+          color: var(--color-text-primary);
         }
 
         .supported-by-divider {

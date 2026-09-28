@@ -83,7 +83,7 @@ export const ResearchTopicsSection: React.FC = () => {
             <div className="detail-figure-col">
               <div className="figure-card-frame">
                 <div className="figure-top-bar">
-                  <span className="figure-caption-title">Architecture &amp; Experimental Pipeline</span>
+                  <span className="figure-caption-title">Research Framework &amp; Overview</span>
                   <a
                     href={assetUrl(topic.image)}
                     target="_blank"
@@ -95,7 +95,6 @@ export const ResearchTopicsSection: React.FC = () => {
                     <ExternalLink size={12} />
                   </a>
                 </div>
-
                 <div className="figure-image-wrapper">
                   <a
                     href={assetUrl(topic.image)}
@@ -134,7 +133,7 @@ export const ResearchTopicsSection: React.FC = () => {
           Explore our research
         </h2>
         <p className="explore-subtext">
-          Our research investigates three core pillars uniting radio-frequency wave physics, foundation artificial intelligence, and physical-world multimodal sensing.
+          Our research investigates innovative directions uniting radio-frequency wave physics, foundation artificial intelligence, and physical-world multimodal sensing.
         </p>
       </div>
 
@@ -208,7 +207,7 @@ export const ResearchTopicsSection: React.FC = () => {
                   {/* Action Link Footer with natural font */}
                   <div className="card-action-footer">
                     <span className="card-action-btn">
-                      <span>{isSelected ? 'Close details' : 'View details & architecture'}</span>
+                      <span>{isSelected ? 'Close Details' : 'View Architecture & Details'}</span>
                       {isSelected ? <ChevronUp size={15} /> : <ArrowRight size={15} className="card-arrow-icon" />}
                     </span>
                   </div>
@@ -417,19 +416,21 @@ export const ResearchTopicsSection: React.FC = () => {
         }
 
         .card-chip {
-          font-family: var(--font-mono);
-          font-size: 11px;
-          color: var(--color-text-muted);
+          font-family: var(--font-sans);
+          font-size: 11.5px;
+          font-weight: 500;
+          color: var(--color-text-secondary);
           background-color: var(--color-bg-secondary);
           border: 1px solid var(--color-border);
-          padding: 2px 7px;
+          padding: 2.5px 8px;
           border-radius: var(--radius-xs);
           white-space: nowrap;
         }
 
         .card-chip-more {
-          font-family: var(--font-mono);
-          font-size: 11px;
+          font-family: var(--font-sans);
+          font-size: 11.5px;
+          font-weight: 500;
           color: var(--color-text-muted);
           padding: 2px 4px;
         }
@@ -449,7 +450,8 @@ export const ResearchTopicsSection: React.FC = () => {
           gap: 6px;
           font-family: var(--font-sans);
           font-size: 13px;
-          font-weight: 500;
+          font-weight: 600;
+          letter-spacing: -0.01em;
           color: var(--color-accent);
           transition: color var(--transition-fast), transform var(--transition-fast);
         }
@@ -626,8 +628,9 @@ export const ResearchTopicsSection: React.FC = () => {
         }
 
         .academic-keyword-chip {
-          font-family: var(--font-mono);
-          font-size: 11.5px;
+          font-family: var(--font-sans);
+          font-size: 12px;
+          font-weight: 500;
           color: var(--color-text-secondary);
           background-color: var(--color-bg-secondary);
           border: 1px solid var(--color-border);
