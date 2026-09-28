@@ -77,16 +77,17 @@ export const researchTopics: ResearchTopic[] = [
     image: "/images/research_1.jpg",
     imageCaption: "Figure 1: Wireless-Centric AI framework uniting wave physics with transformer architectures for robust phase and Doppler feature extraction.",
     highlights: [
-      "Self-supervised pre-training on multi-frequency mmWave datasets",
-      "Complex-valued deep networks preserving phase and quadrature geometry",
-      "Generative micro-Doppler synthesis across variable motion trajectories"
+      "Radar Signal Processing + AI",
+      "Wireless Foundation Model",
+      "Wireless + Generative AI",
+      "Complex Neural Network"
     ]
   },
   {
     id: "wireless-perception-systems",
     title: "Innovative Wireless+X Perception Systems",
     shortTitle: "Perception Systems",
-    question: "How to achieve new perception technologies that see beyond human vision?",
+    question: "How to achieve new perception technologies/applications that can see beyond human vision?",
     summary: "Building contactless, privacy-preserving sensing systems capable of penetrating occlusions, smoke, and total darkness for human health monitoring and remote scene understanding.",
     description: [
       "Optical sensors struggle under environmental extremes such as dense clutter, smoke, fog, and complete darkness, while raising critical privacy concerns in personal environments.",
@@ -103,16 +104,17 @@ export const researchTopics: ResearchTopic[] = [
     image: "/images/research_2.jpg",
     imageCaption: "Figure 2: Non-line-of-sight sensing and contactless vital sign monitoring using high-frequency mmWave radar backscatter.",
     highlights: [
-      "Sub-millimeter chest displacement tracking for free-moving respiration analysis",
-      "Long-distance self-occluded human walking pose reconstruction",
-      "Target and shadow region joint modeling for satellite SAR discrimination"
+      "New Sensing Technologies for Various Application Areas (e.g. Health Monitoring, IoT, Defense)",
+      "Micro-Motion Sensing",
+      "Remote Sensing with Synthetic Aperture Radar (SAR)",
+      "Sensing in Challenging Scenarios (e.g. Occlusion, Dark)"
     ]
   },
   {
     id: "multimodal-fusion",
-    title: "Multi-Modal / Multi-Sensor Fusion & Physical AI",
+    title: "Multi-Modal/Multi-Sensor Fusion",
     shortTitle: "Multimodal & Physical AI",
-    question: "How to achieve generalized perception by combining distinct physical sensor modalities?",
+    question: "How to achieve generalized perception capabilities by combining different physical capabilities of diverse sensors?",
     summary: "Fusing complementary physics of radio waves, vision, infrared, and audio to build resilient embodied intelligence and foundation models for autonomous systems.",
     description: [
       "Single-modality systems possess inherent failure modes: cameras fail in low visibility or occlusion, while RF sensors produce sparse geometric point clouds without semantic textures.",
@@ -129,9 +131,9 @@ export const researchTopics: ResearchTopic[] = [
     image: "/images/research_3.jpg",
     imageCaption: "Figure 3: Cross-modal transformer aligning sparse radar point reflections with dense visual semantic features for robust scene comprehension.",
     highlights: [
-      "Video-RF fusion transformers for synchronized physiological and pose estimation",
-      "Diffusion-driven metric depth recovery combining sparse radar returns with RGB",
-      "Large-scale benchmarks evaluating LLM cognitive capabilities on RF data"
+      "Multi-Sensor Fusion",
+      "Multi-Modal Learning",
+      "Sensor Signal Processing"
     ]
   }
 ];
