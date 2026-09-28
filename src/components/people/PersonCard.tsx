@@ -10,6 +10,28 @@ interface PersonCardProps {
   onNavigate?: (page: string, anchorId?: string) => void;
 }
 
+const getRoleBadgeClass = (role: string): string => {
+  switch (role) {
+    case 'Professor':
+      return 'role-badge-prof';
+    case 'Postdoc Fellow':
+      return 'role-badge-postdoc';
+    case 'Ph.D. Student':
+    case 'Integrated M.S./Ph.D.':
+    case 'Integrated Ph.D.':
+    case 'Joint MS & PhD':
+      return 'role-badge-phd';
+    case 'MS Student':
+      return 'role-badge-ms';
+    case 'Undergraduate Researcher':
+      return 'role-badge-intern';
+    case 'Alumni':
+      return 'role-badge-alumni';
+    default:
+      return 'role-badge-default';
+  }
+};
+
 export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false, onNavigate }) => {
   const [imageError, setImageError] = useState(false);
   const [specialError, setSpecialError] = useState(false);
@@ -91,12 +113,13 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
         flexDirection: 'column',
         backgroundColor: 'var(--color-surface)',
         border: '1px solid var(--color-border)',
-        borderRadius: 'var(--radius-sm)',
+        borderRadius: '12px',
+        padding: '8px 8px 12px 8px',
         overflow: 'hidden',
         transition: 'border-color var(--transition-fast)',
       }}
     >
-      {/* Photo Container with fixed academic aspect ratio (4:5) */}
+      {/* Photo Container with rounded corners and fixed academic aspect ratio (4:5) */}
       <div
         className="person-photo-container"
         style={{
@@ -105,6 +128,8 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
           aspectRatio: '4 / 5',
           backgroundColor: 'var(--color-bg-tertiary)',
           overflow: 'hidden',
+          borderRadius: '8px',
+          border: '1px solid var(--color-border-subtle)',
         }}
       >
         {isPI && onNavigate ? (
@@ -140,38 +165,17 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
         ) : (
           renderPhotoContent()
         )}
-
-        {/* Small subtle role tag overlay */}
-        <div
-          className="person-photo-role-tag"
-          style={{
-            position: 'absolute',
-            bottom: '8px',
-            left: '8px',
-            backgroundColor: 'rgba(11, 15, 20, 0.75)',
-            backdropFilter: 'blur(4px)',
-            color: '#ffffff',
-            padding: '2px 6px',
-            borderRadius: 'var(--radius-xs)',
-            fontSize: '10.5px',
-            fontFamily: 'var(--font-mono)',
-            zIndex: 4,
-            pointerEvents: 'none',
-          }}
-        >
-          {person.title}
-        </div>
       </div>
 
       {/* Info Body */}
       <div
         className="person-card-body"
         style={{
-          padding: 'var(--space-sm)',
+          padding: '10px 4px 2px 4px',
           display: 'flex',
           flexDirection: 'column',
           flexGrow: 1,
-          gap: '4px',
+          gap: '5px',
         }}
       >
         <div
@@ -276,6 +280,13 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
               </span>
             )
           )}
+        </div>
+
+        {/* Role Badge under name */}
+        <div className="person-role-badge-wrap">
+          <span className={`person-role-badge ${getRoleBadgeClass(person.role)}`} title={person.title}>
+            {person.title}
+          </span>
         </div>
 
         {/* Alumni Destination or Period */}
@@ -399,6 +410,8 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
 
       <style>{`
         .person-academic-card {
+          padding: 8px 8px 12px 8px !important;
+          border-radius: 12px !important;
           transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.22s ease !important;
         }
         @media (hover: hover) and (pointer: fine) {
@@ -410,6 +423,11 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
           [data-theme='dark'] .person-academic-card:hover {
             box-shadow: 0 14px 30px rgba(0, 0, 0, 0.38);
           }
+        }
+        .person-photo-container {
+          border-radius: 8px;
+          overflow: hidden;
+          border: 1px solid var(--color-border-subtle);
         }
         .person-photo-img {
           transition: opacity 0.35s ease, transform 0.35s ease;
@@ -434,6 +452,109 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
         .person-photo-container:hover .person-photo-standard.has-special {
           opacity: 0;
         }
+
+        /* Role Badges */
+        .person-role-badge-wrap {
+          display: flex;
+          align-items: center;
+          margin-top: 1px;
+          margin-bottom: 2px;
+        }
+
+        .person-role-badge {
+          display: inline-flex;
+          align-items: center;
+          font-family: var(--font-mono);
+          font-size: 11px;
+          font-weight: 600;
+          letter-spacing: 0.02em;
+          padding: 2.5px 7.5px;
+          border-radius: var(--radius-xs, 4px);
+          line-height: 1.35;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 100%;
+        }
+
+        /* Professor / PI Badge (Royal Indigo) */
+        .role-badge-prof {
+          background-color: #eef2ff;
+          color: #4338ca;
+          border: 1px solid #c7d2fe;
+        }
+        [data-theme='dark'] .role-badge-prof {
+          background-color: rgba(99, 102, 241, 0.15);
+          color: #a5b4fc;
+          border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        /* Postdoctoral Fellow Badge (Rich Violet) */
+        .role-badge-postdoc {
+          background-color: #f5f3ff;
+          color: #6d28d9;
+          border: 1px solid #ddd6fe;
+        }
+        [data-theme='dark'] .role-badge-postdoc {
+          background-color: rgba(139, 92, 246, 0.15);
+          color: #c4b5fd;
+          border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        /* Ph.D. / Integrated Ph.D. Student Badge (Ocean Azure) */
+        .role-badge-phd {
+          background-color: #f0f9ff;
+          color: #0369a1;
+          border: 1px solid #bae6fd;
+        }
+        [data-theme='dark'] .role-badge-phd {
+          background-color: rgba(14, 165, 233, 0.15);
+          color: #7dd3fc;
+          border: 1px solid rgba(14, 165, 233, 0.3);
+        }
+
+        /* M.S. Student Badge (Emerald Green) */
+        .role-badge-ms {
+          background-color: #f0fdf4;
+          color: #15803d;
+          border: 1px solid #bbf7d0;
+        }
+        [data-theme='dark'] .role-badge-ms {
+          background-color: rgba(34, 197, 94, 0.15);
+          color: #86efac;
+          border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        /* Undergraduate Researcher Badge (Warm Amber) */
+        .role-badge-intern {
+          background-color: #fffbeb;
+          color: #b45309;
+          border: 1px solid #fde68a;
+        }
+        [data-theme='dark'] .role-badge-intern {
+          background-color: rgba(245, 158, 11, 0.15);
+          color: #fcd34d;
+          border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        /* Alumni Badge (Slate Gray) */
+        .role-badge-alumni {
+          background-color: #f1f5f9;
+          color: #475569;
+          border: 1px solid #cbd5e1;
+        }
+        [data-theme='dark'] .role-badge-alumni {
+          background-color: rgba(148, 163, 184, 0.15);
+          color: #cbd5e1;
+          border: 1px solid rgba(148, 163, 184, 0.25);
+        }
+
+        .role-badge-default {
+          background-color: var(--color-bg-secondary);
+          color: var(--color-text-secondary);
+          border: 1px solid var(--color-border);
+        }
+
         .member-name-link:hover {
           color: var(--color-accent) !important;
           text-decoration: underline;
@@ -454,22 +575,21 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
         }
 
         @media (max-width: 640px) {
-          .person-photo-container {
-            max-height: 240px;
+          .person-academic-card {
+            padding: 6px 6px 10px 6px !important;
+            border-radius: 10px !important;
           }
-          .person-photo-role-tag {
-            font-size: 9.5px !important;
-            padding: 2px 5px !important;
-            bottom: 6px !important;
-            left: 6px !important;
-            max-width: calc(100% - 12px) !important;
-            white-space: nowrap !important;
-            overflow: hidden !important;
-            text-overflow: ellipsis !important;
+          .person-photo-container {
+            border-radius: 6px !important;
+            max-height: 220px;
           }
           .person-card-body {
-            padding: 10px !important;
-            gap: 3px !important;
+            padding: 6px 2px 2px 2px !important;
+            gap: 4px !important;
+          }
+          .person-role-badge {
+            font-size: 10px !important;
+            padding: 1.5px 6px !important;
           }
           .member-name-heading {
             font-size: 13.5px !important;
