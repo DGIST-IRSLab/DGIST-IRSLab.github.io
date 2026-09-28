@@ -42,29 +42,28 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           <div className="hero-content">
             <h1 className="hero-title">
               Intelligent Radio Sensing Lab
-              <br />
-              <span className="hero-title-sub">
-                <span className="hero-at-symbol">@</span>
-                <a
-                  href="https://www.dgist.ac.kr"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hero-dgist-link"
-                  title="Daegu Gyeongbuk Institute of Science and Technology (DGIST)"
-                >
-                  <img
-                    src={assetUrl('/images/logopic/dgist_logo.png')}
-                    alt="DGIST"
-                    className="hero-dgist-logo logo-light-only"
-                  />
-                  <img
-                    src={assetUrl('/images/logopic/dgist_logo_dark.png')}
-                    alt="DGIST"
-                    className="hero-dgist-logo logo-dark-only"
-                  />
-                </a>
-              </span>
             </h1>
+
+            <div className="hero-affiliation">
+              <a
+                href="https://www.dgist.ac.kr"
+                target="_blank"
+                rel="noreferrer"
+                className="hero-dgist-link"
+                title="DGIST (Daegu Gyeongbuk Institute of Science and Technology)"
+              >
+                <img
+                  src={assetUrl('/images/logopic/dgist_logo.png')}
+                  alt="DGIST"
+                  className="hero-dgist-logo logo-light-only"
+                />
+                <img
+                  src={assetUrl('/images/logopic/dgist_logo_dark.png')}
+                  alt="DGIST"
+                  className="hero-dgist-logo logo-dark-only"
+                />
+              </a>
+            </div>
 
             <div className="hero-statement-wrap">
               <button
@@ -293,27 +292,19 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           font-size: clamp(2rem, 5vw, 3.8rem);
           font-weight: 700;
           letter-spacing: -0.03em;
-          line-height: 1.12;
+          line-height: 1.15;
           color: var(--color-text-primary);
-          margin: 0 0 16px 0;
+          margin: 0 0 14px 0;
           word-break: keep-all;
           overflow-wrap: break-word;
           animation: heroFloatIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
-        .hero-title-sub {
-          display: inline-flex;
+        .hero-affiliation {
+          display: flex;
           align-items: center;
-          gap: clamp(8px, 1.2vw, 14px);
-          vertical-align: middle;
-          margin-top: 6px;
-        }
-
-        .hero-at-symbol {
-          font-weight: 400;
-          color: var(--color-text-muted);
-          font-size: 0.85em;
-          line-height: 1;
+          margin-bottom: 22px;
+          animation: heroFloatIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
         }
 
         .hero-dgist-link {
