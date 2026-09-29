@@ -278,6 +278,21 @@ export const professorData = {
 
   invitedTalks: [
     {
+      title: "범용 레이다AI 기술을 위한 발전 방안: 파운데이션 모델 및 멀티모달 AI 기술 융합을 중심으로",
+      venue: "국방과학연구소",
+      date: "2026.08"
+    },
+    {
+      title: "범용 레이다AI 기술을 위한 발전 방안: 파운데이션 모델 및 멀티모달 AI 기술 융합을 중심으로",
+      venue: "한국전자파학회 레이더워크숍",
+      date: "2026.07"
+    },
+    {
+      title: "MVDoppler-Pose: Multi-View Doppler Pose Estimation for Radio+AI Perception",
+      venue: "대한전자공학회 하계학술대회",
+      date: "2026.06"
+    },
+    {
       title: "On the Opportunities of Foundational/LLM-Integrated Radar+AI",
       venue: "한국전자파학회 동계학술대회",
       date: "2026.02"
