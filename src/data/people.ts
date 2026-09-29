@@ -259,6 +259,7 @@ export const graduateStudents: Person[] = [
     title: "Integrated M.S./Ph.D. Student",
     photo: "/images/teampic/standard/student_KSE2.jpg",
     specialPhoto: "/images/teampic/special/student_KSE.jpg",
+    specialPhotoObjectPosition: "center 45%",
     email: "seungeun.kang@dgist.ac.kr",
     researchInterests: ["Language Models for Radar", "Sensor Fusion"]
   },
