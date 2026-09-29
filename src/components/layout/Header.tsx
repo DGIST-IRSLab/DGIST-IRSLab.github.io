@@ -67,12 +67,12 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
           title="IRS Lab — DGIST"
         >
           <img
-            src={assetUrl('/images/logopic/lab_logo_light.png')}
+            src={assetUrl('/images/logopic/lab_text_light.png')}
             alt="IRS Lab"
             className="header-lab-logo logo-light-only"
           />
           <img
-            src={assetUrl('/images/logopic/lab_logo_dark.png')}
+            src={assetUrl('/images/logopic/lab_text_dark.png')}
             alt="IRS Lab"
             className="header-lab-logo logo-dark-only"
           />
@@ -220,9 +220,9 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
           transform: translateY(-0.5px);
         }
         .header-lab-logo {
-          height: 42px;
+          height: clamp(24px, 3.2vw, 29px);
           width: auto;
-          max-width: 170px;
+          max-width: 190px;
           object-fit: contain;
           display: block;
           transition: opacity var(--transition-fast), transform var(--transition-fast);
