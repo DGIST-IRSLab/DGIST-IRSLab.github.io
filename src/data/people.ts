@@ -216,6 +216,8 @@ export const graduateStudents: Person[] = [
     role: "MS Student",
     title: "M.S. Student",
     photo: "/images/teampic/standard/student_BJK.jpg",
+    specialPhoto: "/images/teampic/special/student_BJK.jpg",
+    specialPhotoObjectPosition: "center 35%",
     email: "bj1430@dgist.ac.kr",
     researchInterests: ["RF Sensing Systems", "Wi-Fi CSI/BFI Sensing"]
   },
