@@ -224,14 +224,6 @@ export const professorData = {
       role: "Principal Investigator"
     },
     {
-      id: "nrf-seed-2025",
-      title: "우수신진연구-씨앗",
-      agency: "NRF (National Research Foundation of Korea)",
-      agencyBadge: "NRF",
-      period: "2025.09 ~ 2026.08",
-      role: "Principal Investigator"
-    },
-    {
       id: "msit-innocore-llm-2025",
       title: "InnoCore(LLM 2.0: Inference Enhancement, Domain Specialization, Multimodal Expansion, and Trustworthy AI)",
       agency: "MSIT (Ministry of Science and ICT)",
@@ -261,6 +253,30 @@ export const professorData = {
       agency: "DGIST",
       agencyBadge: "DGIST",
       period: "2025.01 ~ 2028.12",
+      role: "Principal Investigator"
+    },
+    {
+      id: "gpu-2026_2",
+      title: "GPU 지원사업 (H100x8)",
+      agency: "AICA",
+      agencyBadge: "AICA",
+      period: "2026.08 ~ 2026.12",
+      role: "Principal Investigator"
+    },
+    {
+      id: "gpu-2026_1",
+      title: "GPU 지원사업 (B200x8)",
+      agency: "NIPA",
+      agencyBadge: "NIPA",
+      period: "2026.08 ~ 2026.09 (Completed)",
+      role: "Principal Investigator"
+    },
+    {
+      id: "nrf-seed-2025",
+      title: "우수신진연구-씨앗",
+      agency: "NRF (National Research Foundation of Korea)",
+      agencyBadge: "NRF",
+      period: "2025.09 ~ 2026.08 (Completed)",
       role: "Principal Investigator"
     }
   ] as ProfessorProject[],
