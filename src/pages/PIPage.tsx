@@ -101,7 +101,6 @@ export const PIPage: React.FC<PIPageProps> = () => {
                 <div className="pi-name-row">
                   <h1 className="pi-full-name">{professorData.name}</h1>
                   <span className="pi-name-kr">({professorData.nameKr})</span>
-                  <span className="pi-title-badge">{professorData.title}</span>
                 </div>
                 <div className="pi-affiliation-text">
                   Department of Electrical Engineering and Computer Science (EECS)
@@ -427,18 +426,6 @@ export const PIPage: React.FC<PIPageProps> = () => {
           font-size: 1.25rem;
           font-weight: 500;
           color: var(--color-text-secondary);
-        }
-
-        .pi-title-badge {
-          display: inline-block;
-          font-family: var(--font-sans);
-          font-size: 13px;
-          font-weight: 500;
-          padding: 2px 8px;
-          border-radius: var(--radius-xs);
-          background-color: var(--color-bg-secondary);
-          color: var(--color-accent);
-          border: 1px solid var(--color-border);
         }
 
         .pi-affiliation-text {
