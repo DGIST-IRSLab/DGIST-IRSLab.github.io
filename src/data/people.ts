@@ -182,6 +182,8 @@ export const graduateStudents: Person[] = [
     role: "Integrated M.S./Ph.D.",
     title: "Integrated M.S./Ph.D. Student",
     photo: "/images/teampic/standard/student_jihyeok.jpg",
+    specialPhoto: "/images/teampic/special/student_jihyeok.jpg",
+    specialPhotoObjectPosition: "center 85%",
     email: "jh.hong@dgist.ac.kr",
     researchInterests: ["Digital Twin", "UAV", "Radar Sim2Real"]
   },
