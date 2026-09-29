@@ -44,12 +44,9 @@ export const JoinUsPage: React.FC = () => {
                   <div className="position-icon-wrap">
                     <GraduationCap size={22} />
                   </div>
-                  <div>
-                    <h2 className="position-card-title">
-                      Graduate Students <span className="position-card-subtitle">(Ph.D. / M.S. / Integrated M.S./Ph.D.)</span>
-                    </h2>
-                    <span className="position-badge">Spring &amp; Fall Admission</span>
-                  </div>
+                  <h2 className="position-card-title">
+                    Graduate Students <span className="position-card-subtitle">(Ph.D. / M.S. / Integrated M.S./Ph.D.)</span>
+                  </h2>
                 </div>
               </div>
 
@@ -91,12 +88,9 @@ export const JoinUsPage: React.FC = () => {
                   <div className="position-icon-wrap">
                     <Award size={22} />
                   </div>
-                  <div>
-                    <h2 className="position-card-title">
-                      Postdoctoral Research Scholars
-                    </h2>
-                    <span className="position-badge">Full-Time Researcher</span>
-                  </div>
+                  <h2 className="position-card-title">
+                    Postdoctoral Research Scholars
+                  </h2>
                 </div>
               </div>
 
@@ -127,12 +121,9 @@ export const JoinUsPage: React.FC = () => {
                   <div className="position-icon-wrap">
                     <BookOpen size={22} />
                   </div>
-                  <div>
-                    <h2 className="position-card-title">
-                      Undergraduate Research Interns
-                    </h2>
-                    <span className="position-badge">Semester &amp; Vacation Modules</span>
-                  </div>
+                  <h2 className="position-card-title">
+                    Undergraduate Research Interns
+                  </h2>
                 </div>
               </div>
 
@@ -261,7 +252,7 @@ export const JoinUsPage: React.FC = () => {
 
         .position-title-group {
           display: flex;
-          align-items: flex-start;
+          align-items: center;
           gap: 16px;
         }
 
@@ -276,7 +267,6 @@ export const JoinUsPage: React.FC = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-top: 2px;
           flex-shrink: 0;
         }
 
@@ -286,7 +276,7 @@ export const JoinUsPage: React.FC = () => {
           font-weight: 700;
           letter-spacing: -0.015em;
           color: var(--color-text-primary);
-          margin: 0 0 6px 0;
+          margin: 0;
           line-height: 1.3;
         }
 
@@ -294,19 +284,6 @@ export const JoinUsPage: React.FC = () => {
           font-weight: 500;
           font-size: 0.9em;
           color: var(--color-text-secondary);
-        }
-
-        .position-badge {
-          display: inline-block;
-          font-family: var(--font-sans);
-          font-size: 12px;
-          font-weight: 600;
-          padding: 2px 8px;
-          border-radius: var(--radius-xs);
-          background-color: var(--color-bg-secondary);
-          color: var(--color-accent);
-          border: 1px solid var(--color-border);
-          letter-spacing: 0.02em;
         }
 
         .position-card-body {
