@@ -57,83 +57,84 @@ import type { ResearchTopic, ResearchProject } from '../types';
 
 export const researchTopics: ResearchTopic[] = [
   {
-    id: "wireless-centric-ai",
-    title: "Wireless-Centric AI",
-    shortTitle: "Wireless AI",
-    question: "How to fully unleash the power of AI for wireless signals?",
-    summary: "Developing novel learning representations, complex-valued neural architectures, and wireless foundation models tailored to the physics of electromagnetic wave propagation.",
+    id: "wireless-foundation-models",
+    title: "Wireless Foundation Models",
+    shortTitle: "Wireless Foundation Models",
+    question: "How to bridge physical wireless signals and multimodal foundation models?",
+    summary: "Developing novel learning representations, self-supervised learning, and cross-modal foundation models tailored to the physics of electromagnetic wave propagation.",
     description: [
       "Traditional computer vision models fail when naively applied to raw radio-frequency (RF) waveforms due to phase sensitivity, multi-path propagation, complex-number signal domains, and distinctive noise characteristics.",
-      "We design wireless-native neural network paradigms—including complex neural networks, frequency-domain transformers, and foundation models pretrained on multi-frequency radar corpora—that directly process I/Q channels and range-Doppler representations.",
-      "Our work extends to generative AI for synthesizing realistic micro-Doppler signatures and augmenting sparse RF datasets across domain shifts."
+      "We design wireless-native foundation model paradigms—including physics-aware self-supervised learning, cross-modal wireless-language pretraining, and radar-grounded multimodal scene reasoning—that directly understand physical RF representations.",
+      "Our work extends to RF simulation and digital twin synthesis to bridge simulation and real-world domain shifts."
     ],
     keywords: [
-      "Radar Signal Processing + AI",
-      "Wireless Foundation Models",
-      "Generative RF Synthesis",
-      "Complex Neural Networks",
-      "Self-Supervised Masked RF Modeling"
+      "Physics-Aware Self-Supervised Learning",
+      "Cross-Modal Wireless-Language Pretraining",
+      "Radar-Grounded Multimodal Scene Reasoning",
+      "RF Simulation & Digital Twin Synthesis",
+      "Wireless Foundation Models"
     ],
-    image: "/images/research_1.jpg",
-    imageCaption: "Figure 1: Wireless-Centric AI framework uniting wave physics with transformer architectures for robust phase and Doppler feature extraction.",
+    image: "/images/research_1.png",
+    imageCaption: "Figure 1: Wireless Foundation Models framework integrating self-supervised learning, cross-modal pretraining, multimodal scene reasoning, and RF digital twin synthesis.",
     highlights: [
-      "Radar Signal Processing + AI",
-      "Wireless Foundation Model",
-      "Wireless + Generative AI",
-      "Complex Neural Network"
+      "Physics-Aware Self-Supervised Learning",
+      "Cross-Modal Wireless-Language Pretraining",
+      "Radar-Grounded Multimodal Scene Reasoning",
+      "RF Simulation & Digital Twin Synthesis"
     ]
   },
   {
-    id: "wireless-perception-systems",
-    title: "Innovative Wireless+X Perception Systems",
-    shortTitle: "Perception Systems",
-    question: "How to achieve new perception technologies/applications that can see beyond human vision?",
-    summary: "Building contactless, privacy-preserving sensing systems capable of penetrating occlusions, smoke, and total darkness for human health monitoring and remote scene understanding.",
+    id: "beyond-optical-perception",
+    title: "Beyond-Optical Perception Systems",
+    shortTitle: "Beyond-Optical Perception",
+    question: "How to perceive human dynamics and physical scenes beyond optical limits?",
+    summary: "Building contactless, non-line-of-sight sensing systems capable of penetrating occlusions, smoke, and darkness for human motion tracking, physiological monitoring, and robotics.",
     description: [
       "Optical sensors struggle under environmental extremes such as dense clutter, smoke, fog, and complete darkness, while raising critical privacy concerns in personal environments.",
-      "We develop contactless physiological sensing technologies that monitor respiration and cardiac dynamics of freely moving subjects without requiring wearables.",
-      "In parallel, we engineer Synthetic Aperture Radar (SAR) remote sensing algorithms and micro-motion kinematic sensing for long-distance multi-view human walking pose estimation."
+      "We develop contactless physiological sensing technologies that monitor respiration, cardiac dynamics, and SpO2 of freely moving subjects without requiring wearables.",
+      "In parallel, we engineer 3D human pose and motion estimation, see-through robotic manipulation, and micro-Doppler radar sensing for aerial and non-line-of-sight targets."
     ],
     keywords: [
-      "Contactless Health Monitoring",
-      "Micro-Motion Kinematics",
-      "SAR Remote Sensing",
-      "Adverse Scenario Sensing (Occlusion, Darkness)",
-      "Crowd Counting & Spatial Localization"
+      "3D Human Pose & Motion Estimation",
+      "Contactless Vital Sign & SpO2 Monitoring",
+      "See-Through Robotic Manipulation",
+      "Micro-Doppler Aerial Target Sensing",
+      "Adverse Scenario Sensing"
     ],
-    image: "/images/research_2.jpg",
-    imageCaption: "Figure 2: Non-line-of-sight sensing and contactless vital sign monitoring using high-frequency mmWave radar backscatter.",
+    image: "/images/research_2.png",
+    imageCaption: "Figure 2: Beyond-optical perception systems overcoming visual occlusion and lighting constraints for 3D pose estimation, contactless vital monitoring, see-through robotics, and aerial target sensing.",
     highlights: [
-      "New Sensing Technologies for Various Application Areas (e.g. Health Monitoring, IoT, Defense)",
-      "Micro-Motion Sensing",
-      "Remote Sensing with Synthetic Aperture Radar (SAR)",
-      "Sensing in Challenging Scenarios (e.g. Occlusion, Dark)"
+      "3D Human Pose & Motion Estimation",
+      "Contactless Vital Sign & SpO2 Monitoring",
+      "See-Through Robotic Manipulation",
+      "Micro-Doppler Aerial Target Sensing"
     ]
   },
   {
-    id: "multimodal-fusion",
-    title: "Multi-Modal/Multi-Sensor Fusion",
-    shortTitle: "Multimodal & Physical AI",
-    question: "How to achieve generalized perception capabilities by combining different physical capabilities of diverse sensors?",
-    summary: "Fusing complementary physics of radio waves, vision, infrared, and audio to build resilient embodied intelligence and foundation models for autonomous systems.",
+    id: "isac-ai-signal-processing",
+    title: "ISAC & AI Signal Processing",
+    shortTitle: "ISAC & AI Signal Processing",
+    question: "How to transform ubiquitous wireless signals into intelligent sensing systems?",
+    summary: "Transforming ubiquitous wireless signals into intelligent sensing systems through ambient network sensing, AI-driven signal reconstruction, and autonomous agentic processing pipelines.",
     description: [
-      "Single-modality systems possess inherent failure modes: cameras fail in low visibility or occlusion, while RF sensors produce sparse geometric point clouds without semantic textures.",
-      "We develop multi-sensor fusion architectures (Video-RF transformers, Radar-Camera diffusion depth estimators, and multimodal cross-attention) that bind complementary spatial, temporal, and physical signals.",
-      "Furthermore, we benchmark and extend Large Language Models (LLMs) to reason over mmWave radar streams for physical-world contextual comprehension."
+      "Ubiquitous communication signals offer rich opportunistic sensing modalities when paired with intelligent signal processing.",
+      "We investigate ambient Wi-Fi and cellular network sensing, deep learning-based virtual I/Q reconstruction, and signal super-resolution for high-precision radar imaging beyond hardware boundaries.",
+      "Furthermore, we develop autonomous signal processing agents that observe, interpret, and adaptively control sensing pipelines in complex RF environments."
     ],
     keywords: [
-      "Radar + Camera Fusion",
-      "Video-RF Transformers",
-      "Diffusion Depth Estimation",
-      "LLM mmWave Understanding",
-      "Embodied Physical Intelligence"
+      "Ambient Wi-Fi & Cellular Network Sensing",
+      "AI-Driven Virtual I/Q Reconstruction",
+      "Signal Super-Resolution for Radar Imaging",
+      "Autonomous Signal Processing Agents",
+      "Integrated Sensing & Communication (ISAC)"
     ],
-    image: "/images/research_3.jpg",
-    imageCaption: "Figure 3: Cross-modal transformer aligning sparse radar point reflections with dense visual semantic features for robust scene comprehension.",
+    image: "/images/research_3.png",
+    imageCaption: "Figure 3: Integrated Sensing and Communication (ISAC) and AI signal processing transforming ambient wireless waveforms through virtual I/Q reconstruction, super-resolution, and autonomous DSP agents.",
     highlights: [
-      "Multi-Sensor Fusion",
-      "Multi-Modal Learning",
-      "Sensor Signal Processing"
+      "Ambient Wi-Fi & Cellular Network Sensing",
+      "AI-Driven Virtual I/Q Reconstruction",
+      "Signal Super-Resolution for Radar Imaging",
+      "Autonomous Signal Processing Agents"
     ]
   }
 ];
@@ -145,7 +146,7 @@ export const researchProjects: ResearchProject[] = [
     agency: "IITP (Institute of Information & Communications Technology Planning & Evaluation)",
     agencyBadge: "IITP",
     period: "2026.04 – 2028.12 (Total: ~2033.12)",
-    topicId: "multimodal-fusion",
+    topicId: "isac-ai-signal-processing",
     description: "Multi-sensor fusion foundation model research for safe robot task planning in industrial manufacturing environments.",
     status: "ongoing"
   },
@@ -155,7 +156,7 @@ export const researchProjects: ResearchProject[] = [
     agency: "KIOST (Korea Institute of Ocean Science and Technology)",
     agencyBadge: "KIOST",
     period: "2026.04 – 2030.12",
-    topicId: "wireless-perception-systems",
+    topicId: "beyond-optical-perception",
     description: "AI-based maritime micro-Doppler sensing and surveillance algorithms for underwater and surface object classification.",
     status: "ongoing"
   },
@@ -165,7 +166,7 @@ export const researchProjects: ResearchProject[] = [
     agency: "NRF (National Research Foundation of Korea)",
     agencyBadge: "NRF",
     period: "2026.03 – 2031.02",
-    topicId: "wireless-centric-ai",
+    topicId: "wireless-foundation-models",
     description: "Radar foundation model trained across multi-frequency bands, diverse modulation schemes, and disparate environmental domains.",
     status: "ongoing"
   },
@@ -175,7 +176,7 @@ export const researchProjects: ResearchProject[] = [
     agency: "ADD (Agency for Defense Development)",
     agencyBadge: "ADD",
     period: "2025.12 – 2026.11",
-    topicId: "wireless-perception-systems",
+    topicId: "beyond-optical-perception",
     description: "Physical AI counter-measure algorithms against high-speed unmanned swarm surface vessels using multi-sensor radar tracking.",
     status: "ongoing"
   },
@@ -185,7 +186,7 @@ export const researchProjects: ResearchProject[] = [
     agency: "NRF (National Research Foundation of Korea)",
     agencyBadge: "NRF",
     period: "2025.09 – 2026.08",
-    topicId: "wireless-centric-ai",
+    topicId: "wireless-foundation-models",
     description: "Early-stage exploratory initiative on advanced signal representations for wireless cognitive sensing.",
     status: "ongoing"
   },
@@ -195,7 +196,7 @@ export const researchProjects: ResearchProject[] = [
     agency: "MSIT (Ministry of Science and ICT)",
     agencyBadge: "MSIT",
     period: "2025.07 – 2029.12",
-    topicId: "multimodal-fusion",
+    topicId: "isac-ai-signal-processing",
     description: "Investigation into multimodal extension of large language models for sensory radio domain comprehension.",
     status: "ongoing"
   },
@@ -205,7 +206,7 @@ export const researchProjects: ResearchProject[] = [
     agency: "MSIT (Ministry of Science and ICT)",
     agencyBadge: "MSIT",
     period: "2025.07 – 2029.12",
-    topicId: "wireless-perception-systems",
+    topicId: "beyond-optical-perception",
     description: "Biological sensing integration with embedded physical intelligence.",
     status: "ongoing"
   },
@@ -215,7 +216,7 @@ export const researchProjects: ResearchProject[] = [
     agency: "MSIT (Ministry of Science and ICT)",
     agencyBadge: "MSIT",
     period: "2025.04 – 2030.12",
-    topicId: "wireless-centric-ai",
+    topicId: "wireless-foundation-models",
     description: "Prestigious national fellowship advancing pioneering artificial intelligence research in physical perception.",
     status: "ongoing"
   },
@@ -225,7 +226,7 @@ export const researchProjects: ResearchProject[] = [
     agency: "DGIST",
     agencyBadge: "DGIST",
     period: "2025.01 – 2028.12",
-    topicId: "wireless-centric-ai",
+    topicId: "wireless-foundation-models",
     description: "Core laboratory equipment, mmWave testbeds, and computing infrastructure setup.",
     status: "ongoing"
   }
