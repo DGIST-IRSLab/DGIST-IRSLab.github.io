@@ -186,27 +186,6 @@ export const graduateStudents: Person[] = [
     researchInterests: ["Digital Twin", "UAV", "Radar Sim2Real"]
   },
   {
-    id: "jaeryong-lee",
-    name: "Jaeryong Lee",
-    nameKr: "이재룡",
-    role: "Integrated M.S./Ph.D.",
-    title: "Integrated M.S./Ph.D. Student",
-    photo: "/images/teampic/standard/student_LJR2.jpg",
-    email: "wofyd0826@dgist.ac.kr",
-    researchInterests: ["Radar for Autonomous Driving", "Radar-Camera Fusion"]
-  },
-  {
-    id: "seungeun-kang",
-    name: "Seungeun Kang",
-    nameKr: "강성은",
-    role: "Integrated M.S./Ph.D.",
-    title: "Integrated M.S./Ph.D. Student",
-    photo: "/images/teampic/standard/student_KSE2.jpg",
-    specialPhoto: "/images/teampic/special/student_KSE.jpg",
-    email: "seungeun.kang@dgist.ac.kr",
-    researchInterests: ["Language Models for Radar", "Sensor Fusion"]
-  },
-  {
     id: "eunchan-kim",
     name: "Eunchan Kim",
     nameKr: "김은찬",
@@ -257,6 +236,27 @@ export const graduateStudents: Person[] = [
     photo: "/images/teampic/standard/student_JWH.jpg",
     email: "hanjw927@dgist.ac.kr",
     researchInterests: ["Synthetic Aperture Radar", "Radar-Specific Super-Resolution"]
+  },
+  {
+    id: "jaeryong-lee",
+    name: "Jaeryong Lee",
+    nameKr: "이재룡",
+    role: "Integrated M.S./Ph.D.",
+    title: "Integrated M.S./Ph.D. Student",
+    photo: "/images/teampic/standard/student_LJR2.jpg",
+    email: "wofyd0826@dgist.ac.kr",
+    researchInterests: ["Radar for Autonomous Driving", "Radar-Camera Fusion"]
+  },
+  {
+    id: "seungeun-kang",
+    name: "Seungeun Kang",
+    nameKr: "강성은",
+    role: "Integrated M.S./Ph.D.",
+    title: "Integrated M.S./Ph.D. Student",
+    photo: "/images/teampic/standard/student_KSE2.jpg",
+    specialPhoto: "/images/teampic/special/student_KSE.jpg",
+    email: "seungeun.kang@dgist.ac.kr",
+    researchInterests: ["Language Models for Radar", "Sensor Fusion"]
   },
   {
     id: "minjae-kim",
