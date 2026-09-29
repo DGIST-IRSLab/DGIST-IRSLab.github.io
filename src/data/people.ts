@@ -223,6 +223,8 @@ export const graduateStudents: Person[] = [
     role: "MS Student",
     title: "M.S. Student",
     photo: "/images/teampic/standard/student_DW.jpg",
+    specialPhoto: "/images/teampic/special/student_DW.jpg",
+    specialPhotoObjectPosition: "center 30%",
     email: "duko@dgist.ac.kr",
     researchInterests: ["LLMs for mmWave Data", "Multimodal Benchmarking"]
   },
