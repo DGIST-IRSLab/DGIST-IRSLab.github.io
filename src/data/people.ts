@@ -194,6 +194,8 @@ export const graduateStudents: Person[] = [
     role: "MS Student",
     title: "M.S. Student",
     photo: "/images/teampic/standard/student_eunchan.jpg",
+    specialPhoto: "/images/teampic/special/student_eunchan.jpg",
+    specialPhotoObjectPosition: "center 45%",
     email: "eunchan.kim@dgist.ac.kr",
     researchInterests: ["Radar-Specific Self-Supervised Learning", "Radar for Autonomous Driving"]
   },
