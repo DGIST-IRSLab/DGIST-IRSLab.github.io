@@ -47,6 +47,13 @@ export const newsItems: NewsItem[] = [
     description:"Two papers(Radar MAE, mmLIP) by Eunchan Kim, Jeongwan Shin, and Jaehyeon Kim have been accepted to NeurIPS 2026 🥳 Congratulations!"
   },
   {
+    id: "news-2026-09-award",
+    date: "2026.09",
+    category: "AWARD",
+    title: "Our Lab's UGRP team received the Excellence Award at the 2026 DGIST UGRP Symposium.",
+    description: "Jaewon, Junwon, Eunbi, Seohyeong received the Excellence Award (Top 2) with their project on IQ Wireless Foundation Models.",
+  },
+  {
     id: "news-2026-08-award",
     date: "2026.08",
     category: "AWARD",
