@@ -60,6 +60,17 @@ import type { Publication } from '../types';
 
 export const publications: Publication[] = [
     {
+    id: "park2026passivewifi",
+    title: "Cross-Domain Heart Rate Estimation from Active mmWave to Passive Wi-Fi Radar",
+    authors: ["Do-Hyun Park", "Yazdan Ahmad Qadri", "Bum-Joon Kim", "Yun-Jung Jeong", "Jae-Ho Choi*"],
+    labAuthors: ["Do-Hyun Park", "Yazdan Ahmad Qadri", "Bum-Joon Kim", "Yun-Jung Jeong", "Jae-Ho Choi"],
+    venue: "IEEE Internet of Things Journal (IoTJ)",
+    venueShort: "IEEE IoTJ",
+    year: 2026,
+    type: "journal",
+    isTop5Percent: true,
+  },
+    {
     id: "shin2026mmLIP",
     title:"mmLIP: mmWave Radar-Language Interactive Pretraining via Point Confidence",
     authors :["Jeongwan Shin","Jaehyeon Kim", "Jae-Ho Choi*"],
