@@ -294,6 +294,11 @@ export const professorData = {
 
   invitedTalks: [
     {
+      title: "Remote Sensing, 피지컬 AI, 그리고 센서 AI",
+      venue: "한국수자원공사",
+      date: "2026.10"
+    },
+    {
       title: "범용 레이다AI 기술을 위한 발전 방안: 파운데이션 모델 및 멀티모달 AI 기술 융합을 중심으로",
       venue: "국방과학연구소",
       date: "2026.08"
