@@ -40,6 +40,20 @@ import type { NewsItem } from '../types';
 
 export const newsItems: NewsItem[] = [
   {
+    id:"news-2026-10-paper",
+    date: "2026.10",
+    category: "PAPER",
+    title:"1 Paper Accepted to IEEE IoTJ.",
+    description:"One paper by Dohyun Park has been accepted to IEEE Internet of Things Journal (IoTJ). Congratulations!"
+  },
+  {
+    id:"news-2026-10-award",
+    date: "2026.10",
+    category: "AWARD",
+    title:"Selected as Top Area Chair for NeurIPS 2026.",
+    description:"Prof. Jae-Ho Choi has been recognized as a Top Area Chair for NeurIPS 2026.",
+  },
+  {
     id:"news-2026-09-paper",
     date: "2026.09",
     category: "PAPER",
