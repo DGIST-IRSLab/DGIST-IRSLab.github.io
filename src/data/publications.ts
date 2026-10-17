@@ -399,6 +399,7 @@ export const publications: Publication[] = [
     year: 2026,
     type: "conference",
     isDomestic: true,
+    isAward: true,
   },
   {
     id: "kim2026kiees-summer2",

@@ -69,13 +69,11 @@ export const PublicationsPage: React.FC<PublicationsPageProps> = ({ onOpenBibtex
 
   return (
     <div className="publications-page-root" style={{ paddingBottom: 'var(--space-section)' }}>
-      {/* Header Banner */}
+      {/* Header */}
       <section
         style={{
-          borderBottom: '1px solid var(--color-border)',
-          backgroundColor: 'var(--color-bg-secondary)',
           paddingTop: 'var(--space-2xl)',
-          paddingBottom: 'var(--space-xl)',
+          paddingBottom: 'var(--space-sm)',
         }}
       >
         <div className="container">
@@ -88,25 +86,25 @@ export const PublicationsPage: React.FC<PublicationsPageProps> = ({ onOpenBibtex
       {/* Filter and Search Bar */}
       <section
         style={{
-          borderBottom: '1px solid var(--color-border)',
-          backgroundColor: 'var(--color-surface)',
+          backgroundColor: 'var(--color-bg)',
           position: 'sticky',
           top: 'var(--header-height)',
           zIndex: 10,
         }}
       >
-        <div
-          className="container"
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: 'var(--space-md)',
-            paddingTop: 'var(--space-sm)',
-            paddingBottom: 'var(--space-sm)',
-          }}
-        >
+        <div className="container">
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: 'var(--space-md)',
+              paddingTop: 'var(--space-sm)',
+              paddingBottom: 'var(--space-sm)',
+              borderBottom: '1px solid var(--color-border)',
+            }}
+          >
           {/* Tabs */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)', flexWrap: 'wrap' }}>
             {[
@@ -123,10 +121,10 @@ export const PublicationsPage: React.FC<PublicationsPageProps> = ({ onOpenBibtex
                   background: 'none',
                   border: 'none',
                   borderBottom: activeTab === tab.id ? '2px solid var(--color-accent)' : '2px solid transparent',
-                  fontSize: '14px',
+                  fontSize: 'var(--text-body)',
                   fontFamily: 'var(--font-sans)',
                   fontWeight: activeTab === tab.id ? 600 : 500,
-                  color: activeTab === tab.id ? 'var(--color-accent)' : 'var(--color-text-muted)',
+                  color: activeTab === tab.id ? 'var(--color-accent)' : 'var(--color-text-primary)',
                   cursor: 'pointer',
                   transition: 'all var(--transition-fast)',
                 }}
@@ -150,8 +148,8 @@ export const PublicationsPage: React.FC<PublicationsPageProps> = ({ onOpenBibtex
                 border: '1px solid var(--color-border)',
                 backgroundColor: 'var(--color-surface)',
                 color: 'var(--color-text-primary)',
-                fontFamily: 'var(--font-mono)',
-                fontSize: '12.5px',
+                fontFamily: 'var(--font-sans)',
+                fontSize: 'var(--text-body)',
                 outline: 'none',
               }}
             >
@@ -176,7 +174,7 @@ export const PublicationsPage: React.FC<PublicationsPageProps> = ({ onOpenBibtex
                 backgroundColor: 'var(--color-surface)',
               }}
             >
-              <Search size={14} style={{ color: 'var(--color-text-muted)' }} />
+              <Search size={14} style={{ color: 'var(--color-text-primary)' }} />
               <input
                 type="text"
                 value={searchQuery}
@@ -188,12 +186,13 @@ export const PublicationsPage: React.FC<PublicationsPageProps> = ({ onOpenBibtex
                   outline: 'none',
                   background: 'transparent',
                   color: 'var(--color-text-primary)',
-                  fontSize: '13px',
+                  fontSize: 'var(--text-body)',
                   fontFamily: 'var(--font-sans)',
-                  width: '150px',
+                  width: '160px',
                 }}
               />
             </div>
+          </div>
           </div>
         </div>
       </section>
@@ -206,7 +205,7 @@ export const PublicationsPage: React.FC<PublicationsPageProps> = ({ onOpenBibtex
               style={{
                 padding: 'var(--space-3xl) 0',
                 textAlign: 'center',
-                color: 'var(--color-text-muted)',
+                color: 'var(--color-text-primary)',
               }}
             >
               <BookOpen size={28} style={{ opacity: 0.5, marginBottom: '8px' }} />
@@ -252,8 +251,8 @@ export const PublicationsPage: React.FC<PublicationsPageProps> = ({ onOpenBibtex
                 >
                   <span
                     style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '22px',
+                      fontFamily: 'var(--font-heading)',
+                      fontSize: 'var(--text-h2)',
                       fontWeight: 700,
                       color: 'var(--color-accent)',
                       display: 'block',
@@ -263,9 +262,9 @@ export const PublicationsPage: React.FC<PublicationsPageProps> = ({ onOpenBibtex
                   </span>
                   <span
                     style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: '11px',
-                      color: 'var(--color-text-dim)',
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: 'var(--text-body)',
+                      color: 'var(--color-text-primary)',
                     }}
                   >
                     {items.length} {items.length === 1 ? 'paper' : 'papers'}

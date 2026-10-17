@@ -11,13 +11,11 @@ interface ResearchPageProps {
 export const ResearchPage: React.FC<ResearchPageProps> = ({ onNavigate: _onNavigate }) => {
   return (
     <div className="research-page-root" style={{ paddingBottom: 'var(--space-section)' }}>
-      {/* Header Banner */}
+      {/* Header */}
       <section
         style={{
-          borderBottom: '1px solid var(--color-border)',
-          backgroundColor: 'var(--color-bg-secondary)',
           paddingTop: 'var(--space-2xl)',
-          paddingBottom: 'var(--space-xl)',
+          paddingBottom: 'var(--space-sm)',
         }}
       >
         <div className="container">

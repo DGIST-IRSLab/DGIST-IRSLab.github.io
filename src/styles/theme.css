@@ -4,31 +4,38 @@
    ========================================================================== */
 
 :root {
-  /* IRS Brand Core Tokens */
-  --irs-blue-500: #028cff;
-  --irs-blue-600: #0072d6;
-  --irs-blue-400: #2b83cc;
+  /* IRS Brand Core Tokens (Matched with original site brand guideline) */
+  --key-blue-1: #003BD1;
+  --key-blue-1-rgb: 0, 59, 209;
+  --key-blue-2: #1791FF;
+  --key-blue-2-rgb: 23, 145, 255;
+  --key-blue-3: #47FFFF;
+  --key-blue-3-rgb: 71, 255, 255;
+
+  --irs-blue-500: #1791FF;
+  --irs-blue-600: #003BD1;
+  --irs-blue-400: #47FFFF;
   --irs-slate-500: #3f7099;
   --irs-slate-700: #3e5466;
   --irs-charcoal-900: #292f33;
 
   /* Typography Families */
-  --font-display: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
-  --font-heading: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
-  --font-body: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
-  --font-sans: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
-  --font-mono: 'IBM Plex Mono', 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+  --font-display: 'Inter', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Inter', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Inter', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Inter', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-  /* Typography Scale */
-  --text-display: clamp(2.25rem, 4.5vw, 3.5rem);
-  --text-h1: clamp(1.75rem, 3.2vw, 2.5rem);
-  --text-h2: clamp(1.35rem, 2.2vw, 1.875rem);
-  --text-h3: clamp(1.15rem, 1.6vw, 1.35rem);
-  --text-body-lg: 1.125rem;
-  --text-body: 1rem;
-  --text-body-sm: 0.875rem;
-  --text-metadata: 0.8125rem;
-  --text-eyebrow: 0.75rem;
+  /* Typography Scale (Unified: only headings are larger, body text is unified) */
+  --text-display: 2rem;
+  --text-h1: 1.65rem;
+  --text-h2: 1.25rem;
+  --text-h3: 1.05rem;
+  --text-body-lg: 0.95rem;
+  --text-body: 0.95rem;
+  --text-body-sm: 0.95rem;
+  --text-metadata: 0.95rem;
+  --text-eyebrow: 0.95rem;
 
   /* Spacing System */
   --space-3xs: 2px;
@@ -63,7 +70,11 @@
 /* ==========================================================================
    LIGHT THEME (Dominant 85-90% White Academic Interface)
    ========================================================================== */
+:root,
 [data-theme='light'] {
+  --color-text-blue: var(--key-blue-2);
+  --color-accent-blue: var(--key-blue-2);
+
   --color-bg: #ffffff;
   --color-bg-secondary: #f8fafc;
   --color-bg-tertiary: #f1f5f9;
@@ -71,26 +82,27 @@
   --color-surface-hover: #f8fafc;
   --color-surface-elevated: #ffffff;
 
-  --color-text-primary: #292f33;
-  --color-text-secondary: #3e5466;
-  --color-text-muted: #3f7099;
-  --color-text-dim: #7f91a0;
+  --color-text-primary: #212529;
+  --color-text-secondary: #212529;
+  --color-text-muted: #212529;
+  --color-text-dim: #212529;
 
   --color-border: #e2e8f0;
   --color-border-subtle: #edf2f7;
   --color-border-strong: #cbd5e1;
 
-  --color-accent: #1B3BD1;
-  --color-accent-hover: #142ea8;
-  --color-accent-subtle: rgba(27, 59, 209, 0.08);
-  --color-accent-border: rgba(27, 59, 209, 0.25);
+  --color-accent: #1791FF;
+  --color-accent-hover: #0077e6;
+  --color-accent-subtle: rgba(23, 145, 255, 0.10);
+  --color-accent-border: rgba(23, 145, 255, 0.30);
 
-  --color-badge-bg: rgba(27, 59, 209, 0.08);
-  --color-badge-text: #1B3BD1;
-  --color-badge-border: rgba(27, 59, 209, 0.25);
+  --color-badge-bg: rgba(23, 145, 255, 0.10);
+  --color-badge-text: #1791FF;
+  --color-badge-border: rgba(23, 145, 255, 0.30);
 
   --color-card-border: #e5ebf1;
-  --color-grid-line: rgba(27, 59, 209, 0.06);
+  --card-hover-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --color-grid-line: rgba(23, 145, 255, 0.06);
   --color-code-bg: #f1f5f9;
   --color-code-text: #1e293b;
   --color-overlay: rgba(15, 23, 42, 0.4);
@@ -100,6 +112,9 @@
    DARK THEME (Deep Charcoal / Blue-Black Academic Publication)
    ========================================================================== */
 [data-theme='dark'] {
+  --color-text-blue: var(--key-blue-1);
+  --color-accent-blue: var(--key-blue-1);
+
   --color-bg: #0b0f14;
   --color-bg-secondary: #10161f;
   --color-bg-tertiary: #161e2a;
@@ -108,25 +123,26 @@
   --color-surface-elevated: #16202c;
 
   --color-text-primary: #f1f5f9;
-  --color-text-secondary: #94a3b8;
-  --color-text-muted: #627d98;
-  --color-text-dim: #486581;
+  --color-text-secondary: #f1f5f9;
+  --color-text-muted: #f1f5f9;
+  --color-text-dim: #f1f5f9;
 
   --color-border: #1e293b;
   --color-border-subtle: #15202d;
   --color-border-strong: #334155;
 
-  --color-accent: #2B89EF;
-  --color-accent-hover: #50a1f5;
-  --color-accent-subtle: rgba(43, 137, 239, 0.15);
-  --color-accent-border: rgba(43, 137, 239, 0.35);
+  --color-accent: #003BD1;
+  --color-accent-hover: #1a56eb;
+  --color-accent-subtle: rgba(0, 59, 209, 0.18);
+  --color-accent-border: rgba(0, 59, 209, 0.40);
 
-  --color-badge-bg: rgba(43, 137, 239, 0.15);
-  --color-badge-text: #2B89EF;
-  --color-badge-border: rgba(43, 137, 239, 0.35);
+  --color-badge-bg: rgba(0, 59, 209, 0.18);
+  --color-badge-text: #003BD1;
+  --color-badge-border: rgba(0, 59, 209, 0.40);
 
   --color-card-border: #1e293b;
-  --color-grid-line: rgba(43, 137, 239, 0.08);
+  --card-hover-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  --color-grid-line: rgba(0, 59, 209, 0.08);
   --color-code-bg: #070a0e;
   --color-code-text: #e2e8f0;
   --color-overlay: rgba(0, 0, 0, 0.7);

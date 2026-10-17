@@ -12,7 +12,7 @@ interface HomePageProps {
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
-  const INITIAL_COUNT = 5;
+  const INITIAL_COUNT = 10;
 
   const displayedNews = isExpanded
     ? newsItems
@@ -41,7 +41,24 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         <div className="container hero-container">
           <div className="hero-content">
             <h1 className="hero-title">
-              Intelligent Radio Sensing Lab
+              <button
+                type="button"
+                className="hero-title-trigger"
+                onClick={() => {
+                  onNavigate('research');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                title="Explore IRS Lab Research"
+              >
+                <span className="hero-title-main">
+                  Intelligent <br className="hero-mobile-br" />
+                  Radio <br className="hero-mobile-br" />
+                  Sensing Lab
+                </span>
+                <span className="hero-title-hover-hint">
+                  <span className="hero-title-hint-text">Our Research</span>
+                </span>
+              </button>
             </h1>
 
             <div className="hero-affiliation">
@@ -63,21 +80,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   className="hero-dgist-logo logo-dark-only"
                 />
               </a>
-            </div>
-
-            <div className="hero-statement-wrap">
-              <button
-                type="button"
-                onClick={() => {
-                  onNavigate('research');
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-                className="hero-statement-link"
-                title="Explore IRS Lab Research"
-              >
-                <span className="hero-statement-text">AI-Driven Wireless+X Sensing</span>
-                <ArrowRight size={17} className="hero-statement-arrow" />
-              </button>
             </div>
           </div>
         </div>
@@ -124,20 +126,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             {displayedNews.map((item) => (
               <div
                 key={item.id}
-                className={`news-item-row news-row-${item.category.toLowerCase()}`}
+                className="news-item-row"
               >
-                {/* Date with subtle category indicator dot */}
-                <div className="news-item-date" title={item.category}>
-                  <span
-                    className={`news-cat-dot dot-${item.category.toLowerCase()}`}
-                    aria-hidden="true"
-                  />
+                {/* Date (Desktop column) */}
+                <div className="news-item-date">
                   <span className="news-date-text">{item.date}</span>
                 </div>
 
                 {/* Content */}
                 <div className="news-item-content">
                   <div className="news-item-title">
+                    <span className="news-mobile-date-prefix">{item.date} - </span>
                     {item.title}
                   </div>
                   {item.description && item.description !== item.title && (
@@ -177,7 +176,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         .hero-section {
           position: relative;
           width: 100%;
-          min-height: clamp(380px, 46vw, 540px);
+          min-height: clamp(330px, 37vw, 660px);
           display: flex;
           align-items: center;
           border-bottom: 1px solid var(--color-border);
@@ -197,7 +196,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          object-position: center 38%;
+          object-position: center 35%;
           display: block;
         }
 
@@ -236,31 +235,39 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         }
 
         .hero-content {
-          max-width: 660px;
+          max-width: 680px;
+        }
+
+        .hero-mobile-br {
+          display: none;
         }
 
         @media (max-width: 768px) {
           .hero-section {
             min-height: 380px;
           }
-
+          .hero-mobile-br {
+            display: inline;
+          }
           .hero-left-scrim {
             background: linear-gradient(
-              to bottom,
-              rgba(255, 255, 255, 0.92) 0%,
-              rgba(255, 255, 255, 0.78) 50%,
-              rgba(255, 255, 255, 0.22) 75%,
-              transparent 100%
+              to right,
+              rgba(255, 255, 255, 0.90) 0%,
+              rgba(255, 255, 255, 0.76) 35%,
+              rgba(255, 255, 255, 0.35) 58%,
+              rgba(255, 255, 255, 0.05) 75%,
+              transparent 88%
             );
           }
 
           [data-theme='dark'] .hero-left-scrim {
             background: linear-gradient(
-              to bottom,
-              rgba(11, 15, 20, 0.94) 0%,
-              rgba(11, 15, 20, 0.80) 50%,
-              rgba(11, 15, 20, 0.22) 75%,
-              transparent 100%
+              to right,
+              rgba(11, 15, 20, 0.92) 0%,
+              rgba(11, 15, 20, 0.78) 35%,
+              rgba(11, 15, 20, 0.35) 58%,
+              rgba(11, 15, 20, 0.05) 75%,
+              transparent 88%
             );
           }
         }
@@ -298,6 +305,92 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           word-break: keep-all;
           overflow-wrap: break-word;
           animation: heroFloatIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        .hero-title-trigger {
+          background: none;
+          border: none;
+          padding: 0;
+          margin: 0;
+          font: inherit;
+          color: inherit;
+          letter-spacing: inherit;
+          line-height: inherit;
+          text-align: left;
+          cursor: pointer;
+          display: inline;
+        }
+
+        .hero-title-main {
+          transition: color var(--transition-fast), text-shadow var(--transition-fast);
+          display: inline;
+        }
+
+        .hero-title-trigger:hover .hero-title-main,
+        .hero-title-trigger:focus-visible .hero-title-main {
+          color: var(--color-accent);
+          text-shadow: 0 2px 14px rgba(255, 255, 255, 0.9), 0 2px 8px rgba(0, 0, 0, 0.18);
+        }
+
+        [data-theme='dark'] .hero-title-trigger:hover .hero-title-main,
+        [data-theme='dark'] .hero-title-trigger:focus-visible .hero-title-main {
+          color: var(--key-blue-2);
+          text-shadow: 0 2px 16px rgba(0, 0, 0, 0.95), 0 0 28px rgba(0, 0, 0, 0.85);
+        }
+
+        .hero-title-hover-hint {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+          margin-left: 16px;
+          font-family: var(--font-body);
+          font-size: clamp(1.15rem, 2vw, 1.35rem);
+          font-weight: 600;
+          line-height: 1.45;
+          letter-spacing: 0;
+          color: var(--color-accent);
+          vertical-align: baseline;
+          opacity: 0;
+          transform: translateX(-8px);
+          transition: opacity 0.24s ease, transform 0.24s ease;
+          white-space: nowrap;
+          pointer-events: none;
+          text-shadow: 0 2px 14px rgba(255, 255, 255, 0.9), 0 2px 8px rgba(0, 0, 0, 0.18);
+          z-index: 1;
+        }
+
+        [data-theme='dark'] .hero-title-hover-hint {
+          color: var(--key-blue-2);
+          text-shadow: 0 2px 16px rgba(0, 0, 0, 0.95), 0 0 28px rgba(0, 0, 0, 0.85);
+        }
+
+        .hero-title-hint-text {
+          position: relative;
+          display: inline-block;
+        }
+
+        .hero-title-hint-text::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: -2px;
+          height: 2px;
+          background-color: currentColor;
+          transform: scaleX(0);
+          transform-origin: left center;
+          transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1) 0.05s;
+        }
+
+        .hero-title-trigger:hover .hero-title-hover-hint,
+        .hero-title-trigger:focus-visible .hero-title-hover-hint {
+          opacity: 1;
+          transform: translateX(0);
+        }
+
+        .hero-title-trigger:hover .hero-title-hint-text::after,
+        .hero-title-trigger:focus-visible .hero-title-hint-text::after {
+          transform: scaleX(1);
         }
 
         .hero-affiliation {
@@ -435,7 +528,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           justify-content: center;
           text-align: center;
           gap: 16px;
-          max-width: 840px;
+          max-width: 100%;
           margin: 0 auto;
           padding: 0;
           background-color: transparent;
@@ -444,10 +537,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
         .admissions-title {
           font-family: var(--font-heading);
-          font-size: clamp(1.15rem, 1.8vw, 1.35rem);
+          font-size: 1.05rem;
           font-weight: 600;
           color: var(--color-text-primary);
-          line-height: 1.45;
+          line-height: 1.5;
           margin: 0;
           text-align: center;
           word-break: keep-all;
@@ -464,7 +557,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           gap: 8px;
           padding: 8px 18px;
           font-family: var(--font-sans);
-          font-size: 14px;
+          font-size: var(--text-body);
           font-weight: 600;
           color: #ffffff;
           background-color: var(--color-accent);
@@ -481,7 +574,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         }
 
         [data-theme='dark'] .admissions-join-btn {
-          color: #0b0f14;
+          color: #ffffff;
           background-color: var(--color-accent);
           border-color: var(--color-accent);
         }
@@ -504,176 +597,87 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
         .news-heading {
           font-family: var(--font-heading);
-          font-size: clamp(1.75rem, 2.8vw, 2.3rem);
+          font-size: var(--text-h1);
           font-weight: 700;
-          letter-spacing: -0.025em;
+          letter-spacing: -0.02em;
           color: var(--color-text-primary);
           margin: 0;
-          line-height: 1.15;
+          line-height: 1.2;
         }
 
         .news-stream-container {
           display: flex;
           flex-direction: column;
-          border-top: 1px solid var(--color-border);
         }
 
         .news-item-row {
           display: grid;
           grid-template-columns: 95px 1fr;
           align-items: baseline;
-          padding: 13px 14px;
-          border-bottom: 1px solid var(--color-border-subtle);
-          border-left: 3px solid transparent;
-          border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+          padding: 0.6rem 1rem;
+          margin: 0 -1rem;
+          background-color: var(--color-bg);
+          border-bottom: 1px solid var(--color-border);
+          border-radius: 8px;
+          position: relative;
           gap: var(--space-md);
-          transition: background-color var(--transition-fast), border-left-color var(--transition-fast), transform var(--transition-fast);
-        }
-
-        .news-item-row:hover {
-          background-color: var(--color-surface-hover);
-          transform: translateX(4px);
+          transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
         }
 
         .news-item-row:last-child {
-          border-bottom: 1px solid var(--color-border);
+          border-bottom: none;
         }
 
-        /* Category Left Accent Lines */
-        .news-row-paper { border-left-color: rgba(27, 59, 209, 0.45); }
-        .news-row-paper:hover { border-left-color: #1B3BD1; }
+        .news-item-row:hover {
+          box-shadow: var(--card-hover-shadow);
+          transform: translateY(-3px);
+          border-bottom-color: transparent;
+          z-index: 1;
+        }
 
-        .news-row-award { border-left-color: rgba(245, 158, 11, 0.5); }
-        .news-row-award:hover { border-left-color: #f59e0b; }
+        .news-item-row:has(+ .news-item-row:hover) {
+          border-bottom-color: transparent;
+        }
 
-        .news-row-grant { border-left-color: rgba(16, 185, 129, 0.5); }
-        .news-row-grant:hover { border-left-color: #10b981; }
-
-        .news-row-people { border-left-color: rgba(99, 102, 241, 0.45); }
-        .news-row-people:hover { border-left-color: #6366f1; }
-
-        .news-row-talk { border-left-color: rgba(139, 92, 246, 0.45); }
-        .news-row-talk:hover { border-left-color: #8b5cf6; }
-
-        .news-row-news { border-left-color: rgba(100, 116, 139, 0.35); }
-        .news-row-news:hover { border-left-color: #64748b; }
-
-        [data-theme='dark'] .news-row-paper { border-left-color: rgba(43, 137, 239, 0.5); }
-        [data-theme='dark'] .news-row-paper:hover { border-left-color: #2B89EF; }
-
-        [data-theme='dark'] .news-row-award { border-left-color: rgba(251, 191, 36, 0.45); }
-        [data-theme='dark'] .news-row-award:hover { border-left-color: #fbbf24; }
-
-        [data-theme='dark'] .news-row-grant { border-left-color: rgba(52, 211, 153, 0.45); }
-        [data-theme='dark'] .news-row-grant:hover { border-left-color: #34d399; }
-
-        [data-theme='dark'] .news-row-people { border-left-color: rgba(129, 140, 248, 0.4); }
-        [data-theme='dark'] .news-row-people:hover { border-left-color: #818cf8; }
-
-        [data-theme='dark'] .news-row-talk { border-left-color: rgba(167, 139, 250, 0.4); }
-        [data-theme='dark'] .news-row-talk:hover { border-left-color: #a78bfa; }
-
-        [data-theme='dark'] .news-row-news { border-left-color: rgba(148, 163, 184, 0.35); }
-        [data-theme='dark'] .news-row-news:hover { border-left-color: #94a3b8; }
-
-        /* Date with Category Dot */
         .news-item-date {
           display: inline-flex;
           align-items: center;
-          gap: 9px;
           font-family: var(--font-sans);
-          font-size: 13px;
-          color: var(--color-text-muted);
+          font-size: var(--text-body);
+          color: var(--color-text-primary);
+          line-height: 1.65;
           flex-shrink: 0;
           cursor: default;
-        }
-
-        .news-cat-dot {
-          width: 7px;
-          height: 7px;
-          border-radius: 50%;
-          flex-shrink: 0;
-          display: inline-block;
-          transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
-        }
-
-        .news-item-row:hover .news-cat-dot {
-          transform: scale(1.3);
-        }
-
-        .dot-paper {
-          background-color: #1B3BD1;
-          box-shadow: 0 0 0 2px rgba(27, 59, 209, 0.2);
-        }
-        .dot-award {
-          background-color: #f59e0b;
-          box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
-        }
-        .dot-grant {
-          background-color: #10b981;
-          box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
-        }
-        .dot-people {
-          background-color: #6366f1;
-          box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
-        }
-        .dot-talk {
-          background-color: #8b5cf6;
-          box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
-        }
-        .dot-news {
-          background-color: #64748b;
-          box-shadow: 0 0 0 2px rgba(100, 116, 139, 0.2);
-        }
-
-        [data-theme='dark'] .dot-paper {
-          background-color: #2B89EF;
-          box-shadow: 0 0 0 2px rgba(43, 137, 239, 0.3);
-        }
-        [data-theme='dark'] .dot-award {
-          background-color: #fbbf24;
-          box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.25);
-        }
-        [data-theme='dark'] .dot-grant {
-          background-color: #34d399;
-          box-shadow: 0 0 0 2px rgba(52, 211, 153, 0.25);
-        }
-        [data-theme='dark'] .dot-people {
-          background-color: #818cf8;
-          box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.25);
-        }
-        [data-theme='dark'] .dot-talk {
-          background-color: #a78bfa;
-          box-shadow: 0 0 0 2px rgba(167, 139, 250, 0.25);
-        }
-        [data-theme='dark'] .dot-news {
-          background-color: #94a3b8;
-          box-shadow: 0 0 0 2px rgba(148, 163, 184, 0.25);
         }
 
         .news-item-content {
           display: flex;
           flex-direction: column;
-          gap: 3px;
+          gap: 4px;
         }
 
         .news-item-title {
-          font-size: 14.5px;
+          font-size: var(--text-body);
           font-weight: 600;
           color: var(--color-text-primary);
-          line-height: 1.45;
+          line-height: 1.65;
         }
 
         .news-item-desc {
-          font-size: 13px;
-          color: var(--color-text-secondary);
-          line-height: 1.5;
+          font-size: var(--text-body);
+          color: var(--color-text-primary);
+          line-height: 1.65;
         }
 
         .news-section-footer {
           margin-top: var(--space-lg);
           display: flex;
           justify-content: center;
+        }
+
+        .news-mobile-date-prefix {
+          display: none;
+          font-weight: 400;
         }
 
         /* Responsive Breakpoints */
@@ -692,11 +696,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
         @media (max-width: 640px) {
           .news-item-row {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 5px;
-            padding: 12px 10px;
+            display: block;
+            padding: 0.6rem 10px;
+          }
+          .news-item-date {
+            display: none;
+          }
+          .news-mobile-date-prefix {
+            display: inline;
           }
         }
       `}</style>

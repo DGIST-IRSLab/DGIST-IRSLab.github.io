@@ -6,80 +6,55 @@ interface NewsListItemProps {
 }
 
 export const NewsListItem: React.FC<NewsListItemProps> = ({ item }) => {
-  // Category styling color mappings
-  const getCategoryClass = (category: string) => {
-    switch (category) {
-      case 'AWARD':
-        return 'badge-award';
-      case 'PAPER':
-        return 'badge-paper';
-      case 'GRANT':
-        return 'badge-grant';
-      case 'PEOPLE':
-        return 'badge-people';
-      case 'TALK':
-        return 'badge-talk';
-      default:
-        return 'badge-outline';
-    }
-  };
-
   return (
     <div
       className="news-activity-row"
       id={item.id}
       style={{
         display: 'grid',
-        gridTemplateColumns: '80px 85px 1fr',
+        gridTemplateColumns: '95px 1fr',
         alignItems: 'baseline',
         gap: 'var(--space-md)',
-        paddingTop: '10px',
-        paddingBottom: '10px',
+        paddingTop: '12px',
+        paddingBottom: '12px',
         borderBottom: '1px solid var(--color-border-subtle)',
-        fontSize: '13.5px',
+        fontSize: '14.5px',
         lineHeight: 1.5,
+        color: 'var(--color-text-primary)',
         transition: 'background-color var(--transition-fast)',
       }}
     >
       {/* Date */}
       <span
         style={{
-          fontFamily: 'var(--font-mono)',
-          fontSize: '12.5px',
-          color: 'var(--color-text-muted)',
-          fontWeight: 500,
+          fontFamily: 'var(--font-sans)',
+          fontSize: '14.5px',
+          color: 'var(--color-text-primary)',
+          fontWeight: 400,
         }}
       >
         {item.date}
       </span>
 
-      {/* Category Pill */}
-      <div>
-        <span
-          className={`badge ${getCategoryClass(item.category)}`}
-          style={{ fontSize: '10.5px', padding: '1px 6px' }}
-        >
-          {item.category}
-        </span>
-      </div>
-
       {/* Title & Description */}
       <div>
-        <span
+        <div
           style={{
-            fontWeight: item.highlight ? 600 : 400,
+            fontSize: '14.5px',
+            fontWeight: 600,
             color: 'var(--color-text-primary)',
+            lineHeight: 1.5,
           }}
         >
           {item.title}
-        </span>
+        </div>
         {item.description && (
           <p
             style={{
-              fontSize: '12.5px',
-              color: 'var(--color-text-dim)',
-              marginTop: '2px',
-              lineHeight: 1.45,
+              fontSize: '14.5px',
+              color: 'var(--color-text-primary)',
+              marginTop: '3px',
+              lineHeight: 1.5,
             }}
           >
             {item.description}
@@ -88,17 +63,31 @@ export const NewsListItem: React.FC<NewsListItemProps> = ({ item }) => {
       </div>
 
       <style>{`
+        .news-activity-row {
+          padding: 1.1rem 1rem !important;
+          margin: 0 -1rem;
+          background-color: var(--color-bg);
+          border-bottom: 1px solid var(--color-border) !important;
+          border-radius: 8px;
+          position: relative;
+          transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease !important;
+        }
+        .news-activity-row:last-child {
+          border-bottom: none !important;
+        }
+        .news-activity-row:hover {
+          box-shadow: var(--card-hover-shadow);
+          transform: translateY(-3px);
+          border-bottom-color: transparent !important;
+          z-index: 1;
+        }
+        .news-activity-row:has(+ .news-activity-row:hover) {
+          border-bottom-color: transparent !important;
+        }
         @media (max-width: 640px) {
           .news-activity-row {
-            grid-template-columns: 75px 1fr !important;
-            gap: var(--space-xs) !important;
-          }
-          .news-activity-row > div:first-of-type {
-            grid-column: 2;
-          }
-          .news-activity-row > div:last-of-type {
-            grid-column: 1 / -1;
-            margin-top: 2px;
+            grid-template-columns: 1fr !important;
+            gap: 4px !important;
           }
         }
       `}</style>

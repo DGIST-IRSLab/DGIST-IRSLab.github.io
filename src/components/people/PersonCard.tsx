@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Globe, ExternalLink, GraduationCap, ArrowRight } from 'lucide-react';
+import { Mail, Globe, ExternalLink, GraduationCap } from 'lucide-react';
 import type { Person } from '../../types';
 import { getSpecialPhoto } from '../../data/people';
 import { assetUrl } from '../../utils/asset';
@@ -32,16 +32,13 @@ const getRoleBadgeClass = (role: string): string => {
   }
 };
 
-export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false, onNavigate }) => {
+export const PersonCard: React.FC<PersonCardProps> = ({ person, onNavigate }) => {
   const [imageError, setImageError] = useState(false);
   const [specialError, setSpecialError] = useState(false);
   const isPI = person.id === 'jaeho-choi' || person.role === 'Professor';
   const homeUrl = isPI && onNavigate ? undefined : (person.website || person.googleScholar || person.cvUrl || person.github);
   const specialPhoto = getSpecialPhoto(person);
   const hasSpecial = Boolean(specialPhoto && !specialError);
-
-  const alumniLogo = person.alumniLogo || (person.alumniDestination && (person.alumniDestination.includes('NASA') || person.alumniDestination.includes('JPL')) ? '/images/alumni/nasa_jpl.svg' : undefined);
-  const alumniLogoDark = person.alumniLogoDark || (person.alumniDestination && (person.alumniDestination.includes('NASA') || person.alumniDestination.includes('JPL')) ? '/images/alumni/nasa_jpl_dark.svg' : undefined);
 
   const handleCardClick = (e: React.MouseEvent) => {
     if (isPI && onNavigate) {
@@ -178,7 +175,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
           display: 'flex',
           flexDirection: 'column',
           flexGrow: 1,
-          gap: '5px',
+          gap: '6px',
         }}
       >
         <div
@@ -195,7 +192,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
             className="member-name-heading"
             style={{
               fontFamily: 'var(--font-sans)',
-              fontSize: '14.5px',
+              fontSize: 'var(--text-h3)',
               fontWeight: 600,
               color: 'var(--color-text-primary)',
               lineHeight: 1.3,
@@ -216,7 +213,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
                 }}
               >
                 <span>{person.name}</span>
-                <ArrowRight size={12} className="member-name-icon" style={{ color: 'var(--color-accent)', flexShrink: 0 }} />
+                <ExternalLink size={11} className="member-name-icon" style={{ opacity: 0.5, flexShrink: 0 }} />
               </span>
             ) : homeUrl ? (
               <a
@@ -240,200 +237,139 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
               <span>{person.name}</span>
             )}
           </h4>
-          {person.nameKr && (
-            isPI && onNavigate ? (
-              <span
-                onClick={handleCardClick}
-                className="member-name-kr member-name-kr-link"
-                style={{
-                  fontSize: '12px',
-                  color: 'var(--color-text-muted)',
-                  fontFamily: 'var(--font-sans)',
-                  cursor: 'pointer',
-                }}
-              >
-                {person.nameKr}
-              </span>
-            ) : homeUrl ? (
-              <a
-                href={homeUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="member-name-kr member-name-kr-link"
-                style={{
-                  fontSize: '12px',
-                  color: 'var(--color-text-muted)',
-                  fontFamily: 'var(--font-sans)',
-                  textDecoration: 'none',
-                  transition: 'color var(--transition-fast)',
-                }}
-              >
-                {person.nameKr}
-              </a>
-            ) : (
-              <span
-                className="member-name-kr"
-                style={{
-                  fontSize: '12px',
-                  color: 'var(--color-text-muted)',
-                  fontFamily: 'var(--font-sans)',
-                }}
-              >
-                {person.nameKr}
-              </span>
-            )
+        </div>
+
+        {/* Role Badge under name (Plain text for Alumni like original site) */}
+        <div className="person-role-badge-wrap">
+          {person.role === 'Alumni' ? (
+            <span className="person-alumni-dest-simple">
+              {person.title.includes('(') ? (
+                <>
+                  {person.title.slice(0, person.title.indexOf('(')).trim()}
+                  <br />
+                  {person.title.slice(person.title.indexOf('('))}
+                </>
+              ) : (
+                <>
+                  {person.title}
+                  {person.alumniPeriod && (
+                    <>
+                      <br />
+                      ({person.alumniPeriod})
+                    </>
+                  )}
+                </>
+              )}
+            </span>
+          ) : (
+            <span className={`person-role-badge ${getRoleBadgeClass(person.role)}`} title={person.title}>
+              {person.title}
+            </span>
           )}
         </div>
 
-        {/* Role Badge under name */}
-        <div className="person-role-badge-wrap">
-          <span className={`person-role-badge ${getRoleBadgeClass(person.role)}`} title={person.title}>
-            {person.title}
-          </span>
-        </div>
-
-        {/* Alumni Destination or Period */}
+        {/* Alumni Destination (Simple text like original site) */}
         {person.alumniDestination && (
-          <div className="person-alumni-block">
-            {alumniLogo && (
-              <div className="person-alumni-logo-row">
-                <img
-                  src={assetUrl(alumniLogo)}
-                  alt={person.alumniDestination}
-                  className="person-alumni-logo logo-light-only"
-                />
-                <img
-                  src={assetUrl(alumniLogoDark || alumniLogo)}
-                  alt={person.alumniDestination}
-                  className="person-alumni-logo logo-dark-only"
-                />
-              </div>
-            )}
-            <div className="person-alumni-dest-text">
-              → {person.alumniDestination}
-            </div>
+          <div className="person-alumni-dest-simple">
+            {person.alumniDestination}
           </div>
         )}
 
-        {/* Research Interests */}
-        {!compact && person.researchInterests && person.researchInterests.length > 0 && (
-          <p
-            className="person-card-interests"
+        {/* Links & Email row */}
+        {(person.email || person.website || person.googleScholar) && (
+          <div
+            className="person-card-links"
             style={{
-              fontSize: '12px',
-              color: 'var(--color-text-secondary)',
-              lineHeight: 1.45,
-              marginTop: '4px',
-              display: '-webkit-box',
-              WebkitLineClamp: 2,
-              WebkitBoxOrient: 'vertical',
-              overflow: 'hidden',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              flexWrap: 'wrap',
+              marginTop: '2px',
             }}
           >
-            {person.researchInterests.join(', ')}
-          </p>
+            {person.email && (
+              <a
+                href={`mailto:${person.email}`}
+                title={person.email}
+                aria-label={`Email ${person.name}`}
+                className="person-social-link"
+                style={{
+                  color: 'var(--color-text-primary)',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  transition: 'color var(--transition-fast)',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-accent)')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-text-primary)')}
+              >
+                <Mail size={13} />
+              </a>
+            )}
+
+            {person.website && (
+              <a
+                href={person.website}
+                target="_blank"
+                rel="noreferrer"
+                title="Personal Webpage"
+                aria-label={`${person.name}'s website`}
+                className="person-social-link"
+                style={{
+                  color: 'var(--color-text-primary)',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  transition: 'color var(--transition-fast)',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-accent)')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-text-primary)')}
+              >
+                <Globe size={13} />
+              </a>
+            )}
+
+            {person.googleScholar && (
+              <a
+                href={person.googleScholar}
+                target="_blank"
+                rel="noreferrer"
+                title="Google Scholar"
+                aria-label={`${person.name}'s Google Scholar`}
+                className="person-social-link"
+                style={{
+                  color: 'var(--color-text-primary)',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  transition: 'color var(--transition-fast)',
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-accent)')}
+                onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-text-primary)')}
+              >
+                <GraduationCap size={13} />
+              </a>
+            )}
+
+            {person.email && (
+              <a
+                href={`mailto:${person.email}`}
+                className="person-email-text"
+              >
+                {person.email}
+              </a>
+            )}
+          </div>
         )}
-
-        {/* Links row */}
-        <div
-          className="person-card-links"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            marginTop: 'auto',
-            paddingTop: '6px',
-            borderTop: '1px solid var(--color-border-subtle)',
-          }}
-        >
-          {person.email && (
-            <a
-              href={`mailto:${person.email}`}
-              title={person.email}
-              aria-label={`Email ${person.name}`}
-              className="person-social-link"
-              style={{
-                color: 'var(--color-text-muted)',
-                display: 'inline-flex',
-                transition: 'color var(--transition-fast)',
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-accent)')}
-              onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-text-muted)')}
-            >
-              <Mail size={13} />
-            </a>
-          )}
-
-          {person.website && (
-            <a
-              href={person.website}
-              target="_blank"
-              rel="noreferrer"
-              title="Personal Webpage"
-              aria-label={`${person.name}'s website`}
-              className="person-social-link"
-              style={{
-                color: 'var(--color-text-muted)',
-                display: 'inline-flex',
-                transition: 'color var(--transition-fast)',
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-accent)')}
-              onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-text-muted)')}
-            >
-              <Globe size={13} />
-            </a>
-          )}
-
-          {person.googleScholar && (
-            <a
-              href={person.googleScholar}
-              target="_blank"
-              rel="noreferrer"
-              title="Google Scholar"
-              aria-label={`${person.name}'s Google Scholar`}
-              className="person-social-link"
-              style={{
-                color: 'var(--color-text-muted)',
-                display: 'inline-flex',
-                transition: 'color var(--transition-fast)',
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-accent)')}
-              onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-text-muted)')}
-            >
-              <GraduationCap size={13} />
-            </a>
-          )}
-
-          {person.cvUrl && (
-            <a
-              href={person.cvUrl}
-              target="_blank"
-              rel="noreferrer"
-              title="Curriculum Vitae"
-              className="link-subtle"
-              style={{ fontSize: '11px', marginLeft: 'auto' }}
-            >
-              <span>CV</span>
-              <ExternalLink size={10} />
-            </a>
-          )}
-        </div>
       </div>
 
       <style>{`
         .person-academic-card {
           padding: 8px 8px 12px 8px !important;
-          border-radius: 12px !important;
-          transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.22s ease !important;
+          border-radius: 10px !important;
+          transition: transform 0.3s ease, box-shadow 0.3s ease !important;
         }
         @media (hover: hover) and (pointer: fine) {
           .person-academic-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
-            border-color: var(--color-accent-border) !important;
-          }
-          [data-theme='dark'] .person-academic-card:hover {
-            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.38);
+            transform: translateY(-4px);
+            box-shadow: var(--card-hover-shadow);
           }
         }
         .person-photo-container {
@@ -465,156 +401,76 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
           opacity: 0;
         }
 
-        /* Role Badges */
+        /* Role Badges (Matched with original site Bootstrap badges) */
         .person-role-badge-wrap {
           display: flex;
           align-items: center;
           margin-top: 1px;
-          margin-bottom: 2px;
+          margin-bottom: 1px;
         }
 
         .person-role-badge {
-          display: inline-flex;
-          align-items: center;
+          display: inline-block;
           font-family: var(--font-sans);
-          font-size: 11px;
-          font-weight: 600;
-          letter-spacing: -0.01em;
-          padding: 2.5px 7.5px;
-          border-radius: var(--radius-xs, 4px);
-          line-height: 1.35;
+          font-size: 0.75rem;
+          font-weight: 500;
+          padding: 0.35em 0.65em;
+          border-radius: 0.375rem;
+          line-height: 1;
+          color: #ffffff;
+          text-align: center;
           white-space: nowrap;
+          vertical-align: baseline;
+          border: none;
           overflow: hidden;
           text-overflow: ellipsis;
           max-width: 100%;
         }
 
-        /* Professor / PI Badge (Royal Indigo) */
-        .role-badge-prof {
-          background-color: #eef2ff;
-          color: #4338ca;
-          border: 1px solid #c7d2fe;
-        }
-        [data-theme='dark'] .role-badge-prof {
-          background-color: rgba(99, 102, 241, 0.15);
-          color: #a5b4fc;
-          border: 1px solid rgba(99, 102, 241, 0.3);
-        }
-
-        /* Postdoctoral Fellow Badge (Rich Violet) */
+        /* Professor & Postdoc Fellow Badge (--key-blue-1: #003BD1) */
+        .role-badge-prof,
         .role-badge-postdoc {
-          background-color: #f5f3ff;
-          color: #6d28d9;
-          border: 1px solid #ddd6fe;
-        }
-        [data-theme='dark'] .role-badge-postdoc {
-          background-color: rgba(139, 92, 246, 0.15);
-          color: #c4b5fd;
-          border: 1px solid rgba(139, 92, 246, 0.3);
+          background-color: var(--key-blue-1);
+          color: #ffffff;
         }
 
-        /* Ph.D. / Integrated Ph.D. Student Badge (Ocean Azure) */
-        .role-badge-phd {
-          background-color: #f0f9ff;
-          color: #0369a1;
-          border: 1px solid #bae6fd;
-        }
-        [data-theme='dark'] .role-badge-phd {
-          background-color: rgba(14, 165, 233, 0.15);
-          color: #7dd3fc;
-          border: 1px solid rgba(14, 165, 233, 0.3);
-        }
-
-        /* M.S. Student Badge (Emerald Green) */
+        /* Ph.D. / Integrated / M.S. Student Badge (--key-blue-2: #1791FF) */
+        .role-badge-phd,
         .role-badge-ms {
-          background-color: #f0fdf4;
-          color: #15803d;
-          border: 1px solid #bbf7d0;
-        }
-        [data-theme='dark'] .role-badge-ms {
-          background-color: rgba(34, 197, 94, 0.15);
-          color: #86efac;
-          border: 1px solid rgba(34, 197, 94, 0.3);
+          background-color: var(--key-blue-2);
+          color: #ffffff;
         }
 
-        /* Undergraduate Researcher Badge (Warm Amber) */
-        .role-badge-intern {
-          background-color: #fffbeb;
-          color: #b45309;
-          border: 1px solid #fde68a;
-        }
-        [data-theme='dark'] .role-badge-intern {
-          background-color: rgba(245, 158, 11, 0.15);
-          color: #fcd34d;
-          border: 1px solid rgba(245, 158, 11, 0.3);
-        }
-
-        /* Alumni Badge (Slate Gray) */
-        .role-badge-alumni {
-          background-color: #f1f5f9;
-          color: #475569;
-          border: 1px solid #cbd5e1;
-        }
-        [data-theme='dark'] .role-badge-alumni {
-          background-color: rgba(148, 163, 184, 0.15);
-          color: #cbd5e1;
-          border: 1px solid rgba(148, 163, 184, 0.25);
-        }
-
+        /* Undergraduate Researcher & Alumni Badge (Bootstrap secondary #6c757d) */
+        .role-badge-intern,
+        .role-badge-alumni,
         .role-badge-default {
-          background-color: var(--color-bg-secondary);
-          color: var(--color-text-secondary);
-          border: 1px solid var(--color-border);
+          background-color: #6c757d;
+          color: #ffffff;
         }
 
-        /* Alumni Affiliation Block & Company Logo */
-        .person-alumni-block {
-          margin-top: 8px;
-          margin-bottom: 5px;
-          padding: 10px 12px;
-          background-color: var(--color-bg-secondary);
-          border: 1px solid var(--color-border);
-          border-radius: var(--radius-md, 6px);
-          display: flex;
-          flex-direction: column;
-          gap: 7px;
-        }
-
-        .person-alumni-logo-row {
-          display: flex;
-          align-items: center;
-          padding: 3px 0;
-        }
-
-        .person-alumni-logo {
-          height: clamp(34px, 4.2vw, 44px);
-          max-width: 100%;
-          width: auto;
-          object-fit: contain;
-          display: block;
-        }
-
-        .person-alumni-logo.logo-light-only {
-          display: block;
-        }
-        .person-alumni-logo.logo-dark-only {
-          display: none;
-        }
-
-        [data-theme='dark'] .person-alumni-logo.logo-light-only {
-          display: none;
-        }
-        [data-theme='dark'] .person-alumni-logo.logo-dark-only {
-          display: block;
-        }
-
-        .person-alumni-dest-text {
-          font-size: 13px;
+        /* Simple Alumni Destination Text */
+        .person-alumni-dest-simple {
           font-family: var(--font-sans);
-          font-weight: 600;
-          color: var(--color-accent);
+          font-size: var(--text-body);
+          color: var(--color-text-primary);
           line-height: 1.4;
-          word-break: keep-all;
+        }
+
+        /* Email Address Text next to Icons */
+        .person-email-text {
+          font-family: var(--font-sans);
+          font-size: clamp(0.72rem, 1.4vw, 0.88rem);
+          color: var(--color-text-primary);
+          text-decoration: none;
+          line-height: 1.4;
+          overflow-wrap: anywhere;
+          word-break: break-word;
+          transition: color var(--transition-fast);
+        }
+
+        .person-email-text:hover {
+          color: var(--color-accent);
         }
 
         .member-name-link:hover {
@@ -625,15 +481,11 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
           opacity: 1 !important;
           color: var(--color-accent);
         }
-        .member-name-kr-link:hover {
-          color: var(--color-accent) !important;
-          text-decoration: underline;
-        }
         .person-social-link {
           transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), color 0.15s ease !important;
         }
         .person-social-link:hover {
-          transform: scale(1.2) translateY(-1px);
+          transform: scale(1.15);
         }
 
         @media (max-width: 640px) {
@@ -650,22 +502,13 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, compact = false,
             gap: 4px !important;
           }
           .person-role-badge {
-            font-size: 10px !important;
-            padding: 1.5px 6px !important;
+            font-size: 0.7rem !important;
           }
           .member-name-heading {
             font-size: 13.5px !important;
           }
-          .member-name-kr {
-            font-size: 11.5px !important;
-          }
-          .person-card-interests {
-            font-size: 11px !important;
-            line-height: 1.35 !important;
-          }
           .person-card-links {
-            padding-top: 5px !important;
-            gap: 7px !important;
+            gap: 5px !important;
           }
         }
       `}</style>

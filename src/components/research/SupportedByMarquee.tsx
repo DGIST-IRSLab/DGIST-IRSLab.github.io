@@ -62,10 +62,6 @@ export const SupportedByMarquee: React.FC = () => {
     <div className="supported-by-section">
       <div className="supported-by-header">
         <span className="supported-by-kicker">Supported By</span>
-        <span className="supported-by-divider">—</span>
-        <span className="supported-by-caption">
-          Research funded by national science foundations and public research initiatives
-        </span>
       </div>
 
       <div className="marquee-outer" aria-label="Funding Agencies and Sponsors">
@@ -105,21 +101,21 @@ export const SupportedByMarquee: React.FC = () => {
 
         .supported-by-kicker {
           font-family: var(--font-heading);
-          font-size: 16px;
+          font-size: var(--text-h3);
           font-weight: 700;
           letter-spacing: -0.015em;
           color: var(--color-text-primary);
         }
 
         .supported-by-divider {
-          color: var(--color-border-strong);
-          font-size: 13px;
+          color: var(--color-text-primary);
+          font-size: var(--text-body);
         }
 
         .supported-by-caption {
           font-family: var(--font-sans);
-          font-size: 14px;
-          color: var(--color-text-secondary);
+          font-size: var(--text-body);
+          color: var(--color-text-primary);
           line-height: 1.5;
         }
 
@@ -128,7 +124,7 @@ export const SupportedByMarquee: React.FC = () => {
           position: relative;
           width: 100%;
           overflow: hidden;
-          padding: clamp(26px, 3.8vw, 38px) 0;
+          padding: clamp(14px, 2vw, 20px) 0;
           background-color: var(--color-surface);
           border: 1px solid var(--color-border);
           border-radius: var(--radius-md);
@@ -173,7 +169,7 @@ export const SupportedByMarquee: React.FC = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 8px 16px;
+          padding: 2px 16px;
           cursor: default;
           user-select: none;
         }
@@ -222,7 +218,7 @@ export const SupportedByMarquee: React.FC = () => {
             padding-top: var(--space-lg);
           }
           .marquee-outer {
-            padding: 20px 0;
+            padding: 12px 0;
           }
           .marquee-track {
             gap: 44px;

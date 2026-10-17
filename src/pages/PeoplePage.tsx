@@ -10,38 +10,25 @@ interface PeoplePageProps {
 export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
   return (
     <div className="people-page-root" style={{ paddingBottom: 'var(--space-section)' }}>
-      {/* Header Banner */}
+      {/* Header */}
       <section
         style={{
-          borderBottom: '1px solid var(--color-border)',
-          backgroundColor: 'var(--color-bg-secondary)',
           paddingTop: 'var(--space-2xl)',
-          paddingBottom: 'var(--space-xl)',
+          paddingBottom: 'var(--space-sm)',
         }}
       >
         <div className="container">
           <h1 className="h1-title">
             Members
           </h1>
-          <p
-            style={{
-              marginTop: '6px',
-              color: 'var(--color-text-secondary)',
-              fontSize: '16px',
-            }}
-          >
-            Faculty, postdoctoral fellows, graduate students, and undergraduate researchers
-          </p>
         </div>
       </section>
 
       {/* Principal Investigator */}
-      <section className="members-section">
+      <section className="members-section" style={{ paddingTop: 'var(--space-xs)' }}>
         <div className="container">
           <SectionHeader
             title="Principal Investigator"
-            actionText="View Full P.I Profile"
-            onActionClick={() => onNavigate('pi')}
           />
           <div className="members-grid">
             <PersonCard person={professor} onNavigate={onNavigate} />
@@ -120,43 +107,18 @@ export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
 
           <div
             style={{
-              backgroundColor: 'var(--color-surface)',
-              border: '1px solid var(--color-border)',
-              borderRadius: 'var(--radius-sm)',
-              padding: 'var(--space-lg)',
               display: 'flex',
               flexDirection: 'column',
-              gap: 'var(--space-sm)',
+              gap: '4px',
+              fontSize: 'var(--text-body)',
+              color: 'var(--color-text-primary)',
+              lineHeight: 1.7,
             }}
           >
             {internHistory.map((cohort, i) => (
-              <div
-                key={i}
-                className="intern-row"
-                style={{
-                  display: 'flex',
-                  alignItems: 'baseline',
-                  gap: 'var(--space-md)',
-                  paddingBottom: '8px',
-                  borderBottom: i < internHistory.length - 1 ? '1px solid var(--color-border-subtle)' : 'none',
-                }}
-              >
-                <span
-                  className="intern-period"
-                  style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '13px',
-                    fontWeight: 600,
-                    color: 'var(--color-accent)',
-                    minWidth: '150px',
-                    flexShrink: 0,
-                  }}
-                >
-                  [{cohort.period}]
-                </span>
-                <span className="intern-names" style={{ fontSize: '13.5px', color: 'var(--color-text-secondary)' }}>
-                  {cohort.names.join(', ')}
-                </span>
+              <div key={i} className="intern-row">
+                <strong style={{ fontWeight: 700 }}>[{cohort.period}]</strong>{' '}
+                <span>{cohort.names.join(', ')}</span>
               </div>
             ))}
           </div>

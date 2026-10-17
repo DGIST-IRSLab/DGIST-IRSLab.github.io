@@ -34,6 +34,11 @@ export const PublicationItem: React.FC<PublicationItemProps> = ({
       : isIoTJ
   );
 
+  const isAward = Boolean(
+    publication.isAward ||
+    publication.title.includes('물리 모델 기반 레이더 신호 합성 및 학습 파이프라인')
+  );
+
   const renderAuthors = () => {
     const labAuthors = publication.labAuthors || [];
     return publication.authors.map((author, idx) => {
@@ -41,12 +46,12 @@ export const PublicationItem: React.FC<PublicationItemProps> = ({
         author.toLowerCase().includes(la.toLowerCase())
       );
 
-      return (
+       return (
         <React.Fragment key={idx}>
           <span
             style={{
               fontWeight: isLabMember ? 600 : 400,
-              color: isLabMember ? 'var(--color-text-primary)' : 'var(--color-text-secondary)',
+              color: 'var(--color-text-primary)',
             }}
           >
             {author}
@@ -72,7 +77,7 @@ export const PublicationItem: React.FC<PublicationItemProps> = ({
       <h3
         style={{
           fontFamily: 'var(--font-sans)',
-          fontSize: '16px',
+          fontSize: 'var(--text-h3)',
           fontWeight: 600,
           lineHeight: 1.4,
           color: 'var(--color-text-primary)',
@@ -83,9 +88,9 @@ export const PublicationItem: React.FC<PublicationItemProps> = ({
 
       <div
         style={{
-          fontSize: '14px',
+          fontSize: 'var(--text-body)',
           lineHeight: 1.5,
-          color: 'var(--color-text-secondary)',
+          color: 'var(--color-text-primary)',
         }}
       >
         {renderAuthors()}
@@ -99,9 +104,14 @@ export const PublicationItem: React.FC<PublicationItemProps> = ({
           </span>
         </span>
         <span className="pub-badges-wrap">
+          {isTopConf && (
+            <span className="pub-badge pub-badge-topconf">
+              Top Conf.
+            </span>
+          )}
           {isOral && (
             <span className="pub-badge pub-badge-oral">
-              ORAL
+              Oral
             </span>
           )}
           {isTop5Percent && (
@@ -109,14 +119,14 @@ export const PublicationItem: React.FC<PublicationItemProps> = ({
               Top 5%
             </span>
           )}
-          {isTopConf && (
-            <span className="pub-badge pub-badge-topconf">
-              TOP CONF.
-            </span>
-          )}
           {isSCI && (
             <span className="pub-badge pub-badge-sci">
               SCI
+            </span>
+          )}
+          {isAward && (
+            <span className="pub-badge pub-badge-award">
+              Award
             </span>
           )}
           {publication.customBadge && (
@@ -142,14 +152,14 @@ export const PublicationItem: React.FC<PublicationItemProps> = ({
             target="_blank"
             rel="noreferrer"
             className="link-subtle"
-            style={{ fontSize: '13px' }}
+            style={{ fontSize: 'var(--text-body)' }}
           >
             Paper
           </a>
         )}
 
         {publication.pdfUrl && (publication.projectUrl || publication.codeUrl || publication.videoUrl || publication.bibtex) && (
-          <span style={{ color: 'var(--color-text-muted)' }}>·</span>
+          <span style={{ color: 'var(--color-text-primary)' }}>·</span>
         )}
 
         {publication.projectUrl && (
@@ -159,11 +169,11 @@ export const PublicationItem: React.FC<PublicationItemProps> = ({
               target="_blank"
               rel="noreferrer"
               className="link-subtle"
-              style={{ fontSize: '13px' }}
+              style={{ fontSize: 'var(--text-body)' }}
             >
               Project
             </a>
-            {(publication.codeUrl || publication.videoUrl || publication.bibtex) && <span style={{ color: 'var(--color-text-muted)' }}>·</span>}
+            {(publication.codeUrl || publication.videoUrl || publication.bibtex) && <span style={{ color: 'var(--color-text-primary)' }}>·</span>}
           </>
         )}
 
@@ -174,11 +184,11 @@ export const PublicationItem: React.FC<PublicationItemProps> = ({
               target="_blank"
               rel="noreferrer"
               className="link-subtle"
-              style={{ fontSize: '13px' }}
+              style={{ fontSize: 'var(--text-body)' }}
             >
               Code
             </a>
-            {(publication.videoUrl || publication.bibtex) && <span style={{ color: 'var(--color-text-muted)' }}>·</span>}
+            {(publication.videoUrl || publication.bibtex) && <span style={{ color: 'var(--color-text-primary)' }}>·</span>}
           </>
         )}
 
@@ -189,11 +199,11 @@ export const PublicationItem: React.FC<PublicationItemProps> = ({
               target="_blank"
               rel="noreferrer"
               className="link-subtle"
-              style={{ fontSize: '13px' }}
+              style={{ fontSize: 'var(--text-body)' }}
             >
               Video
             </a>
-            {publication.bibtex && <span style={{ color: 'var(--color-text-muted)' }}>·</span>}
+            {publication.bibtex && <span style={{ color: 'var(--color-text-primary)' }}>·</span>}
           </>
         )}
 
@@ -202,7 +212,7 @@ export const PublicationItem: React.FC<PublicationItemProps> = ({
             type="button"
             onClick={() => onOpenBibtex(publication)}
             className="link-subtle pub-action-link"
-            style={{ fontSize: '13px', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+            style={{ fontSize: 'var(--text-body)', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
           >
             BibTeX
           </button>
@@ -212,20 +222,29 @@ export const PublicationItem: React.FC<PublicationItemProps> = ({
       <style>{`
         .publication-entry {
           position: relative;
-          padding: 14px 16px !important;
-          border-radius: var(--radius-sm);
-          border-left: 2.5px solid transparent;
-          transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+          padding: 1.15rem 1rem !important;
+          margin: 0 -1rem;
+          background-color: var(--color-bg);
+          border-bottom: 1px solid var(--color-border);
+          border-radius: 8px;
+          transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease !important;
+        }
+        .publication-entry:last-child {
+          border-bottom: none;
         }
         .publication-entry:hover {
-          background-color: var(--color-surface-hover);
-          transform: translateX(5px);
-          border-left-color: var(--color-accent);
+          box-shadow: var(--card-hover-shadow);
+          transform: translateY(-3px);
+          border-bottom-color: transparent;
+          z-index: 1;
+        }
+        .publication-entry:has(+ .publication-entry:hover) {
+          border-bottom-color: transparent;
         }
         .pub-venue-row {
           font-family: var(--font-sans);
-          font-size: 13.5px;
-          line-height: 1.5;
+          font-size: var(--text-body);
+          line-height: 1.65;
           margin-top: 3px;
           margin-bottom: 2px;
           display: flex;
@@ -235,16 +254,16 @@ export const PublicationItem: React.FC<PublicationItemProps> = ({
         }
         .pub-venue-text {
           font-family: var(--font-sans);
-          font-size: 13.5px;
-          line-height: 1.5;
-          color: var(--color-text-secondary);
+          font-size: var(--text-body);
+          line-height: 1.65;
+          color: var(--color-text-primary);
         }
         .pub-venue-name {
           font-weight: 500;
           color: var(--color-text-primary);
         }
         .pub-venue-year {
-          color: var(--color-text-muted);
+          color: var(--color-text-primary);
           font-weight: 500;
         }
         .pub-badges-wrap {
@@ -252,26 +271,6 @@ export const PublicationItem: React.FC<PublicationItemProps> = ({
           align-items: center;
           gap: 6px;
           flex-wrap: wrap;
-        }
-        .pub-badge-oral {
-          background-color: #fff7ed;
-          color: #c2410c;
-          border: 1px solid #fed7aa;
-        }
-        [data-theme='dark'] .pub-badge-oral {
-          background-color: rgba(249, 115, 22, 0.15);
-          color: #fb923c;
-          border: 1px solid rgba(249, 115, 22, 0.3);
-        }
-        .pub-badge-top5 {
-          background-color: #eff6ff;
-          color: #1d4ed8;
-          border: 1px solid #bfdbfe;
-        }
-        [data-theme='dark'] .pub-badge-top5 {
-          background-color: rgba(59, 130, 246, 0.15);
-          color: #60a5fa;
-          border: 1px solid rgba(59, 130, 246, 0.3);
         }
         .pub-action-link {
           transition: color 0.15s ease, transform 0.15s ease !important;

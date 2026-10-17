@@ -13,7 +13,8 @@ export const ResearchIntroQuote: React.FC = () => {
           <blockquote className="intro-quote-body">
             {/* Lead Statement */}
             <p className="intro-quote-lead">
-              Our goal is to develop new sensing technologies to see the world from an entirely new perspective, through{' '}
+              Our goal is to develop new sensing technologies to see the world from an entirely new perspective, through
+              <br />
               <span className="quote-accent-highlight">AI-Driven Wireless+X Sensing</span>.
             </p>
 
@@ -44,7 +45,7 @@ export const ResearchIntroQuote: React.FC = () => {
         }
 
         .intro-quote-container {
-          max-width: 820px;
+          max-width: 960px;
           margin: 0 auto;
           text-align: center;
           position: relative;
@@ -76,11 +77,10 @@ export const ResearchIntroQuote: React.FC = () => {
         }
 
         .intro-quote-lead {
-          font-family: var(--font-heading);
-          font-size: clamp(1.1rem, 1.8vw, 1.4rem);
-          font-weight: 600;
-          line-height: 1.55;
-          letter-spacing: -0.02em;
+          font-family: var(--font-sans);
+          font-size: var(--text-body);
+          font-weight: 400;
+          line-height: 1.7;
           color: var(--color-text-primary);
           margin: 0;
           overflow-wrap: break-word;
@@ -88,10 +88,10 @@ export const ResearchIntroQuote: React.FC = () => {
 
         .intro-quote-support {
           font-family: var(--font-sans);
-          font-size: 14.5px;
-          line-height: 1.75;
-          color: var(--color-text-secondary);
-          margin: 14px auto 0 auto;
+          font-size: var(--text-body);
+          line-height: 1.7;
+          color: var(--color-text-primary);
+          margin: 8px auto 0 auto;
           max-width: 760px;
           overflow-wrap: break-word;
         }
@@ -112,14 +112,10 @@ export const ResearchIntroQuote: React.FC = () => {
             padding-top: 28px;
             padding-bottom: 20px;
           }
-          .intro-quote-lead {
-            font-size: 1.05rem;
-            line-height: 1.5;
-          }
+          .intro-quote-lead,
           .intro-quote-support {
-            font-size: 13.5px;
+            font-size: var(--text-body);
             line-height: 1.65;
-            margin-top: 10px;
           }
           .quote-mark-top {
             margin-bottom: 8px;

@@ -34,31 +34,20 @@ export const GalleryPage: React.FC = () => {
 
   return (
     <div className="gallery-page-root" style={{ paddingBottom: 'var(--space-section)' }}>
-      {/* Header Banner */}
+      {/* Header */}
       <section
         style={{
-          borderBottom: '1px solid var(--color-border)',
-          backgroundColor: 'var(--color-bg-secondary)',
           paddingTop: 'var(--space-2xl)',
-          paddingBottom: 'var(--space-xl)',
+          paddingBottom: 'var(--space-sm)',
         }}
       >
         <div className="container">
           <h1 className="h1-title">Gallery</h1>
-          <p
-            style={{
-              marginTop: '8px',
-              color: 'var(--color-text-secondary)',
-              fontSize: '15px',
-            }}
-          >
-            Moments, academic conferences, seminar sessions, and laboratory life at IRS Lab.
-          </p>
         </div>
       </section>
 
       {/* Album Cards Grid */}
-      <section style={{ paddingTop: 'var(--space-2xl)' }}>
+      <section style={{ paddingTop: 'var(--space-lg)' }}>
         <div className="container">
           <div className="gallery-grid">
             {galleryFolders.map((album) => {

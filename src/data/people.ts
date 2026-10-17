@@ -318,13 +318,13 @@ export const undergraduateResearchers: Person[] = [
 export const alumni: Person[] = [
   {
     id: "jaehyun-park",
-    name: "Dr. Jaehyun Park",
-    nameKr: "박재현 박사",
+    name: "Jaehyun Park",
+    nameKr: "박재현",
     role: "Alumni",
     title: "Postdoctoral Fellow (2025–2026)",
     photo: "/images/teampic/standard/student_jaehyunpark.jpg",
     alumniPeriod: "2025 – 2026",
-    alumniDestination: "NASA Jet Propulsion Laboratory (JPL)",
+    alumniDestination: "NASA JPL",
     alumniLogo: "/images/alumni/nasa_jpl.svg",
     alumniLogoDark: "/images/alumni/nasa_jpl_dark.svg",
     website: "https://jhynpark.github.io/",
@@ -332,13 +332,13 @@ export const alumni: Person[] = [
   },
   {
     id: "dohyun-park",
-    name: "Dr. Dohyun Park",
-    nameKr: "박도현 박사",
+    name: "Dohyun Park",
+    nameKr: "박도현",
     role: "Alumni",
     title: "Postdoctoral Fellow (2025–2026)",
     photo: "/images/teampic/standard/postdoc_DH.jpg",
     alumniPeriod: "2025 – 2026",
-    alumniDestination: "NASA Jet Propulsion Laboratory (JPL)",
+    alumniDestination: "NASA JPL",
     alumniLogo: "/images/alumni/nasa_jpl.svg",
     alumniLogoDark: "/images/alumni/nasa_jpl_dark.svg",
     website: "https://sites.google.com/view/dohyunpark",
@@ -349,18 +349,18 @@ export const alumni: Person[] = [
 export const internHistory: InternGroup[] = [
   {
     period: "2026 Summer",
-    names: ["Jaeone Yun (윤재원)", "Junwon Choi (최준원)"]
+    names: ["Jaeone Yun", "Junwon Choi"]
   },
   {
     period: "2026 Winter",
-    names: ["Jaeryong Lee (이재룡)", "Jaeone Yun (윤재원)", "Yunjung Jeong (정윤중)"]
+    names: ["Jaeryong Lee", "Jaeone Yun", "Yunjung Jeong"]
   },
   {
     period: "2025 Fall",
-    names: ["Nahyeon Kim (김나현)"]
+    names: ["Nahyeon Kim"]
   },
   {
     period: "2025 Summer",
-    names: ["Donguk Ko (고동욱)", "Uhyeok Kwon (권우혁)", "Dohyeok Nam (남도혁)", "Jaeryong Lee (이재룡)"]
+    names: ["Donguk Ko", "Uhyeok Kwon", "Dohyeok Nam", "Jaeryong Lee"]
   }
 ];

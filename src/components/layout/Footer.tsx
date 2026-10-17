@@ -153,17 +153,17 @@ export const Footer: React.FC<FooterProps> = () => {
 
         .footer-address-line {
           font-family: var(--font-sans);
-          font-size: 13px;
+          font-size: 0.9rem;
           line-height: 1.65;
-          color: var(--color-text-secondary);
+          color: var(--color-text-primary);
           margin: 0;
         }
 
         .footer-copyright-line {
           font-family: var(--font-sans);
-          font-size: 12.5px;
+          font-size: 0.9rem;
           line-height: 1.5;
-          color: var(--color-text-muted);
+          color: var(--color-text-primary);
           margin: 0;
         }
 

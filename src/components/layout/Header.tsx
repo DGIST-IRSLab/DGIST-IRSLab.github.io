@@ -180,27 +180,17 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
                   justifyContent: 'space-between',
                   padding: '10px 12px',
                   borderRadius: 'var(--radius-sm)',
-                  background: isActive ? 'var(--color-accent-subtle)' : 'transparent',
+                  background: 'transparent',
                   border: 'none',
                   fontFamily: 'var(--font-sans)',
                   fontSize: '15px',
                   fontWeight: isActive ? 600 : 400,
-                  color: isActive ? 'var(--color-accent)' : 'var(--color-text-primary)',
+                  color: isActive ? 'var(--color-text-primary)' : 'rgba(128, 128, 128, 0.85)',
                   textAlign: 'left',
                   cursor: 'pointer',
                 }}
               >
                 <span>{item.label}</span>
-                {isActive && (
-                  <span
-                    style={{
-                      width: '6px',
-                      height: '6px',
-                      borderRadius: '50%',
-                      backgroundColor: 'var(--color-accent)',
-                    }}
-                  />
-                )}
               </button>
             );
           })}
@@ -220,9 +210,9 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
           transform: translateY(-0.5px);
         }
         .header-lab-logo {
-          height: clamp(24px, 3.2vw, 29px);
+          height: clamp(17.5px, 2.333vw, 21.14px);
           width: auto;
-          max-width: 190px;
+          max-width: 138.6px;
           object-fit: contain;
           display: block;
           transition: opacity var(--transition-fast), transform var(--transition-fast);
@@ -250,74 +240,81 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
           position: relative;
           background: transparent;
           border: none;
-          padding: 8px 14px;
+          padding: 0.5rem 0.85rem;
           font-family: var(--font-sans);
-          font-size: 14px;
+          font-size: 0.92rem;
           font-weight: 500;
-          color: var(--color-text-secondary);
-          border-radius: var(--radius-sm);
+          color: rgba(0, 0, 0, 0.58);
           cursor: pointer;
-          transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+          transition: color 0.2s ease;
           outline: none;
           display: inline-flex;
           align-items: center;
           justify-content: center;
         }
 
+        [data-theme='dark'] .desktop-nav-link {
+          color: rgba(255, 255, 255, 0.58);
+        }
+
         .desktop-nav-link .nav-label-text {
           position: relative;
           z-index: 1;
-          transition: transform 0.2s ease, color 0.2s ease;
+          transition: color 0.2s ease;
         }
 
-        .desktop-nav-link:hover {
-          color: var(--color-text-primary);
-          background-color: var(--color-surface-hover);
-          transform: translateY(-1.5px);
+        .desktop-nav-link:hover,
+        .desktop-nav-link:focus-visible {
+          color: rgba(0, 0, 0, 0.85);
+          background-color: transparent;
         }
 
-        .desktop-nav-link:active {
-          transform: translateY(0) scale(0.97);
+        [data-theme='dark'] .desktop-nav-link:hover,
+        [data-theme='dark'] .desktop-nav-link:focus-visible {
+          color: rgba(255, 255, 255, 0.85);
+          background-color: transparent;
         }
 
         .desktop-nav-link.is-active {
-          color: var(--color-accent);
+          color: rgba(0, 0, 0, 0.88);
           font-weight: 600;
-          background-color: var(--color-accent-subtle);
+          background-color: transparent;
+        }
+
+        [data-theme='dark'] .desktop-nav-link.is-active {
+          color: rgba(255, 255, 255, 0.9);
+          font-weight: 600;
+          background-color: transparent;
         }
 
         .desktop-nav-link.is-active:hover {
-          color: var(--color-accent);
-          background-color: var(--color-accent-subtle);
-          transform: translateY(-1px);
+          color: rgba(0, 0, 0, 0.92);
+          background-color: transparent;
         }
 
-        /* Animated underline indicator */
+        [data-theme='dark'] .desktop-nav-link.is-active:hover {
+          color: rgba(255, 255, 255, 0.95);
+          background-color: transparent;
+        }
+
+        /* Underline grows from center outward via scaleX, matching original site */
         .desktop-nav-link::after {
           content: '';
           position: absolute;
-          bottom: 2px;
-          left: 12px;
-          right: 12px;
+          bottom: 4px;
+          left: 0.7rem;
+          right: 0.7rem;
           height: 2px;
-          background-color: var(--color-accent);
-          border-radius: 999px;
+          background-color: var(--color-accent-blue);
           transform: scaleX(0);
           transform-origin: center;
-          transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
-          opacity: 0;
+          transition: transform 0.3s ease;
           pointer-events: none;
         }
 
-        .desktop-nav-link:hover::after {
-          transform: scaleX(0.7);
-          opacity: 0.65;
-        }
-
-        .desktop-nav-link.is-active::after {
+        .desktop-nav-link:hover::after,
+        .desktop-nav-link:focus-visible::after {
           transform: scaleX(1);
-          opacity: 1;
-          box-shadow: 0 1px 4px rgba(2, 132, 199, 0.4);
         }
 
 
@@ -328,7 +325,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
 
         @media (max-width: 640px) {
           .header-lab-logo {
-            height: 35px;
+            height: 25.5px;
           }
         }
         @media (min-width: 860px) {

@@ -37,6 +37,7 @@ export interface Publication {
   isSCI?: boolean;
   isOral?: boolean;
   isTop5Percent?: boolean;
+  isAward?: boolean;
   customBadge?: string;
   pdfUrl?: string;
   projectUrl?: string;
