@@ -40,25 +40,32 @@ import type { NewsItem } from '../types';
 
 export const newsItems: NewsItem[] = [
   {
-    id:"news-2026-10-paper",
+    id: "news-2026-10-members",
     date: "2026.10",
-    category: "PAPER",
-    title:"1 Paper Accepted to IEEE IoTJ.",
-    description:"One paper by Dohyun Park has been accepted to IEEE Internet of Things Journal (IoTJ). Congratulations!"
+    category: "PEOPLE",
+    title: "Wonbin Yang Joined IRS Lab as an Undergraduate Intern.",
+    description: "Wonbin Yang joined IRS Lab as an undergraduate research intern."
   },
   {
-    id:"news-2026-10-award",
+    id: "news-2026-10-paper",
+    date: "2026.10",
+    category: "PAPER",
+    title: "1 Paper Accepted to IEEE IoTJ.",
+    description: "One paper by Dohyun Park has been accepted to IEEE Internet of Things Journal (IoTJ). Congratulations!"
+  },
+  {
+    id: "news-2026-10-award",
     date: "2026.10",
     category: "AWARD",
-    title:"Selected as Top Area Chair for NeurIPS 2026.",
-    description:"Prof. Jae-Ho Choi has been recognized as a Top Area Chair for NeurIPS 2026.",
+    title: "Selected as Top Area Chair for NeurIPS 2026.",
+    description: "Prof. Jae-Ho Choi has been recognized as a Top Area Chair for NeurIPS 2026.",
   },
   {
-    id:"news-2026-09-paper",
+    id: "news-2026-09-paper",
     date: "2026.09",
     category: "PAPER",
-    title:"2 Papers Accepted to NeurIPS 2026.",
-    description:"Two papers(Radar MAE, mmLIP) by Eunchan Kim, Jeongwan Shin, and Jaehyeon Kim have been accepted to NeurIPS 2026 🥳 Congratulations!"
+    title: "2 Papers Accepted to NeurIPS 2026.",
+    description: "Two papers(Radar MAE, mmLIP) by Eunchan Kim, Jeongwan Shin, and Jaehyeon Kim have been accepted to NeurIPS 2026 🥳 Congratulations!"
   },
   {
     id: "news-2026-09-award",

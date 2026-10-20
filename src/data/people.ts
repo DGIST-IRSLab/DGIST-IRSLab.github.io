@@ -312,6 +312,16 @@ export const undergraduateResearchers: Person[] = [
     photo: "/images/teampic/standard/student_jhgong.jpg",
     email: "jhgong@dgist.ac.kr",
     researchInterests: ["Synthetic Aperture Radar"]
+  },
+  {
+    id: "wonbin-yang",
+    name: "Wonbin Yang",
+    nameKr: "양원빈",
+    role: "Undergraduate Researcher",
+    title: "Undergraduate Researcher",
+    photo: "/images/teampic/standard/student_wbyang.jpg",
+    email: "...",
+    researchInterests: ["TBD"]
   }
 ];
 
