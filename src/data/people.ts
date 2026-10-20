@@ -320,7 +320,7 @@ export const undergraduateResearchers: Person[] = [
     role: "Undergraduate Researcher",
     title: "Undergraduate Researcher",
     photo: "/images/teampic/standard/student_wbyang.jpg",
-    email: "...",
+    email: "yang_wb155@dgist.ac.kr",
     researchInterests: ["TBD"]
   }
 ];

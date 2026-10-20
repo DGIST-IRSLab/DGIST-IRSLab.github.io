@@ -44,7 +44,7 @@ export const newsItems: NewsItem[] = [
     date: "2026.10",
     category: "PEOPLE",
     title: "Wonbin Yang Joined IRS Lab as an Undergraduate Intern.",
-    description: "Wonbin Yang joined IRS Lab as an undergraduate research intern."
+    description: "We welcome Wonbin Yang to IRS Lab as an undergraduate research intern! 😆"
   },
   {
     id: "news-2026-10-paper",
