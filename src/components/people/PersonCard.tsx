@@ -79,7 +79,7 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, onNavigate }) =>
             fontSize: '13px',
           }}
         >
-          {person.name.split(' ').map((n) => n[0]).join('')}
+          TBD
         </div>
       )}
 
