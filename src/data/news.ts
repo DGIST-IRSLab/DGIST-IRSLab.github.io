@@ -44,7 +44,7 @@ export const newsItems: NewsItem[] = [
     date: "2026.10",
     category: "PEOPLE",
     title: "New Member Joined IRS Lab (Wonbin Yang).",
-    description: "Undergraduate researcher Wonbin Yang joined our team. Welcome!"
+    description: "Undergraduate researcher Wonbin joined our team. Welcome!"
   },
   {
     id: "news-2026-10-paper",
@@ -85,15 +85,15 @@ export const newsItems: NewsItem[] = [
     id: "news-2026-08-members",
     date: "2026.08",
     category: "PEOPLE",
-    title: "New Members Joined IRS Lab (Seongryeong Lee, Seungeun Kang, Minjae Kim, Junhyung Gong).",
-    description: "Graduate students Seongryeong Lee, Seungeun Kang, and Minjae Kim, and undergraduate researcher Junhyung Gong joined our team. Welcome!"
+    title: "New Members Joined IRS Lab (Seungeun Kang, Minjae Kim, Junhyung Gong).",
+    description: "Graduate students Seungeun, Minjae and undergraduate researcher Junhyung joined our team. Welcome!"
   },
   {
     id: "news-2026-07-interns",
     date: "2026.07",
     category: "PEOPLE",
     title: "Summer Internships for 2 Students (Jaeone Yun, Junwon Choi).",
-    description: "Jaeone Yun and Junwon Choi began their summer research internships at IRS Lab."
+    description: "Jaeone and Junwon began their summer research internships at IRS Lab."
   },
   {
     id: "news-2026-04-neurips",
@@ -139,7 +139,7 @@ export const newsItems: NewsItem[] = [
     date: "2026.02",
     category: "PEOPLE",
     title: "New Members Joined IRS Lab (Donguk Ko, Bumjoon Kim, Minkyoung Shim, Jeongwoo Han, Yunjung Jeong).",
-    description: "Graduate students Donguk Ko, Bumjoon Kim, Minkyoung Shim, and Jeongwoo Han, and undergraduate researcher Yunjung Jeong joined our team. Welcome!"
+    description: "Graduate students Donguk, Bumjoon, Minkyoung, Jeongwoo and undergraduate researcher Yunjung joined our team. Welcome!"
   },
   {
     id: "news-2025-11-add",
@@ -175,7 +175,7 @@ export const newsItems: NewsItem[] = [
     date: "2025.09",
     category: "PEOPLE",
     title: "New Members Joined IRS Lab (Dr. Yazdan Qadri, Jaeone Yun).",
-    description: "Postdoctoral fellow Dr. Yazdan Qadri and undergraduate researcher Jaeone Yun joined our team. Welcome!"
+    description: "Postdoctoral fellow Dr. Yazdan Qadri and undergraduate researcher Jaeone joined our team. Welcome!"
   },
   {
     id: "news-2025-09-nrf-seed",
@@ -196,21 +196,21 @@ export const newsItems: NewsItem[] = [
     date: "2025.08",
     category: "PEOPLE",
     title: "New Members Joined IRS Lab (Eunchan Kim, Jihyuck Hong).",
-    description: "Graduate students Eunchan Kim and Jihyuck Hong joined our team. Welcome!"
+    description: "Graduate students Eunchan and Jihyuck joined our team. Welcome!"
+  },
+  {
+    id: "news-2025-07-interns",
+    date: "2025.07",
+    category: "PEOPLE",
+    title: "Summer Internships for 3 Students (Uhyeok, Donguk, Dohyeok).",
+    description: "Uhyeok, Donguk, and Dohyeok began their summer research internships at IRS Lab."
   },
   {
     id: "news-2025-07-members",
     date: "2025.07",
     category: "PEOPLE",
     title: "New Members Joined IRS Lab (Nahyeon Kim, Jaeryong Lee).",
-    description: "Undergraduate researchers Nahyeon Kim and Jaeryong Lee joined our team. Welcome!"
-  },
-  {
-    id: "news-2025-07-interns",
-    date: "2025.07",
-    category: "PEOPLE",
-    title: "Summer Internships for 3 Students (Uhyeok Kwon, Donguk Ko, Dohyeok Nam).",
-    description: "Uhyeok Kwon, Donguk Ko, and Dohyeok Nam began their summer research internships at IRS Lab."
+    description: "Undergraduate researchers Nahyeon and Jaeryong joined our team. Welcome!"
   },
   {
     id: "news-2025-06-innocore",
@@ -241,7 +241,7 @@ export const newsItems: NewsItem[] = [
     date: "2025.02",
     category: "PEOPLE",
     title: "New Member Joined IRS Lab (Jaehyeon Kim).",
-    description: "Graduate student Jaehyeon Kim joined our team. Welcome!"
+    description: "Graduate student Jaehyeon joined our team. Welcome!"
   },
   {
     id: "news-2024-12-icassp",
