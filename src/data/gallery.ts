@@ -71,6 +71,12 @@ for (const folder of Object.keys(folderImageMap)) {
 // List of gallery albums: specify id, title, date, folder only
 export const galleryFolderData: GalleryFolderItem[] = [
   {
+    id: "gallery-2026-09-recap",
+    title: "9월의 IRS 모음",
+    date: "2026.09",
+    folder: "202609_1",
+  },
+  {
     id: "gallery-2026-09",
     title: "IRS 랩 세미나",
     date: "2026.09",
