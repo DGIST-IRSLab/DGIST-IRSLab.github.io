@@ -51,7 +51,7 @@ export const Footer: React.FC<FooterProps> = () => {
 
         {/* Right Column: Prominent Large IRS Lab Brand Logo */}
         <div className="footer-right-col">
-          <div className="footer-lab-logo-wrap" title="Intelligent Radio Sensing Laboratory">
+          <div className="footer-lab-logo-wrap" title="Intelligent Radio Sensing Lab">
             <img
               src={assetUrl('/images/logopic/lab_logo_light.png')}
               alt="IRS Lab Logo"

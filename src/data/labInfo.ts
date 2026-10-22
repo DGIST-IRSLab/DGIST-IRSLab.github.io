@@ -33,7 +33,7 @@
  */
 
 export const labInfo = {
-  name: "Intelligent Radio Sensing Laboratory",
+  name: "Intelligent Radio Sensing Lab",
   shortName: "IRS Lab",
   affiliation: "DGIST",
   fullAffiliation: "Department of Electrical Engineering and Computer Science (EECS) & Department of Interdisciplinary Studies of Artificial Intelligence (AI)",
