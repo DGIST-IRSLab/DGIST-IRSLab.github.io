@@ -72,7 +72,7 @@ for (const folder of Object.keys(folderImageMap)) {
 export const galleryFolderData: GalleryFolderItem[] = [
   {
     id: "gallery-2026-09-recap",
-    title: "9월의 IRS 모음",
+    title: "9월의 IRS 모음 🍂",
     date: "2026.09",
     folder: "202609_1",
   },
