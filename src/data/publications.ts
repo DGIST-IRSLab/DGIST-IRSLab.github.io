@@ -91,6 +91,7 @@ export const publications: Publication[] = [
     year : 2026,
     type : "conference",
     isTopConf : true,
+    codeUrl: "https://github.com/DGIST-IRSLab/RadarMAE",
   },
   {
     id: "shin2026llm-mmwave",
