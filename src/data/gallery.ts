@@ -39,9 +39,9 @@
 
 import type { GalleryFolder, GalleryFolderItem } from '../types';
 
-// Automatically discover all gallery images in public/images/gallery
+// Automatically discover all gallery images and videos in public/images/gallery
 const galleryImageGlobs = import.meta.glob(
-  '/public/images/gallery/**/*.{jpg,jpeg,png,webp,gif,JPG,JPEG,PNG,WEBP,GIF}'
+  '/public/images/gallery/**/*.{jpg,jpeg,png,webp,gif,mp4,webm,JPG,JPEG,PNG,WEBP,GIF,MP4,WEBM}'
 );
 
 // Group images by folder name
@@ -70,6 +70,12 @@ for (const folder of Object.keys(folderImageMap)) {
 
 // List of gallery albums: specify id, title, date, folder only
 export const galleryFolderData: GalleryFolderItem[] = [
+  {
+    id: "gallery-2026-10-recap",
+    title: "10월의 IRS 모음 🍁",
+    date: "2026.10",
+    folder: "202610",
+  },
   {
     id: "gallery-2026-09-recap",
     title: "9월의 IRS 모음 🍂",

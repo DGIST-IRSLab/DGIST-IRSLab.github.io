@@ -69,7 +69,7 @@ export const ResearchCarousel: React.FC = () => {
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
       aria-roledescription="carousel"
-      aria-label="Research and Laboratory Slideshow"
+      aria-label="Research and Lab Slideshow"
     >
       {/* Visual Image Stage */}
       <div className="carousel-stage">

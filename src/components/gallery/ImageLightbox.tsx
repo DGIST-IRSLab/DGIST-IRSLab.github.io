@@ -1,7 +1,9 @@
 import React, { useEffect, useCallback, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Play } from 'lucide-react';
 import { assetUrl } from '../../utils/asset';
+
+const isVideoSrc = (src: string): boolean => /\.(mp4|webm|mov)$/i.test(src);
 
 export interface ImageLightboxProps {
   isOpen: boolean;
@@ -74,11 +76,11 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({
     if (!isOpen || images.length <= 1) return;
     const nextIdx = (currentIndex + 1) % images.length;
     const prevIdx = (currentIndex - 1 + images.length) % images.length;
-    if (images[nextIdx]?.src) {
+    if (images[nextIdx]?.src && !isVideoSrc(images[nextIdx].src)) {
       const img1 = new Image();
       img1.src = assetUrl(images[nextIdx].src);
     }
-    if (images[prevIdx]?.src) {
+    if (images[prevIdx]?.src && !isVideoSrc(images[prevIdx].src)) {
       const img2 = new Image();
       img2.src = assetUrl(images[prevIdx].src);
     }
@@ -157,15 +159,26 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({
         </button>
       )}
 
-      {/* Main Centered Image Stage */}
+      {/* Main Centered Image/Video Stage */}
       <div className="lightbox-stage" onClick={handleStageClick}>
         <div className="lightbox-image-wrap" onClick={(e) => e.stopPropagation()}>
-          <img
-            key={currentImg.src}
-            src={assetUrl(currentImg.src)}
-            alt={albumTitle ? `${albumTitle} - ${currentIndex + 1}` : 'Lab photograph'}
-            className="lightbox-image"
-          />
+          {isVideoSrc(currentImg.src) ? (
+            <video
+              key={currentImg.src}
+              src={assetUrl(currentImg.src)}
+              controls
+              autoPlay
+              playsInline
+              className="lightbox-image"
+            />
+          ) : (
+            <img
+              key={currentImg.src}
+              src={assetUrl(currentImg.src)}
+              alt={albumTitle ? `${albumTitle} - ${currentIndex + 1}` : 'Lab photograph'}
+              className="lightbox-image"
+            />
+          )}
         </div>
       </div>
 
@@ -181,7 +194,21 @@ export const ImageLightbox: React.FC<ImageLightboxProps> = ({
                 aria-label={`Go to slide ${idx + 1}`}
                 className={`lightbox-thumb-btn ${idx === currentIndex ? 'active' : ''}`}
               >
-                <img src={assetUrl(img.src)} alt="" loading="lazy" />
+                {isVideoSrc(img.src) ? (
+                  <>
+                    <video
+                      src={`${assetUrl(img.src)}#t=0.1`}
+                      muted
+                      playsInline
+                      preload="metadata"
+                    />
+                    <span className="lightbox-thumb-play-badge" aria-hidden="true">
+                      <Play size={12} fill="currentColor" />
+                    </span>
+                  </>
+                ) : (
+                  <img src={assetUrl(img.src)} alt="" loading="lazy" />
+                )}
               </button>
             ))}
           </div>
