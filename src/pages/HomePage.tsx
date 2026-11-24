@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
 import { newsItems } from '../data/news';
 import type { Publication } from '../types';
-import { assetUrl } from '../utils/asset';
+import { HeroRfCanvas } from '../components/home/HeroRfCanvas';
 
 interface HomePageProps {
   onNavigate: (page: string, anchorId?: string) => void;
@@ -23,63 +23,31 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   return (
     <div className="homepage-root">
       {/* ====================================================================
-          1. HERO SECTION: IRS LAB IDENTITY & SCIENTIFIC AGENDA
+          1. HERO SECTION: MINIMAL TYPOGRAPHY + LIVE RF WAVEFIELD
           ==================================================================== */}
       <section className="hero-section">
-        {/* Full-width uncropped group photo background (No vignetting) */}
-        <div className="hero-bg-wrap">
-          <img
-            src={assetUrl('/images/main_group_wide.jpg')}
-            alt="IRS Lab Members at DGIST"
-            className="hero-bg-photo"
-            loading="eager"
-          />
-          {/* Subtle left-side light gradient overlay: 아주 살짝 글자만 보이도록 */}
-          <div className="hero-left-scrim" />
-        </div>
+        <HeroRfCanvas />
 
         <div className="container hero-container">
           <div className="hero-content">
             <h1 className="hero-title">
+              Intelligent Radio
+              <br />
+              Sensing Lab
+            </h1>
+
+            <div className="hero-footer-row">
               <button
                 type="button"
-                className="hero-title-trigger"
+                className="hero-explore-btn"
                 onClick={() => {
                   onNavigate('research');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                title="Explore IRS Lab Research"
               >
-                <span className="hero-title-main">
-                  Intelligent <br className="hero-mobile-br" />
-                  Radio <br className="hero-mobile-br" />
-                  Sensing Lab
-                </span>
-                <span className="hero-title-hover-hint">
-                  <span className="hero-title-hint-text">Our Research</span>
-                </span>
+                <span>Explore our research</span>
+                <ArrowRight size={16} className="hero-explore-arrow" />
               </button>
-            </h1>
-
-            <div className="hero-affiliation">
-              <a
-                href="https://www.dgist.ac.kr"
-                target="_blank"
-                rel="noreferrer"
-                className="hero-dgist-link"
-                title="DGIST (Daegu Gyeongbuk Institute of Science and Technology)"
-              >
-                <img
-                  src={assetUrl('/images/logopic/dgist_logo.png')}
-                  alt="DGIST"
-                  className="hero-dgist-logo logo-light-only"
-                />
-                <img
-                  src={assetUrl('/images/logopic/dgist_logo_dark.png')}
-                  alt="DGIST"
-                  className="hero-dgist-logo logo-dark-only"
-                />
-              </a>
             </div>
           </div>
         </div>
@@ -172,11 +140,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           SCOPED STYLES
           ==================================================================== */}
       <style>{`
-        /* Hero Section (Full-Width Photo Banner with Subtle Left Gradient) */
+        /* Hero Section (Minimal Monumental Typography + Live RF Wavefield) */
         .hero-section {
           position: relative;
           width: 100%;
-          min-height: clamp(330px, 37vw, 660px);
+          min-height: clamp(380px, 48vh, 520px);
           display: flex;
           align-items: center;
           border-bottom: 1px solid var(--color-border);
@@ -184,98 +152,32 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           background-color: var(--color-bg);
         }
 
-        .hero-bg-wrap {
+        .hero-rf-canvas {
           position: absolute;
           inset: 0;
           width: 100%;
           height: 100%;
-          z-index: 0;
-        }
-
-        .hero-bg-photo {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: center 35%;
-          display: block;
-        }
-
-        /* Subtle left-side light gradient overlay: 아주 살짝 글자만 보이도록 */
-        .hero-left-scrim {
-          position: absolute;
-          inset: 0;
           pointer-events: none;
-          background: linear-gradient(
-            to right,
-            rgba(255, 255, 255, 0.90) 0%,
-            rgba(255, 255, 255, 0.76) 30%,
-            rgba(255, 255, 255, 0.35) 48%,
-            rgba(255, 255, 255, 0.05) 62%,
-            transparent 74%
-          );
-        }
-
-        [data-theme='dark'] .hero-left-scrim {
-          background: linear-gradient(
-            to right,
-            rgba(11, 15, 20, 0.92) 0%,
-            rgba(11, 15, 20, 0.78) 30%,
-            rgba(11, 15, 20, 0.35) 48%,
-            rgba(11, 15, 20, 0.05) 62%,
-            transparent 74%
-          );
+          z-index: 0;
+          display: block;
         }
 
         .hero-container {
           position: relative;
           z-index: 1;
           width: 100%;
-          padding-top: clamp(2.8rem, 5vw, 4.5rem);
-          padding-bottom: clamp(2.8rem, 5vw, 4.5rem);
+          padding-top: clamp(3.4rem, 7vw, 5.4rem);
+          padding-bottom: clamp(3.4rem, 7vw, 5.4rem);
         }
 
         .hero-content {
-          max-width: 680px;
-        }
-
-        .hero-mobile-br {
-          display: none;
-        }
-
-        @media (max-width: 768px) {
-          .hero-section {
-            min-height: 380px;
-          }
-          .hero-mobile-br {
-            display: inline;
-          }
-          .hero-left-scrim {
-            background: linear-gradient(
-              to right,
-              rgba(255, 255, 255, 0.90) 0%,
-              rgba(255, 255, 255, 0.76) 35%,
-              rgba(255, 255, 255, 0.35) 58%,
-              rgba(255, 255, 255, 0.05) 75%,
-              transparent 88%
-            );
-          }
-
-          [data-theme='dark'] .hero-left-scrim {
-            background: linear-gradient(
-              to right,
-              rgba(11, 15, 20, 0.92) 0%,
-              rgba(11, 15, 20, 0.78) 35%,
-              rgba(11, 15, 20, 0.35) 58%,
-              rgba(11, 15, 20, 0.05) 75%,
-              transparent 88%
-            );
-          }
+          max-width: 660px;
         }
 
         @keyframes heroFloatIn {
           from {
             opacity: 0;
-            transform: translateY(18px);
+            transform: translateY(14px);
           }
           to {
             opacity: 1;
@@ -283,234 +185,72 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           }
         }
 
-        @keyframes heroPhotoIn {
-          from {
-            opacity: 0;
-            transform: translateY(14px) scale(0.97);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-          }
-        }
-
         .hero-title {
           font-family: var(--font-display);
-          font-size: clamp(2rem, 5vw, 3.8rem);
+          font-size: clamp(2.45rem, 5.4vw, 4.35rem);
           font-weight: 700;
-          letter-spacing: -0.03em;
-          line-height: 1.15;
+          letter-spacing: -0.038em;
+          line-height: 1.07;
           color: var(--color-text-primary);
-          margin: 0 0 14px 0;
+          margin: 0 0 30px 0;
           word-break: keep-all;
-          overflow-wrap: break-word;
-          animation: heroFloatIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+          animation: heroFloatIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
-        .hero-title-trigger {
-          background: none;
-          border: none;
-          padding: 0;
-          margin: 0;
-          font: inherit;
-          color: inherit;
-          letter-spacing: inherit;
-          line-height: inherit;
-          text-align: left;
-          cursor: pointer;
-          display: inline;
-        }
-
-        .hero-title-main {
-          transition: color var(--transition-fast), text-shadow var(--transition-fast);
-          display: inline;
-        }
-
-        .hero-title-trigger:hover .hero-title-main,
-        .hero-title-trigger:focus-visible .hero-title-main {
-          color: var(--color-accent);
-          text-shadow: 0 2px 14px rgba(255, 255, 255, 0.9), 0 2px 8px rgba(0, 0, 0, 0.18);
-        }
-
-        [data-theme='dark'] .hero-title-trigger:hover .hero-title-main,
-        [data-theme='dark'] .hero-title-trigger:focus-visible .hero-title-main {
-          color: var(--key-blue-2);
-          text-shadow: 0 2px 16px rgba(0, 0, 0, 0.95), 0 0 28px rgba(0, 0, 0, 0.85);
-        }
-
-        .hero-title-hover-hint {
-          position: relative;
-          display: inline-flex;
-          align-items: center;
-          margin-left: 16px;
-          font-family: var(--font-body);
-          font-size: clamp(1.15rem, 2vw, 1.35rem);
-          font-weight: 600;
-          line-height: 1.45;
-          letter-spacing: 0;
-          color: var(--color-accent);
-          vertical-align: baseline;
-          opacity: 0;
-          transform: translateX(-8px);
-          transition: opacity 0.24s ease, transform 0.24s ease;
-          white-space: nowrap;
-          pointer-events: none;
-          text-shadow: 0 2px 14px rgba(255, 255, 255, 0.9), 0 2px 8px rgba(0, 0, 0, 0.18);
-          z-index: 1;
-        }
-
-        [data-theme='dark'] .hero-title-hover-hint {
-          color: var(--key-blue-2);
-          text-shadow: 0 2px 16px rgba(0, 0, 0, 0.95), 0 0 28px rgba(0, 0, 0, 0.85);
-        }
-
-        .hero-title-hint-text {
-          position: relative;
-          display: inline-block;
-        }
-
-        .hero-title-hint-text::after {
-          content: '';
-          position: absolute;
-          left: 0;
-          right: 0;
-          bottom: -2px;
-          height: 2px;
-          background-color: currentColor;
-          transform: scaleX(0);
-          transform-origin: left center;
-          transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1) 0.05s;
-        }
-
-        .hero-title-trigger:hover .hero-title-hover-hint,
-        .hero-title-trigger:focus-visible .hero-title-hover-hint {
-          opacity: 1;
-          transform: translateX(0);
-        }
-
-        .hero-title-trigger:hover .hero-title-hint-text::after,
-        .hero-title-trigger:focus-visible .hero-title-hint-text::after {
-          transform: scaleX(1);
-        }
-
-        .hero-affiliation {
+        .hero-footer-row {
           display: flex;
           align-items: center;
-          margin-bottom: 22px;
-          animation: heroFloatIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+          flex-wrap: wrap;
+          gap: 20px;
+          animation: heroFloatIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
         }
 
-        .hero-dgist-link {
+        .hero-explore-btn {
           display: inline-flex;
           align-items: center;
-          text-decoration: none;
-          transition: opacity var(--transition-fast), transform var(--transition-fast);
+          gap: 10px;
+          padding: 12px 22px;
+          font-family: var(--font-sans);
+          font-size: 0.95rem;
+          font-weight: 600;
+          color: #ffffff;
+          background-color: #111827;
+          border: 1px solid #111827;
+          border-radius: 999px;
+          cursor: pointer;
+          transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
         }
 
-        .hero-dgist-link:hover {
-          opacity: 0.82;
+        .hero-explore-btn:hover {
+          background-color: var(--key-blue-1);
+          border-color: var(--key-blue-1);
           transform: translateY(-1px);
         }
 
-        .hero-dgist-logo {
-          height: clamp(26px, 3.8vw, 42px);
-          width: auto;
-          object-fit: contain;
-          display: block;
+        [data-theme='dark'] .hero-explore-btn {
+          color: #0b0f14;
+          background-color: #f8fafc;
+          border-color: #f8fafc;
         }
 
-        .hero-dgist-logo.logo-light-only {
-          display: block;
-        }
-        .hero-dgist-logo.logo-dark-only {
-          display: none;
-        }
-
-        [data-theme='dark'] .hero-dgist-logo.logo-light-only {
-          display: none;
-        }
-        [data-theme='dark'] .hero-dgist-logo.logo-dark-only {
-          display: block;
-          filter: brightness(0) invert(0.96);
-          opacity: 0.95;
+        [data-theme='dark'] .hero-explore-btn:hover {
+          color: #ffffff;
+          background-color: var(--key-blue-2);
+          border-color: var(--key-blue-2);
         }
 
-        .hero-statement-wrap {
-          margin-bottom: 12px;
-          animation: heroFloatIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+        .hero-explore-arrow {
+          transition: transform 0.2s ease;
         }
 
-        .hero-statement-link {
-          background: none;
-          border: none;
-          padding: 0;
-          margin: 0;
-          cursor: pointer;
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          font-family: var(--font-body);
-          font-size: clamp(1.15rem, 2vw, 1.35rem);
-          font-weight: 600;
-          line-height: 1.45;
-          color: var(--color-text-primary);
-          text-align: left;
-          text-decoration: none;
-          transition: color var(--transition-fast);
-        }
-
-        .hero-statement-text {
-          position: relative;
-          border-bottom: 1.5px solid transparent;
-          transition: border-color var(--transition-fast), color var(--transition-fast);
-        }
-
-        .hero-statement-arrow {
-          color: var(--color-accent);
-          transition: transform var(--transition-fast);
-          flex-shrink: 0;
-        }
-
-        .hero-statement-link:hover {
-          color: var(--color-accent);
-        }
-
-        .hero-statement-link:hover .hero-statement-text {
-          border-color: var(--color-accent);
-        }
-
-        .hero-statement-link:hover .hero-statement-arrow {
+        .hero-explore-btn:hover .hero-explore-arrow {
           transform: translateX(4px);
         }
 
-        .hero-description {
-          font-family: var(--font-body);
-          font-size: clamp(1rem, 1.5vw, 1.1rem);
-          line-height: 1.6;
-          color: var(--color-text-secondary);
-          max-width: 820px;
-          margin: 0 0 24px 0;
-        }
-
-        .hero-focus-tags {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 8px;
-          margin-bottom: 28px;
-        }
-
-        .focus-pill {
-          display: inline-flex;
-          align-items: center;
-          padding: 4px 12px;
-          font-family: var(--font-sans);
-          font-size: 12px;
-          font-weight: 500;
-          border-radius: var(--radius-xs);
-          background-color: var(--color-bg-secondary);
-          color: var(--color-text-secondary);
-          border: 1px solid var(--color-border);
-          letter-spacing: 0.02em;
+        @media (max-width: 640px) {
+          .hero-section {
+            min-height: 340px;
+          }
         }
 
         /* Admissions Section (Clean horizontal divider) */

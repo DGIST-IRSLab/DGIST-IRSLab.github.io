@@ -60,22 +60,45 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
           justifyContent: 'space-between',
         }}
       >
-        {/* Left: Identity & Affiliation */}
-        <div
-          onClick={() => handleNavClick('home')}
-          className="header-brand-wrap"
-          title="IRS Lab — DGIST"
-        >
-          <img
-            src={assetUrl('/images/logopic/lab_text_light.png')}
-            alt="IRS Lab"
-            className="header-lab-logo logo-light-only"
-          />
-          <img
-            src={assetUrl('/images/logopic/lab_text_dark.png')}
-            alt="IRS Lab"
-            className="header-lab-logo logo-dark-only"
-          />
+        {/* Left: Affiliation & Identity (DGIST | IRS Lab) */}
+        <div className="header-brand-group">
+          <a
+            href="https://www.dgist.ac.kr"
+            target="_blank"
+            rel="noreferrer"
+            className="header-dgist-link"
+            title="DGIST (Daegu Gyeongbuk Institute of Science and Technology)"
+          >
+            <img
+              src={assetUrl('/images/logopic/dgist_header_light.png')}
+              alt="DGIST"
+              className="header-dgist-logo logo-light-only"
+            />
+            <img
+              src={assetUrl('/images/logopic/dgist_header_dark.png')}
+              alt="DGIST"
+              className="header-dgist-logo logo-dark-only"
+            />
+          </a>
+
+          <span className="header-brand-divider" aria-hidden="true" />
+
+          <div
+            onClick={() => handleNavClick('home')}
+            className="header-brand-wrap"
+            title="IRS Lab — DGIST"
+          >
+            <img
+              src={assetUrl('/images/logopic/lab_text_light.png')}
+              alt="IRS Lab"
+              className="header-lab-logo logo-light-only"
+            />
+            <img
+              src={assetUrl('/images/logopic/lab_text_dark.png')}
+              alt="IRS Lab"
+              className="header-lab-logo logo-dark-only"
+            />
+          </div>
         </div>
 
         {/* Center / Right: Desktop Navigation */}
@@ -198,6 +221,12 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
       )}
 
       <style>{`
+        .header-brand-group {
+          display: flex;
+          align-items: center;
+          gap: 11px;
+          flex-shrink: 0;
+        }
         .header-brand-wrap {
           cursor: pointer;
           display: flex;
@@ -209,6 +238,13 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
           opacity: 0.88;
           transform: translateY(-0.5px);
         }
+        .header-brand-divider {
+          width: 1px;
+          height: 16px;
+          background-color: var(--color-border-strong);
+          opacity: 0.7;
+          flex-shrink: 0;
+        }
         .header-lab-logo {
           height: clamp(17.5px, 2.333vw, 21.14px);
           width: auto;
@@ -217,16 +253,37 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
           display: block;
           transition: opacity var(--transition-fast), transform var(--transition-fast);
         }
-        .header-lab-logo.logo-light-only {
+        .header-dgist-link {
+          display: inline-flex;
+          align-items: center;
+          text-decoration: none;
+          opacity: 0.9;
+          transition: opacity var(--transition-fast), transform var(--transition-fast);
+        }
+        .header-dgist-link:hover {
+          opacity: 1;
+          transform: translateY(-0.5px);
+        }
+        .header-dgist-logo {
+          height: clamp(14.5px, 1.85vw, 17.5px);
+          width: auto;
+          object-fit: contain;
           display: block;
         }
-        .header-lab-logo.logo-dark-only {
+        .header-lab-logo.logo-light-only,
+        .header-dgist-logo.logo-light-only {
+          display: block;
+        }
+        .header-lab-logo.logo-dark-only,
+        .header-dgist-logo.logo-dark-only {
           display: none;
         }
-        [data-theme='dark'] .header-lab-logo.logo-light-only {
+        [data-theme='dark'] .header-lab-logo.logo-light-only,
+        [data-theme='dark'] .header-dgist-logo.logo-light-only {
           display: none;
         }
-        [data-theme='dark'] .header-lab-logo.logo-dark-only {
+        [data-theme='dark'] .header-lab-logo.logo-dark-only,
+        [data-theme='dark'] .header-dgist-logo.logo-dark-only {
           display: block;
         }
 
@@ -324,8 +381,17 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
         }
 
         @media (max-width: 640px) {
+          .header-brand-group {
+            gap: 8px;
+          }
           .header-lab-logo {
-            height: 25.5px;
+            height: 20px;
+          }
+          .header-dgist-logo {
+            height: 15px;
+          }
+          .header-brand-divider {
+            height: 14px;
           }
         }
         @media (min-width: 860px) {

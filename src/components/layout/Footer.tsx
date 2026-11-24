@@ -16,12 +16,12 @@ export const Footer: React.FC<FooterProps> = () => {
           <div className="footer-inst-logos">
             <div className="footer-logo-wrap" title="Daegu Gyeongbuk Institute of Science and Technology (DGIST)">
               <img
-                src={assetUrl('/images/logopic/dgist_logo.png')}
+                src={assetUrl('/images/logopic/dgist_header_light.png')}
                 alt="DGIST Logo"
                 className="footer-inst-logo dgist-logo logo-light-only"
               />
               <img
-                src={assetUrl('/images/logopic/dgist_logo_dark.png')}
+                src={assetUrl('/images/logopic/dgist_header_dark.png')}
                 alt="DGIST Logo"
                 className="footer-inst-logo dgist-logo logo-dark-only"
               />
@@ -118,10 +118,10 @@ export const Footer: React.FC<FooterProps> = () => {
           transition: opacity var(--transition-fast);
         }
 
-        /* Optical Size Balancing: DGIST 30px, EECS 33px */
+        /* Optical Size Balancing: DGIST 22px (tightly trimmed wordmark), EECS 33px */
         .dgist-logo {
-          height: 30px;
-          max-width: 130px;
+          height: 22px;
+          max-width: 140px;
           opacity: 0.95;
         }
 
@@ -133,11 +133,6 @@ export const Footer: React.FC<FooterProps> = () => {
 
         .footer-inst-logo:hover {
           opacity: 1;
-        }
-
-        [data-theme='dark'] .dgist-logo {
-          filter: brightness(0) invert(0.96);
-          opacity: 0.92;
         }
 
         [data-theme='dark'] .eecs-logo {
