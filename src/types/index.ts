@@ -79,12 +79,17 @@ export interface InternGroup {
   names: string[];
 }
 
+export interface HardwareSpec {
+  label: string;
+  value: string;
+}
+
 export interface HardwareMember {
   id: string;
   name: string;
   role: string;
   vendor?: string;
-  specs?: string;
+  specs?: HardwareSpec[];
   photo?: string;
   specialPhoto?: string;
   url?: string;

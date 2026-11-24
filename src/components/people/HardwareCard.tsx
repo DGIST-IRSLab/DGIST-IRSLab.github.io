@@ -23,40 +23,157 @@ const getBadgeClass = (variant?: HardwareMember['badgeVariant']): string => {
   }
 };
 
+const getTieColors = (variant?: HardwareMember['badgeVariant']): { main: string; light: string } => {
+  switch (variant) {
+    case 'radar':
+      return { main: '#003BD1', light: '#3b6ef5' };
+    case 'capture':
+      return { main: '#1791FF', light: '#5cb4ff' };
+    case 'imaging':
+      return { main: '#0e7490', light: '#22a6c4' };
+    default:
+      return { main: '#475569', light: '#64748b' };
+  }
+};
+
+/**
+ * Automatic studio ID suit & tie SVG layer (no skin/neck — clean executive silhouette
+ * so any transparent hardware PNG automatically wears a tailored suit & matching tie).
+ */
+const SuitOverlaySvg: React.FC<{ variant?: HardwareMember['badgeVariant'] }> = ({ variant }) => {
+  const tie = getTieColors(variant);
+  const gradId = `suit-grad-${variant || 'default'}`;
+
+  return (
+    <svg
+      viewBox="0 0 200 250"
+      preserveAspectRatio="xMidYMax slice"
+      className="hw-suit-svg"
+      aria-hidden="true"
+    >
+      <defs>
+        <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#26344d" />
+          <stop offset="55%" stopColor="#192336" />
+          <stop offset="100%" stopColor="#111827" />
+        </linearGradient>
+      </defs>
+
+      {/* Soft contact shadow right below the hardware "head" */}
+      <ellipse cx="100" cy="166" rx="34" ry="8" fill="rgba(15, 23, 42, 0.18)" />
+
+      {/* Suit jacket torso & tailored shoulders */}
+      <path
+        d="M 10 252 L 18 194 C 22 178 44 170 72 164 L 100 164 L 128 164 C 156 170 178 178 182 194 L 190 252 Z"
+        fill={`url(#${gradId})`}
+      />
+
+      {/* Crisp white dress shirt V-front */}
+      <polygon points="75,163 100,232 125,163" fill="#f8fafc" />
+      <polygon points="75,163 100,232 100,163" fill="#eef2f6" opacity="0.55" />
+
+      {/* Matching necktie (knot + tapered blade + subtle silk highlight) */}
+      <polygon points="94,166 106,166 103,178 97,178" fill={tie.main} />
+      <polygon points="97,178 103,178 108,224 100,234 92,224" fill={tie.main} />
+      <polygon points="98,179 101,179 103,221 100,228 97,221" fill={tie.light} opacity="0.45" />
+
+      {/* Crisp folded white shirt collar wings */}
+      <polygon points="74,162 94,166 86,184 70,174" fill="#ffffff" stroke="#d5dde8" strokeWidth="0.9" />
+      <polygon points="126,162 106,166 114,184 130,174" fill="#ffffff" stroke="#d5dde8" strokeWidth="0.9" />
+
+      {/* Tailored jacket lapels */}
+      <polygon
+        points="73,163 60,185 71,191 65,199 99,235 80,186"
+        fill="#2e3f5c"
+        stroke="#131c2e"
+        strokeWidth="0.8"
+      />
+      <polygon
+        points="127,163 140,185 129,191 135,199 101,235 120,186"
+        fill="#2e3f5c"
+        stroke="#131c2e"
+        strokeWidth="0.8"
+      />
+
+      {/* Tiny matching pocket square on jacket breast pocket */}
+      <polygon points="134,218 143,210 149,215 153,211 157,218" fill={tie.light} opacity="0.92" />
+      <line x1="132" y1="218" x2="159" y2="218" stroke="#0f172a" strokeWidth="1.6" />
+
+      {/* Subtle jacket center button */}
+      <circle cx="100" cy="242" r="2.6" fill="#0f172a" stroke="#3b4c68" strokeWidth="0.8" />
+    </svg>
+  );
+};
+
+/**
+ * Empty dashed suit silhouette for the "Now Recruiting" hardware card.
+ */
+const EmptySuitSilhouetteSvg: React.FC = () => (
+  <svg
+    viewBox="0 0 200 250"
+    preserveAspectRatio="xMidYMax slice"
+    className="hw-suit-svg"
+    aria-hidden="true"
+  >
+    <path
+      d="M 14 252 L 22 196 C 26 180 46 172 74 166 L 100 176 L 126 166 C 154 172 174 180 178 196 L 186 252"
+      fill="rgba(148, 163, 184, 0.14)"
+      stroke="var(--color-border-strong)"
+      strokeWidth="2"
+      strokeDasharray="5 4"
+    />
+    <polygon
+      points="95,176 105,176 108,224 100,233 92,224"
+      fill="none"
+      stroke="var(--color-border-strong)"
+      strokeWidth="1.6"
+      strokeDasharray="4 3"
+    />
+  </svg>
+);
+
 export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) => {
   const [imageError, setImageError] = useState(false);
   const [specialError, setSpecialError] = useState(false);
 
   const specialPhoto = getSpecialEquipmentPhoto(item);
   const hasSpecial = Boolean(specialPhoto && !specialError);
+  const popTilt = index % 2 === 0 ? '-2.4deg' : '2.4deg';
 
   const renderPhotoContent = () => {
     if (item.isComingSoon) {
       return (
-        <div className="hw-coming-soon-frame">
-          <div className="hw-coming-soon-icon">
-            <Radio size={28} strokeWidth={1.6} />
+        <>
+          <EmptySuitSilhouetteSvg />
+          <div className="hw-recruiting-head">
+            <div className="hw-recruiting-circle">
+              <Radio size={26} strokeWidth={1.7} />
+            </div>
+            <span className="hw-recruiting-tagline">We welcome new gear!</span>
           </div>
-          <span className="hw-coming-soon-label">TBD</span>
-          <span className="hw-coming-soon-sub">More Gear Incoming</span>
-        </div>
+        </>
       );
     }
 
     return (
       <>
+        {/* Automatic tailored suit & tie portrait layer */}
+        <SuitOverlaySvg variant={item.badgeVariant} />
+
+        {/* Hardware board perched cleanly as the studio portrait "head" */}
         {!imageError && item.photo ? (
           <img
             src={assetUrl(item.photo)}
             alt={item.name}
             onError={() => setImageError(true)}
             loading="lazy"
-            className={`hw-photo-img hw-photo-standard ${hasSpecial ? 'has-special' : ''}`}
+            className={`hw-photo-img hw-photo-head ${hasSpecial ? 'has-special' : ''}`}
           />
         ) : (
-          <div className="hw-coming-soon-frame">
-            <Cpu size={26} strokeWidth={1.6} />
-            <span className="hw-coming-soon-label">HARDWARE</span>
+          <div className="hw-recruiting-head">
+            <div className="hw-recruiting-circle">
+              <Cpu size={24} strokeWidth={1.6} />
+            </div>
           </div>
         )}
 
@@ -77,9 +194,13 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
     <div
       className={`hw-member-card ${item.isComingSoon ? 'hw-member-card-upcoming' : ''}`}
       id={item.id}
-      style={{
-        animationDelay: `${360 + index * 95}ms`,
-      }}
+      style={
+        {
+          animationDelay: `${110 + index * 105}ms`,
+          '--pop-tilt': popTilt,
+          '--shimmer-delay': `${380 + index * 110}ms`,
+        } as React.CSSProperties
+      }
     >
       {/* Photo Container matching PersonCard 4:5 aspect ratio */}
       <div
@@ -97,6 +218,18 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
           </a>
         ) : (
           renderPhotoContent()
+        )}
+
+        {/* Subtle bottom hover spec strip */}
+        {item.specs && item.specs.length > 0 && !item.isComingSoon && (
+          <div className="hw-hover-specs" aria-hidden="true">
+            {item.specs.map((spec) => (
+              <div key={spec.label} className="hw-hover-spec-row">
+                <span className="hw-hover-spec-label">{spec.label}</span>
+                <span className="hw-hover-spec-value">{spec.value}</span>
+              </div>
+            ))}
+          </div>
         )}
       </div>
 
@@ -131,11 +264,11 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
         </div>
 
         {item.vendor && <div className="hw-meta-vendor">{item.vendor}</div>}
-        {item.specs && <div className="hw-meta-specs">{item.specs}</div>}
       </div>
 
       <style>{`
         .hw-member-card {
+          position: relative;
           display: flex;
           flex-direction: column;
           background-color: var(--color-surface);
@@ -144,9 +277,28 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
           padding: 8px 8px 12px 8px;
           overflow: hidden;
           opacity: 0;
-          transform: translateY(16px) scale(0.96);
-          animation: hwCardReveal 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          transform: translateY(38px) scale(0.6);
+          animation: hwPpyororongPop 0.68s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
           transition: transform 0.3s ease, box-shadow 0.3s ease, border-color var(--transition-fast);
+        }
+
+        /* One-shot magical light shimmer sweep right after card pops in */
+        .hw-member-card::after {
+          content: '';
+          position: absolute;
+          inset: -40% -80%;
+          background: linear-gradient(
+            115deg,
+            transparent 40%,
+            rgba(71, 255, 255, 0.24) 48%,
+            rgba(255, 255, 255, 0.45) 51%,
+            rgba(23, 145, 255, 0.2) 55%,
+            transparent 63%
+          );
+          transform: translateX(-100%);
+          pointer-events: none;
+          z-index: 6;
+          animation: hwCardSheen 0.85s ease-out var(--shimmer-delay, 380ms) forwards;
         }
 
         .hw-member-card-upcoming {
@@ -155,14 +307,35 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
           background-color: var(--color-bg-secondary);
         }
 
-        @keyframes hwCardReveal {
-          from {
+        @keyframes hwPpyororongPop {
+          0% {
             opacity: 0;
-            transform: translateY(18px) scale(0.95);
+            transform: translateY(42px) scale(0.55) rotate(var(--pop-tilt, -2deg));
           }
-          to {
+          58% {
             opacity: 1;
-            transform: translateY(0) scale(1);
+            transform: translateY(-9px) scale(1.06) rotate(calc(var(--pop-tilt, -2deg) * -0.35));
+          }
+          78% {
+            transform: translateY(3px) scale(0.985) rotate(0deg);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1) rotate(0deg);
+          }
+        }
+
+        @keyframes hwCardSheen {
+          0% {
+            transform: translateX(-85%);
+            opacity: 0;
+          }
+          20% {
+            opacity: 1;
+          }
+          100% {
+            transform: translateX(85%);
+            opacity: 0;
           }
         }
 
@@ -173,11 +346,17 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
           }
         }
 
+        /* Studio ID Portrait Backdrop */
         .hw-photo-container {
           position: relative;
           width: 100%;
           aspect-ratio: 4 / 5;
-          background-color: #ffffff;
+          background: radial-gradient(
+            ellipse 85% 68% at 50% 34%,
+            #f6f9fc 0%,
+            #e5ecf5 58%,
+            #d4dfec 100%
+          );
           overflow: hidden;
           border-radius: 8px;
           border: 1px solid var(--color-border-subtle);
@@ -187,49 +366,59 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
         }
 
         .hw-photo-container-upcoming {
-          background: repeating-linear-gradient(
-            -45deg,
-            var(--color-bg-secondary),
-            var(--color-bg-secondary) 10px,
-            var(--color-bg-tertiary) 10px,
-            var(--color-bg-tertiary) 20px
+          background: radial-gradient(
+            ellipse 85% 70% at 50% 35%,
+            var(--color-bg-secondary) 0%,
+            var(--color-bg-tertiary) 100%
           );
         }
 
         .hw-photo-link {
           position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          display: block;
           width: 100%;
           height: 100%;
           cursor: pointer;
         }
 
-        .hw-photo-img {
+        .hw-suit-svg {
           position: absolute;
           inset: 0;
           width: 100%;
           height: 100%;
-          display: block;
-          transition: opacity 0.35s ease, transform 0.35s ease;
-        }
-
-        .hw-photo-standard {
-          object-fit: contain;
-          padding: 14px;
-          opacity: 1;
           z-index: 1;
+          pointer-events: none;
         }
 
-        .hw-photo-container:hover .hw-photo-standard:not(.has-special) {
-          transform: scale(1.06);
+        .hw-photo-img {
+          display: block;
+          transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Hardware board perched as the studio portrait head above the suit collar */
+        .hw-photo-head {
+          position: absolute;
+          top: 9%;
+          left: 11%;
+          width: 78%;
+          height: 55%;
+          object-fit: contain;
+          z-index: 2;
+          filter: drop-shadow(0 8px 10px rgba(15, 23, 42, 0.24));
+        }
+
+        .hw-member-card:hover .hw-photo-head:not(.has-special) {
+          transform: translateY(-3px) scale(1.06) rotate(-1.5deg);
         }
 
         .hw-photo-special {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
           object-fit: cover;
           opacity: 0;
-          z-index: 2;
+          z-index: 3;
           transform: scale(1.02);
           pointer-events: none;
         }
@@ -239,45 +428,99 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
           transform: scale(1);
         }
 
-        .hw-photo-container:hover .hw-photo-standard.has-special {
+        .hw-photo-container:hover .hw-photo-head.has-special {
           opacity: 0;
         }
 
-        .hw-coming-soon-frame {
+        /* Subtle bottom spec strip on hover */
+        .hw-hover-specs {
           position: absolute;
-          inset: 0;
+          left: 6px;
+          right: 6px;
+          bottom: 6px;
+          z-index: 4;
+          display: flex;
+          flex-direction: column;
+          gap: 3px;
+          padding: 7px 9px;
+          border-radius: 6px;
+          background: rgba(15, 23, 42, 0.84);
+          backdrop-filter: blur(6px);
+          -webkit-backdrop-filter: blur(6px);
+          border: 1px solid rgba(255, 255, 255, 0.14);
+          pointer-events: none;
+          opacity: 0;
+          transform: translateY(6px);
+          transition: opacity 0.22s ease, transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hw-member-card:hover .hw-hover-specs {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .hw-hover-spec-row {
+          display: flex;
+          align-items: baseline;
+          justify-content: space-between;
+          gap: 6px;
+          font-size: 0.7rem;
+          line-height: 1.3;
+        }
+
+        .hw-hover-spec-label {
+          color: #cbd5e1;
+          font-weight: 500;
+          flex-shrink: 0;
+        }
+
+        .hw-hover-spec-value {
+          color: #ffffff;
+          font-weight: 600;
+          text-align: right;
+        }
+
+        /* Now Recruiting head placeholder above dashed suit */
+        .hw-recruiting-head {
+          position: absolute;
+          top: 12%;
+          left: 0;
+          right: 0;
+          z-index: 2;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          gap: 6px;
+          gap: 8px;
           color: var(--color-text-primary);
-          opacity: 0.55;
           text-align: center;
-          padding: 12px;
+          padding: 0 12px;
         }
 
-        .hw-coming-soon-icon {
-          width: 52px;
-          height: 52px;
+        .hw-recruiting-circle {
+          width: 68px;
+          height: 68px;
           border-radius: 50%;
-          border: 1.5px dashed var(--color-border-strong);
+          border: 2px dashed var(--color-border-strong);
+          background-color: var(--color-surface);
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-bottom: 4px;
+          color: var(--key-blue-2);
+          opacity: 0.85;
+          transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .hw-coming-soon-label {
-          font-family: var(--font-sans);
-          font-size: 0.85rem;
-          font-weight: 700;
-          letter-spacing: 0.12em;
+        .hw-member-card-upcoming:hover .hw-recruiting-circle {
+          transform: scale(1.08) rotate(8deg);
         }
 
-        .hw-coming-soon-sub {
-          font-size: 0.72rem;
-          opacity: 0.8;
+        .hw-recruiting-tagline {
+          font-size: 0.76rem;
+          font-weight: 600;
+          color: var(--color-text-primary);
+          opacity: 0.72;
+          line-height: 1.25;
         }
 
         .hw-card-body {
@@ -366,17 +609,10 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
 
         .hw-meta-vendor {
           font-size: clamp(0.75rem, 1.3vw, 0.85rem);
-          font-weight: 600;
+          font-weight: 500;
           color: var(--color-text-primary);
           line-height: 1.35;
-          opacity: 0.88;
-        }
-
-        .hw-meta-specs {
-          font-size: clamp(0.72rem, 1.2vw, 0.82rem);
-          color: var(--color-text-primary);
-          opacity: 0.68;
-          line-height: 1.35;
+          opacity: 0.72;
         }
 
         @media (max-width: 640px) {
@@ -387,8 +623,12 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
             border-radius: 6px;
             max-height: 220px;
           }
-          .hw-photo-standard {
-            padding: 10px;
+          .hw-recruiting-circle {
+            width: 52px;
+            height: 52px;
+          }
+          .hw-recruiting-tagline {
+            font-size: 0.68rem;
           }
           .hw-card-body {
             padding: 6px 2px 2px 2px;

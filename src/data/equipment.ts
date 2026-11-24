@@ -2,7 +2,7 @@
  * ============================================================================
  * [데이터 파일 가이드: 연구실 장비 (Hardware Members - Easter Egg)]
  * ============================================================================
- * Members 페이지의 "Graduate Students" 타이틀을 7회 클릭하면 벽이 무너지며
+ * Members 페이지 하단에서 빠르거나 강하게 아래로 스크롤하면 뾰로롱✨ 하며
  * 등장하는 히든 섹션("Hardware Members")에 표시되는 장비 목록입니다.
  *
  * ■ 새로운 장비 추가 방법
@@ -56,9 +56,12 @@ export const hardwareMembers: HardwareMember[] = [
   {
     id: 'ti-awr2944',
     name: 'TI AWR2944',
-    role: '77 GHz mmWave Radar',
+    role: 'FMCW Radar',
     vendor: 'Texas Instruments',
-    specs: '4TX · 4RX · 76–81 GHz EVM',
+    specs: [
+      { label: 'Antenna', value: '4TX · 4RX' },
+      { label: 'Center Freq', value: '77 GHz (76–81)' },
+    ],
     photo: '/images/equipment/ti-awr2944.png',
     url: 'https://www.ti.com/tool/AWR2944EVM',
     badgeVariant: 'radar',
@@ -66,9 +69,12 @@ export const hardwareMembers: HardwareMember[] = [
   {
     id: 'dca1000',
     name: 'DCA1000',
-    role: 'Raw Data Capture',
+    role: 'Capture Board',
     vendor: 'Texas Instruments',
-    specs: 'Real-Time LVDS-to-Ethernet',
+    specs: [
+      { label: 'Interface', value: 'LVDS → 1GbE' },
+      { label: 'Capture', value: 'Raw ADC Data' },
+    ],
     photo: '/images/equipment/dca1000.png',
     url: 'https://www.ti.com/tool/DCA1000EVM',
     badgeVariant: 'capture',
@@ -76,18 +82,21 @@ export const hardwareMembers: HardwareMember[] = [
   {
     id: 'imagevk-74',
     name: 'IMAGEVK-74',
-    role: '4D Imaging Radar',
+    role: 'SFCW Radar',
     vendor: 'Mini-Circuits / Vayyar',
-    specs: '20TX · 20RX · 62–69 GHz',
+    specs: [
+      { label: 'Antenna', value: '20TX · 20RX' },
+      { label: 'Freq Band', value: '62–69 GHz' },
+    ],
     photo: '/images/equipment/imagevk-74.png',
     url: 'https://www.minicircuits.com/WebStore/dashboard.html?model=IMAGEVK-74',
     badgeVariant: 'imaging',
   },
   {
     id: 'hardware-tbd',
-    name: 'More Hardware',
-    role: 'Coming Soon',
-    specs: 'New sensing gear joining soon',
+    name: 'Now Recruiting',
+    role: 'New Gear Welcome',
+    vendor: '5V DC · Zero complaints',
     badgeVariant: 'upcoming',
     isComingSoon: true,
   },
