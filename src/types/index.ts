@@ -93,7 +93,9 @@ export interface HardwareMember {
   photo?: string;
   specialPhoto?: string;
   url?: string;
-  badgeVariant?: 'radar' | 'capture' | 'imaging' | 'upcoming';
+  badgeVariant?: 'radar' | 'capture' | 'imaging' | 'thermal' | 'robot' | 'upcoming';
+  wearSuit?: boolean;
+  photoFit?: 'contain' | 'cover';
   isComingSoon?: boolean;
 }
 

@@ -8,6 +8,8 @@
  * ■ 새로운 장비 추가 방법
  * 1. 장비 이미지를 `public/images/equipment/` 폴더에 추가합니다.
  *    (예: `public/images/equipment/my-radar.png`)
+ *    - 투명 배경 PNG를 넣으면 기본적으로 정장 증명사진 프레임(`wearSuit: true`)이 자동 적용됩니다.
+ *    - 로봇 등 전신 장비는 `wearSuit: false`로 설정하면 정장 없이 깔끔하게 표시됩니다.
  * 2. (선택) 호버 시 보여줄 재미있는 실전 셋업 사진이 있다면
  *    `public/images/equipment/special/` 폴더에 장비 id와 동일한 파일명으로 넣습니다.
  * 3. 아래 `hardwareMembers` 배열의 'hardware-tbd' 항목 위에 새 객체를 추가합니다.
@@ -53,9 +55,10 @@ export function getSpecialEquipmentPhoto(item: HardwareMember): string | undefin
 }
 
 export const hardwareMembers: HardwareMember[] = [
+  // Radar & RF Sensing
   {
     id: 'ti-awr2944',
-    name: 'TI AWR2944',
+    name: 'TI AWR2944 / 2944P',
     role: 'FMCW Radar',
     vendor: 'Texas Instruments',
     specs: [
@@ -65,6 +68,35 @@ export const hardwareMembers: HardwareMember[] = [
     photo: '/images/equipment/ti-awr2944.png',
     url: 'https://www.ti.com/tool/AWR2944EVM',
     badgeVariant: 'radar',
+    wearSuit: true,
+  },
+  {
+    id: 'ti-awr2544lop',
+    name: 'TI AWR2544LOPEVM',
+    role: 'FMCW Radar',
+    vendor: 'Texas Instruments',
+    specs: [
+      { label: 'Antenna', value: '4TX · 4RX (LOP)' },
+      { label: 'Center Freq', value: '77 GHz (76–81)' },
+    ],
+    photo: '/images/equipment/awr2544lop.png',
+    url: 'https://www.ti.com/tool/AWR2544LOPEVM',
+    badgeVariant: 'radar',
+    wearSuit: true,
+  },
+  {
+    id: 'ti-iwr1443boost',
+    name: 'TI IWR1443BOOST',
+    role: 'FMCW Radar',
+    vendor: 'Texas Instruments',
+    specs: [
+      { label: 'Antenna', value: '3TX · 4RX' },
+      { label: 'Center Freq', value: '77 GHz (76–81)' },
+    ],
+    photo: '/images/equipment/iwr1443boost.png',
+    url: 'https://www.ti.com/tool/IWR1443BOOST',
+    badgeVariant: 'radar',
+    wearSuit: true,
   },
   {
     id: 'dca1000',
@@ -78,6 +110,7 @@ export const hardwareMembers: HardwareMember[] = [
     photo: '/images/equipment/dca1000.png',
     url: 'https://www.ti.com/tool/DCA1000EVM',
     badgeVariant: 'capture',
+    wearSuit: true,
   },
   {
     id: 'imagevk-74',
@@ -91,7 +124,87 @@ export const hardwareMembers: HardwareMember[] = [
     photo: '/images/equipment/imagevk-74.png',
     url: 'https://www.minicircuits.com/WebStore/dashboard.html?model=IMAGEVK-74',
     badgeVariant: 'imaging',
+    wearSuit: true,
   },
+
+  // Thermal / IR Cameras
+  {
+    id: 'flir-boson-320',
+    name: 'FLIR Boson 320',
+    role: 'Thermal Camera',
+    vendor: 'Teledyne FLIR',
+    specs: [
+      { label: 'Resolution', value: '320 × 256 (12 μm)' },
+      { label: 'Spectrum', value: 'LWIR (7.5–13.5 μm)' },
+    ],
+    photo: '/images/equipment/flir-boson-320.png',
+    url: 'https://oem.flir.com/products/boson/',
+    badgeVariant: 'thermal',
+    wearSuit: true,
+  },
+  {
+    id: 'thermoeye-tmc384e',
+    name: 'ThermoEye TMC384E',
+    role: 'Thermal Camera',
+    vendor: 'ThermoEye',
+    specs: [
+      { label: 'Resolution', value: '384 × 288 (17 μm)' },
+      { label: 'Interface', value: 'Ethernet (PoE)' },
+    ],
+    photo: '/images/equipment/thermoeye-tmc384e.png',
+    url: 'https://www.thermoeye.co.kr/solutions/aicamera.html',
+    badgeVariant: 'thermal',
+    wearSuit: true,
+  },
+
+  // Robotics (no suit — full-body robot frames)
+  {
+    id: 'rb5-850b',
+    name: 'RB5-850B',
+    role: 'Robot Arm',
+    vendor: 'Rainbow Robotics',
+    specs: [
+      { label: 'DOF / Reach', value: '6-DOF · 850 mm' },
+      { label: 'Payload', value: '5 kg' },
+    ],
+    photo: '/images/equipment/rb5-850b.png',
+    url: 'https://www.rainbow-robotics.com/rb5',
+    badgeVariant: 'robot',
+    wearSuit: false,
+    photoFit: 'contain',
+  },
+  {
+    id: 'so-101',
+    name: 'SO-101',
+    role: 'Robot Arm',
+    vendor: 'LeRobot / TheRobotStudio',
+    specs: [
+      { label: 'DOF', value: '6-DOF Open-Source' },
+      { label: 'Platform', value: 'Hugging Face LeRobot' },
+    ],
+    photo: '/images/equipment/so-101.webp',
+    url: 'https://github.com/TheRobotStudio/SO-ARM100',
+    badgeVariant: 'robot',
+    wearSuit: false,
+    photoFit: 'cover',
+  },
+  {
+    id: 'lekiwi',
+    name: 'LeKiwi',
+    role: 'Mobile Robot',
+    vendor: 'LeRobot / SIGRobotics',
+    specs: [
+      { label: 'Drive', value: '3-Wheel Omni Base' },
+      { label: 'Arm', value: 'SO-101 Manipulator' },
+    ],
+    photo: '/images/equipment/lekiwi.png',
+    url: 'https://github.com/SIGRobotics-UIUC/LeKiwi',
+    badgeVariant: 'robot',
+    wearSuit: false,
+    photoFit: 'contain',
+  },
+
+  // Recruiting placeholder
   {
     id: 'hardware-tbd',
     name: 'Now Recruiting',

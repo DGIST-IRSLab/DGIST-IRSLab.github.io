@@ -17,6 +17,10 @@ const getBadgeClass = (variant?: HardwareMember['badgeVariant']): string => {
       return 'hw-badge-capture';
     case 'imaging':
       return 'hw-badge-imaging';
+    case 'thermal':
+      return 'hw-badge-thermal';
+    case 'robot':
+      return 'hw-badge-robot';
     case 'upcoming':
     default:
       return 'hw-badge-upcoming';
@@ -31,6 +35,10 @@ const getTieColors = (variant?: HardwareMember['badgeVariant']): { main: string;
       return { main: '#1791FF', light: '#5cb4ff' };
     case 'imaging':
       return { main: '#0e7490', light: '#22a6c4' };
+    case 'thermal':
+      return { main: '#c2410c', light: '#f97316' };
+    case 'robot':
+      return { main: '#334155', light: '#64748b' };
     default:
       return { main: '#475569', light: '#64748b' };
   }
@@ -138,7 +146,10 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
 
   const specialPhoto = getSpecialEquipmentPhoto(item);
   const hasSpecial = Boolean(specialPhoto && !specialError);
+  const wearSuit = item.wearSuit ?? true;
+  const photoFit = item.photoFit ?? 'contain';
   const popTilt = index % 2 === 0 ? '-2.4deg' : '2.4deg';
+  const staggerDelay = Math.min(index, 10) * 75;
 
   const renderPhotoContent = () => {
     if (item.isComingSoon) {
@@ -155,19 +166,25 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
       );
     }
 
+    const photoClass = wearSuit
+      ? `hw-photo-img hw-photo-head ${hasSpecial ? 'has-special' : ''}`
+      : `hw-photo-img ${
+          photoFit === 'cover' ? 'hw-photo-full-cover' : 'hw-photo-full-contain'
+        } ${hasSpecial ? 'has-special' : ''}`;
+
     return (
       <>
-        {/* Automatic tailored suit & tie portrait layer */}
-        <SuitOverlaySvg variant={item.badgeVariant} />
+        {/* Automatic tailored suit & tie portrait layer (skipped for full-body robots) */}
+        {wearSuit && <SuitOverlaySvg variant={item.badgeVariant} />}
 
-        {/* Hardware board perched cleanly as the studio portrait "head" */}
+        {/* Hardware board (head on suit) or full-body robot photo */}
         {!imageError && item.photo ? (
           <img
             src={assetUrl(item.photo)}
             alt={item.name}
             onError={() => setImageError(true)}
             loading="lazy"
-            className={`hw-photo-img hw-photo-head ${hasSpecial ? 'has-special' : ''}`}
+            className={photoClass}
           />
         ) : (
           <div className="hw-recruiting-head">
@@ -196,9 +213,9 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
       id={item.id}
       style={
         {
-          animationDelay: `${110 + index * 105}ms`,
+          animationDelay: `${95 + staggerDelay}ms`,
           '--pop-tilt': popTilt,
-          '--shimmer-delay': `${380 + index * 110}ms`,
+          '--shimmer-delay': `${340 + staggerDelay}ms`,
         } as React.CSSProperties
       }
     >
@@ -411,6 +428,33 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
           transform: translateY(-3px) scale(1.06) rotate(-1.5deg);
         }
 
+        /* Full-body robot framing (no suit) */
+        .hw-photo-full-contain {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          padding: 14px;
+          z-index: 2;
+          filter: drop-shadow(0 8px 12px rgba(15, 23, 42, 0.2));
+        }
+
+        .hw-photo-full-cover {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          z-index: 2;
+        }
+
+        .hw-member-card:hover .hw-photo-full-contain:not(.has-special),
+        .hw-member-card:hover .hw-photo-full-cover:not(.has-special) {
+          transform: scale(1.05);
+        }
+
         .hw-photo-special {
           position: absolute;
           inset: 0;
@@ -428,7 +472,9 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
           transform: scale(1);
         }
 
-        .hw-photo-container:hover .hw-photo-head.has-special {
+        .hw-photo-container:hover .hw-photo-head.has-special,
+        .hw-photo-container:hover .hw-photo-full-contain.has-special,
+        .hw-photo-container:hover .hw-photo-full-cover.has-special {
           opacity: 0;
         }
 
@@ -601,6 +647,14 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
 
         .hw-badge-imaging {
           background-color: #0e7490;
+        }
+
+        .hw-badge-thermal {
+          background-color: #c2410c;
+        }
+
+        .hw-badge-robot {
+          background-color: #334155;
         }
 
         .hw-badge-upcoming {
