@@ -1,13 +1,70 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { professor, postdocs, graduateStudents, undergraduateResearchers, alumni, internHistory } from '../data/people';
 import { PersonCard } from '../components/people/PersonCard';
 import { SectionHeader } from '../components/common/SectionHeader';
+import {
+  GraduateHeaderCrackOverlay,
+  HardwareEasterEggSection,
+} from '../components/people/HardwareEasterEggSection';
+
+const HARDWARE_UNLOCK_CLICKS = 7;
 
 interface PeoplePageProps {
   onNavigate: (page: string, anchorId?: string) => void;
 }
 
 export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
+  const [gradClicks, setGradClicks] = useState(0);
+  const [hardwareUnlocked, setHardwareUnlocked] = useState(false);
+  const [shakeTick, setShakeTick] = useState(0);
+  const resetTimerRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (resetTimerRef.current !== null) {
+        window.clearTimeout(resetTimerRef.current);
+      }
+    };
+  }, []);
+
+  const handleGraduateTitleClick = () => {
+    if (hardwareUnlocked) return;
+
+    if (resetTimerRef.current !== null) {
+      window.clearTimeout(resetTimerRef.current);
+    }
+
+    const next = gradClicks + 1;
+    if (next >= HARDWARE_UNLOCK_CLICKS) {
+      setGradClicks(0);
+      setHardwareUnlocked(true);
+      setShakeTick((prev) => prev + 1);
+      return;
+    }
+
+    setGradClicks(next);
+    if (next >= 3) {
+      setShakeTick((prev) => prev + 1);
+    }
+
+    // Heal cracks gently if user stops tapping for 10 seconds
+    resetTimerRef.current = window.setTimeout(() => {
+      setGradClicks(0);
+    }, 10000);
+  };
+
+  const handleRebuildWall = () => {
+    setHardwareUnlocked(false);
+    setGradClicks(0);
+  };
+
+  // Clicks 3..6 map to crack stages 1..4
+  const crackStage = !hardwareUnlocked && gradClicks >= 3 ? Math.min(gradClicks - 2, 4) : 0;
+  const headerShakeClass =
+    shakeTick > 0 && crackStage > 0
+      ? `grad-header-shake-${crackStage} ${shakeTick % 2 === 0 ? 'shake-a' : 'shake-b'}`
+      : '';
+
   return (
     <div className="people-page-root" style={{ paddingBottom: 'var(--space-section)' }}>
       {/* Header */}
@@ -56,6 +113,15 @@ export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
         <div className="container">
           <SectionHeader
             title="Graduate Students"
+            className={headerShakeClass}
+            onTitleClick={handleGraduateTitleClick}
+            titleStyle={{ userSelect: 'none', WebkitUserSelect: 'none' }}
+            overlay={
+              <GraduateHeaderCrackOverlay
+                stage={crackStage}
+                burstKey={shakeTick}
+              />
+            }
           />
 
           <div className="members-grid">
@@ -65,6 +131,11 @@ export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
           </div>
         </div>
       </section>
+
+      {/* Hidden Easter Egg: Hardware Members (unlocked after 7 clicks on Graduate Students) */}
+      {hardwareUnlocked && (
+        <HardwareEasterEggSection onClose={handleRebuildWall} />
+      )}
 
       {/* Undergraduate Researchers */}
       <section className="members-section">
@@ -128,6 +199,35 @@ export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
       <style>{`
         .members-section {
           padding-top: var(--space-2xl);
+        }
+
+        .grad-header-shake-1 { --shake-amp: 2px; }
+        .grad-header-shake-2 { --shake-amp: 4px; }
+        .grad-header-shake-3 { --shake-amp: 6px; }
+        .grad-header-shake-4 { --shake-amp: 9px; }
+
+        .shake-a {
+          animation: gradHeaderShakeA 0.28s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+        }
+
+        .shake-b {
+          animation: gradHeaderShakeB 0.28s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+        }
+
+        @keyframes gradHeaderShakeA {
+          0%, 100% { transform: translate3d(0, 0, 0); }
+          20% { transform: translate3d(calc(var(--shake-amp) * -1), 1px, 0); }
+          40% { transform: translate3d(var(--shake-amp), -1px, 0); }
+          60% { transform: translate3d(calc(var(--shake-amp) * -0.7), 1px, 0); }
+          80% { transform: translate3d(calc(var(--shake-amp) * 0.5), 0, 0); }
+        }
+
+        @keyframes gradHeaderShakeB {
+          0%, 100% { transform: translate3d(0, 0, 0); }
+          20% { transform: translate3d(var(--shake-amp), -1px, 0); }
+          40% { transform: translate3d(calc(var(--shake-amp) * -1), 1px, 0); }
+          60% { transform: translate3d(calc(var(--shake-amp) * 0.7), -1px, 0); }
+          80% { transform: translate3d(calc(var(--shake-amp) * -0.5), 0, 0); }
         }
 
         .members-grid {

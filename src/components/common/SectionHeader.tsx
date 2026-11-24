@@ -7,6 +7,10 @@ interface SectionHeaderProps {
   actionText?: string;
   onActionClick?: () => void;
   className?: string;
+  onTitleClick?: () => void;
+  titleClassName?: string;
+  titleStyle?: React.CSSProperties;
+  overlay?: React.ReactNode;
 }
 
 export const SectionHeader: React.FC<SectionHeaderProps> = ({
@@ -15,11 +19,16 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
   actionText,
   onActionClick,
   className = '',
+  onTitleClick,
+  titleClassName = '',
+  titleStyle,
+  overlay,
 }) => {
   return (
     <div
       className={`section-header-block ${className}`}
       style={{
+        position: 'relative',
         display: 'flex',
         flexDirection: 'column',
         gap: 'var(--space-2xs)',
@@ -37,7 +46,11 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
           gap: 'var(--space-sm)',
         }}
       >
-        <h2 className="h2-title">
+        <h2
+          className={`h2-title ${titleClassName}`.trim()}
+          onClick={onTitleClick}
+          style={titleStyle}
+        >
           {title}
         </h2>
 
@@ -72,6 +85,8 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
           {description}
         </p>
       )}
+
+      {overlay}
     </div>
   );
 };

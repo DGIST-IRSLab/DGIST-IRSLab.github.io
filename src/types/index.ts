@@ -79,6 +79,19 @@ export interface InternGroup {
   names: string[];
 }
 
+export interface HardwareMember {
+  id: string;
+  name: string;
+  role: string;
+  vendor?: string;
+  specs?: string;
+  photo?: string;
+  specialPhoto?: string;
+  url?: string;
+  badgeVariant?: 'radar' | 'capture' | 'imaging' | 'upcoming';
+  isComingSoon?: boolean;
+}
+
 export interface NewsItem {
   id: string;
   date: string; // "2026.08"
