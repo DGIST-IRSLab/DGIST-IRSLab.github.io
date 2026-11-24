@@ -18,7 +18,8 @@
  * - keywords (필수, string[]): 핵심 기술 키워드 배열 (카드 하단에 '#태그' 형태로 노출)
  * - image (필수, string): 대표 아키텍처/컨셉 다이어그램 이미지 경로 (예: '/images/research_1.jpg')
  * - imageCaption (필수, string): 다이어그램 하단 설명 캡션
- * - highlights (필수, string[]): 주요 연구 성과 및 핵심 포인트 (3~4개 글머리 기호)
+ * - highlights (필수, string[]): 주요 연구 성과 및 핵심 포인트 (3~5개 글머리 기호)
+ * - figures (선택, { label, image, alt? }[]): 하단 Figure 영역에 가로로 배치할 개별 그림 및 짧은 라벨 목록
  *
  * ----------------------------------------------------------------------------
  * ■ 2. researchProjects (연구 프로젝트 목록) 필드 설명
@@ -61,26 +62,55 @@ export const researchTopics: ResearchTopic[] = [
     title: "Wireless Foundation Models",
     shortTitle: "Wireless Foundation Models",
     question: "How to bridge physical wireless signals and multimodal foundation models?",
-    summary: "Developing novel learning representations, self-supervised learning, and cross-modal foundation models tailored to the physics of electromagnetic wave propagation.",
+    summary: "Developing wireless-native foundation models, radar-language pretraining, multimodal scene reasoning, RF digital twins, and complex-valued generative models.",
     description: [
       "Traditional computer vision models fail when naively applied to raw radio-frequency (RF) waveforms due to phase sensitivity, multi-path propagation, complex-number signal domains, and distinctive noise characteristics.",
-      "We design wireless-native foundation model paradigms—including physics-aware self-supervised learning, cross-modal wireless-language pretraining, and radar-grounded multimodal scene reasoning—that directly understand physical RF representations.",
-      "Our work extends to RF simulation and digital twin synthesis to bridge simulation and real-world domain shifts."
+      "We design wireless-native foundation model paradigms—spanning radar for autonomous driving, cross-modal radar-language pretraining, and radar-grounded multimodal scene reasoning—that directly understand physical RF representations.",
+      "Our work further extends to RF simulation, digital twin synthesis, and generative models for complex signals to bridge simulation and real-world domain shifts."
     ],
     keywords: [
-      "Physics-Aware Self-Supervised Learning",
-      "Cross-Modal Wireless-Language Pretraining",
+      "Radar for Autonomous Driving",
+      "Cross-Modal Radar-Language Pretraining",
       "Radar-Grounded Multimodal Scene Reasoning",
       "RF Simulation & Digital Twin Synthesis",
-      "Wireless Foundation Models"
+      "Generative Models for Complex Signals"
     ],
     image: "/images/research_1.png",
-    imageCaption: "Figure 1: Wireless Foundation Models framework integrating self-supervised learning, cross-modal pretraining, multimodal scene reasoning, and RF digital twin synthesis.",
+    imageCaption: "Figure 1: Wireless Foundation Models spanning autonomous driving radar, cross-modal radar-language pretraining, radar-grounded multimodal scene reasoning, and RF digital twin synthesis.",
     highlights: [
-      "Physics-Aware Self-Supervised Learning",
-      "Cross-Modal Wireless-Language Pretraining",
+      "Radar for Autonomous Driving",
+      "Cross-Modal Radar-Language Pretraining",
       "Radar-Grounded Multimodal Scene Reasoning",
-      "RF Simulation & Digital Twin Synthesis"
+      "RF Simulation & Digital Twin Synthesis",
+      "Generative Models for Complex Signals"
+    ],
+    figures: [
+      {
+        label: "Radar for Autonomous Driving",
+        image: "/images/research/wfm_autonomous_driving.png",
+        alt: "RadarMAE autonomous driving radar object detection results",
+        papers: [
+          { label: "RadarMAE, NeurIPS '26", url: "https://github.com/DGIST-IRSLab/RadarMAE" }
+        ]
+      },
+      {
+        label: "Radar-Language Pretraining",
+        image: "/images/research/wfm_radar_language.png",
+        alt: "Cross-modal radar-language pretraining attention maps (mmLIP)",
+        papers: [
+          { label: "mmLIP, NeurIPS '26" }
+        ]
+      },
+      {
+        label: "Multimodal Scene Reasoning",
+        image: "/images/research/wfm_scene_reasoning.png",
+        alt: "Radar-grounded multimodal scene reasoning examples (mmPointRet)"
+      },
+      {
+        label: "RF Digital Twin Synthesis",
+        image: "/images/research/wfm_digital_twin.png",
+        alt: "Real hovering spectrogram versus simulated RF digital twin spectrogram"
+      }
     ]
   },
   {
@@ -88,26 +118,57 @@ export const researchTopics: ResearchTopic[] = [
     title: "Beyond-Optical Perception Systems",
     shortTitle: "Beyond-Optical Perception",
     question: "How to perceive human dynamics and physical scenes beyond optical limits?",
-    summary: "Building contactless, non-line-of-sight sensing systems capable of penetrating occlusions, smoke, and darkness for human motion tracking, physiological monitoring, and robotics.",
+    summary: "Building contactless, non-line-of-sight sensing systems capable of penetrating occlusions, smoke, and darkness for 3D human motion, physiological monitoring, multimodal VLA robotics, and aerial target sensing.",
     description: [
       "Optical sensors struggle under environmental extremes such as dense clutter, smoke, fog, and complete darkness, while raising critical privacy concerns in personal environments.",
       "We develop contactless physiological sensing technologies that monitor respiration, cardiac dynamics, and SpO2 of freely moving subjects without requiring wearables.",
-      "In parallel, we engineer 3D human pose and motion estimation, see-through robotic manipulation, and micro-Doppler radar sensing for aerial and non-line-of-sight targets."
+      "In parallel, we engineer RF-based 3D human pose and motion estimation, multimodal vision-language-action (VLA) models for see-through manipulation, and micro-Doppler radar sensing for aerial targets."
     ],
     keywords: [
-      "3D Human Pose & Motion Estimation",
+      "RF-Based 3D Human Pose & Motion Estimation",
       "Contactless Vital Sign & SpO2 Monitoring",
-      "See-Through Robotic Manipulation",
-      "Micro-Doppler Aerial Target Sensing",
-      "Adverse Scenario Sensing"
+      "Multimodal Vision-Language-Action Models",
+      "Micro-Doppler Aerial Target Sensing"
     ],
     image: "/images/research_2.png",
-    imageCaption: "Figure 2: Beyond-optical perception systems overcoming visual occlusion and lighting constraints for 3D pose estimation, contactless vital monitoring, see-through robotics, and aerial target sensing.",
+    imageCaption: "Figure 2: Beyond-optical perception systems for RF-based 3D human pose estimation, contactless vital sign & SpO2 monitoring, multimodal VLA manipulation, and micro-Doppler aerial target sensing.",
     highlights: [
-      "3D Human Pose & Motion Estimation",
+      "RF-Based 3D Human Pose & Motion Estimation",
       "Contactless Vital Sign & SpO2 Monitoring",
-      "See-Through Robotic Manipulation",
+      "Multimodal Vision-Language-Action Models",
       "Micro-Doppler Aerial Target Sensing"
+    ],
+    figures: [
+      {
+        label: "RF-Based 3D Human Pose",
+        image: "/images/research/bop_3d_pose.png",
+        alt: "RF-based 3D human pose and motion estimation results",
+        papers: [
+          { label: "MVDoppler-Pose, CVPR '25", url: "https://mvdoppler-pose.github.io/" }
+        ]
+      },
+      {
+        label: "Contactless Vital & SpO2",
+        image: "/images/research/bop_vital_spo2.png",
+        alt: "Contactless respiration and SpO2 monitoring setup and waveforms",
+        papers: [
+          { label: "Fusion-Vital, AAAI '24", url: "https://ojs.aaai.org/index.php/AAAI/article/view/27898" },
+          { label: "ECCV '22", url: "https://www.ecva.net/papers/eccv_2022/papers_ECCV/papers/136970248.pdf" }
+        ]
+      },
+      {
+        label: "Multimodal VLA Models",
+        image: "/images/research/bop_vla_manipulation.png",
+        alt: "Multimodal vision-language-action see-through robotic manipulation"
+      },
+      {
+        label: "Micro-Doppler Aerial Sensing",
+        image: "/images/research/bop_micro_doppler.png",
+        alt: "Micro-Doppler aerial target sensing and physics-aware augmentation",
+        papers: [
+          { label: "IEEE TAES '21", url: "https://ieeexplore.ieee.org/document/9409707" }
+        ]
+      }
     ]
   },
   {
@@ -115,26 +176,43 @@ export const researchTopics: ResearchTopic[] = [
     title: "ISAC & AI Signal Processing",
     shortTitle: "ISAC & AI Signal Processing",
     question: "How to transform ubiquitous wireless signals into intelligent sensing systems?",
-    summary: "Transforming ubiquitous wireless signals into intelligent sensing systems through ambient network sensing, AI-driven signal reconstruction, and autonomous agentic processing pipelines.",
+    summary: "Transforming ubiquitous wireless signals into intelligent sensing systems through ambient network sensing, AI-driven complex I/Q reconstruction, and synthetic aperture radar super-resolution.",
     description: [
       "Ubiquitous communication signals offer rich opportunistic sensing modalities when paired with intelligent signal processing.",
-      "We investigate ambient Wi-Fi and cellular network sensing, deep learning-based virtual I/Q reconstruction, and signal super-resolution for high-precision radar imaging beyond hardware boundaries.",
-      "Furthermore, we develop autonomous signal processing agents that observe, interpret, and adaptively control sensing pipelines in complex RF environments."
+      "We investigate ambient Wi-Fi and cellular network sensing, AI-driven complex I/Q reconstruction from real-only front-ends, and synthetic aperture radar (SAR) super-resolution for high-clarity imaging beyond hardware boundaries."
     ],
     keywords: [
       "Ambient Wi-Fi & Cellular Network Sensing",
-      "AI-Driven Virtual I/Q Reconstruction",
-      "Signal Super-Resolution for Radar Imaging",
-      "Autonomous Signal Processing Agents",
+      "AI-Driven Complex I/Q Reconstruction",
+      "Synthetic Aperture Radar Super-Resolution",
       "Integrated Sensing & Communication (ISAC)"
     ],
     image: "/images/research_3.png",
-    imageCaption: "Figure 3: Integrated Sensing and Communication (ISAC) and AI signal processing transforming ambient wireless waveforms through virtual I/Q reconstruction, super-resolution, and autonomous DSP agents.",
+    imageCaption: "Figure 3: Integrated Sensing and Communication (ISAC) and AI signal processing covering ambient Wi-Fi & cellular sensing, complex I/Q reconstruction, and SAR super-resolution.",
     highlights: [
       "Ambient Wi-Fi & Cellular Network Sensing",
-      "AI-Driven Virtual I/Q Reconstruction",
-      "Signal Super-Resolution for Radar Imaging",
-      "Autonomous Signal Processing Agents"
+      "AI-Driven Complex I/Q Reconstruction",
+      "Synthetic Aperture Radar Super-Resolution"
+    ],
+    figures: [
+      {
+        label: "Ambient Wi-Fi & Cellular Sensing",
+        image: "/images/research/isac_ambient_wifi.png",
+        alt: "Ambient Wi-Fi passive radar heart-rate sensing spectrograms",
+        papers: [
+          { label: "IEEE IoTJ '26" }
+        ]
+      },
+      {
+        label: "Complex I/Q Reconstruction",
+        image: "/images/research/isac_complex_iq.png",
+        alt: "AI-driven complex I/Q reconstruction prototype and waveform results (DeepIQ)"
+      },
+      {
+        label: "SAR Super-Resolution",
+        image: "/images/research/isac_sar_super_resolution.png",
+        alt: "Synthetic aperture radar super-resolution and through-box mmWave imaging"
+      }
     ]
   }
 ];

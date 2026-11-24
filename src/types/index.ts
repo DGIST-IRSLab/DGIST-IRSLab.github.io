@@ -1,5 +1,17 @@
 export type ThemeMode = 'light' | 'dark' | 'system';
 
+export interface ResearchPaperRef {
+  label: string;
+  url?: string;
+}
+
+export interface ResearchFigure {
+  label: string;
+  image: string;
+  alt?: string;
+  papers?: ResearchPaperRef[];
+}
+
 export interface ResearchTopic {
   id: string;
   title: string;
@@ -11,6 +23,7 @@ export interface ResearchTopic {
   image: string;
   imageCaption: string;
   highlights: string[];
+  figures?: ResearchFigure[];
 }
 
 export interface ResearchProject {
