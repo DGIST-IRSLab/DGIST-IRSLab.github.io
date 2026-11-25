@@ -90,6 +90,7 @@
   --color-border: #e2e8f0;
   --color-border-subtle: #edf2f7;
   --color-border-strong: #cbd5e1;
+  --color-frame-hover-border: #475569;
 
   --color-accent: #1791FF;
   --color-accent-hover: #0077e6;
@@ -130,6 +131,7 @@
   --color-border: #1e293b;
   --color-border-subtle: #15202d;
   --color-border-strong: #334155;
+  --color-frame-hover-border: #64748b;
 
   --color-accent: #003BD1;
   --color-accent-hover: #1a56eb;

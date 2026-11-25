@@ -221,14 +221,4 @@ export const hardwareMembers: HardwareMember[] = [
     badgeVariant: 'robot',
     photoFit: 'contain',
   },
-
-  // Recruiting placeholder
-  {
-    id: 'hardware-tbd',
-    name: 'Now Recruiting',
-    role: 'New Gear Welcome',
-    vendor: '5V DC · Zero complaints',
-    badgeVariant: 'upcoming',
-    isComingSoon: true,
-  },
 ];

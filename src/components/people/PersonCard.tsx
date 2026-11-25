@@ -111,15 +111,9 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, onNavigate }) =>
       style={{
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: 'var(--color-surface)',
-        border: '1px solid var(--color-border)',
-        borderRadius: '12px',
-        padding: '8px 8px 12px 8px',
-        overflow: 'hidden',
-        transition: 'border-color var(--transition-fast)',
       }}
     >
-      {/* Photo Container with rounded corners and fixed academic aspect ratio (4:5) */}
+      {/* Sharp Rectangular Portrait Frame (MIT Editorial Style, 4:5 aspect ratio) */}
       <div
         className="person-photo-container"
         style={{
@@ -128,8 +122,6 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, onNavigate }) =>
           aspectRatio: '4 / 5',
           backgroundColor: 'var(--color-bg-tertiary)',
           overflow: 'hidden',
-          borderRadius: '8px',
-          border: '1px solid var(--color-border-subtle)',
         }}
       >
         {isPI && onNavigate ? (
@@ -167,11 +159,11 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, onNavigate }) =>
         )}
       </div>
 
-      {/* Info Body */}
+      {/* Unboxed Flush-Left Info Body */}
       <div
         className="person-card-body"
         style={{
-          padding: '10px 4px 2px 4px',
+          padding: '10px 0 2px 0',
           display: 'flex',
           flexDirection: 'column',
           flexGrow: 1,
@@ -362,30 +354,25 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, onNavigate }) =>
 
       <style>{`
         .person-academic-card {
-          padding: 8px 8px 12px 8px !important;
-          border-radius: 10px !important;
-          transition: transform 0.3s ease, box-shadow 0.3s ease !important;
-        }
-        @media (hover: hover) and (pointer: fine) {
-          .person-academic-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--card-hover-shadow);
-          }
+          background: transparent;
+          border: none;
+          border-radius: 0 !important;
+          padding: 0 !important;
         }
         .person-photo-container {
-          border-radius: 8px;
+          border-radius: 0 !important;
           overflow: hidden;
-          border: 1px solid var(--color-border-subtle);
+          border: 1px solid var(--color-border);
         }
         .person-photo-img {
-          transition: opacity 0.35s ease, transform 0.35s ease;
+          transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .person-photo-standard {
           opacity: 1;
           z-index: 1;
         }
-        .person-photo-container:hover .person-photo-standard:not(.has-special) {
-          transform: scale(1.03);
+        .person-academic-card:hover .person-photo-standard:not(.has-special) {
+          transform: scale(1.025);
         }
         .person-photo-special {
           opacity: 0;
@@ -489,26 +476,30 @@ export const PersonCard: React.FC<PersonCardProps> = ({ person, onNavigate }) =>
         }
 
         @media (max-width: 640px) {
-          .person-academic-card {
-            padding: 6px 6px 10px 6px !important;
-            border-radius: 10px !important;
-          }
           .person-photo-container {
-            border-radius: 6px !important;
-            max-height: 220px;
+            max-height: 200px;
           }
           .person-card-body {
-            padding: 6px 2px 2px 2px !important;
-            gap: 4px !important;
+            padding: 6px 0 1px 0 !important;
+            gap: 3px !important;
           }
           .person-role-badge {
-            font-size: 0.7rem !important;
+            font-size: 0.62rem !important;
+            padding: 0.3em 0.5em !important;
           }
           .member-name-heading {
-            font-size: 13.5px !important;
+            font-size: 12px !important;
+            line-height: 1.25 !important;
+          }
+          .person-alumni-dest-simple {
+            font-size: 0.72rem !important;
+            line-height: 1.3 !important;
+          }
+          .person-email-text {
+            display: none !important;
           }
           .person-card-links {
-            gap: 5px !important;
+            gap: 6px !important;
           }
         }
       `}</style>

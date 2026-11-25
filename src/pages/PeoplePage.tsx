@@ -153,8 +153,8 @@ export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
           }
 
           .members-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-            gap: 12px !important;
+            grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+            gap: 8px !important;
           }
 
           .intern-row {
@@ -168,9 +168,9 @@ export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
           }
         }
 
-        @media (max-width: 360px) {
+        @media (max-width: 380px) {
           .members-grid {
-            gap: 8px !important;
+            gap: 6px !important;
           }
         }
       `}</style>

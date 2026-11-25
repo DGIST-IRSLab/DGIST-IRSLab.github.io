@@ -210,7 +210,7 @@ export const Footer: React.FC<FooterProps> = () => {
           .footer-layout {
             flex-direction: column-reverse;
             align-items: flex-start;
-            gap: 24px;
+            gap: 22px;
           }
 
           .footer-right-col {
@@ -218,7 +218,80 @@ export const Footer: React.FC<FooterProps> = () => {
           }
 
           .footer-lab-logo-img {
-            height: 72px;
+            height: 64px;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .site-footer {
+            padding-top: 1.8rem;
+            padding-bottom: 1.8rem;
+          }
+
+          .footer-layout {
+            gap: 16px;
+          }
+
+          .footer-left-col {
+            gap: 12px;
+          }
+
+          .footer-inst-logos {
+            gap: 12px;
+          }
+
+          .footer-logo-wrap {
+            height: 26px;
+          }
+
+          .footer-logo-divider {
+            height: 16px;
+          }
+
+          .dgist-logo {
+            height: 16px;
+            max-width: 105px;
+          }
+
+          .eecs-logo {
+            height: 24px;
+            max-width: 120px;
+          }
+
+          .footer-lab-logo-img {
+            height: 50px;
+            max-width: 195px;
+          }
+
+          .footer-address-line,
+          .footer-copyright-line {
+            font-size: 0.82rem;
+            line-height: 1.55;
+          }
+        }
+
+        @media (max-width: 400px) {
+          .footer-inst-logos {
+            gap: 10px;
+          }
+
+          .footer-logo-wrap {
+            height: 22px;
+          }
+
+          .dgist-logo {
+            height: 14px;
+            max-width: 92px;
+          }
+
+          .eecs-logo {
+            height: 21px;
+            max-width: 105px;
+          }
+
+          .footer-lab-logo-img {
+            height: 42px;
+            max-width: 165px;
           }
         }
       `}</style>

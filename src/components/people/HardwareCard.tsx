@@ -95,7 +95,6 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
         {
           animationDelay: `${95 + staggerDelay}ms`,
           '--pop-tilt': popTilt,
-          '--shimmer-delay': `${340 + staggerDelay}ms`,
         } as React.CSSProperties
       }
     >
@@ -168,34 +167,14 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
           position: relative;
           display: flex;
           flex-direction: column;
-          background-color: var(--color-surface);
-          border: 1px solid var(--color-border);
-          border-radius: 10px;
-          padding: 8px 8px 12px 8px;
-          overflow: hidden;
+          background: transparent;
+          border: none;
+          border-radius: 0;
+          padding: 0;
+          overflow: visible;
           opacity: 0;
           transform: translateY(38px) scale(0.6);
           animation: hwPpyororongPop 0.68s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-          transition: transform 0.3s ease, box-shadow 0.3s ease, border-color var(--transition-fast);
-        }
-
-        /* One-shot magical light shimmer sweep right after card pops in */
-        .hw-member-card::after {
-          content: '';
-          position: absolute;
-          inset: -40% -80%;
-          background: linear-gradient(
-            115deg,
-            transparent 40%,
-            rgba(71, 255, 255, 0.24) 48%,
-            rgba(255, 255, 255, 0.45) 51%,
-            rgba(23, 145, 255, 0.2) 55%,
-            transparent 63%
-          );
-          transform: translateX(-100%);
-          pointer-events: none;
-          z-index: 6;
-          animation: hwCardSheen 0.85s ease-out var(--shimmer-delay, 380ms) forwards;
         }
 
         .hw-member-card-upcoming {
@@ -222,41 +201,15 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
           }
         }
 
-        @keyframes hwCardSheen {
-          0% {
-            transform: translateX(-85%);
-            opacity: 0;
-          }
-          20% {
-            opacity: 1;
-          }
-          100% {
-            transform: translateX(85%);
-            opacity: 0;
-          }
-        }
-
-        @media (hover: hover) and (pointer: fine) {
-          .hw-member-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--card-hover-shadow);
-          }
-        }
-
-        /* Studio ID Portrait Backdrop */
+        /* Clean White Studio Backdrop (Sharp Editorial Frame) */
         .hw-photo-container {
           position: relative;
           width: 100%;
           aspect-ratio: 4 / 5;
-          background: radial-gradient(
-            ellipse 85% 68% at 50% 34%,
-            #f6f9fc 0%,
-            #e5ecf5 58%,
-            #d4dfec 100%
-          );
+          background: #ffffff;
           overflow: hidden;
-          border-radius: 8px;
-          border: 1px solid var(--color-border-subtle);
+          border-radius: 0;
+          border: 1px solid var(--color-border);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -292,7 +245,6 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
           object-fit: contain;
           padding: 16px;
           z-index: 2;
-          filter: drop-shadow(0 10px 14px rgba(15, 23, 42, 0.2));
         }
 
         .hw-photo-full-cover {
@@ -335,19 +287,19 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
         /* Subtle bottom spec strip on hover */
         .hw-hover-specs {
           position: absolute;
-          left: 6px;
-          right: 6px;
-          bottom: 6px;
+          left: 0;
+          right: 0;
+          bottom: 0;
           z-index: 4;
           display: flex;
           flex-direction: column;
           gap: 3px;
-          padding: 7px 9px;
-          border-radius: 6px;
-          background: rgba(15, 23, 42, 0.84);
+          padding: 7px 10px;
+          border-radius: 0;
+          background: rgba(15, 23, 42, 0.86);
           backdrop-filter: blur(6px);
           -webkit-backdrop-filter: blur(6px);
-          border: 1px solid rgba(255, 255, 255, 0.14);
+          border-top: 1px solid rgba(255, 255, 255, 0.14);
           pointer-events: none;
           opacity: 0;
           transform: translateY(6px);
@@ -422,7 +374,7 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
         }
 
         .hw-card-body {
-          padding: 10px 4px 2px 4px;
+          padding: 10px 0 2px 0;
           display: flex;
           flex-direction: column;
           flex-grow: 1;
@@ -526,29 +478,30 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
         }
 
         @media (max-width: 640px) {
-          .hw-member-card {
-            padding: 6px 6px 10px 6px;
-          }
           .hw-photo-container {
-            border-radius: 6px;
-            max-height: 220px;
+            max-height: 200px;
           }
           .hw-recruiting-circle {
-            width: 52px;
-            height: 52px;
+            width: 42px;
+            height: 42px;
           }
           .hw-recruiting-tagline {
-            font-size: 0.68rem;
+            font-size: 0.62rem;
           }
           .hw-card-body {
-            padding: 6px 2px 2px 2px;
-            gap: 4px;
+            padding: 6px 0 1px 0;
+            gap: 3px;
           }
           .hw-role-badge {
-            font-size: 0.7rem;
+            font-size: 0.62rem;
+            padding: 0.3em 0.5em;
           }
           .hw-name-heading {
-            font-size: 13.5px;
+            font-size: 12px;
+            line-height: 1.25;
+          }
+          .hw-meta-vendor {
+            font-size: 0.68rem;
           }
         }
       `}</style>

@@ -208,10 +208,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         .hero-explore-btn {
           display: inline-flex;
           align-items: center;
-          gap: 10px;
-          padding: 12px 22px;
+          gap: 9px;
+          padding: 7px 18px;
+          line-height: 1.25;
           font-family: var(--font-sans);
-          font-size: 0.95rem;
+          font-size: 0.92rem;
           font-weight: 600;
           color: #ffffff;
           background-color: #111827;
@@ -270,9 +271,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           gap: 16px;
           max-width: 100%;
           margin: 0 auto;
-          padding: 0;
           background-color: transparent;
           border: none;
+        }
+
+        .admissions-text-wrap {
+          width: 100%;
+          padding-inline: clamp(8px, 3vw, 24px);
         }
 
         .admissions-title {

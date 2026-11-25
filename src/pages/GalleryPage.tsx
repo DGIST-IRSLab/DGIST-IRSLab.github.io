@@ -67,7 +67,7 @@ export const GalleryPage: React.FC = () => {
                   }}
                   aria-label={`Open album: ${album.title} (${album.date})`}
                 >
-                  {/* Card Cover Thumbnail */}
+                  {/* Sharp Rectangular Photograph Frame (MIT Editorial Style) */}
                   <div className="gallery-card-thumb-wrap">
                     {coverImage ? (
                       <img
@@ -90,15 +90,15 @@ export const GalleryPage: React.FC = () => {
                         <Images size={28} opacity={0.4} />
                       </div>
                     )}
-                    <div className="gallery-card-count-badge">
-                      <Images size={13} />
-                      <span>{album.images.length}</span>
-                    </div>
                   </div>
 
-                  {/* Card Body: Date and Title */}
+                  {/* Unboxed Flush-Left Caption: Metadata + Title */}
                   <div className="gallery-card-body">
-                    <span className="gallery-card-date">{album.date}</span>
+                    <div className="gallery-card-meta">
+                      <span className="gallery-card-date">{album.date}</span>
+                      <span className="gallery-card-meta-sep" aria-hidden="true">&middot;</span>
+                      <span className="gallery-card-count">{album.images.length} photos</span>
+                    </div>
                     <h3 className="gallery-card-title">{album.title}</h3>
                   </div>
                 </div>

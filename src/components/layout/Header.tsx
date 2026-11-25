@@ -63,7 +63,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
         {/* Left: Affiliation & Identity (DGIST | IRS Lab) */}
         <div className="header-brand-group">
           <a
-            href="https://www.dgist.ac.kr"
+            href="https://www.dgist.ac.kr/kor/index.do"
             target="_blank"
             rel="noreferrer"
             className="header-dgist-link"
@@ -120,7 +120,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
         </nav>
 
         {/* Right Utilities: GitHub & Theme Toggle */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)' }}>
+        <div className="header-utils-group">
 
           {/* GitHub Organization Link */}
           <a
@@ -246,9 +246,8 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
           flex-shrink: 0;
         }
         .header-lab-logo {
-          height: clamp(17.5px, 2.333vw, 21.14px);
+          height: clamp(13.78px, 1.76vw, 16.63px);
           width: auto;
-          max-width: 138.6px;
           object-fit: contain;
           display: block;
           transition: opacity var(--transition-fast), transform var(--transition-fast);
@@ -375,6 +374,13 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
         }
 
 
+        .header-utils-group {
+          display: flex;
+          align-items: center;
+          gap: var(--space-md);
+          flex-shrink: 0;
+        }
+
         .header-github-btn:hover {
           color: var(--color-text-primary) !important;
           transform: translateY(-1.5px) scale(1.08);
@@ -382,16 +388,36 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, onNavigate }) => {
 
         @media (max-width: 640px) {
           .header-brand-group {
-            gap: 8px;
-          }
-          .header-lab-logo {
-            height: 20px;
+            gap: 7px;
           }
           .header-dgist-logo {
-            height: 15px;
+            height: 13px;
+          }
+          .header-lab-logo {
+            height: 12.35px;
           }
           .header-brand-divider {
-            height: 14px;
+            height: 12px;
+          }
+          .header-utils-group {
+            gap: 8px;
+          }
+        }
+        @media (max-width: 400px) {
+          .header-brand-group {
+            gap: 5px;
+          }
+          .header-dgist-logo {
+            height: 11.5px;
+          }
+          .header-lab-logo {
+            height: 10.93px;
+          }
+          .header-brand-divider {
+            height: 11px;
+          }
+          .header-utils-group {
+            gap: 4px;
           }
         }
         @media (min-width: 860px) {
