@@ -6,7 +6,6 @@ import { assetUrl } from '../../utils/asset';
 
 interface HardwareCardProps {
   item: HardwareMember;
-  index?: number;
 }
 
 const getBadgeClass = (variant?: HardwareMember['badgeVariant']): string => {
@@ -29,15 +28,13 @@ const getBadgeClass = (variant?: HardwareMember['badgeVariant']): string => {
   }
 };
 
-export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) => {
+export const HardwareCard: React.FC<HardwareCardProps> = ({ item }) => {
   const [imageError, setImageError] = useState(false);
   const [specialError, setSpecialError] = useState(false);
 
   const specialPhoto = getSpecialEquipmentPhoto(item);
   const hasSpecial = Boolean(specialPhoto && !specialError);
   const photoFit = item.photoFit ?? 'contain';
-  const popTilt = index % 2 === 0 ? '-2.4deg' : '2.4deg';
-  const staggerDelay = Math.min(index, 10) * 75;
 
   const renderPhotoContent = () => {
     if (item.isComingSoon) {
@@ -91,12 +88,6 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
     <div
       className={`hw-member-card ${item.isComingSoon ? 'hw-member-card-upcoming' : ''}`}
       id={item.id}
-      style={
-        {
-          animationDelay: `${95 + staggerDelay}ms`,
-          '--pop-tilt': popTilt,
-        } as React.CSSProperties
-      }
     >
       {/* Photo Container matching PersonCard 4:5 aspect ratio */}
       <div
@@ -172,33 +163,12 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
           border-radius: 0;
           padding: 0;
           overflow: visible;
-          opacity: 0;
-          transform: translateY(38px) scale(0.6);
-          animation: hwPpyororongPop 0.68s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
         }
 
         .hw-member-card-upcoming {
           border-style: dashed;
           border-color: var(--color-border-strong);
           background-color: var(--color-bg-secondary);
-        }
-
-        @keyframes hwPpyororongPop {
-          0% {
-            opacity: 0;
-            transform: translateY(42px) scale(0.55) rotate(var(--pop-tilt, -2deg));
-          }
-          58% {
-            opacity: 1;
-            transform: translateY(-9px) scale(1.06) rotate(calc(var(--pop-tilt, -2deg) * -0.35));
-          }
-          78% {
-            transform: translateY(3px) scale(0.985) rotate(0deg);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0) scale(1) rotate(0deg);
-          }
         }
 
         /* Clean White Studio Backdrop (Sharp Editorial Frame) */

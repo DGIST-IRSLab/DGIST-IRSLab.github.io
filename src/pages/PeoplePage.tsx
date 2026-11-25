@@ -126,7 +126,7 @@ export const PeoplePage: React.FC<PeoplePageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* Hidden Easter Egg: Fast / strong scroll at bottom pops in Hardware Members */}
+      {/* Hardware Members */}
       <HardwareEasterEggSection />
 
       <style>{`
