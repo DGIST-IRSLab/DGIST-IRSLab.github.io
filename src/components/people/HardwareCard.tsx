@@ -17,6 +17,8 @@ const getBadgeClass = (variant?: HardwareMember['badgeVariant']): string => {
       return 'hw-badge-capture';
     case 'imaging':
       return 'hw-badge-imaging';
+    case 'sdr':
+      return 'hw-badge-sdr';
     case 'thermal':
       return 'hw-badge-thermal';
     case 'robot':
@@ -27,126 +29,12 @@ const getBadgeClass = (variant?: HardwareMember['badgeVariant']): string => {
   }
 };
 
-const getTieColors = (variant?: HardwareMember['badgeVariant']): { main: string; light: string } => {
-  switch (variant) {
-    case 'radar':
-      return { main: '#003BD1', light: '#3b6ef5' };
-    case 'capture':
-      return { main: '#1791FF', light: '#5cb4ff' };
-    case 'imaging':
-      return { main: '#0e7490', light: '#22a6c4' };
-    case 'thermal':
-      return { main: '#c2410c', light: '#f97316' };
-    case 'robot':
-      return { main: '#334155', light: '#64748b' };
-    default:
-      return { main: '#475569', light: '#64748b' };
-  }
-};
-
-/**
- * Automatic studio ID suit & tie SVG layer (no skin/neck — clean executive silhouette
- * so any transparent hardware PNG automatically wears a tailored suit & matching tie).
- */
-const SuitOverlaySvg: React.FC<{ variant?: HardwareMember['badgeVariant'] }> = ({ variant }) => {
-  const tie = getTieColors(variant);
-  const gradId = `suit-grad-${variant || 'default'}`;
-
-  return (
-    <svg
-      viewBox="0 0 200 250"
-      preserveAspectRatio="xMidYMax slice"
-      className="hw-suit-svg"
-      aria-hidden="true"
-    >
-      <defs>
-        <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#26344d" />
-          <stop offset="55%" stopColor="#192336" />
-          <stop offset="100%" stopColor="#111827" />
-        </linearGradient>
-      </defs>
-
-      {/* Soft contact shadow right below the hardware "head" */}
-      <ellipse cx="100" cy="166" rx="34" ry="8" fill="rgba(15, 23, 42, 0.18)" />
-
-      {/* Suit jacket torso & tailored shoulders */}
-      <path
-        d="M 10 252 L 18 194 C 22 178 44 170 72 164 L 100 164 L 128 164 C 156 170 178 178 182 194 L 190 252 Z"
-        fill={`url(#${gradId})`}
-      />
-
-      {/* Crisp white dress shirt V-front */}
-      <polygon points="75,163 100,232 125,163" fill="#f8fafc" />
-      <polygon points="75,163 100,232 100,163" fill="#eef2f6" opacity="0.55" />
-
-      {/* Matching necktie (knot + tapered blade + subtle silk highlight) */}
-      <polygon points="94,166 106,166 103,178 97,178" fill={tie.main} />
-      <polygon points="97,178 103,178 108,224 100,234 92,224" fill={tie.main} />
-      <polygon points="98,179 101,179 103,221 100,228 97,221" fill={tie.light} opacity="0.45" />
-
-      {/* Crisp folded white shirt collar wings */}
-      <polygon points="74,162 94,166 86,184 70,174" fill="#ffffff" stroke="#d5dde8" strokeWidth="0.9" />
-      <polygon points="126,162 106,166 114,184 130,174" fill="#ffffff" stroke="#d5dde8" strokeWidth="0.9" />
-
-      {/* Tailored jacket lapels */}
-      <polygon
-        points="73,163 60,185 71,191 65,199 99,235 80,186"
-        fill="#2e3f5c"
-        stroke="#131c2e"
-        strokeWidth="0.8"
-      />
-      <polygon
-        points="127,163 140,185 129,191 135,199 101,235 120,186"
-        fill="#2e3f5c"
-        stroke="#131c2e"
-        strokeWidth="0.8"
-      />
-
-      {/* Tiny matching pocket square on jacket breast pocket */}
-      <polygon points="134,218 143,210 149,215 153,211 157,218" fill={tie.light} opacity="0.92" />
-      <line x1="132" y1="218" x2="159" y2="218" stroke="#0f172a" strokeWidth="1.6" />
-
-      {/* Subtle jacket center button */}
-      <circle cx="100" cy="242" r="2.6" fill="#0f172a" stroke="#3b4c68" strokeWidth="0.8" />
-    </svg>
-  );
-};
-
-/**
- * Empty dashed suit silhouette for the "Now Recruiting" hardware card.
- */
-const EmptySuitSilhouetteSvg: React.FC = () => (
-  <svg
-    viewBox="0 0 200 250"
-    preserveAspectRatio="xMidYMax slice"
-    className="hw-suit-svg"
-    aria-hidden="true"
-  >
-    <path
-      d="M 14 252 L 22 196 C 26 180 46 172 74 166 L 100 176 L 126 166 C 154 172 174 180 178 196 L 186 252"
-      fill="rgba(148, 163, 184, 0.14)"
-      stroke="var(--color-border-strong)"
-      strokeWidth="2"
-      strokeDasharray="5 4"
-    />
-    <polygon
-      points="95,176 105,176 108,224 100,233 92,224"
-      fill="none"
-      stroke="var(--color-border-strong)"
-      strokeWidth="1.6"
-      strokeDasharray="4 3"
-    />
-  </svg>
-);
-
 export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) => {
   const [imageError, setImageError] = useState(false);
   const [specialError, setSpecialError] = useState(false);
 
   const specialPhoto = getSpecialEquipmentPhoto(item);
   const hasSpecial = Boolean(specialPhoto && !specialError);
-  const wearSuit = item.wearSuit ?? true;
   const photoFit = item.photoFit ?? 'contain';
   const popTilt = index % 2 === 0 ? '-2.4deg' : '2.4deg';
   const staggerDelay = Math.min(index, 10) * 75;
@@ -154,30 +42,22 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
   const renderPhotoContent = () => {
     if (item.isComingSoon) {
       return (
-        <>
-          <EmptySuitSilhouetteSvg />
-          <div className="hw-recruiting-head">
-            <div className="hw-recruiting-circle">
-              <Radio size={26} strokeWidth={1.7} />
-            </div>
-            <span className="hw-recruiting-tagline">We welcome new gear!</span>
+        <div className="hw-recruiting-head">
+          <div className="hw-recruiting-circle">
+            <Radio size={26} strokeWidth={1.7} />
           </div>
-        </>
+          <span className="hw-recruiting-tagline">We welcome new gear!</span>
+        </div>
       );
     }
 
-    const photoClass = wearSuit
-      ? `hw-photo-img hw-photo-head ${hasSpecial ? 'has-special' : ''}`
-      : `hw-photo-img ${
-          photoFit === 'cover' ? 'hw-photo-full-cover' : 'hw-photo-full-contain'
-        } ${hasSpecial ? 'has-special' : ''}`;
+    const photoClass = `hw-photo-img ${
+      photoFit === 'cover' ? 'hw-photo-full-cover' : 'hw-photo-full-contain'
+    } ${hasSpecial ? 'has-special' : ''}`;
 
     return (
       <>
-        {/* Automatic tailored suit & tie portrait layer (skipped for full-body robots) */}
-        {wearSuit && <SuitOverlaySvg variant={item.badgeVariant} />}
-
-        {/* Hardware board (head on suit) or full-body robot photo */}
+        {/* Hardware product photo */}
         {!imageError && item.photo ? (
           <img
             src={assetUrl(item.photo)}
@@ -398,46 +278,21 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
           cursor: pointer;
         }
 
-        .hw-suit-svg {
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
-          z-index: 1;
-          pointer-events: none;
-        }
-
         .hw-photo-img {
           display: block;
           transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Hardware board perched as the studio portrait head above the suit collar */
-        .hw-photo-head {
-          position: absolute;
-          top: 9%;
-          left: 11%;
-          width: 78%;
-          height: 55%;
-          object-fit: contain;
-          z-index: 2;
-          filter: drop-shadow(0 8px 10px rgba(15, 23, 42, 0.24));
-        }
-
-        .hw-member-card:hover .hw-photo-head:not(.has-special) {
-          transform: translateY(-3px) scale(1.06) rotate(-1.5deg);
-        }
-
-        /* Full-body robot framing (no suit) */
+        /* Clean studio product framing */
         .hw-photo-full-contain {
           position: absolute;
           inset: 0;
           width: 100%;
           height: 100%;
           object-fit: contain;
-          padding: 14px;
+          padding: 16px;
           z-index: 2;
-          filter: drop-shadow(0 8px 12px rgba(15, 23, 42, 0.2));
+          filter: drop-shadow(0 10px 14px rgba(15, 23, 42, 0.2));
         }
 
         .hw-photo-full-cover {
@@ -472,7 +327,6 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
           transform: scale(1);
         }
 
-        .hw-photo-container:hover .hw-photo-head.has-special,
         .hw-photo-container:hover .hw-photo-full-contain.has-special,
         .hw-photo-container:hover .hw-photo-full-cover.has-special {
           opacity: 0;
@@ -526,18 +380,16 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
           text-align: right;
         }
 
-        /* Now Recruiting head placeholder above dashed suit */
+        /* Now Recruiting centered placeholder */
         .hw-recruiting-head {
           position: absolute;
-          top: 12%;
-          left: 0;
-          right: 0;
+          inset: 0;
           z-index: 2;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          gap: 8px;
+          gap: 10px;
           color: var(--color-text-primary);
           text-align: center;
           padding: 0 12px;
@@ -647,6 +499,10 @@ export const HardwareCard: React.FC<HardwareCardProps> = ({ item, index = 0 }) =
 
         .hw-badge-imaging {
           background-color: #0e7490;
+        }
+
+        .hw-badge-sdr {
+          background-color: #4338ca;
         }
 
         .hw-badge-thermal {

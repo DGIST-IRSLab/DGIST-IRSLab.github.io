@@ -106,8 +106,7 @@ export interface HardwareMember {
   photo?: string;
   specialPhoto?: string;
   url?: string;
-  badgeVariant?: 'radar' | 'capture' | 'imaging' | 'thermal' | 'robot' | 'upcoming';
-  wearSuit?: boolean;
+  badgeVariant?: 'radar' | 'capture' | 'imaging' | 'sdr' | 'thermal' | 'robot' | 'upcoming';
   photoFit?: 'contain' | 'cover';
   isComingSoon?: boolean;
 }

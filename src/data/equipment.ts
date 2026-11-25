@@ -8,8 +8,8 @@
  * ■ 새로운 장비 추가 방법
  * 1. 장비 이미지를 `public/images/equipment/` 폴더에 추가합니다.
  *    (예: `public/images/equipment/my-radar.png`)
- *    - 투명 배경 PNG를 넣으면 기본적으로 정장 증명사진 프레임(`wearSuit: true`)이 자동 적용됩니다.
- *    - 로봇 등 전신 장비는 `wearSuit: false`로 설정하면 정장 없이 깔끔하게 표시됩니다.
+ *    - 투명 배경 PNG는 기본적으로 여백을 두고 깔끔하게 중앙 배치(`photoFit: 'contain'`)됩니다.
+ *    - 배경이 포함된 일반 사진은 `photoFit: 'cover'`로 설정하면 프레임에 꽉 차게 표시됩니다.
  * 2. (선택) 호버 시 보여줄 재미있는 실전 셋업 사진이 있다면
  *    `public/images/equipment/special/` 폴더에 장비 id와 동일한 파일명으로 넣습니다.
  * 3. 아래 `hardwareMembers` 배열의 'hardware-tbd' 항목 위에 새 객체를 추가합니다.
@@ -68,7 +68,6 @@ export const hardwareMembers: HardwareMember[] = [
     photo: '/images/equipment/ti-awr2944.png',
     url: 'https://www.ti.com/tool/AWR2944EVM',
     badgeVariant: 'radar',
-    wearSuit: true,
   },
   {
     id: 'ti-awr2544lop',
@@ -82,7 +81,6 @@ export const hardwareMembers: HardwareMember[] = [
     photo: '/images/equipment/awr2544lop.png',
     url: 'https://www.ti.com/tool/AWR2544LOPEVM',
     badgeVariant: 'radar',
-    wearSuit: true,
   },
   {
     id: 'ti-iwr1443boost',
@@ -96,7 +94,6 @@ export const hardwareMembers: HardwareMember[] = [
     photo: '/images/equipment/iwr1443boost.png',
     url: 'https://www.ti.com/tool/IWR1443BOOST',
     badgeVariant: 'radar',
-    wearSuit: true,
   },
   {
     id: 'dca1000',
@@ -110,7 +107,6 @@ export const hardwareMembers: HardwareMember[] = [
     photo: '/images/equipment/dca1000.png',
     url: 'https://www.ti.com/tool/DCA1000EVM',
     badgeVariant: 'capture',
-    wearSuit: true,
   },
   {
     id: 'imagevk-74',
@@ -124,7 +120,34 @@ export const hardwareMembers: HardwareMember[] = [
     photo: '/images/equipment/imagevk-74.png',
     url: 'https://www.minicircuits.com/WebStore/dashboard.html?model=IMAGEVK-74',
     badgeVariant: 'imaging',
-    wearSuit: true,
+  },
+
+  // Software-Defined Radios (SDR)
+  {
+    id: 'ettus-usrp-x410',
+    name: 'Ettus USRP X410',
+    role: 'SDR Transceiver',
+    vendor: 'Ettus Research / NI',
+    specs: [
+      { label: 'Freq Range', value: '1 MHz–7.2 GHz' },
+      { label: 'RF / BW', value: '4TX · 4RX (400 MHz)' },
+    ],
+    photo: '/images/equipment/ettus-usrp-x410.png',
+    url: 'https://www.ettus.com/all-products/usrp-x410/',
+    badgeVariant: 'sdr',
+  },
+  {
+    id: 'ni-usrp-2921',
+    name: 'NI USRP-2921',
+    role: 'SDR Transceiver',
+    vendor: 'National Instruments',
+    specs: [
+      { label: 'Freq Bands', value: '2.4–2.5 · 4.9–5.9 GHz' },
+      { label: 'Bandwidth', value: '20 MHz · 1GbE' },
+    ],
+    photo: '/images/equipment/ni-usrp-2921.png',
+    url: 'https://www.ni.com/en/shop/hardware/software-defined-radios/model-usrp-2921',
+    badgeVariant: 'sdr',
   },
 
   // Thermal / IR Cameras
@@ -140,7 +163,6 @@ export const hardwareMembers: HardwareMember[] = [
     photo: '/images/equipment/flir-boson-320.png',
     url: 'https://oem.flir.com/products/boson/',
     badgeVariant: 'thermal',
-    wearSuit: true,
   },
   {
     id: 'thermoeye-tmc256e',
@@ -154,10 +176,9 @@ export const hardwareMembers: HardwareMember[] = [
     photo: '/images/equipment/thermoeye-tmc256e.png',
     url: 'https://www.thermoeye.co.kr/solutions/thermalcamera.html',
     badgeVariant: 'thermal',
-    wearSuit: true,
   },
 
-  // Robotics (no suit — full-body robot frames)
+  // Robotics
   {
     id: 'rb5-850b',
     name: 'RB5-850B',
@@ -170,7 +191,6 @@ export const hardwareMembers: HardwareMember[] = [
     photo: '/images/equipment/rb5-850b.png',
     url: 'https://www.rainbow-robotics.com/rb5',
     badgeVariant: 'robot',
-    wearSuit: false,
     photoFit: 'contain',
   },
   {
@@ -185,7 +205,6 @@ export const hardwareMembers: HardwareMember[] = [
     photo: '/images/equipment/so-101.webp',
     url: 'https://github.com/TheRobotStudio/SO-ARM100',
     badgeVariant: 'robot',
-    wearSuit: false,
     photoFit: 'cover',
   },
   {
@@ -200,7 +219,6 @@ export const hardwareMembers: HardwareMember[] = [
     photo: '/images/equipment/lekiwi.png',
     url: 'https://github.com/SIGRobotics-UIUC/LeKiwi',
     badgeVariant: 'robot',
-    wearSuit: false,
     photoFit: 'contain',
   },
 
