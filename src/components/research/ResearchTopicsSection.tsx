@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { researchTopics } from '../../data/research';
+import type { ResearchTopic } from '../../types';
 import { assetUrl } from '../../utils/asset';
+import { ResearchFigureModal } from './ResearchFigureModal';
 
 export const ResearchTopicsSection: React.FC = () => {
+  const [modalState, setModalState] = useState<{
+    topic: ResearchTopic;
+    figureIndex: number;
+  } | null>(null);
+
+  const handleCloseModal = useCallback(() => {
+    setModalState(null);
+  }, []);
+
+  const handleSelectFigure = useCallback((index: number) => {
+    setModalState((prev) => (prev ? { ...prev, figureIndex: index } : null));
+  }, []);
+
   return (
     <section className="research-topics-section">
       <div className="topics-section-header">
@@ -13,11 +28,13 @@ export const ResearchTopicsSection: React.FC = () => {
       </div>
 
       <div className="research-topics-list">
-        {researchTopics.map((topic, index) => {
+        {researchTopics.map((topic) => {
+          const figCount = topic.figures?.length ?? 0;
+
           return (
-            <React.Fragment key={topic.id}>
-              {index > 0 && <hr className="research-topic-divider" />}
-              <article id={topic.id} className="research-topic-item">
+            <article key={topic.id} id={topic.id} className="research-topic-item">
+              {/* Unchanged Explanation Text Block */}
+              <div className="topic-text-content">
                 {/* Topic Title */}
                 <h3 className="topic-title">{topic.title}</h3>
 
@@ -32,83 +49,96 @@ export const ResearchTopicsSection: React.FC = () => {
                     </li>
                   ))}
                 </ul>
+              </div>
 
-                {/* Clean Unified Figure Strip (Academic Paper Style, No Cards) */}
-                {topic.figures && topic.figures.length > 0 ? (
-                  <div className="topic-diagram-container">
-                    <div
-                      className={`topic-figure-strip cols-${Math.min(topic.figures.length, 4)}`}
-                    >
-                      {topic.figures.map((fig, figIdx) => (
-                        <figure key={figIdx} className="topic-subfig">
-                          <a
-                            href={assetUrl(fig.image)}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="topic-subfig-link"
-                            title={`Click to view full-resolution: ${fig.label}`}
+              {/* Clean Unified Figure Container */}
+              {topic.figures && figCount > 0 ? (
+                <div className="topic-diagram-container">
+                  <div
+                    className={`topic-figure-strip count-${Math.min(figCount, 4)}${
+                      figCount % 2 === 1 && figCount > 1 ? ' has-odd-span' : ''
+                    }`}
+                  >
+                    {topic.figures.map((fig, figIdx) => (
+                      <figure key={figIdx} className="topic-subfig">
+                        <button
+                          type="button"
+                          onClick={() => setModalState({ topic, figureIndex: figIdx })}
+                          className="topic-subfig-trigger"
+                          aria-label={`Open figure details: ${fig.label}`}
+                        >
+                          <img
+                            src={assetUrl(fig.image)}
+                            alt={fig.alt || fig.label}
+                            className="topic-subfig-image"
+                            loading="lazy"
+                          />
+                        </button>
+                        <figcaption className="topic-subfig-caption">
+                          <button
+                            type="button"
+                            onClick={() => setModalState({ topic, figureIndex: figIdx })}
+                            className="topic-subfig-label-btn"
                           >
-                            <img
-                              src={assetUrl(fig.image)}
-                              alt={fig.alt || fig.label}
-                              className="topic-subfig-image"
-                              loading="lazy"
-                            />
-                          </a>
-                          <figcaption className="topic-subfig-caption">
-                            <span className="topic-subfig-label">{fig.label}</span>
-                            {fig.papers && fig.papers.length > 0 && (
-                              <span className="topic-subfig-papers">
-                                {fig.papers.map((paper, pIdx) => (
-                                  <React.Fragment key={pIdx}>
-                                    {pIdx > 0 && <span className="topic-subfig-sep"> · </span>}
-                                    {paper.url ? (
-                                      <a
-                                        href={paper.url}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        className="topic-subfig-paper-link"
-                                      >
-                                        <span>{paper.label}</span>
-                                        <ArrowUpRight size={11} className="topic-subfig-paper-icon" />
-                                      </a>
-                                    ) : (
-                                      <span className="topic-subfig-paper-text">{paper.label}</span>
-                                    )}
-                                  </React.Fragment>
-                                ))}
-                              </span>
-                            )}
-                          </figcaption>
-                        </figure>
-                      ))}
-                    </div>
+                            {fig.label}
+                          </button>
+                          {fig.papers && fig.papers.length > 0 && (
+                            <span className="topic-subfig-papers">
+                              {fig.papers.map((paper, pIdx) => (
+                                <React.Fragment key={pIdx}>
+                                  {pIdx > 0 && <span className="topic-subfig-sep"> · </span>}
+                                  {paper.url ? (
+                                    <a
+                                      href={paper.url}
+                                      target="_blank"
+                                      rel="noreferrer"
+                                      className="topic-subfig-paper-link"
+                                    >
+                                      <span>{paper.label}</span>
+                                      <ArrowUpRight size={11} className="topic-subfig-paper-icon" />
+                                    </a>
+                                  ) : (
+                                    <span className="topic-subfig-paper-text">{paper.label}</span>
+                                  )}
+                                </React.Fragment>
+                              ))}
+                            </span>
+                          )}
+                        </figcaption>
+                      </figure>
+                    ))}
                   </div>
-                ) : (
-                  topic.image && (
-                    <div className="topic-diagram-container">
-                      <a
-                        href={assetUrl(topic.image)}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="topic-diagram-link"
-                        title={`Click to view full-resolution ${topic.title} diagram`}
-                      >
-                        <img
-                          src={assetUrl(topic.image)}
-                          alt={`${topic.title} framework diagram`}
-                          className="topic-diagram-image"
-                          loading="lazy"
-                        />
-                      </a>
-                    </div>
-                  )
-                )}
-              </article>
-            </React.Fragment>
+                </div>
+              ) : (
+                topic.image && (
+                  <div className="topic-diagram-container">
+                    <button
+                      type="button"
+                      onClick={() => setModalState({ topic, figureIndex: 0 })}
+                      className="topic-diagram-trigger"
+                      aria-label={`Open ${topic.title} diagram`}
+                    >
+                      <img
+                        src={assetUrl(topic.image)}
+                        alt={`${topic.title} framework diagram`}
+                        className="topic-diagram-image"
+                        loading="lazy"
+                      />
+                    </button>
+                  </div>
+                )
+              )}
+            </article>
           );
         })}
       </div>
+
+      <ResearchFigureModal
+        topic={modalState?.topic ?? null}
+        figureIndex={modalState?.figureIndex ?? 0}
+        onClose={handleCloseModal}
+        onSelectFigure={handleSelectFigure}
+      />
 
       <style>{`
         .research-topics-section {
@@ -131,30 +161,57 @@ export const ResearchTopicsSection: React.FC = () => {
           line-height: 1.25;
         }
 
+        /* 3-Column Simultaneous Research Topics Layout (Pure Editorial, No Card Hover Shadow) */
         .research-topics-list {
-          display: flex;
-          flex-direction: column;
+          --topics-col-gap: clamp(28px, 3vw, 44px);
+          position: relative;
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          grid-template-rows: auto 1fr;
+          column-gap: var(--topics-col-gap);
+          align-items: stretch;
         }
 
-        .research-topic-divider {
-          border: none;
-          border-top: 1px solid var(--color-border);
-          margin: 0.75rem 0;
-          opacity: 0.6;
+        /* Subtle vertical column dividers between the 3 topics */
+        .research-topics-list::before,
+        .research-topics-list::after {
+          content: '';
+          position: absolute;
+          top: 0.25rem;
+          bottom: 0.25rem;
+          width: 1px;
+          background-color: var(--color-border);
+          opacity: 0.7;
+          pointer-events: none;
+        }
+
+        .research-topics-list::before {
+          left: calc(33.3333% - var(--topics-col-gap) / 6);
+        }
+
+        .research-topics-list::after {
+          left: calc(66.6667% + var(--topics-col-gap) / 6);
         }
 
         .research-topic-item {
-          padding: 1.25rem 1.25rem;
-          margin: 0.75rem -1.25rem;
-          background-color: var(--color-bg);
-          border-radius: 10px;
+          display: flex;
+          flex-direction: column;
+          padding: 0.35rem 0;
+          background: transparent;
           position: relative;
-          transition: box-shadow 0.3s ease, transform 0.3s ease;
         }
 
-        .research-topic-item:hover {
-          box-shadow: var(--card-hover-shadow);
-          transform: translateY(-3px);
+        @supports (grid-template-rows: subgrid) {
+          .research-topic-item {
+            display: grid;
+            grid-row: span 2;
+            grid-template-rows: subgrid;
+          }
+        }
+
+        .topic-text-content {
+          display: flex;
+          flex-direction: column;
         }
 
         .topic-title {
@@ -180,7 +237,7 @@ export const ResearchTopicsSection: React.FC = () => {
         .topic-bullet-list {
           list-style: disc;
           padding-left: 22px;
-          margin: 0 0 28px 0;
+          margin: 0 0 22px 0;
           display: flex;
           flex-direction: column;
           gap: 6px;
@@ -195,33 +252,30 @@ export const ResearchTopicsSection: React.FC = () => {
 
         .topic-diagram-container {
           width: 100%;
+          height: 100%;
           background-color: #ffffff;
           border: 1px solid var(--color-border);
           border-radius: 6px;
           overflow: hidden;
-          padding: clamp(16px, 2.2vw, 26px);
+          padding: 14px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
         }
 
         .topic-figure-strip {
           display: grid;
-          gap: clamp(18px, 2.2vw, 28px);
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 16px 12px;
           align-items: stretch;
         }
 
-        .topic-figure-strip.cols-4 {
-          grid-template-columns: repeat(4, minmax(0, 1fr));
-        }
-
-        .topic-figure-strip.cols-3 {
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
-
-        .topic-figure-strip.cols-2 {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
-        .topic-figure-strip.cols-1 {
+        .topic-figure-strip.count-1 {
           grid-template-columns: 1fr;
+        }
+
+        .topic-figure-strip.has-odd-span .topic-subfig:last-child {
+          grid-column: 1 / -1;
         }
 
         .topic-subfig {
@@ -232,51 +286,64 @@ export const ResearchTopicsSection: React.FC = () => {
           height: 100%;
         }
 
-        .topic-subfig-link {
+        .topic-subfig-trigger {
           flex: 1;
           width: 100%;
+          min-height: 118px;
+          padding: 0;
+          background: transparent;
+          border: none;
           display: flex;
           align-items: center;
           justify-content: center;
-          cursor: zoom-in;
-          text-decoration: none;
+          cursor: pointer;
+        }
+
+        .topic-subfig-trigger:hover .topic-subfig-image {
+          opacity: 0.86;
         }
 
         .topic-subfig-image {
           width: 100%;
-          max-height: 255px;
+          max-height: 122px;
           height: auto;
           display: block;
           object-fit: contain;
           transition: opacity 0.18s ease;
         }
 
-        .topic-figure-strip.cols-3 .topic-subfig-image {
-          max-height: 290px;
-        }
-
-        .topic-subfig-link:hover .topic-subfig-image {
-          opacity: 0.88;
+        .topic-figure-strip.has-odd-span .topic-subfig:last-child .topic-subfig-image {
+          max-height: 132px;
         }
 
         .topic-subfig-caption {
-          margin-top: 12px;
-          min-height: 40px;
+          margin-top: 8px;
+          min-height: 36px;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: flex-start;
-          gap: 3px;
+          gap: 2px;
           text-align: center;
         }
 
-        .topic-subfig-label {
+        .topic-subfig-label-btn {
+          background: none;
+          border: none;
+          padding: 0;
           font-family: var(--font-sans);
-          font-size: 0.88rem;
+          font-size: 0.8rem;
           font-weight: 600;
           color: #1e293b;
-          line-height: 1.35;
+          line-height: 1.3;
           letter-spacing: -0.01em;
+          cursor: pointer;
+          text-align: center;
+          transition: color 0.15s ease;
+        }
+
+        .topic-subfig-label-btn:hover {
+          color: #0052cc;
         }
 
         .topic-subfig-papers {
@@ -286,8 +353,8 @@ export const ResearchTopicsSection: React.FC = () => {
           justify-content: center;
           gap: 2px;
           font-family: var(--font-sans);
-          font-size: 0.77rem;
-          line-height: 1.35;
+          font-size: 0.72rem;
+          line-height: 1.3;
           color: #64748b;
         }
 
@@ -321,10 +388,13 @@ export const ResearchTopicsSection: React.FC = () => {
           font-weight: 500;
         }
 
-        .topic-diagram-link {
+        .topic-diagram-trigger {
           display: block;
           width: 100%;
-          cursor: zoom-in;
+          padding: 0;
+          background: none;
+          border: none;
+          cursor: pointer;
         }
 
         .topic-diagram-image {
@@ -334,25 +404,72 @@ export const ResearchTopicsSection: React.FC = () => {
           object-fit: contain;
         }
 
-        @media (max-width: 960px) {
-          .topic-figure-strip.cols-4 {
+        /* Responsive fallback for narrow tablets & mobile */
+        @media (max-width: 980px) {
+          .research-topics-list {
+            grid-template-columns: 1fr;
+            grid-template-rows: none;
+            row-gap: 0;
+          }
+
+          .research-topics-list::before,
+          .research-topics-list::after {
+            display: none;
+          }
+
+          .research-topic-item {
+            display: flex;
+            grid-row: auto;
+            padding: 1.35rem 0;
+            border-bottom: 1px solid var(--color-border);
+          }
+
+          .research-topic-item:last-child {
+            border-bottom: none;
+          }
+
+          .topic-diagram-container {
+            height: auto;
+            padding: clamp(14px, 2vw, 22px);
+          }
+
+          .topic-figure-strip.count-4 {
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            row-gap: 28px;
+          }
+
+          .topic-figure-strip.count-3 {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+          }
+
+          .topic-figure-strip.count-3.has-odd-span .topic-subfig:last-child {
+            grid-column: auto;
+          }
+
+          .topic-subfig-image,
+          .topic-figure-strip.has-odd-span .topic-subfig:last-child .topic-subfig-image {
+            max-height: 190px;
           }
         }
 
-        @media (max-width: 720px) {
-          .topic-figure-strip.cols-3 {
-            grid-template-columns: 1fr;
-            row-gap: 28px;
+        @media (max-width: 640px) {
+          .topic-figure-strip.count-3 {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+
+          .topic-figure-strip.count-3.has-odd-span .topic-subfig:last-child {
+            grid-column: 1 / -1;
           }
         }
 
-        @media (max-width: 560px) {
-          .topic-figure-strip.cols-4,
-          .topic-figure-strip.cols-2 {
+        @media (max-width: 460px) {
+          .topic-figure-strip.count-4,
+          .topic-figure-strip.count-3,
+          .topic-figure-strip.count-2 {
             grid-template-columns: 1fr;
-            row-gap: 28px;
+          }
+
+          .topic-figure-strip.count-3.has-odd-span .topic-subfig:last-child {
+            grid-column: auto;
           }
         }
       `}</style>

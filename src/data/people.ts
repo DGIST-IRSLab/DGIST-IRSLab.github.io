@@ -268,18 +268,6 @@ export const graduateStudents: Person[] = [
     specialPhotoObjectPosition: "center 45%",
     email: "seungeun.kang@dgist.ac.kr",
     researchInterests: ["Language Models for Radar", "Sensor Fusion"]
-  },
-  {
-    id: "minjae-kim",
-    name: "Minjae Kim",
-    nameKr: "김민재",
-    role: "MS Student",
-    title: "M.S. Student",
-    photo: "/images/teampic/standard/student_KMJ.jpg",
-    specialPhoto: "/images/teampic/special/student_KMJ.jpg",
-    specialPhotoObjectPosition: "center 35%",
-    email: "minjaek@dgist.ac.kr",
-    researchInterests: ["5G Integrated Sensing and Communication"]
   }
 ];
 

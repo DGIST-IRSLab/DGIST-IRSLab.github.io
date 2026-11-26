@@ -19,7 +19,7 @@
  * - image (필수, string): 대표 아키텍처/컨셉 다이어그램 이미지 경로 (예: '/images/research_1.jpg')
  * - imageCaption (필수, string): 다이어그램 하단 설명 캡션
  * - highlights (필수, string[]): 주요 연구 성과 및 핵심 포인트 (3~5개 글머리 기호)
- * - figures (선택, { label, image, alt? }[]): 하단 Figure 영역에 가로로 배치할 개별 그림 및 짧은 라벨 목록
+ * - figures (선택, { label, image, alt?, description?, papers? }[]): 하단 Figure 영역에 배치할 개별 그림, 라벨, 클릭 시 모달에 표시할 간단한 설명문 및 논문 링크 목록
  *
  * ----------------------------------------------------------------------------
  * ■ 2. researchProjects (연구 프로젝트 목록) 필드 설명
@@ -89,6 +89,8 @@ export const researchTopics: ResearchTopic[] = [
         label: "Radar for Autonomous Driving",
         image: "/images/research/wfm_autonomous_driving.png",
         alt: "RadarMAE autonomous driving radar object detection results",
+        description:
+          "Physics-guided masked autoencoding (RadarMAE) injects radar inductive biases into self-supervised pretraining, achieving robust 3D/BEV object detection and high data efficiency under night, fog, and severe glare.",
         papers: [
           { label: "RadarMAE, NeurIPS '26", url: "https://github.com/DGIST-IRSLab/RadarMAE" }
         ]
@@ -97,6 +99,8 @@ export const researchTopics: ResearchTopic[] = [
         label: "Radar-Language Pretraining",
         image: "/images/research/wfm_radar_language.png",
         alt: "Cross-modal radar-language pretraining attention maps (mmLIP)",
+        description:
+          "Interactive mmWave radar-language pretraining (mmLIP) aligns sparse radar returns with natural language via point confidence, enabling fine-grained spatial-semantic grounding of human actions.",
         papers: [
           { label: "mmLIP, NeurIPS '26" }
         ]
@@ -104,12 +108,16 @@ export const researchTopics: ResearchTopic[] = [
       {
         label: "Multimodal Scene Reasoning",
         image: "/images/research/wfm_scene_reasoning.png",
-        alt: "Radar-grounded multimodal scene reasoning examples (mmPointRet)"
+        alt: "Radar-grounded multimodal scene reasoning examples (mmPointRet)",
+        description:
+          "Grounding multimodal foundation models with retrieved mmWave radar clusters (mmPointRet) resolves visual depth ambiguity for accurate physical 3D scene reasoning in autonomous driving."
       },
       {
         label: "RF Digital Twin Synthesis",
         image: "/images/research/wfm_digital_twin.png",
-        alt: "Real hovering spectrogram versus simulated RF digital twin spectrogram"
+        alt: "Real hovering spectrogram versus simulated RF digital twin spectrogram",
+        description:
+          "Physics-faithful RF digital twin synthesis generates realistic micro-Doppler spectrograms closely matching real-world radar measurements to bridge the sim-to-real gap for wireless AI."
       }
     ]
   },
@@ -143,6 +151,8 @@ export const researchTopics: ResearchTopic[] = [
         label: "RF-Based 3D Human Pose",
         image: "/images/research/bop_3d_pose.png",
         alt: "RF-based 3D human pose and motion estimation results",
+        description:
+          "Multi-view mmWave Doppler sensing (MVDoppler-Pose) reconstructs accurate 3D human walking skeletons at long distances, overcoming complete darkness, self-occlusion, and visual degradation.",
         papers: [
           { label: "MVDoppler-Pose, CVPR '25", url: "https://mvdoppler-pose.github.io/" }
         ]
@@ -151,6 +161,8 @@ export const researchTopics: ResearchTopic[] = [
         label: "Contactless Vital & SpO2",
         image: "/images/research/bop_vital_spo2.png",
         alt: "Contactless respiration and SpO2 monitoring setup and waveforms",
+        description:
+          "Multi-sensor RF-optical fusion monitors respiration waveforms, cardiac dynamics, and blood oxygen saturation (SpO2) completely contactlessly without wearable sensors.",
         papers: [
           { label: "Fusion-Vital, AAAI '24", url: "https://ojs.aaai.org/index.php/AAAI/article/view/27898" },
           { label: "ECCV '22", url: "https://www.ecva.net/papers/eccv_2022/papers_ECCV/papers/136970248.pdf" }
@@ -159,12 +171,16 @@ export const researchTopics: ResearchTopic[] = [
       {
         label: "Multimodal VLA Models",
         image: "/images/research/bop_vla_manipulation.png",
-        alt: "Multimodal vision-language-action see-through robotic manipulation"
+        alt: "Multimodal vision-language-action see-through robotic manipulation",
+        description:
+          "Integrating mmWave radar perception with Vision-Language-Action (VLA) robotics enables see-through sensing of occluded objects—such as locating a hidden target inside an opaque cup—for non-line-of-sight manipulation."
       },
       {
         label: "Micro-Doppler Aerial Sensing",
         image: "/images/research/bop_micro_doppler.png",
         alt: "Micro-Doppler aerial target sensing and physics-aware augmentation",
+        description:
+          "Micro-Doppler signature analysis and physics-aware spectrogram augmentation generalize aerial target recognition across diverse flight regimes from limited hovering radar measurements.",
         papers: [
           { label: "IEEE TAES '21", url: "https://ieeexplore.ieee.org/document/9409707" }
         ]
@@ -199,6 +215,8 @@ export const researchTopics: ResearchTopic[] = [
         label: "Ambient Wi-Fi & Cellular Sensing",
         image: "/images/research/isac_ambient_wifi.png",
         alt: "Ambient Wi-Fi passive radar heart-rate sensing spectrograms",
+        description:
+          "Opportunistic passive sensing extracts subtle physiological micro-motions—such as continuous heart rate trajectories—directly from ambient Wi-Fi and cellular communication signals.",
         papers: [
           { label: "IEEE IoTJ '26" }
         ]
@@ -206,12 +224,16 @@ export const researchTopics: ResearchTopic[] = [
       {
         label: "Complex I/Q Reconstruction",
         image: "/images/research/isac_complex_iq.png",
-        alt: "AI-driven complex I/Q reconstruction prototype and waveform results (DeepIQ)"
+        alt: "AI-driven complex I/Q reconstruction prototype and waveform results (DeepIQ)",
+        description:
+          "AI-driven complex signal reconstruction (DeepIQ) recovers full-phase I/Q waveforms from low-cost real-only radar front-ends on edge hardware, eliminating null-point phase distortion."
       },
       {
         label: "SAR Super-Resolution",
         image: "/images/research/isac_sar_super_resolution.png",
-        alt: "Synthetic aperture radar super-resolution and through-box mmWave imaging"
+        alt: "Synthetic aperture radar super-resolution and through-box mmWave imaging",
+        description:
+          "AI-enhanced synthetic aperture radar (SAR) super-resolution sharpens spatial resolution beyond hardware aperture limits, enabling high-clarity through-barrier mmWave imaging of concealed objects."
       }
     ]
   }

@@ -9,6 +9,7 @@ export interface ResearchFigure {
   label: string;
   image: string;
   alt?: string;
+  description?: string;
   papers?: ResearchPaperRef[];
 }
 
