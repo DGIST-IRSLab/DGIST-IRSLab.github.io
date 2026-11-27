@@ -3,6 +3,9 @@ import { ArrowRight } from 'lucide-react';
 
 interface SectionHeaderProps {
   title: string;
+  titleSuffix?: React.ReactNode;
+  onTitleClick?: (e: React.MouseEvent<HTMLHeadingElement>) => void;
+  titleClassName?: string;
   description?: string;
   actionText?: string;
   onActionClick?: () => void;
@@ -11,6 +14,9 @@ interface SectionHeaderProps {
 
 export const SectionHeader: React.FC<SectionHeaderProps> = ({
   title,
+  titleSuffix,
+  onTitleClick,
+  titleClassName = '',
   description,
   actionText,
   onActionClick,
@@ -37,8 +43,24 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
           gap: 'var(--space-sm)',
         }}
       >
-        <h2 className="h2-title">
-          {title}
+        <h2
+          className={`h2-title ${titleClassName}`.trim()}
+          onClick={onTitleClick}
+          style={
+            onTitleClick
+              ? {
+                  cursor: 'pointer',
+                  userSelect: 'none',
+                  WebkitUserSelect: 'none',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                }
+              : undefined
+          }
+        >
+          <span>{title}</span>
+          {titleSuffix}
         </h2>
 
         {actionText && onActionClick && (

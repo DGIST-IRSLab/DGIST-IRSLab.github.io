@@ -4,6 +4,7 @@ import { researchTopics } from '../../data/research';
 import type { ResearchTopic } from '../../types';
 import { assetUrl } from '../../utils/asset';
 import { ResearchFigureModal } from './ResearchFigureModal';
+import { LeKiwiMascot } from './LeKiwiMascot';
 
 export const ResearchTopicsSection: React.FC = () => {
   const [modalState, setModalState] = useState<{
@@ -25,6 +26,7 @@ export const ResearchTopicsSection: React.FC = () => {
         <h2 className="explore-heading">
           Explore our research
         </h2>
+        <LeKiwiMascot />
       </div>
 
       <div className="research-topics-list">
@@ -146,9 +148,11 @@ export const ResearchTopicsSection: React.FC = () => {
         }
 
         .topics-section-header {
+          position: relative;
           margin-bottom: clamp(16px, 2.5vw, 24px);
           padding-bottom: 16px;
           border-bottom: 1px solid var(--color-border);
+          overflow: visible;
         }
 
         .explore-heading {

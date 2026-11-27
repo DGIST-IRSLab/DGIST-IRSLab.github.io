@@ -47,6 +47,8 @@ export interface Publication {
   venueShort?: string;
   year: number;
   type: 'conference' | 'journal' | 'workshop';
+  mainFigure?: string;
+  mainFigureAlt?: string;
   isTopConf?: boolean;
   isSCI?: boolean;
   isOral?: boolean;
@@ -109,6 +111,7 @@ export interface HardwareMember {
   url?: string;
   badgeVariant?: 'radar' | 'capture' | 'imaging' | 'sdr' | 'thermal' | 'robot' | 'upcoming';
   photoFit?: 'contain' | 'cover';
+  wearSuit?: boolean;
   isComingSoon?: boolean;
 }
 

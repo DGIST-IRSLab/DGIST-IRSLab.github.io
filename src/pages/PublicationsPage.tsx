@@ -18,6 +18,21 @@ export const PublicationsPage: React.FC<PublicationsPageProps> = ({ onOpenBibtex
   const intlCount = useMemo(() => publications.filter((p) => !p.isDomestic).length, []);
   const domCount = useMemo(() => publications.filter((p) => p.isDomestic).length, []);
 
+  // Canonical reverse-chronological numbering within the active tab
+  const pubNumberMap = useMemo(() => {
+    const tabPubs = publications.filter((pub) => {
+      if (activeTab === 'international' && pub.isDomestic) return false;
+      if (activeTab === 'domestic' && !pub.isDomestic) return false;
+      return true;
+    });
+    const total = tabPubs.length;
+    const map = new Map<string, number>();
+    tabPubs.forEach((pub, idx) => {
+      map.set(pub.id, total - idx);
+    });
+    return map;
+  }, [activeTab]);
+
   // Filtered publications
   const filteredPubs = useMemo(() => {
     return publications.filter((pub) => {
@@ -230,53 +245,19 @@ export const PublicationsPage: React.FC<PublicationsPageProps> = ({ onOpenBibtex
             </div>
           ) : (
             groupedByYear.map(({ year, items }) => (
-              <div
-                key={year}
-                style={{
-                  marginBottom: 'var(--space-2xl)',
-                  display: 'grid',
-                  gridTemplateColumns: '90px 1fr',
-                  gap: 'var(--space-xl)',
-                  alignItems: 'start',
-                }}
-                className="year-group-row"
-              >
-                {/* Year Marker */}
-                <div
-                  style={{
-                    position: 'sticky',
-                    top: 'calc(var(--header-height) + 60px)',
-                    paddingTop: 'var(--space-md)',
-                  }}
-                >
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-heading)',
-                      fontSize: 'var(--text-h2)',
-                      fontWeight: 700,
-                      color: 'var(--color-accent)',
-                      display: 'block',
-                    }}
-                  >
-                    {year}
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: 'var(--font-sans)',
-                      fontSize: 'var(--text-body)',
-                      color: 'var(--color-text-primary)',
-                    }}
-                  >
-                    {items.length} {items.length === 1 ? 'paper' : 'papers'}
-                  </span>
+              <div key={year} className="pub-year-section">
+                {/* Full-width Top Year Header in Black */}
+                <div className="pub-year-header">
+                  <h2 className="pub-year-heading">{year}</h2>
                 </div>
 
                 {/* List of Publication Items */}
-                <div>
+                <div className="pub-year-list">
                   {items.map((pub) => (
                     <PublicationItem
                       key={pub.id}
                       publication={pub}
+                      number={pubNumberMap.get(pub.id)}
                       onOpenBibtex={onOpenBibtex}
                     />
                   ))}
@@ -287,16 +268,28 @@ export const PublicationsPage: React.FC<PublicationsPageProps> = ({ onOpenBibtex
         </div>
 
         <style>{`
-          @media (max-width: 768px) {
-            .year-group-row {
-              grid-template-columns: 1fr !important;
-              gap: var(--space-xs) !important;
-            }
-            .year-group-row > div:first-of-type {
-              position: static !important;
-              border-bottom: 2px solid var(--color-accent);
-              padding-bottom: 4px;
-            }
+          .pub-year-section {
+            margin-bottom: var(--space-2xl);
+          }
+
+          .pub-year-section:last-child {
+            margin-bottom: 0;
+          }
+
+          .pub-year-header {
+            padding-bottom: 10px;
+            margin-bottom: var(--space-xs);
+            border-bottom: 1.5px solid var(--color-border-strong);
+          }
+
+          .pub-year-heading {
+            margin: 0;
+            font-family: var(--font-heading);
+            font-size: var(--text-h1);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.25;
+            color: var(--color-text-primary);
           }
         `}</style>
       </section>

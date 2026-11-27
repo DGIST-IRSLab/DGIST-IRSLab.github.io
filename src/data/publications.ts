@@ -24,6 +24,8 @@
  * - isTopConf (선택, boolean): CVPR, NeurIPS, ICML 등 최우수(Top-tier) 학회 여부 (강조 배지 부착)
  * - isSCI (선택, boolean): SCI/SCIE 등재 저널 여부 (강조 배지 부착)
  * - isDomestic (선택, boolean): 한국전자파학회 등 국내 학술대회/학술지 여부
+ * - mainFigure (선택, string): 논문 좌측 MainFigure 대표 이미지 경로 (예: '/images/pubpic/hong2026sample.png')
+ *     (지정하지 않아도 `public/images/pubpic/<논문id>.png` 등 동일 ID 파일이 있으면 자동 매칭됩니다)
  * - pdfUrl (선택, string): 논문 PDF 파일 다운로드 또는 arXiv/IEEE Xplore 링크 URL
  * - projectUrl (선택, string): 프로젝트 공식 웹사이트/데모 페이지 URL
  * - codeUrl (선택, string): 오픈소스 GitHub 코드 저장소 URL
@@ -58,6 +60,30 @@
 
 import type { Publication } from '../types';
 
+// Auto-discover optional publication main figures placed in public/images/pubpic/<publication.id>.<ext>
+const pubFigureGlobs = import.meta.glob(
+  '/public/images/pubpic/**/*.{png,jpg,jpeg,webp,gif,svg,PNG,JPG,JPEG,WEBP,GIF,SVG}'
+);
+
+const pubFigureMap = new Map<string, string>();
+for (const rawPath of Object.keys(pubFigureGlobs)) {
+  const filename = rawPath.split('/').pop();
+  if (filename) {
+    const webPath = rawPath.replace(/^\/public/, '');
+    pubFigureMap.set(filename.toLowerCase(), webPath);
+    const baseWithoutExt = filename.replace(/\.[^/.]+$/, '').toLowerCase();
+    pubFigureMap.set(baseWithoutExt, webPath);
+  }
+}
+
+export function getPublicationMainFigure(pub: Publication): string | undefined {
+  if (pub.mainFigure) return pub.mainFigure;
+  if (pub.id && pubFigureMap.has(pub.id.toLowerCase())) {
+    return pubFigureMap.get(pub.id.toLowerCase());
+  }
+  return undefined;
+}
+
 export const publications: Publication[] = [
     {
     id: "park2026passivewifi",
@@ -90,6 +116,7 @@ export const publications: Publication[] = [
     venueShort : "NeurIPS",
     year : 2026,
     type : "conference",
+    mainFigure: "/images/pubpic/2026/RadarMAE_NIPS.webp",
     isTopConf : true,
     codeUrl: "https://github.com/DGIST-IRSLab/RadarMAE",
   },
@@ -102,6 +129,7 @@ export const publications: Publication[] = [
     venueShort: "CVPR Findings",
     year: 2026,
     type: "conference",
+    mainFigure: "/images/pubpic/2026/Can_LanguageModels_Understand_CVPR.png",
     isTopConf: true,
     pdfUrl:"https://arxiv.org/pdf/2608.14179v1",
     bibtex: `@inproceedings{shin2026mmwave,
@@ -120,6 +148,7 @@ export const publications: Publication[] = [
     venueShort: "WACV",
     year: 2026,
     type: "conference",
+    mainFigure: "/images/pubpic/2026/RefineVQA_WACV.png",
     isTopConf:true,
     pdfUrl: "https://openaccess.thecvf.com/content/WACV2026/papers/Shin_ReFineVQA_Iterative_Refinement_of_Video_Description_via_Feedback_Generation_for_WACV_2026_paper.pdf",
     bibtex: `@inproceedings{shin2026refinevqa,
@@ -138,6 +167,7 @@ export const publications: Publication[] = [
     venueShort: "CVPR",
     year: 2025,
     type: "conference",
+    mainFigure: "/images/pubpic/2025/MVDoppler_Pose_CVPR.png",
     isTopConf: true,
     pdfUrl: "https://openaccess.thecvf.com/content/CVPR2025/papers/Choi_MVDoppler-Pose_Multi-Modal_Multi-View_mmWave_Sensing_for_Long-Distance_Self-Occluded_Human_Walking_CVPR_2025_paper.pdf",
     projectUrl: "https://mvdoppler-pose.github.io/",
@@ -157,6 +187,7 @@ export const publications: Publication[] = [
     venueShort: "ICASSP",
     year: 2025,
     type: "conference",
+    mainFigure: "/images/pubpic/2025/High-Resolution_ICASSP.png",
     isTopConf: true,
     isOral: true,
     pdfUrl: "https://ieeexplore.ieee.org/abstract/document/10888938",
@@ -176,6 +207,7 @@ export const publications: Publication[] = [
     venueShort: "IEEE SPL",
     year: 2024,
     type: "journal",
+    mainFigure: "/images/pubpic/2024/Radar_Based_Crowd_SPL.png",
     pdfUrl: "https://ieeexplore.ieee.org/abstract/document/10710320",
     bibtex: `@article{choi2024radar,
   title={Radar-Based Crowd Counting in Real-World Environments with Spatiotemporal Transformer},
@@ -196,6 +228,7 @@ export const publications: Publication[] = [
     venueShort: "AAAI",
     year: 2024,
     type: "conference",
+    mainFigure: "/images/pubpic/2024/Fusion_Vital_AAAI.png",
     isTopConf: true,
     pdfUrl: "https://ojs.aaai.org/index.php/AAAI/article/view/27898",
     bibtex: `@inproceedings{choi2024fusionvital,
@@ -217,6 +250,7 @@ export const publications: Publication[] = [
     venueShort: "IEEE SensJ",
     year: 2024,
     type: "journal",
+    mainFigure: "/images/pubpic/2024/RadarBasedPeople_IEEESensors.png",
     pdfUrl: "https://ieeexplore.ieee.org/document/10322673",
     bibtex: `@article{choi2024people,
   title={Radar-Based People Counting under Heterogeneous Clutter Environments},
@@ -237,6 +271,7 @@ export const publications: Publication[] = [
     venueShort: "NeurIPS",
     year: 2023,
     type: "conference",
+    mainFigure: "/images/pubpic/2023/MVDoppler_NeurIPS.png",
     isTopConf: true,
     pdfUrl: "https://openreview.net/pdf?id=1plAfmP5ms",
     projectUrl: "https://mvdoppler.github.io/",
@@ -256,6 +291,7 @@ export const publications: Publication[] = [
     venueShort: "IEEE IoTJ",
     year: 2023,
     type: "journal",
+    mainFigure: "/images/pubpic/2023/RF-Vital_IoTJ.png",
     isTop5Percent: true,
     pdfUrl: "https://ieeexplore.ieee.org/abstract/document/10304252",
     bibtex: `@article{choi2023rfvital,
@@ -277,6 +313,7 @@ export const publications: Publication[] = [
     venueShort: "IEEE Access",
     year: 2023,
     type: "journal",
+    mainFigure: "/images/pubpic/2023/Beam_Scheduling_IEEEAccess.png",
     pdfUrl: "https://ieeexplore.ieee.org/abstract/document/10097706"
   },
   {
@@ -288,6 +325,7 @@ export const publications: Publication[] = [
     venueShort: "ECCV",
     year: 2022,
     type: "conference",
+    mainFigure: "/images/pubpic/2022/Remote_Respiration_ECCV.png",
     isTopConf: true,
     pdfUrl: "https://www.ecva.net/papers/eccv_2022/papers_ECCV/papers/136970248.pdf",
     bibtex: `@inproceedings{choi2022remote,
@@ -307,6 +345,7 @@ export const publications: Publication[] = [
     venueShort: "Remote Sensing",
     year: 2022,
     type: "journal",
+    mainFigure: "/images/pubpic/2022/Feature_Selection_RemoteSensing.png",
     pdfUrl: "https://www.mdpi.com/2072-4292/14/16/4044"
   },
   {
@@ -318,6 +357,7 @@ export const publications: Publication[] = [
     venueShort: "IEEE IoTJ",
     year: 2022,
     type: "journal",
+    mainFigure: "/images/pubpic/2022/Deep_Leraning_Approach_IoTJ.png",
     isTop5Percent: true,
     pdfUrl: "https://ieeexplore.ieee.org/abstract/document/9540889"
   },
@@ -330,6 +370,7 @@ export const publications: Publication[] = [
     venueShort: "IEEE TGRS",
     year: 2022,
     type: "journal",
+    mainFigure: "/images/pubpic/2022/Fusion_of_Target_TGRS.png",
     pdfUrl: "https://ieeexplore.ieee.org/document/9751685",
   },
   {
@@ -341,6 +382,7 @@ export const publications: Publication[] = [
     venueShort: "IEEE TAES",
     year: 2021,
     type: "journal",
+    mainFigure: "/images/pubpic/2021/UAV_TAES.png",
     pdfUrl: "https://ieeexplore.ieee.org/document/9409707"
   },
   {
@@ -352,6 +394,7 @@ export const publications: Publication[] = [
     venueShort: "IEEE SensJ",
     year: 2021,
     type: "journal",
+    mainFigure: "/images/pubpic/2021/Robust_Cardiac_Sensors.png",
     pdfUrl: "https://ieeexplore.ieee.org/document/9409125"
   },
   {
@@ -363,6 +406,7 @@ export const publications: Publication[] = [
     venueShort: "IEEE IoTJ",
     year: 2021,
     type: "journal",
+    mainFigure: "/images/pubpic/2021/People_Counting_IoTJ.png",
     isTop5Percent: true,
     pdfUrl: "https://ieeexplore.ieee.org/document/9234452",
     videoUrl: "https://www.youtube.com/watch?v=SRfiu0eAav8"
@@ -376,6 +420,7 @@ export const publications: Publication[] = [
     venueShort: "IEEE RadarConf",
     year: 2020,
     type: "conference",
+    mainFigure: "/images/pubpic/2020/Accurate_People_RadarConf.png",
     pdfUrl: "https://ieeexplore.ieee.org/document/9266496"
   },
   {
@@ -387,6 +432,7 @@ export const publications: Publication[] = [
     venueShort: "IEEE Access",
     year: 2020,
     type: "journal",
+    mainFigure: "/images/pubpic/2020/Robust_Detection_IEEE_Access.png",
     pdfUrl: "https://ieeexplore.ieee.org/abstract/document/9110845"
   },
   // Domestic Papers (KIEES)

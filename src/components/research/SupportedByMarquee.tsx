@@ -6,6 +6,7 @@ interface Sponsor {
   name: string;
   fullName: string;
   logo: string;
+  logoDark?: string;
   height?: number;
 }
 
@@ -50,7 +51,8 @@ const sponsors: Sponsor[] = [
     name: 'DGIST',
     fullName: 'Daegu Gyeongbuk Institute of Science and Technology (대구경북과학기술원)',
     logo: '/images/sponsors/dgist.png',
-    height: 48,
+    logoDark: '/images/sponsors/dgist_dark.png',
+    height: 28,
   },
 ];
 
@@ -72,13 +74,32 @@ export const SupportedByMarquee: React.FC = () => {
               className="marquee-item"
               title={`${sponsor.name}: ${sponsor.fullName}`}
             >
-              <img
-                src={assetUrl(sponsor.logo)}
-                alt={`${sponsor.name} Logo`}
-                className="sponsor-logo"
-                style={{ maxHeight: sponsor.height ? `${sponsor.height}px` : '48px' }}
-                loading="lazy"
-              />
+              {sponsor.logoDark ? (
+                <>
+                  <img
+                    src={assetUrl(sponsor.logo)}
+                    alt={`${sponsor.name} Logo`}
+                    className="sponsor-logo sponsor-logo-light"
+                    style={{ maxHeight: sponsor.height ? `${sponsor.height}px` : '48px' }}
+                    loading="lazy"
+                  />
+                  <img
+                    src={assetUrl(sponsor.logoDark)}
+                    alt={`${sponsor.name} Logo`}
+                    className="sponsor-logo sponsor-logo-dark"
+                    style={{ maxHeight: sponsor.height ? `${sponsor.height}px` : '48px' }}
+                    loading="lazy"
+                  />
+                </>
+              ) : (
+                <img
+                  src={assetUrl(sponsor.logo)}
+                  alt={`${sponsor.name} Logo`}
+                  className="sponsor-logo"
+                  style={{ maxHeight: sponsor.height ? `${sponsor.height}px` : '48px' }}
+                  loading="lazy"
+                />
+              )}
             </div>
           ))}
         </div>
@@ -185,9 +206,26 @@ export const SupportedByMarquee: React.FC = () => {
         }
 
         /* Dark mode support: soften dark logos */
-        [data-theme="dark"] .sponsor-logo {
+        .sponsor-logo-dark {
+          display: none;
+        }
+
+        [data-theme="dark"] .sponsor-logo-light {
+          display: none;
+        }
+
+        [data-theme="dark"] .sponsor-logo-dark {
+          display: block;
+        }
+
+        [data-theme="dark"] .sponsor-logo:not(.sponsor-logo-dark) {
           filter: grayscale(35%) brightness(1.4) contrast(1.1);
           opacity: 0.88;
+        }
+
+        [data-theme="dark"] .sponsor-logo-dark {
+          filter: grayscale(30%);
+          opacity: 0.9;
         }
 
         /* Hover to highlight logo in original color and full opacity */
@@ -197,8 +235,14 @@ export const SupportedByMarquee: React.FC = () => {
           transform: scale(1.08);
         }
 
-        [data-theme="dark"] .marquee-item:hover .sponsor-logo {
+        [data-theme="dark"] .marquee-item:hover .sponsor-logo:not(.sponsor-logo-dark) {
           filter: grayscale(0%) brightness(1.05);
+          opacity: 1;
+          transform: scale(1.08);
+        }
+
+        [data-theme="dark"] .marquee-item:hover .sponsor-logo-dark {
+          filter: grayscale(0%);
           opacity: 1;
           transform: scale(1.08);
         }

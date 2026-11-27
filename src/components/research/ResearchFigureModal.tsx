@@ -70,7 +70,7 @@ export const ResearchFigureModal: React.FC<ResearchFigureModalProps> = ({
     return null;
   }
 
-  const descriptionText = currentFig.description || currentFig.alt || topic.summary;
+  const hasFooter = Boolean(currentFig.papers?.length) || figures.length > 1;
 
   const modalNode = (
     <div
@@ -134,13 +134,9 @@ export const ResearchFigureModal: React.FC<ResearchFigureModalProps> = ({
           )}
         </div>
 
-        {/* Brief Description & Related Papers */}
-        <div className="research-fig-modal-body">
-          {descriptionText && (
-            <p className="research-fig-modal-desc">{descriptionText}</p>
-          )}
-
-          {(Boolean(currentFig.papers?.length) || figures.length > 1) && (
+        {/* Related Papers & Counter Footer (Description hidden for now) */}
+        {hasFooter && (
+          <div className="research-fig-modal-body">
             <div className="research-fig-modal-footer">
               <div className="research-fig-modal-papers">
                 {currentFig.papers?.map((paper, idx) =>
@@ -169,8 +165,8 @@ export const ResearchFigureModal: React.FC<ResearchFigureModalProps> = ({
                 </span>
               )}
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
       <style>{`
@@ -286,14 +282,13 @@ export const ResearchFigureModal: React.FC<ResearchFigureModalProps> = ({
           display: flex;
           align-items: center;
           justify-content: center;
-          border-bottom: 1px solid var(--color-border);
           min-height: 220px;
           overflow: hidden;
         }
 
         .research-fig-modal-img {
           max-width: 100%;
-          max-height: min(48vh, 430px);
+          max-height: min(62vh, 540px);
           width: auto;
           height: auto;
           object-fit: contain;
@@ -333,7 +328,8 @@ export const ResearchFigureModal: React.FC<ResearchFigureModalProps> = ({
         }
 
         .research-fig-modal-body {
-          padding: 16px 22px 18px;
+          padding: 12px 22px 14px;
+          border-top: 1px solid var(--color-border);
           background-color: var(--color-surface-elevated);
           overflow-y: auto;
           display: flex;
